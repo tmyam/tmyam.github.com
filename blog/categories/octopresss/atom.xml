@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopresss | tmyam`s blog]]></title>
   <link href="http://tmyam.github.com/blog/categories/octopresss/atom.xml" rel="self"/>
   <link href="http://tmyam.github.com/"/>
-  <updated>2013-10-09T12:07:54+08:00</updated>
+  <updated>2013-10-09T12:56:41+08:00</updated>
   <id>http://tmyam.github.com/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -71,7 +71,7 @@ rake deploy
 <p><code>
 git add -A
 git commit -m 'your message'
-git push
+git push origin source
 </code>
 如果遇到<strong>warning</strong></p>
 
