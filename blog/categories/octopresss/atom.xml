@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopresss | tmyam`s blog]]></title>
   <link href="http://tmyam.github.com/blog/categories/octopresss/atom.xml" rel="self"/>
   <link href="http://tmyam.github.com/"/>
-  <updated>2013-10-09T10:21:48+08:00</updated>
+  <updated>2013-10-09T12:07:54+08:00</updated>
   <id>http://tmyam.github.com/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mac下编写blog]]></title>
+    <link href="http://tmyam.github.com/blog/2013/10/09/write-blog/"/>
+    <updated>2013-10-09T10:52:00+08:00</updated>
+    <id>http://tmyam.github.com/blog/2013/10/09/write-blog</id>
+    <content type="html"><![CDATA[<h2>1.编写</h2>
+
+<ul>
+<li><p>下载markdown的编辑工具,<a href="http://mouapp.com">Mou</a></p></li>
+<li><p>在终端的octopress目录下，输入</p></li>
+</ul>
+
+
+<p><code>
+rake new_post['article name']
+</code>
+然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
+
+<ul>
+<li>图片<br/>
+如果要在文章中使用图片，直接copy到<strong>/source/images</strong>目录下即可。在文章中可以直接使用<code>![temp](/images/temp.png)</code>。也可以选一些大的图床站点，使用链接的方式。<br/>
+例如：<img src="/images/2013/10/09/temp.png" alt="temp" /></li>
+</ul>
+
+
+<h2>2.生成</h2>
+
+<ul>
+<li>生成静态文件</li>
+</ul>
+
+
+<p><code>
+rake generate
+</code>
+* 预览<br/>
+地址 <a href="http://localhost:4000">http://localhost:4000</a> ,时时的修改markdown文件，可以刷新网页看到刚刚修改的效果。</p>
+
+<p><code>
+rake preview
+</code></p>
+
+<ul>
+<li>部署到GitHub上</li>
+</ul>
+
+
+<p><code>
+rake deploy
+</code></p>
+
+<h2>3.备份</h2>
+
+<p>将文件更新备份到github上。</p>
+
+<p><code>
+git add -A
+git commit -m 'your message'
+git push
+</code>
+如果遇到<strong>warning</strong></p>
+
+<blockquote><p>warning: push.default is unset; its implicit value is changing in Git 2.0 from &lsquo;matching&rsquo; to &lsquo;simple&rsquo;. To squelch this messageand maintain the current behavior after the default changes, use:&hellip;</p></blockquote>
+
+<p>推荐使用下面命令设置。</p>
+
+<p><code>
+git config --global push.default simple
+</code></p>
+
+<br/>
+
+
+<h3>参考</h3>
+
+<p><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac下使用github+Octopresss搭建博客]]></title>
