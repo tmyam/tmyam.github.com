@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.com/atom.xml" rel="self"/>
   <link href="http://tmyam.github.com/"/>
-  <updated>2013-10-09T16:21:50+08:00</updated>
+  <updated>2013-10-09T17:53:43+08:00</updated>
   <id>http://tmyam.github.com/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -30,10 +30,10 @@
 <!-- more -->
 
 
-<h2>2.添加评论</h2>
+<h2><del>2.添加disqus评论</del></h2>
 
 <ul>
-<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登陆。</p></li>
+<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
 <li><p>参考下图，点击<code>Dashboard</code></p></li>
 </ul>
 
@@ -61,6 +61,14 @@
 </span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>3.添加多说评论</h2>
+
+<p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。<br/>
+* 到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p>
+
+<ul>
+<li><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a></li>
+</ul>
 
 
 <br/>

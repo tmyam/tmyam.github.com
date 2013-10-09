@@ -90,9 +90,9 @@ rake new_post['article name'] 然后可以在source/_post/目录下找到一个.
 
 <time datetime="2013-10-09T10:52:00+08:00" pubdate data-updated="true">2013年10月09日</time>
         
-           | <a href="#disqus_thread"
-             data-disqus-identifier="http://tmyam.github.com">Comments</a>
-        
+			
+          | <a href="#comments">Comments</a>
+         
       </p>
     
   </header>
@@ -224,8 +224,6 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tmyam.github.com/blog/2013/10/09/write-blog/" data-via="" data-counturl="http://tmyam.github.com/blog/2013/10/09/write-blog/" >Tweet</a>
-  
   
   
 </div>
@@ -242,10 +240,23 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
   </footer>
 </article>
 
+
   <section>
     <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
   </section>
 
 </div>
@@ -295,37 +306,11 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 </footer>
   
 
-<script type="text/javascript">
-      var disqus_shortname = 'tmyam';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://tmyam.github.com/blog/2013/10/09/write-blog/';
-        var disqus_url = 'http://tmyam.github.com/blog/2013/10/09/write-blog/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
 
 
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 

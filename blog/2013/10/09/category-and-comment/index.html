@@ -11,7 +11,7 @@
   
   <meta name="description" content="1.右侧边栏分类 参考链接
 如果想使用中文名分类，可以修改 category_list.html 中的&lt;h1&gt;Categories&lt;/h1&gt;为
-&lt;h1&gt;文章分类&lt;/h1&gt;。 2.添加评论 使用第三方的评论系统，在disqus注册一个账号，并登陆。 &hellip;">
+&lt;h1&gt;文章分类&lt;/h1&gt;。 2.添加disqus评论 使用第三方的评论系统，在disqus注册一个账号， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,9 +89,9 @@
 
 <time datetime="2013-10-09T15:03:00+08:00" pubdate data-updated="true">2013年10月09日</time>
         
-           | <a href="#disqus_thread"
-             data-disqus-identifier="http://tmyam.github.com">Comments</a>
-        
+			
+          | <a href="#comments">Comments</a>
+         
       </p>
     
   </header>
@@ -109,10 +109,10 @@
 <!-- more -->
 
 
-<h2>2.添加评论</h2>
+<h2><del>2.添加disqus评论</del></h2>
 
 <ul>
-<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登陆。</p></li>
+<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
 <li><p>参考下图，点击<code>Dashboard</code></p></li>
 </ul>
 
@@ -140,6 +140,14 @@
 </span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>3.添加多说评论</h2>
+
+<p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。<br/>
+* 到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p>
+
+<ul>
+<li><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a></li>
+</ul>
 
 
 <br/>
@@ -184,8 +192,6 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tmyam.github.com/blog/2013/10/09/category-and-comment/" data-via="" data-counturl="http://tmyam.github.com/blog/2013/10/09/category-and-comment/" >Tweet</a>
-  
   
   
 </div>
@@ -200,10 +206,23 @@
   </footer>
 </article>
 
+
   <section>
     <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
   </section>
 
 </div>
@@ -253,37 +272,11 @@
 </footer>
   
 
-<script type="text/javascript">
-      var disqus_shortname = 'tmyam';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://tmyam.github.com/blog/2013/10/09/category-and-comment/';
-        var disqus_url = 'http://tmyam.github.com/blog/2013/10/09/category-and-comment/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
 
 
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 
