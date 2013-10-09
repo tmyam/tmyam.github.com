@@ -1,0 +1,141 @@
+---
+layout: post
+title: "mac下使用github+Octopresss搭建博客"
+date: 2013-10-08 18:09
+comments: true
+categories: Octopresss
+---
+
+我的第一篇博文   
+`(mac 版本 10.8.5)`
+
+## 1.git配置
+* 申请[github]账号
+* 配置git环境  
+
+**配置用户信息**  
+
+```
+git config user.name xxx	
+git config user.email xxx@xxx.com
+```  
+可以使用 ` git config --list ` 查看配置的信息  
+
+**生成证书**
+
+```
+ssh-keygen -t rsa -C "xxx@xxx.com"
+```
+**登录**[github]  
+拷贝~/.ssh/id_rsa.pub的内容，在github的`Account Settings`的`SSH Keys`里，点`Add SSH Keys`，将内容粘贴到”Key”中，并输入”Title”.
+	
+## 2.安装ruby
+使用Octopress需要最低Ruby版本为1.9.3,所以必须安装ruby。  
+
+* 如果没有安装了XCode及Command Line Tools则需要先安装apple-gcc42。
+* 使用RVM安装ruby最新版本  
+
+**安装rvm.** [参考链接](http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac)
+
+```
+\curl -L https://get.rvm.io | bash -s stable --ruby
+```
+如果遇到以下错误
+   
+>Error running 'requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses', please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
+pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log
+
+可以尝试使用下面的语句解决. [参考链接](http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf)
+   
+```
+rvm autolibs brew
+```
+
+**查看网络上最新的ruby版本**
+  
+```
+rvm list known
+```
+
+**安装ruby**
+	
+```
+rvm install ruby-2.0.0-p247
+```
+
+**使用**
+	
+```
+rvm use ruby-2.0.0-p247
+```
+可以使用 `rvm list ` 查看安装的ruby的状态。
+	
+## 3.部署blog
+* 创建git的blog
+	1. 点击github主页的 **Tab** `Repositories`,点击 `New` 按钮,创建一个public的仓库。
+	2. 仓库的名称必须为 *your_username.github.com* ,其中**your_username**是需要修改的地方,然后点击 `Create repository` 按钮。
+	3. 点击右侧的 ”Settings” 图标，在 **“GitHub Pages”** 栏，点击 `Automatic Page Generator` 按钮。
+	4. 内容不需要填，直接点击 `Continue to Layouts` 按钮。
+	5. 接着是选择模板，直接点击 `PUBLISH` 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。  
+<br/>
+
+* 配置[Octopress]
+	
+```
+cd blog     		   # 想要安装的Octopress的文件夹
+git clone https://github.com/imathis/octopress.git
+cd octopress
+gem install bundler   # 安装依赖
+bundle install 		
+rake install          # 安装Octopress默认的主题
+```
+
+* 部署
+
+```
+rake setup_github_pages
+```
+执行完后会要求输入仓库地址，照着写就行了*git@github.com:your_username/your_username.github.com*，其中**your_username**是需要修改的地方,注意后面必须是**.com**而不是**io.git**。
+	
+* 修改配置文件, [参考链接](http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html)  
+ 
+**可以执行以下命令生成页面和预览博客**
+	
+```
+rake generate 		# 生成文件(public文件夹下)
+rake preview 		# 生成本地预览，地址 http://localhost:4000
+```
+
+* 上传到github
+	
+```
+rake deploy 		# 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上
+```
+如果出现`ERROR: Repository not found.`错误，可以使用下面的方法解决。
+	
+```
+rm -rf _deploy     # 在octopress目录下
+git clone https://github.com/your_username/your_username.github.com.git "_deploy"		# 注意修改your_username
+rake deploy		   # 再次执行
+```
+这样就可以看到上传的主题博客了。
+
+## 4.备份资源文件
+在octopress目录下
+
+```
+git add .
+git commit -m 'your message'
+git push origin source
+```
+	
+<br/>
+### 参考
+ <http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/>
+ 
+
+
+
+[github]: https://github.com
+[Octopress]: http://octopress.org
+ 
