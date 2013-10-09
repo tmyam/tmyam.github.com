@@ -1,0 +1,38 @@
+---
+layout: post
+title: "为博客添加分类和评论功能"
+date: 2013-10-09 15:03
+comments: true
+categories: Octopresss
+---
+##1.右侧边栏分类
+* [参考链接](http://codemacro.com/2012/07/18/add-category-list-to-octopress/)  
+如果想使用中文名分类，可以修改 *category_list.html* 中的`<h1>Categories</h1>`为
+  `<h1>文章分类</h1>`。
+<!-- more -->
+
+##2.添加评论
+* 使用第三方的评论系统，在[disqus](http://www.disqus.com)注册一个账号，并登陆。
+
+* 参考下图，点击`Dashboard`  
+ 
+![temp](/images/2013/10/09/comment_dashboard.png)
+
+* 然后点击下图中的`add`按钮  
+
+![temp](/images/2013/10/09/comment_add.png)
+
+* 之后根据提示添加信息，一步一步直到完成。
+
+* 然后修改**_config.yml**文件
+
+```
+# Disqus Comments 
+disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
+disqus_show_comment_count: true
+```
+
+
+<br/>
+###参考  
+<http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html>
