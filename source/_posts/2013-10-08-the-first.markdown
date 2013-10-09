@@ -20,6 +20,7 @@ git config user.name xxx
 git config user.email xxx@xxx.com
 ```  
 可以使用 ` git config --list ` 查看配置的信息  
+<!-- more -->
 
 **生成证书**
 
