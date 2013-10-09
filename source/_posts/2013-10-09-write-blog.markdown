@@ -45,7 +45,7 @@ rake deploy
 ```
 git add -A
 git commit -m 'your message'
-git push
+git push origin source
 ```
 如果遇到**warning**
 >warning: push.default is unset; its implicit value is changing in Git 2.0 from 'matching' to 'simple'. To squelch this messageand maintain the current behavior after the default changes, use:...
