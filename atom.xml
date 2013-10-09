@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[tmyam`s blog]]></title>
+  <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.com/atom.xml" rel="self"/>
   <link href="http://tmyam.github.com/"/>
-  <updated>2013-10-09T14:48:18+08:00</updated>
+  <updated>2013-10-09T16:21:50+08:00</updated>
   <id>http://tmyam.github.com/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[为博客添加分类和评论功能]]></title>
+    <link href="http://tmyam.github.com/blog/2013/10/09/category-and-comment/"/>
+    <updated>2013-10-09T15:03:00+08:00</updated>
+    <id>http://tmyam.github.com/blog/2013/10/09/category-and-comment</id>
+    <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
+
+<ul>
+<li><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">参考链接</a><br/>
+如果想使用中文名分类，可以修改 <em>category_list.html</em> 中的<code>&lt;h1&gt;Categories&lt;/h1&gt;</code>为
+<code>&lt;h1&gt;文章分类&lt;/h1&gt;</code>。</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h2>2.添加评论</h2>
+
+<ul>
+<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登陆。</p></li>
+<li><p>参考下图，点击<code>Dashboard</code></p></li>
+</ul>
+
+
+<p><img src="http://tmyam.github.com/images/2013/10/09/comment_dashboard.png" alt="temp" /></p>
+
+<ul>
+<li>然后点击下图中的<code>add</code>按钮</li>
+</ul>
+
+
+<p><img src="http://tmyam.github.com/images/2013/10/09/comment_add.png" alt="temp" /></p>
+
+<ul>
+<li><p>之后根据提示添加信息，一步一步直到完成。</p></li>
+<li><p>然后修改<strong>_config.yml</strong>文件</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Disqus Comments 
+</span><span class='line'>disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
+</span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<br/>
+
+
+<h3>参考</h3>
+
+<p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac下编写blog]]></title>
