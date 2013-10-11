@@ -118,7 +118,7 @@ rake install          # 安装Octopress默认的主题
 ```
 rake setup_github_pages
 ```
-执行完后会要求输入仓库地址，照着写就行了*git@github.com:your_username/your_username.github.com*，其中**your_username**是需要修改的地方,注意后面必须是**.com**而不是**io.git**。
+执行完后会要求输入仓库地址，照着写就行了*git@github.com:your_username/your_username.github.com.git*，其中**your_username**是需要修改的地方。
 	
 * 修改配置文件, [参考链接](http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html)  
  
@@ -139,7 +139,8 @@ rake deploy 		# 会先将public下的文件复制到_deploy下,然后将_deploy�
 ```
 rm -rf _deploy     # 在octopress目录下
 git clone https://github.com/your_username/your_username.github.com.git "_deploy"		# 注意修改your_username
-rake deploy		   # 再次执行
+rake generate   # 再次执行
+rake deploy		   
 ```
 这样就可以看到上传的主题博客了。
 
