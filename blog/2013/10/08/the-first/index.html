@@ -12,7 +12,8 @@
   <meta name="description" content="我的第一篇博文 (mac 版本 10.8.5) 1.git配置 申请github账号
 配置git环境 配置用户信息 1
 2
-git config user.name xxx git config user.email xxx@xxx.com 可以使用 git config --list &hellip;">
+git config --global user.email "xxx@xxx.com"
+git config --global user.name "xxx" 可以使用 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +22,7 @@ git config user.name xxx git config user.email xxx@xxx.com 可以使用 git conf
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tmyam.github.com/blog/2013/10/08/the-first">
+  <link rel="canonical" href="http://tmyam.github.io/blog/2013/10/08/the-first">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
@@ -53,7 +54,7 @@ git config user.name xxx git config user.email xxx@xxx.com 可以使用 git conf
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:tmyam.github.com" />
+    <input type="hidden" name="q" value="site:tmyam.github.io" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -113,8 +114,8 @@ git config user.name xxx git config user.email xxx@xxx.com 可以使用 git conf
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git config user.name xxx 
-</span><span class='line'>git config user.email xxx@xxx.com</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git config --global user.email "xxx@xxx.com"
+</span><span class='line'>git config --global user.name "xxx"</span></code></pre></td></tr></table></div></figure>
 
 
 <p>
@@ -148,15 +149,10 @@ git config user.name xxx git config user.email xxx@xxx.com 可以使用 git conf
 </pre></td><td class='code'><pre><code class=''><span class='line'>\curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure>
 
 
-<p>如果遇到以下错误</p>
-
-<blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
-pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
-
-<p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
+<p>由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm autolibs brew</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
@@ -170,6 +166,40 @@ pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_o
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-2.0.0-p247</span></code></pre></td></tr></table></div></figure>
 
+
+<p>如果遇到以下错误</p>
+
+<blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
+pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
+
+<p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm autolibs brew</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果遇到以下错误</p>
+
+<blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
+please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
+
+<h4>Requirements installation failed with status: 1.</h4></blockquote>
+
+<p>可以先安装homebrew</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo su
+</span><span class='line'>curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改权限</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R `whoami` /Library/Caches/Homebrew/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之后重新安装就行了。</p>
 
 <p><strong>使用</strong></p>
 

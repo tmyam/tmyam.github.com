@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopresss | tmyam's blog]]></title>
-  <link href="http://tmyam.github.com/blog/categories/octopresss/atom.xml" rel="self"/>
-  <link href="http://tmyam.github.com/"/>
-  <updated>2013-10-09T17:53:43+08:00</updated>
-  <id>http://tmyam.github.com/</id>
+  <link href="http://tmyam.github.io/blog/categories/octopresss/atom.xml" rel="self"/>
+  <link href="http://tmyam.github.io/"/>
+  <updated>2013-10-11T13:21:39+08:00</updated>
+  <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[为博客添加分类和评论功能]]></title>
-    <link href="http://tmyam.github.com/blog/2013/10/09/category-and-comment/"/>
+    <link href="http://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
     <updated>2013-10-09T15:03:00+08:00</updated>
-    <id>http://tmyam.github.com/blog/2013/10/09/category-and-comment</id>
+    <id>http://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
     <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
 
 <ul>
@@ -63,11 +63,11 @@ disqus_show_comment_count: true
 
 <h2>3.添加多说评论</h2>
 
-<p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。<br/>
-* 到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p>
+<p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
 
 <ul>
-<li><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a></li>
+<li><p>到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p></li>
+<li><p><a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a></p></li>
 </ul>
 
 
@@ -82,9 +82,9 @@ disqus_show_comment_count: true
   
   <entry>
     <title type="html"><![CDATA[mac下编写blog]]></title>
-    <link href="http://tmyam.github.com/blog/2013/10/09/write-blog/"/>
+    <link href="http://tmyam.github.io/blog/2013/10/09/write-blog/"/>
     <updated>2013-10-09T10:52:00+08:00</updated>
-    <id>http://tmyam.github.com/blog/2013/10/09/write-blog</id>
+    <id>http://tmyam.github.io/blog/2013/10/09/write-blog</id>
     <content type="html"><![CDATA[<h2>1.编写</h2>
 
 <ul>
@@ -170,9 +170,9 @@ git config --global push.default simple
   
   <entry>
     <title type="html"><![CDATA[mac下使用github+Octopresss搭建博客]]></title>
-    <link href="http://tmyam.github.com/blog/2013/10/08/the-first/"/>
+    <link href="http://tmyam.github.io/blog/2013/10/08/the-first/"/>
     <updated>2013-10-08T18:09:00+08:00</updated>
-    <id>http://tmyam.github.com/blog/2013/10/08/the-first</id>
+    <id>http://tmyam.github.io/blog/2013/10/08/the-first</id>
     <content type="html"><![CDATA[<p>我的第一篇博文 <br/>
 <code>(mac 版本 10.8.5)</code></p>
 
@@ -187,8 +187,8 @@ git config --global push.default simple
 <p><strong>配置用户信息</strong></p>
 
 <p><code>
-git config user.name xxx    
-git config user.email xxx@xxx.com
+git config --global user.email "xxx@xxx.com"
+git config --global user.name "xxx"
 </code><br/>
 可以使用 <code>git config --list</code> 查看配置的信息</p>
 
@@ -218,15 +218,10 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 <p><code>
 \curl -L https://get.rvm.io | bash -s stable --ruby
 </code>
-如果遇到以下错误</p>
-
-<blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
-pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
-
-<p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
+由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
 
 <p><code>
-rvm autolibs brew
+\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
 </code></p>
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
@@ -239,7 +234,36 @@ rvm list known
 
 <p><code>
 rvm install ruby-2.0.0-p247
-</code></p>
+</code>
+如果遇到以下错误</p>
+
+<blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
+pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
+
+<p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
+
+<p><code>
+rvm autolibs brew
+</code>
+如果遇到以下错误</p>
+
+<blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
+please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
+
+<h4>Requirements installation failed with status: 1.</h4></blockquote>
+
+<p>可以先安装homebrew</p>
+
+<p><code>
+sudo su
+curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+</code>
+修改权限</p>
+
+<p><code>
+sudo chown -R `whoami` /Library/Caches/Homebrew/
+</code>
+之后重新安装就行了。</p>
 
 <p><strong>使用</strong></p>
 
