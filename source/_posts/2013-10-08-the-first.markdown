@@ -16,8 +16,8 @@ categories: Octopresss
 **配置用户信息**  
 
 ```
-git config user.name xxx	
-git config user.email xxx@xxx.com
+git config --global user.email "xxx@xxx.com"
+git config --global user.name "xxx"
 ```  
 可以使用 ` git config --list ` 查看配置的信息  
 <!-- more -->
@@ -41,15 +41,10 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 ```
 \curl -L https://get.rvm.io | bash -s stable --ruby
 ```
-如果遇到以下错误
-   
->Error running 'requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses', please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
-pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log
+由于国内被墙的缘故，可能遇见 `curl: (7) couldn't connect to host` 错误.可以使用下面的方式
 
-可以尝试使用下面的语句解决. [参考链接](http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf)
-   
 ```
-rvm autolibs brew
+\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
 ```
 
 **查看网络上最新的ruby版本**
@@ -63,13 +58,40 @@ rvm list known
 ```
 rvm install ruby-2.0.0-p247
 ```
+如果遇到以下错误
+   
+>Error running 'requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses', please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
+pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log
+
+可以尝试使用下面的语句解决. [参考链接](http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf)
+   
+```
+rvm autolibs brew
+```
+如果遇到以下错误
+>Error running 'requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl',
+please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log
+####Requirements installation failed with status: 1.
+
+可以先安装homebrew
+
+```
+sudo su
+curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+```
+修改权限
+
+```
+sudo chown -R `whoami` /Library/Caches/Homebrew/
+```
+之后重新安装就行了。
 
 **使用**
 	
 ```
 rvm use ruby-2.0.0-p247
 ```
-可以使用 `rvm list ` 查看安装的ruby的状态。
+可以使用 `rvm list` 查看安装的ruby的状态。
 	
 ## 3.部署blog
 * 创建git的blog

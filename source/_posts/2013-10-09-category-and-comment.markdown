@@ -34,6 +34,7 @@ disqus_show_comment_count: true
 
 ##3.添加多说评论
 disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。  
+
 * 到 [多说](http://duoshuo.com) 关联个账号,然后点击首页的`我要安装`,填写信息。
 
 * [参考链接](http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html) 
