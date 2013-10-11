@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-10-11T13:41:03+08:00</updated>
+  <updated>2013-10-11T13:42:56+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -340,7 +340,7 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 </pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
 
 
-<p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com</em>，其中<strong>your_username</strong>是需要修改的地方,注意后面必须是<strong>.com</strong>而不是<strong>io.git</strong>。</p>
+<p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
 
 <ul>
 <li>修改配置文件, <a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></li>
@@ -369,9 +369,11 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rm -rf _deploy     # 在octopress目录下
 </span><span class='line'>git clone https://github.com/your_username/your_username.github.com.git "_deploy"     # 注意修改your_username
-</span><span class='line'>rake deploy          # 再次执行</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>rake generate   # 再次执行
+</span><span class='line'>rake deploy          </span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就可以看到上传的主题博客了。</p>
