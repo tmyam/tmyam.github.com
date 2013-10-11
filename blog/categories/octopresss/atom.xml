@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopresss | tmyam's blog]]></title>
+  <title><![CDATA[Category: Octopresss | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/octopresss/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-10-11T13:48:14+08:00</updated>
+  <updated>2013-10-11T14:04:20+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
