@@ -11,8 +11,7 @@
   
   <meta name="description" content="1.编写 下载markdown的编辑工具,Mou
 在终端的octopress目录下，输入 1
-rake new_post['article name'] 然后可以在source/_post/目录下找到一个.markdown文件，使用Mou打开它，写入你想写的内容。 图片
-如果要在文章中使用图片， &hellip;">
+rake new_post[&#39;article name&#39;] 然后可以在source/_post/目录下找到一个.markdown文件，使用Mou打开它，写入你想写的内容。 图片 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,8 +105,9 @@ rake new_post['article name'] 然后可以在source/_post/目录下找到一个.
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post['article name']</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s1">&#39;article name&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
@@ -128,15 +128,62 @@ rake new_post['article name'] 然后可以在source/_post/目录下找到一个.
 <p>如果想将Read on 修改为中文，可以修改_config.yml文件<br/>
 excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; link text at the bottom of excerpted articles 中的<code>Read on</code> 改为 <code>阅读全文</code>。</p>
 
-<h2>2.生成</h2>
+<h2>2.代码高亮</h2>
+
+<p>octopress原生支持代码高亮，<a href="http://octopress.org/docs/blogging/code/">参考链接</a> <br/>
+使用<code>Backtick</code>来实现语法高亮，<a href="http://m.blog.csdn.net/blog/trochiluses/12906265">参考链接</a></p>
+
+<ul>
+<li>语法
+
+<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#&ndash;#] <br/>
+code snippet <br/>
+` ` `</p></blockquote></li>
+</ul>
+
+
+<p>language: 指明你所使用的语言 <br/>
+title: 代码标题 <br/>
+url: 代码链接，点击这个可以下载你的代码 <br/>
+link text: 对链接的解释文本，默认是link <br/>
+start:#: 行号从哪里开始 <br/>
+mark:#,#&ndash;#: 标记某一行代码 <br/>
+linenos:false: 对高亮代码块不添加行号</p>
+
+<p>例如：</p>
+
+<blockquote><p>` ` ` sh <br/>
+rake new_post[&lsquo;article name&rsquo;] <br/>
+` ` `</p></blockquote>
+
+<p>显示为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s1">&#39;article name&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <br/>
+由于一旦设置了高亮格式，之后所有的代码高亮都会使用这种格式，有好处也有坏处。可以在下一个代码高亮的地方将<code>language</code>设置成<code>text</code>来取消对下面的影响。</p>
+
+<ul>
+<li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
+text: 无格式 <br/>
+sh: shell脚本 <br/>
+objective-c: Objective-C</li>
+</ul>
+
+
+<h2>3.生成</h2>
 
 <ul>
 <li>生成静态文件</li>
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate </span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>rake generate
+</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
@@ -145,8 +192,9 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake preview</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>rake preview
+</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
@@ -154,20 +202,22 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>3.备份</h2>
+<h2>4.备份</h2>
 
 <p>将文件更新备份到github上。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add -A
-</span><span class='line'>git commit -m 'your message'
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add -A
+</span><span class='line'>git commit -m <span class="s1">&#39;your message&#39;</span>
+</span><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果遇到<strong>warning</strong></p>
@@ -176,8 +226,9 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 
 <p>推荐使用下面命令设置。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git config --global push.default simple</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global push.default simple
+</span></code></pre></td></tr></table></div></figure>
 
 
 

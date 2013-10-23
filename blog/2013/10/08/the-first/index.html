@@ -12,8 +12,8 @@
   <meta name="description" content="我的第一篇博文 (mac 版本 10.8.5) 1.git配置 申请github账号
 配置git环境 配置用户信息 1
 2
-git config --global user.email "xxx@xxx.com"
-git config --global user.name "xxx" 可以使用 &hellip;">
+git config --global user.email &quot;xxx@xxx.com&quot;
+git config --global user.name & &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,10 +112,11 @@ git config --global user.name "xxx" 可以使用 &hellip;">
 
 <p><strong>配置用户信息</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git config --global user.email "xxx@xxx.com"
-</span><span class='line'>git config --global user.name "xxx"</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
+</span><span class='line'>git config --global user.name <span class="s2">&quot;xxx&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>
@@ -126,8 +127,9 @@ git config --global user.name "xxx" 可以使用 &hellip;">
 
 <p><strong>生成证书</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ssh-keygen -t rsa -C "xxx@xxx.com"</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-keygen -t rsa -C <span class="s2">&quot;xxx@xxx.com&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>登录</strong><a href="https://github.com">github</a><br/>
@@ -145,26 +147,30 @@ git config --global user.name "xxx" 可以使用 &hellip;">
 
 <p><strong>安装rvm.</strong> <a href="http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac">参考链接</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\curl -L https://get.rvm.io | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>\curl -L https://get.rvm.io | bash -s stable --ruby
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm list known</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm list known
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>安装ruby</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm install ruby-2.0.0-p247</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm install ruby-2.0.0-p247
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果遇到以下错误</p>
@@ -174,8 +180,9 @@ pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_o
 
 <p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm autolibs brew</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm autolibs brew
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果遇到以下错误</p>
@@ -187,24 +194,27 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 
 <p>可以先安装homebrew</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo su
-</span><span class='line'>curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo su
+</span><span class='line'>curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>修改权限</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown -R `whoami` /Library/Caches/Homebrew/</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /Library/Caches/Homebrew/
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>之后重新安装就行了。</p>
 
 <p><strong>使用</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm use ruby-2.0.0-p247</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm use ruby-2.0.0-p247
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
@@ -233,18 +243,19 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd blog             # 想要安装的Octopress的文件夹
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>blog               <span class="c"># 想要安装的Octopress的文件夹</span>
 </span><span class='line'>git clone https://github.com/imathis/octopress.git
-</span><span class='line'>cd octopress
-</span><span class='line'>gem install bundler   # 安装依赖
+</span><span class='line'><span class="nb">cd </span>octopress
+</span><span class='line'>gem install bundler   <span class="c"># 安装依赖</span>
 </span><span class='line'>bundle install        
-</span><span class='line'>rake install          # 安装Octopress默认的主题</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>rake install          <span class="c"># 安装Octopress默认的主题</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
@@ -252,8 +263,9 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake setup_github_pages
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
@@ -265,10 +277,11 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 
 <p><strong>可以执行以下命令生成页面和预览博客</strong></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate        # 生成文件(public文件夹下)
-</span><span class='line'>rake preview      # 生成本地预览，地址 http://localhost:4000</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake generate      <span class="c"># 生成文件(public文件夹下)</span>
+</span><span class='line'>rake preview      <span class="c"># 生成本地预览，地址 http://localhost:4000</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
@@ -276,20 +289,22 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy      # 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake deploy        <span class="c"># 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rm -rf _deploy     # 在octopress目录下
-</span><span class='line'>git clone https://github.com/your_username/your_username.github.com.git "_deploy"     # 注意修改your_username
-</span><span class='line'>rake generate   # 再次执行
-</span><span class='line'>rake deploy          </span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf _deploy     <span class="c"># 在octopress目录下</span>
+</span><span class='line'>git clone https://github.com/your_username/your_username.github.com.git <span class="s2">&quot;_deploy&quot;</span>       <span class="c"># 注意修改your_username</span>
+</span><span class='line'>rake generate   <span class="c"># 再次执行</span>
+</span><span class='line'>rake deploy       
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>这样就可以看到上传的主题博客了。</p>
@@ -298,12 +313,13 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 
 <p>在octopress目录下</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
-</span><span class='line'>git commit -m 'your message'
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add .
+</span><span class='line'>git commit -m <span class="s1">&#39;your message&#39;</span>
+</span><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopresss | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/octopresss/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-10-23T15:34:24+08:00</updated>
+  <updated>2013-10-23T16:41:33+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -53,7 +53,7 @@
 </ul>
 
 
-<p>```</p>
+<p>``` sh</p>
 
 <h1>Disqus Comments</h1>
 
@@ -93,7 +93,7 @@ disqus_show_comment_count: true
 </ul>
 
 
-<p><code>
+<p><code>sh
 rake new_post['article name']
 </code>
 然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
@@ -114,14 +114,56 @@ rake new_post['article name']
 <p>如果想将Read on 修改为中文，可以修改_config.yml文件<br/>
 excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; link text at the bottom of excerpted articles 中的<code>Read on</code> 改为 <code>阅读全文</code>。</p>
 
-<h2>2.生成</h2>
+<h2>2.代码高亮</h2>
+
+<p>octopress原生支持代码高亮，<a href="http://octopress.org/docs/blogging/code/">参考链接</a> <br/>
+使用<code>Backtick</code>来实现语法高亮，<a href="http://m.blog.csdn.net/blog/trochiluses/12906265">参考链接</a></p>
+
+<ul>
+<li>语法
+
+<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#&ndash;#] <br/>
+code snippet <br/>
+` ` `</p></blockquote></li>
+</ul>
+
+
+<p>language: 指明你所使用的语言 <br/>
+title: 代码标题 <br/>
+url: 代码链接，点击这个可以下载你的代码 <br/>
+link text: 对链接的解释文本，默认是link <br/>
+start:#: 行号从哪里开始 <br/>
+mark:#,#&ndash;#: 标记某一行代码 <br/>
+linenos:false: 对高亮代码块不添加行号</p>
+
+<p>例如：</p>
+
+<blockquote><p>` ` ` sh <br/>
+rake new_post[&lsquo;article name&rsquo;] <br/>
+` ` `</p></blockquote>
+
+<p>显示为
+<code>sh
+rake new_post['article name']
+</code> <br/>
+由于一旦设置了高亮格式，之后所有的代码高亮都会使用这种格式，有好处也有坏处。可以在下一个代码高亮的地方将<code>language</code>设置成<code>text</code>来取消对下面的影响。</p>
+
+<ul>
+<li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
+text: 无格式 <br/>
+sh: shell脚本 <br/>
+objective-c: Objective-C</li>
+</ul>
+
+
+<h2>3.生成</h2>
 
 <ul>
 <li>生成静态文件</li>
 </ul>
 
 
-<p><code>
+<p><code>text
 rake generate
 </code>
 * 预览<br/>
@@ -140,11 +182,11 @@ rake preview
 rake deploy
 </code></p>
 
-<h2>3.备份</h2>
+<h2>4.备份</h2>
 
 <p>将文件更新备份到github上。</p>
 
-<p><code>
+<p><code>sh
 git add -A
 git commit -m 'your message'
 git push origin source
@@ -186,7 +228,7 @@ git config --global push.default simple
 
 <p><strong>配置用户信息</strong></p>
 
-<p><code>
+<p><code>sh
 git config --global user.email "xxx@xxx.com"
 git config --global user.name "xxx"
 </code><br/>
@@ -215,7 +257,7 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 <p><strong>安装rvm.</strong> <a href="http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac">参考链接</a></p>
 
-<p><code>
+<p><code>text
 \curl -L https://get.rvm.io | bash -s stable --ruby
 </code>
 由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
@@ -226,7 +268,7 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
 
-<p><code>
+<p><code>sh
 rvm list known
 </code></p>
 
