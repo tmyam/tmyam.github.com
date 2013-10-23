@@ -15,7 +15,7 @@ categories: Octopresss
 
 **配置用户信息**  
 
-```
+``` sh
 git config --global user.email "xxx@xxx.com"
 git config --global user.name "xxx"
 ```  
@@ -38,7 +38,7 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 **安装rvm.** [参考链接](http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac)
 
-```
+``` text
 \curl -L https://get.rvm.io | bash -s stable --ruby
 ```
 由于国内被墙的缘故，可能遇见 `curl: (7) couldn't connect to host` 错误.可以使用下面的方式
@@ -49,7 +49,7 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 **查看网络上最新的ruby版本**
   
-```
+``` sh
 rvm list known
 ```
 

@@ -26,7 +26,7 @@ categories: Octopresss
 
 * 然后修改**_config.yml**文件
 
-```
+``` sh
 # Disqus Comments 
 disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
 disqus_show_comment_count: true

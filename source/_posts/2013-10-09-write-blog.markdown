@@ -12,7 +12,7 @@ categories: Octopresss
 
 * 在终端的octopress目录下，输入
 
-```
+``` sh
 rake new_post['article name']
 ```
 然后可以在source/_post/目录下找到一个.markdown文件，使用[Mou]打开它，写入你想写的内容。
@@ -29,10 +29,44 @@ rake new_post['article name']
 如果想将Read on 修改为中文，可以修改_config.yml文件  
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles 中的`Read on` 改为 `阅读全文`。
 
-##2.生成
+##2.代码高亮
+octopress原生支持代码高亮，[参考链接](http://octopress.org/docs/blogging/code/)   
+使用`Backtick`来实现语法高亮，[参考链接](http://m.blog.csdn.net/blog/trochiluses/12906265)   
+
+* 语法   
+>\` \` \` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#]   
+code snippet   
+\` \` \`   
+
+language: 指明你所使用的语言   
+title: 代码标题   
+url: 代码链接，点击这个可以下载你的代码   
+link text: 对链接的解释文本，默认是link   
+start:#: 行号从哪里开始   
+mark:#,#-#: 标记某一行代码   
+linenos:false: 对高亮代码块不添加行号   
+
+例如：   
+>\` \` \` sh   
+rake new_post['article name']   
+\` \` \`   
+
+显示为
+``` sh
+rake new_post['article name']
+```   
+由于一旦设置了高亮格式，之后所有的代码高亮都会使用这种格式，有好处也有坏处。可以在下一个代码高亮的地方将`language`设置成`text`来取消对下面的影响。
+
+* 常用的高亮格式，[参考链接](http://vvstyle.com/blog/2013/08/13/backtick-code/)   
+text: 无格式   
+sh: shell脚本   
+objective-c: Objective-C   
+
+
+##3.生成
 * 生成静态文件
 
-```
+``` text
 rake generate 
 ```
 * 预览  
@@ -47,10 +81,10 @@ rake preview
 ```
 rake deploy
 ```
-##3.备份
+##4.备份
 将文件更新备份到github上。
 
-```
+``` sh
 git add -A
 git commit -m 'your message'
 git push origin source
