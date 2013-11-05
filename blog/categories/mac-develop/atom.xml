@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-05T15:49:54+08:00</updated>
+  <updated>2013-11-05T16:00:14+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -47,6 +47,10 @@
 <p>对于编译出现签名错误的问题，可以查看<a href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/">链接</a>。</p>
 
 <blockquote><p>/Users/…/xxx.app: code object is not signed at all In subcomponent: /Users/…/xxx.app/Contents/Frameworks/xxx.framework Command /usr/bin/codesign failed with exit code 1</p></blockquote>
+
+<hr />
+
+<p><strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
 ]]></content>
   </entry>
   
