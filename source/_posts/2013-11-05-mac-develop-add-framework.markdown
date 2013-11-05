@@ -25,3 +25,7 @@ categories: mac_develop
 
 对于编译出现签名错误的问题，可以查看[链接](http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/)。  
 >/Users/…/xxx.app: code object is not signed at all In subcomponent: /Users/…/xxx.app/Contents/Frameworks/xxx.framework Command /usr/bin/codesign failed with exit code 1
+
+***
+
+**另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。**
