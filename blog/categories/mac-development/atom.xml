@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_development | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-development/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-05T14:14:07+08:00</updated>
+  <updated>2013-11-05T14:25:52+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Mavericks(10.9) 下 Xcode 5 创建的mac app Lion(10.7)无法运行的问题]]></title>
+    <title type="html"><![CDATA[Mavericks(10.9) 下 Xcode 5 创建的mac app在Lion(10.7)无法运行的问题]]></title>
     <link href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
     <updated>2013-11-05T10:05:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
