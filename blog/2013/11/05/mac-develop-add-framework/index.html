@@ -9,7 +9,7 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="环境: (mac 版本 10.9 ) ( Xcode 5.0 ) 步骤很简单，但是总是忘记，所以在这里做个记录。 在工程目录中建个文件夹，存放将要添加的第三方framework 在工程的 Build Phases 栏点击菜单，如下图，添加Copy Files 选择Frameworks,点击+号， &hellip;">
+  <meta name="description" content="环境: (mac 版本 10.9 ) ( Xcode 5.0 ) 步骤很简单，但是总是忘记，所以在这里做个记录。 在工程目录中建个文件夹，存放将要添加的第三方framework 在工程的 Build Phases 栏点击菜单，如下图，添加 Copy Files 选择Frameworks,点击+号， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -118,7 +118,10 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <hr />
 
-<p><strong>步骤很简单，但是总是忘记，所以在这里做个记录。</strong></p>
+<br/>
+
+
+<h4>步骤很简单，但是总是忘记，所以在这里做个记录。</h4>
 
 <ul>
 <li>在工程目录中建个文件夹，存放将要添加的第三方framework</li>
@@ -129,7 +132,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 
 <ul>
-<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，如下图，添加<em>Copy Files</em><br/>
+<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，如下图，添加 <em>Copy Files</em><br/>
 <img src="/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
 <li><p>选择<code>Frameworks</code>,点击<code>+</code>号，然后找到存放第三方framework的文件夹，选择要添加的framework，如下图<br/>
 <img src="/images/2013/11/05/add_framework.png" alt="temp" /></p></li>
@@ -138,13 +141,52 @@ $(document).bind('DOMNodeInserted', function(event) {
 </ul>
 
 
-<p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里。</p>
+<p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里，这时添加就完成了可以随意使用了。</p>
+
+<h4>清除冗余文件</h4>
+
+<p>对于已经添加的第三方framework，在生成的app中可以查看到framework的头文件，出于两个目的的考虑。<br/>
+1. 由于程序中已经引入了这些头文件，所以重复添加浪费了空间。<br/>
+2. 出于安全性的考虑，防止被别人使用或者破解。</p>
+
+<p><strong>清除方法：</strong></p>
+
+<ul>
+<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，入最上面的图里，这次添加 <em>Run Script</em><br/>
+<img src="/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
+<li><p>贴入如下代码</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;build path ${TARGET_BUILD_DIR}&quot;</span>
+</span><span class='line'><span class="nb">cd</span> <span class="k">${</span><span class="nv">TARGET_BUILD_DIR</span><span class="k">}</span>/<span class="k">${</span><span class="nv">FULL_PRODUCT_NAME</span><span class="k">}</span>/Contents/Frameworks
+</span><span class='line'>rm -rf */Headers
+</span><span class='line'>rm -rf */Versions/*/Headers
+</span><span class='line'>rm -rf */Versions/*/PrivateHeaders
+</span><span class='line'>rm -rf */Versions/*/Resources/*/Contents/Headers
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+如图下 <br/>
+<img src="/images/2013/11/05/clean_framework.png" alt="temp" /></p>
+
+<h4>编译问题</h4>
 
 <p>对于编译出现签名错误的问题，可以查看<a href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/">链接</a>。</p>
 
 <blockquote><p>/Users/…/xxx.app: code object is not signed at all In subcomponent: /Users/…/xxx.app/Contents/Frameworks/xxx.framework Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 
 <hr />
+
+<br/>
+
 
 <p><strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
 </div>
