@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Octopresss - tmyam的个人博客</title>
+  <title>mac app开发中添加第三方framework - tmyam的个人博客</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="Category: Octopresss">
+  <meta name="description" content="环境: (mac 版本 10.9 ) ( Xcode 5.0 ) 步骤很简单，但是总是忘记，所以在这里做个记录。 在工程目录中建个文件夹，存放将要添加的第三方framework 在工程的 Build Phases 栏点击菜单，如下图，添加Copy Files 选择Frameworks,点击+号， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tmyam.github.ioblog/categories/octopresss">
+  <link rel="canonical" href="http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="tmyam的个人博客" type="application/atom+xml">
@@ -84,65 +84,133 @@ $(document).bind('DOMNodeInserted', function(event) {
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Octopresss</h1>
+    
+      <h1 class="entry-title">Mac App开发中添加第三方framework</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T15:23:00+08:00" pubdate data-updated="true">2013年11月05日</time>
+        
+			
+          | <a href="#comments">Comments</a>
+         
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>环境: <code>(mac 版本 10.9 ) ( Xcode 5.0 )</code></p>
 
-  
-  <h2>2013</h2>
+<hr />
 
-<article>
-  
-<h1><a href="/blog/2013/10/09/category-and-comment/">为博客添加分类和评论功能</a></h1>
-<time datetime="2013-10-09T15:03:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
+<p><strong>步骤很简单，但是总是忘记，所以在这里做个记录。</strong></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopresss/'>Octopresss</a></span>
-</footer>
+<ul>
+<li>在工程目录中建个文件夹，存放将要添加的第三方framework</li>
+</ul>
 
 
-</article>
+<!-- more -->
 
 
-
-<article>
-  
-<h1><a href="/blog/2013/10/09/write-blog/">mac下编写blog</a></h1>
-<time datetime="2013-10-09T10:52:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>09</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopresss/'>Octopresss</a></span>
-</footer>
-
-
-</article>
+<ul>
+<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，如下图，添加<em>Copy Files</em><br/>
+<img src="/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
+<li><p>选择<code>Frameworks</code>,点击<code>+</code>号，然后找到存放第三方framework的文件夹，选择要添加的framework，如下图<br/>
+<img src="/images/2013/11/05/add_framework.png" alt="temp" /></p></li>
+<li><p>展开<em>Link Binary With Libraries</em> 点击<code>+</code>号，同上一步一样，找到找到存放第三方framework的文件夹，选择要使用的framework，如下图<br/>
+<img src="/images/2013/11/05/use_framework.png" alt="temp" /></p></li>
+</ul>
 
 
+<p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里。</p>
 
-<article>
-  
-<h1><a href="/blog/2013/10/08/the-first/">mac下使用github+Octopresss搭建博客</a></h1>
-<time datetime="2013-10-08T18:09:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>08</span> <span class='year'>2013</span></time>
+<p>对于编译出现签名错误的问题，可以查看<a href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/">链接</a>。</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopresss/'>Octopresss</a></span>
-</footer>
-
-
-</article>
-
+<blockquote><p>/Users/…/xxx.app: code object is not signed at all In subcomponent: /Users/…/xxx.app/Contents/Frameworks/xxx.framework Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T15:23:00+08:00" pubdate data-updated="true">2013年11月05日</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac-develop/'>mac_develop</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/" title="Previous Post: Mavericks(10.9) 下 Xcode 5 创建的mac app在Lion(10.7)无法运行的问题">&laquo; Mavericks(10.9) 下 Xcode 5 创建的mac app在Lion(10.7)无法运行的问题</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 </div>
 
