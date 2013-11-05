@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-05T16:27:22+08:00</updated>
+  <updated>2013-11-05T16:49:30+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -70,7 +70,7 @@ rm -rf */Versions/*/Headers
 rm -rf */Versions/*/PrivateHeaders  
 rm -rf */Versions/*/Resources/*/Contents/Headers
 </code><br/>
-如图下 <br/>
+如下图 <br/>
 <img src="/images/2013/11/05/clean_framework.png" alt="temp" /></p>
 
 <h4>编译问题</h4>
