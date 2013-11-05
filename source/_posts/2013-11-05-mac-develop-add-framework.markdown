@@ -44,7 +44,7 @@ rm -rf */Versions/*/Headers
 rm -rf */Versions/*/PrivateHeaders  
 rm -rf */Versions/*/Resources/*/Contents/Headers 
 ```  
-如图下   
+如下图   
 ![temp](/images/2013/11/05/clean_framework.png)
 
 ####编译问题  
