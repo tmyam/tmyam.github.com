@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mac_development | tmyam的个人博客]]></title>
+  <link href="http://tmyam.github.io/blog/categories/mac-development/atom.xml" rel="self"/>
+  <link href="http://tmyam.github.io/"/>
+  <updated>2013-11-05T14:14:07+08:00</updated>
+  <id>http://tmyam.github.io/</id>
+  <author>
+    <name><![CDATA[tmyam]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mavericks(10.9) 下 Xcode 5 创建的mac app Lion(10.7)无法运行的问题]]></title>
+    <link href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
+    <updated>2013-11-05T10:05:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
+    <content type="html"><![CDATA[<h2>前因</h2>
+
+<p>最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。
+先是以前创建的mac app工程使用到第三方framework的地方，无法编译通过了，其次就是编译出的程序在Lion(10.7)系统下无法运行了，要做兼容的话，真是让人头疼。</p>
+
+<!-- more -->
+
+
+<h2>解决</h2>
+
+<h3>引用第三方framework</h3>
+
+<p>原本mac app开发使用的第三方framework是不需要签名的，但是系统升级到Mavericks，Xcode升级到5.0后，再引用无签名的第三方framework时就无法编译通过了，这对于使用资源是很不利的。</p>
+
+<blockquote><p>/Users/&hellip;/xxx.app: code object is not signed at all
+In subcomponent: /Users/&hellip;/xxx.app/Contents/Frameworks/xxx.framework
+Command /usr/bin/codesign failed with exit code 1</p></blockquote>
+
+<p>解决方案：</p>
+
+<ul>
+<li><p>方案1: 这个问题只出现在Mavericks + Xcode5.0下面，可能是一个系统bug，所以可以选择降系统。（比较麻烦）</p></li>
+<li><p>方案2: 可以找到第三方framework的开源文件，自己使用签名进行编译。（不够通用）</p></li>
+<li><p>方案3: 在工程的 <code>Other Code Signing Flags</code> 栏加入 <code>--deep</code> 给第三方framework签名。<a href="http://support.hockeyapp.net/discussions/problems/14709-code-sign-error-in-xcode-501-for-os-x-target">参考链接</a></p></li>
+</ul>
+
+
+<h3>Lion(10.7)的兼容</h3>
+
+<p>Mavericks(10.9) + Xcode5.0创建的mac app程序无法在Lion(10.7)上面运行，就算选择了tag为10.7也不行。<br/>
+究其原因发现，新创建的程序下面多了个 <em>Base.lproj</em> 文件夹，<em>MainMenu.xib</em> 文件就在里面，而在以前，<em>MainMenu.xib</em> 文件是在 <em>en.lproj</em> 文件夹下的。</p>
+
+<p>而且系统也有相应的提示</p>
+
+<blockquote><p>warning: Internationalization of /Users/&hellip;/Base.lproj/MainMenu.xib is not available when compiling for targets before Mac OS X 10.8</p></blockquote>
+
+<ul>
+<li>修改很简单，点击<em>MainMenu.xib</em>，找到如下图的位置，点击 <code>Base</code><br/>
+<img src="/images/2013/11/05/xib_change.png" alt="temp" /><br/>
+之后弹出对话框，如下图，点击 <code>Move</code>
+<img src="/images/2013/11/05/xib_move.png" alt="temp" /> <br/>
+工程中的<code>Base.lproj</code>文件夹已经没有用了，可以选择删除。</li>
+</ul>
+
+
+<p>这样编译出的app就可以兼容Lion(10.7)了。</p>
+]]></content>
+  </entry>
+  
+</feed>

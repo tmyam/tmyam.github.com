@@ -9,10 +9,9 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="Blog Archive 2013 为博客添加分类和评论功能
-Oct 09 2013 posted in Octopresss mac下编写blog
-Oct 09 2013 posted in Octopresss mac下使用github+Octopresss搭建博客
-Oct 08 2013 &hellip;">
+  <meta name="description" content="Blog Archive 2013 Mavericks(10.9) 下 Xcode 5 创建的mac app Lion(10.7)无法运行的问题
+Nov 05 2013 posted in mac_development 为博客添加分类和评论功能
+Oct 09 2013 posted in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -33,6 +32,25 @@ Oct 08 2013 &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
   
 
 </head>
@@ -81,6 +99,20 @@ Oct 08 2013 &hellip;">
 
   
   <h2>2013</h2>
+
+<article>
+  
+<h1><a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Mavericks(10.9) 下 Xcode 5 创建的mac app Lion(10.7)无法运行的问题</a></h1>
+<time datetime="2013-11-05T10:05:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>05</span> <span class='year'>2013</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/mac-development/'>mac_development</a></span>
+</footer>
+
+
+</article>
+
+
 
 <article>
   
@@ -136,11 +168,16 @@ Oct 08 2013 &hellip;">
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/octopresss/'>Octopresss (3)</a></li>
+<li class='category'><a href='/blog/categories/mac-development/'>mac_development (1)</a></li>
 
   </ul>
 </section><section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Mavericks(10.9) 下 Xcode 5 创建的mac App Lion(10.7)无法运行的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/10/09/category-and-comment/">为博客添加分类和评论功能</a>

@@ -30,6 +30,25 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
   
 
 </head>
@@ -66,6 +85,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Mavericks(10.9) 下 Xcode 5 创建的mac App Lion(10.7)无法运行的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T10:05:00+08:00" pubdate data-updated="true">2013年11月05日</time>
+        
+			
+          | <a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前因</h2>
+
+<p>最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。
+先是以前创建的mac app工程使用到第三方framework的地方，无法编译通过了，其次就是编译出的程序在Lion(10.7)系统下无法运行了，要做兼容的话，真是让人头疼。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -252,11 +318,16 @@
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/octopresss/'>Octopresss (3)</a></li>
+<li class='category'><a href='/blog/categories/mac-development/'>mac_development (1)</a></li>
 
   </ul>
 </section><section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Mavericks(10.9) 下 Xcode 5 创建的mac App Lion(10.7)无法运行的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/10/09/category-and-comment/">为博客添加分类和评论功能</a>
