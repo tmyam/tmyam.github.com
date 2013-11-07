@@ -3,6 +3,7 @@ layout: post
 title: "mac app开发中添加第三方framework"
 date: 2013-11-05 15:23
 comments: true
+disqus: false
 categories: mac_develop
 ---
 环境: `(mac 版本 10.9 ) ( Xcode 5.0 )`  

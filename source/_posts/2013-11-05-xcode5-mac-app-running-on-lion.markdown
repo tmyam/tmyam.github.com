@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Mavericks(10.9) 下 Xcode 5 创建的mac app在Lion(10.7)无法运行的问题"
+title: "Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题"
 date: 2013-11-05 10:05
 comments: true
+disqus: false
 categories: mac_develop
 ---
 ## 前因

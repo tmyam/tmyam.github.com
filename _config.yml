@@ -90,8 +90,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-#disqus_short_name: tmyam
-#disqus_show_comment_count: true
+disqus_short_name: tmyam
+disqus_show_comment_count: true
 
 # Duoshuo Comments
 duoshuo_comments: true

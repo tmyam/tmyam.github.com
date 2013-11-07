@@ -3,6 +3,7 @@ layout: post
 title: "mac下编写blog"
 date: 2013-10-09 10:52
 comments: true
+disqus: false
 categories: Octopresss
 ---
 

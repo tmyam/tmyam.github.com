@@ -3,6 +3,7 @@ layout: post
 title: "为博客添加分类和评论功能"
 date: 2013-10-09 15:03
 comments: true
+disqus: false
 categories: Octopresss
 ---
 ##1.右侧边栏分类
