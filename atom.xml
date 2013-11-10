@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-07T10:59:45+08:00</updated>
+  <updated>2013-11-11T00:58:34+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -167,7 +167,48 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 <!-- more -->
 
 
-<h2><del>2.添加disqus评论</del></h2>
+<h2>2.添加关于页面</h2>
+
+<p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></p>
+
+<p>打开文件source\_includes\custom\navigation.html，默认情况下如下所示：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>Blog<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以在此添加一个标签页，使用命令：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_page<span class="o">[</span><span class="s1">&#39;about&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>创建一个页面，页面路径为source\about\index.markdown;</p>
+
+<p>修改上面的navigation.html为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>首页<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/archives&quot;</span><span class="nt">&gt;</span>归档<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/about&quot;</span><span class="nt">&gt;</span>关于<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2><del>3.添加disqus评论</del></h2>
 
 <ul>
 <li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
@@ -199,7 +240,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>3.添加多说评论</h2>
+<h2>4.添加多说评论</h2>
 
 <p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
 

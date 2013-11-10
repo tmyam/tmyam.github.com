@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopresss | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/octopresss/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-07T10:59:45+08:00</updated>
+  <updated>2013-11-11T00:58:34+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -30,7 +30,42 @@
 <!-- more -->
 
 
-<h2><del>2.添加disqus评论</del></h2>
+<h2>2.添加关于页面</h2>
+
+<p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></p>
+
+<p>打开文件source\_includes\custom\navigation.html，默认情况下如下所示：</p>
+
+<p>``` html</p>
+
+<ul class="main-navigation"> 
+  <li><a href="/">Blog</a></li> 
+  <li><a href="/blog/archives">Archives</a></li> 
+</ul>
+
+
+<p>```
+可以在此添加一个标签页，使用命令：</p>
+
+<p><code>sh
+rake new_page['about']
+</code>
+创建一个页面，页面路径为source\about\index.markdown;</p>
+
+<p>修改上面的navigation.html为：</p>
+
+<p>``` html</p>
+
+<ul class="main-navigation"> 
+  <li><a href="/">首页</a></li> 
+  <li><a href="/blog/archives">归档</a></li> 
+  <li><a href="/about">关于</a></li> 
+</ul>
+
+
+<p>```</p>
+
+<h2><del>3.添加disqus评论</del></h2>
 
 <ul>
 <li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
@@ -61,7 +96,7 @@
 disqus_show_comment_count: true
 ```</p>
 
-<h2>3.添加多说评论</h2>
+<h2>4.添加多说评论</h2>
 
 <p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
 
