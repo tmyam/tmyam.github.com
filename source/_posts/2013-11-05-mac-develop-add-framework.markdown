@@ -42,7 +42,6 @@ echo "build path ${TARGET_BUILD_DIR}"
 cd ${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks   
 rm -rf */Headers   
 rm -rf */Versions/*/Headers 
-rm -rf */Versions/*/PrivateHeaders  
 rm -rf */Versions/*/Resources/*/Contents/Headers 
 ```  
 如下图   
