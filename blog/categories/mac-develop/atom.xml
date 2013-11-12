@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-11T18:24:44+08:00</updated>
+  <updated>2013-11-12T22:58:31+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -67,7 +67,6 @@ echo "build path ${TARGET_BUILD_DIR}"
 cd ${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks   
 rm -rf */Headers   
 rm -rf */Versions/*/Headers
-rm -rf */Versions/*/PrivateHeaders  
 rm -rf */Versions/*/Resources/*/Contents/Headers
 </code><br/>
 如下图 <br/>
