@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-13T01:08:01+08:00</updated>
+  <updated>2013-11-13T14:15:25+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -281,9 +281,18 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 
 
 <ul>
+<li><p>特殊需求 <br/>
+由于markdown无法插入空格，这里可以使用html的<code>&amp;nbsp;</code>代替，同样换行可以使用<code>&lt;br/&gt;</code>。 <br/>
+另外由于无法调整文字的颜色和大小，这里也需要使用html代替。 <br/>
+<code>&lt;font color=green&gt;绿色&lt;/font&gt;</code>&nbsp;&nbsp; <font color=green>绿色</font> <br/>
+<code>&lt;font size=+2&gt;大2号字&lt;/font&gt;</code>&nbsp;&nbsp;&nbsp;&nbsp; <font size=+2>大2号字</font>  <br/>
++表示比当前字号大，-表示比当前字号小。</p></li>
 <li><p>图片<br/>
 如果要在文章中使用图片，直接copy到<strong>/source/images</strong>目录下即可。在文章中可以直接使用<code>![temp](/images/temp.png)</code>。也可以选一些大的图床站点，使用链接的方式。<br/>
-例如：<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="temp" /></p></li>
+例如：<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="temp" /> <br/>
+如果需要调整图片大小，则需要使用html。    <br/>
+<code>&lt;img src="http://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
+<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
 <li><p>首页缩略显示<br/>
 在首页展示文章的一部分内容，而不是显示全部。<br/>
 只需要在文章的markdown文件中，在需要显示在首页的文字后面添加<code>&lt;!-- more --&gt;</code>就行了。</p></li>
