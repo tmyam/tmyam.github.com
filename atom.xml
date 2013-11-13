@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-13T14:15:25+08:00</updated>
+  <updated>2013-11-13T16:25:05+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -47,6 +47,20 @@
 
 <p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里，这时添加就完成了可以随意使用了。</p>
 
+<h4>修改关联路径</h4>
+
+<p>一般情况下，如果将framework文件放到了工程文件夹的里面，那么在移动工程文件夹后，编译工程会出现无法找到framework头文件的错误，这是因为工程默认添加的路径使用了绝对路径的关系。</p>
+
+<ul>
+<li>修改 <br/>
+在Xcode的 <em>Build Settings</em> 里找到 <em>Framework Search Paths</em> 栏，修改参数为 <br/>
+$(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件夹</code> <br/>
+例如：
+<img src="http://tmyam.github.io/images/2013/11/05/change_path_framework.png" alt="temp" />
+这样就算移动工程文件夹，也不会报错了。</li>
+</ul>
+
+
 <h4>清除冗余文件</h4>
 
 <p>对于已经添加的第三方framework，在生成的app中可以查看到framework的头文件，出于两个目的的考虑。<br/>
@@ -67,11 +81,17 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;build path ${TARGET_BUILD_DIR}&quot;</span>
 </span><span class='line'><span class="nb">cd</span> <span class="k">${</span><span class="nv">TARGET_BUILD_DIR</span><span class="k">}</span>/<span class="k">${</span><span class="nv">FULL_PRODUCT_NAME</span><span class="k">}</span>/Contents/Frameworks
 </span><span class='line'>rm -rf */Headers
 </span><span class='line'>rm -rf */Versions/*/Headers
 </span><span class='line'>rm -rf */Versions/*/Resources/*/Contents/Headers
+</span><span class='line'>rm -rf */PrivateHeaders
+</span><span class='line'>rm -rf */Versions/*/PrivateHeaders
+</span><span class='line'>rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
 </span></code></pre></td></tr></table></div></figure>
 
 
