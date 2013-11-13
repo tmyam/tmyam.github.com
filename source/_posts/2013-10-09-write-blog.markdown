@@ -18,10 +18,20 @@ rake new_post['article name']
 ```
 然后可以在source/_post/目录下找到一个.markdown文件，使用[Mou]打开它，写入你想写的内容。
 <!-- more -->
+* 特殊需求   
+由于markdown无法插入空格，这里可以使用html的`&nbsp;`代替，同样换行可以使用`<br/>`。   
+另外由于无法调整文字的颜色和大小，这里也需要使用html代替。   
+`<font color=green>绿色</font>`&nbsp;&nbsp; <font color=green>绿色</font>   
+`<font size=+2>大2号字</font>`&nbsp;&nbsp;&nbsp;&nbsp; <font size=+2>大2号字</font>    
++表示比当前字号大，-表示比当前字号小。
+
 
 * 图片  
 如果要在文章中使用图片，直接copy到**/source/images**目录下即可。在文章中可以直接使用`![temp](/images/temp.png)`。也可以选一些大的图床站点，使用链接的方式。  
-例如：![temp](/images/2013/10/09/temp.png)
+例如：![temp](/images/2013/10/09/temp.png)   
+如果需要调整图片大小，则需要使用html。      
+`<img src="/images/temp.png" alt="faild" width="100"/>`   
+<img src="/images/2013/10/09/temp.png" alt="faild" width="100"/>
 
 * 首页缩略显示  
 在首页展示文章的一部分内容，而不是显示全部。  

@@ -25,7 +25,19 @@ categories: mac_develop
 
 右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里，这时添加就完成了可以随意使用了。
 
-####清除冗余文件
+#### 修改关联路径
+一般情况下，如果将framework文件放到了工程文件夹的里面，那么在移动工程文件夹后，编译工程会出现无法找到framework头文件的错误，这是因为工程默认添加的路径使用了绝对路径的关系。 
+  
+* 修改   
+在Xcode的 *Build Settings* 里找到 *Framework Search Paths* 栏，修改参数为   
+$(SRCROOT)/`当前工程名`/`第三方framework所在的文件夹`   
+例如：
+![temp](/images/2013/11/05/change_path_framework.png)
+这样就算移动工程文件夹，也不会报错了。
+
+
+
+#### 清除冗余文件
 对于已经添加的第三方framework，在生成的app中可以查看到framework的头文件，出于两个目的的考虑。  
 1. 由于程序中已经引入了这些头文件，所以重复添加浪费了空间。  
 2. 出于安全性的考虑，防止被别人使用或者破解。  
@@ -42,7 +54,10 @@ echo "build path ${TARGET_BUILD_DIR}"
 cd ${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks   
 rm -rf */Headers   
 rm -rf */Versions/*/Headers 
-rm -rf */Versions/*/Resources/*/Contents/Headers 
+rm -rf */Versions/*/Resources/*/Contents/Headers
+rm -rf */PrivateHeaders
+rm -rf */Versions/*/PrivateHeaders
+rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
 ```  
 如下图   
 ![temp](/images/2013/11/05/clean_framework.png)

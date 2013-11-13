@@ -9,7 +9,10 @@ footer: true
 ![icon](/mac/jsonxmlconvert/icon.png)   
 &nbsp;&nbsp;**`version 1.1.0`**
 
+<a href="https://itunes.apple.com/us/app/jsonxmlconvert/id644876099" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
+
 ### Description:   
+
 **JsonXmlConvert** is a tool which can handle json and xml.It have the following functions:   
 &nbsp;&nbsp;&nbsp;&nbsp;1. Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.    
 &nbsp;&nbsp;&nbsp;&nbsp;2. Parse json or xml and show the data in the form of a dictionary.    
@@ -33,13 +36,15 @@ English, Simplified Chinese
 Mac OS X 10.7 or later
 
 ### Link:
-mac app store: [http://appstore.com/mac/jsonxmlconvert](http://appstore.com/mac/jsonxmlconvert)   
+
+app store: [http://appstore.com/mac/jsonxmlconvert](http://appstore.com/mac/jsonxmlconvert)   
 web store page: [http://itunes.apple.com/us/app/jsonxmlconvert/id644876099](http://itunes.apple.com/us/app/jsonxmlconvert/id644876099)   
 home page: [http://tmyam.github.com/mac/jsonxmlconvert](http://tmyam.github.com/mac/jsonxmlconvert)  
 help: [http://tmyam.github.com/mac/jsonxmlconvert/help](http://tmyam.github.com/mac/jsonxmlconvert/help)   
 support: [http://tmyam.github.com/mac/jsonxmlconvert/support](http://tmyam.github.com/mac/jsonxmlconvert/support)
 
 ### Windows:
+
 main window:
 ![icon](/mac/jsonxmlconvert/main.png) 
 
