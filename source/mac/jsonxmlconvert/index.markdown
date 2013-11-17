@@ -23,7 +23,7 @@ footer: true
 **JsonXmlConvert** 是一个处理json和xml的工具。它具有以下特性:    
 &nbsp;&nbsp;&nbsp;&nbsp;1. 可以校验json或者xml格式的准确性，并进行格式化输出，可以自定义输出的样式。    
 &nbsp;&nbsp;&nbsp;&nbsp;2. 解析json或者xml，并以字典的形式显示数据。    
-&nbsp;&nbsp;&nbsp;&nbsp;3. 支持大部分的Json和Xml相互转换，但不支持xml的属性转换。    
+&nbsp;&nbsp;&nbsp;&nbsp;3. 支持大部分的Json和xml相互转换，但不支持xml的属性转换。    
 &nbsp;&nbsp;&nbsp;&nbsp;4. 支持utf-8编码的文本，不会显示乱码。    
 &nbsp;&nbsp;&nbsp;&nbsp;5. 格式化显示结果，并支持色彩标记。
 
@@ -51,7 +51,7 @@ main window:
 * ### History:
 ***
 <br/>
-* 2013.11.12  - `version 1.1.0` update  
+* 2013.11.16  - `version 1.1.0` update  
 
 1.&nbsp;Adjust the software architecture.   
 2.&nbsp;Increase json and xml formatted output and can customize the output style.   
