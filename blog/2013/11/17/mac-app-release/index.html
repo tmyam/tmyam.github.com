@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>JsonXmlConvert Support - tmyam的个人博客</title>
+  <title>mac app完整的发布流程 - tmyam的个人博客</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="JsonXmlConvert Support 2013年11月10日 FAQ If you have any question , please contact me. 2013年11月10日 Comments Please enable JavaScript to view the &hellip;">
+  <meta name="description" content="发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。 前提条件 1, 一个mac developer帐号 创建APP ID 登陆 MemberCenter
+点击 Certificates, Identifiers &amp; Profiles 进入管理界面， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tmyam.github.io/mac/jsonxmlconvert/support">
+  <link rel="canonical" href="http://tmyam.github.io/blog/2013/11/17/mac-app-release">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="tmyam的个人博客" type="application/atom+xml">
@@ -97,59 +98,15 @@ $(document).bind('DOMNodeInserted', function(event) {
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">JsonXmlConvert Support</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-10T23:06:00+08:00" pubdate data-updated="true">2013年11月10日</time></p>
-  </header>
-  
-  <h2>FAQ</h2>
-
-<hr />
-
-<br/>
-
-
-<br/>
-
-
-<br/>
-
-
-<br/>
-
-
-<br/>
-
-
-<br/> 
-
-
-<br/>
-
-
-<hr />
-
-<h6>If you have any question , please contact me.</h6>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Mac App完整的发布流程</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -161,27 +118,153 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-11-10T23:06:00+08:00" pubdate data-updated="true">2013年11月10日</time>
+<time datetime="2013-11-17T10:45:00+08:00" pubdate data-updated="true">2013年11月17日</time>
         
+			
+          | <a href="#comments">评论</a>
+         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。</p>
+
+<h2>前提条件</h2>
+
+<p>1, 一个mac developer帐号</p>
+
+<h2>创建APP ID</h2>
+
+<ul>
+<li>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></li>
+<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>App IDs</em>.</li>
+</ul>
+
+
+<p>通常情况下我们会创建如 <code>com.company.*</code> 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。</p>
+
+<ul>
+<li>点击<code>+</code> 按钮，进入创建页面。 <br/>
+<em>App ID Description</em> 就是一个名称，随意输入就行，不做他用。 <br/>
+<em>App Services</em> 应用将具有的能力，可以根据需要勾选。 <br/>
+<em>App ID Prefix</em> 标示前缀，不用管。 <br/>
+<em>App ID Suffix</em> 标示后缀，这里有两种选择 <strong>Explicit App ID</strong>这种就是一对一的ID，而<strong>Wildcard App ID</strong> 这种就是上面提到的一对多的ID。 <br/>
+这里创建 <strong>Explicit App ID</strong> ，<em>Bundle ID:</em> 为类似 <code>com.company.xxx</code>这种样式，<code>company</code>为公司名，<code>xxx</code>为应用程序名，注意大小写一致。 <br/>
+一路继续，创建成功。</li>
+</ul>
+
+
+<h2>在iTunes Connect添加App</h2>
+
+<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开放前先将应用名占着。</p>
+
+<p><a href="http://my.oschina.net/joanfen/blog/133642">参考链接</a></p>
+
+<ul>
+<li>通过<a href="https://developer.apple.com/membercenter">MemberCenter</a> 点击进入<strong>iTunes Connect</strong>，这样可以使创建的ID快速生效。</li>
+<li>点击 <strong>Manage Your Apps</strong>,然后点击<code>Add New App</code>按钮。</li>
+</ul>
+
+
+<p>然后是填写<strong>App Information</strong></p>
+
+<ul>
+<li>其中<em>SKU Number</em> 是区分你自己应用的标示，只要不重复就行，这里填写和App Name一样就行了。</li>
+<li><em>Bundle ID</em> 选择之前创建的ID，然后继续。</li>
+</ul>
+
+
+<p>之后是选择价格界面，选择之后点击继续。</p>
+
+<p> 最后是应用详细信息。</p>
+
+<ul>
+<li><strong>Version Information</strong> <br/>
+ <em>Version Number</em>  版本号 <br/>
+ <em>Copyright</em>  版权，填写<code>2013 company Inc</code> 就可以了。</li>
+<li><strong>Category</strong>（app种类） <br/>
+选择app所属的两种类型。</li>
+<li><strong>Rating</strong>（分级） <br/>
+一般根据情况选择，没有就全选<em>None</em>。</li>
+<li><strong>Metadata</strong>（软件信息） <br/>
+根据需要填写，也可以之后再更改。</li>
+<li><strong>Contact Information</strong> <br/>
+根据实际情况填写。</li>
+<li><strong>Uploads</strong>（截图） <br/>
+可以先选张上去，之后再更改。</li>
+</ul>
+
+
+<p>至此，开放前的准备工作就完成了。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T10:45:00+08:00" pubdate data-updated="true">2013年11月17日</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac-develop/'>mac_develop</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2013/11/05/mac-develop-add-framework/" title="Previous Post: mac app开发中添加第三方framework">&laquo; mac app开发中添加第三方framework</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 </div>
 
@@ -260,8 +343,8 @@ $(document).bind('DOMNodeInserted', function(event) {
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tmyam.github.io/mac/jsonxmlconvert/support/index.html';
-        var disqus_url = 'http://tmyam.github.io/mac/jsonxmlconvert/support/index.html';
+        var disqus_identifier = 'http://tmyam.github.io/blog/2013/11/17/mac-app-release/';
+        var disqus_url = 'http://tmyam.github.io/blog/2013/11/17/mac-app-release/';
         var disqus_script = 'embed.js';
       
     (function () {

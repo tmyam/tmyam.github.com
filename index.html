@@ -104,6 +104,111 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/11/17/mac-app-release/">Mac App完整的发布流程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T10:45:00+08:00" pubdate data-updated="true">2013年11月17日</time>
+        
+			
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。</p>
+
+<h2>前提条件</h2>
+
+<p>1, 一个mac developer帐号</p>
+
+<h2>创建APP ID</h2>
+
+<ul>
+<li>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></li>
+<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>App IDs</em>.</li>
+</ul>
+
+
+<p>通常情况下我们会创建如 <code>com.company.*</code> 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。</p>
+
+<ul>
+<li>点击<code>+</code> 按钮，进入创建页面。 <br/>
+<em>App ID Description</em> 就是一个名称，随意输入就行，不做他用。 <br/>
+<em>App Services</em> 应用将具有的能力，可以根据需要勾选。 <br/>
+<em>App ID Prefix</em> 标示前缀，不用管。 <br/>
+<em>App ID Suffix</em> 标示后缀，这里有两种选择 <strong>Explicit App ID</strong>这种就是一对一的ID，而<strong>Wildcard App ID</strong> 这种就是上面提到的一对多的ID。 <br/>
+这里创建 <strong>Explicit App ID</strong> ，<em>Bundle ID:</em> 为类似 <code>com.company.xxx</code>这种样式，<code>company</code>为公司名，<code>xxx</code>为应用程序名，注意大小写一致。 <br/>
+一路继续，创建成功。</li>
+</ul>
+
+
+<h2>在iTunes Connect添加App</h2>
+
+<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开放前先将应用名占着。</p>
+
+<p><a href="http://my.oschina.net/joanfen/blog/133642">参考链接</a></p>
+
+<ul>
+<li>通过<a href="https://developer.apple.com/membercenter">MemberCenter</a> 点击进入<strong>iTunes Connect</strong>，这样可以使创建的ID快速生效。</li>
+<li>点击 <strong>Manage Your Apps</strong>,然后点击<code>Add New App</code>按钮。</li>
+</ul>
+
+
+<p>然后是填写<strong>App Information</strong></p>
+
+<ul>
+<li>其中<em>SKU Number</em> 是区分你自己应用的标示，只要不重复就行，这里填写和App Name一样就行了。</li>
+<li><em>Bundle ID</em> 选择之前创建的ID，然后继续。</li>
+</ul>
+
+
+<p>之后是选择价格界面，选择之后点击继续。</p>
+
+<p> 最后是应用详细信息。</p>
+
+<ul>
+<li><strong>Version Information</strong> <br/>
+ <em>Version Number</em>  版本号 <br/>
+ <em>Copyright</em>  版权，填写<code>2013 company Inc</code> 就可以了。</li>
+<li><strong>Category</strong>（app种类） <br/>
+选择app所属的两种类型。</li>
+<li><strong>Rating</strong>（分级） <br/>
+一般根据情况选择，没有就全选<em>None</em>。</li>
+<li><strong>Metadata</strong>（软件信息） <br/>
+根据需要填写，也可以之后再更改。</li>
+<li><strong>Contact Information</strong> <br/>
+根据实际情况填写。</li>
+<li><strong>Uploads</strong>（截图） <br/>
+可以先选张上去，之后再更改。</li>
+</ul>
+
+
+<p>至此，开放前的准备工作就完成了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/11/05/mac-develop-add-framework/">Mac App开发中添加第三方framework</a></h1>
     
     
@@ -380,13 +485,13 @@ $(document).bind('DOMNodeInserted', function(event) {
      <a href='/'>Home Page</a>
 	</li>
    <li class='contact'>
-      <a href='mailto:tmyam@mail.com'>Contact me</a>
+      <a href='mailto:tmyam@mail.com'>email</a>
 	</li>
 </section><section>
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/octopresss/'>Octopresss (3)</a></li>
-<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (2)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (3)</a></li>
 
   </ul>
 </section><section>
@@ -399,6 +504,10 @@ $(document).bind('DOMNodeInserted', function(event) {
 </section><section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/17/mac-app-release/">Mac App完整的发布流程</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/05/mac-develop-add-framework/">Mac App开发中添加第三方framework</a>
@@ -414,10 +523,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2013/10/09/write-blog/">Mac下编写blog</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/08/the-first/">mac下使用github+Octopresss搭建博客</a>
       </li>
     
   </ul>
