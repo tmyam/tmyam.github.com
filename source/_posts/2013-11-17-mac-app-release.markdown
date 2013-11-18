@@ -10,7 +10,7 @@ categories: mac_develop
 
 ## 前提条件
 1, 一个mac developer帐号
-
+<!-- more -->
 ## 创建APP ID
 
 * 登陆 [MemberCenter](https://developer.apple.com/membercenter)
