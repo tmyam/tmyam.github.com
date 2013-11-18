@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam的个人博客]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2013-11-17T17:05:41+08:00</updated>
+  <updated>2013-11-18T15:00:21+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -23,6 +23,9 @@
 <h2>前提条件</h2>
 
 <p>1, 一个mac developer帐号</p>
+
+<!-- more -->
+
 
 <h2>创建APP ID</h2>
 
