@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/jsonxmlformat/icon.png)   
-&nbsp;&nbsp;**`version 1.0.0`**
+&nbsp;&nbsp;**`version 1.1.0`**
 
 <a href="https://itunes.apple.com/us/app/jsonxmlconvert/id755258888" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -16,7 +16,8 @@ footer: true
 **JsonXmlFormat** is a tool which can format json and xml.It have the following functions:   
 &nbsp;&nbsp;&nbsp;&nbsp;1. Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.     
 &nbsp;&nbsp;&nbsp;&nbsp;2. Support UTF-8 coded text, furthermore can not be garbled.    
-&nbsp;&nbsp;&nbsp;&nbsp;3. It has the status bar icon, open more simple.       
+&nbsp;&nbsp;&nbsp;&nbsp;3. It has the status bar icon, open more simple.   
+&nbsp;&nbsp;&nbsp;&nbsp;4. Allow Dock icon to show or hide.        
 
 * ### Languages: 
 
@@ -42,9 +43,14 @@ main window:
 * ### History:
 ***
 <br/>
+* 2013.11.22  - `version 1.1.0` update  
+
+1.&nbsp;allow Dock icon to show or hide.   
+***
+<br/>
 * 2013.11.21  - `version 1.0.0` release  
 
-1.&nbsp;1. Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.       
+1.&nbsp;Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.       
 2.&nbsp;Support UTF-8 coded text,furthermore,can not be garbled.    
 3.&nbsp;It has the status bar icon, open more simple.    
 ***
