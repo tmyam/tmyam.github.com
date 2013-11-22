@@ -4,7 +4,7 @@ title: "mac下编写blog"
 date: 2013-10-09 10:52
 comments: true
 disqus: false
-categories: Octopresss
+categories: Octopress
 ---
 
 ##1.编写

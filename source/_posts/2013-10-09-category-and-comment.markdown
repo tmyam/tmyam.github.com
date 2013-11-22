@@ -4,7 +4,7 @@ title: "为博客添加分类和评论功能"
 date: 2013-10-09 15:03
 comments: true
 disqus: false
-categories: Octopresss
+categories: Octopress
 ---
 ##1.右侧边栏分类
 * [参考链接](http://codemacro.com/2012/07/18/add-category-list-to-octopress/)  

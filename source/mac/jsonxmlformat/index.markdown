@@ -42,7 +42,7 @@ main window:
 * ### History:
 ***
 <br/>
-* 2013.11.17  - `version 1.0.0` release  
+* 2013.11.21  - `version 1.0.0` release  
 
 1.&nbsp;1. Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.       
 2.&nbsp;Support UTF-8 coded text,furthermore,can not be garbled.    
