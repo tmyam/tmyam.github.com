@@ -38,6 +38,6 @@ support: [http://tmyam.github.com/mac/jsonxmlformat/support](http://tmyam.github
 
 * ### Question:
 
-**If you found a bug, please contact me.**
+**If you found a bug or any question, please contact me.**
 
 ***

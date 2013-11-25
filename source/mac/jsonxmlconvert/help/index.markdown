@@ -56,6 +56,6 @@ support: [http://tmyam.github.com/mac/jsonxmlconvert/support](http://tmyam.githu
 
 * ### Question:
 
-**If you found a bug, please contact me.**
+**If you found a bug or any question, please contact me.**
 
 ***
