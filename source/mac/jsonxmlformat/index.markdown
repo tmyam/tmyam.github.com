@@ -43,7 +43,7 @@ main window:
 * ### History:
 ***
 <br/>
-* 2013.11.22  - `version 1.1.0` update  
+* 2013.11.26  - `version 1.1.0` update  
 
 1.&nbsp;allow Dock icon to show or hide.   
 ***

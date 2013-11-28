@@ -61,7 +61,7 @@ support: [http://tmyam.github.com/mac/toshowdesktop/support](http://tmyam.github
 * ### History:
 ***
 <br/>
-* 2013.11.25  - `version 1.2.0` update  
+* 2013.11.28  - `version 1.2.0` update  
 
 1.&nbsp;More rational reconstruction software architecture.   
 2.&nbsp;Adding more support page.   
