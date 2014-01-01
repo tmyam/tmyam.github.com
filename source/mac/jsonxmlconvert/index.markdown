@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/jsonxmlconvert/icon.png)   
-&nbsp;&nbsp;**`version 1.1.0`**
+&nbsp;&nbsp;**`version 1.1.1`**
 
 <a href="https://itunes.apple.com/us/app/jsonxmlconvert/id644876099" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -49,6 +49,15 @@ main window:
 ![icon](/mac/jsonxmlconvert/main.png) 
 
 * ### History:
+***
+<br/>
+* 2014.01.01  - `version 1.1.1` update  
+
+1.&nbsp;Fix no text bug when format xml.   
+2.&nbsp;Add transformed xml node color.   
+
+1.&nbsp;修复xml格式化时无文本的bug。   
+2.&nbsp;添加转换后xml的输出节点的颜色。   
 ***
 <br/>
 * 2013.11.16  - `version 1.1.0` update  

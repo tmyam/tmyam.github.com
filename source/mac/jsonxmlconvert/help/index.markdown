@@ -8,7 +8,7 @@ footer: true
 ---
 * ### Icon
 ![icon](/mac/jsonxmlconvert/icon.png)   
-&nbsp;&nbsp;**`version 1.1.0`**
+&nbsp;&nbsp;**`version 1.1.1`**
 
 * ### Main Window
 ![icon](/mac/jsonxmlconvert/help_main.png) 

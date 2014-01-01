@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/jsonxmlformat/icon.png)   
-&nbsp;&nbsp;**`version 1.1.0`**
+&nbsp;&nbsp;**`version 1.2.0`**
 
 <a href="https://itunes.apple.com/us/app/jsonxmlconvert/id755258888" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -17,7 +17,9 @@ footer: true
 &nbsp;&nbsp;&nbsp;&nbsp;1. Do the accuracy check of json’s or xml’s format and can be formatted output and can customize the output style.     
 &nbsp;&nbsp;&nbsp;&nbsp;2. Support UTF-8 coded text, furthermore can not be garbled.    
 &nbsp;&nbsp;&nbsp;&nbsp;3. It has the status bar icon, open more simple.   
-&nbsp;&nbsp;&nbsp;&nbsp;4. Allow Dock icon to show or hide.        
+&nbsp;&nbsp;&nbsp;&nbsp;4. Allow Dock icon to show or hide.  
+&nbsp;&nbsp;&nbsp;&nbsp;5. Window can be detached.   
+&nbsp;&nbsp;&nbsp;&nbsp;6. Support the color mark.       
 
 * ### Languages: 
 
@@ -41,6 +43,13 @@ main window:
 ![icon](/mac/jsonxmlformat/main.png) 
 
 * ### History:
+***
+<br/>
+* 2014.01.01  - `version 1.2.0` update  
+
+1.&nbsp;Window can be detached.  
+2.&nbsp;Modify the output style.  
+3.&nbsp;Support the color mark. 
 ***
 <br/>
 * 2013.11.26  - `version 1.1.0` update  
