@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/jsonxmlformat/icon.png)   
-&nbsp;&nbsp;**`version 1.2.0`**
+&nbsp;&nbsp;**`version 1.2.1`**
 
 <a href="https://itunes.apple.com/us/app/jsonxmlconvert/id755258888" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -45,7 +45,12 @@ main window:
 * ### History:
 ***
 <br/>
-* 2014.01.01  - `version 1.2.0` update  
+* 2014.01.09  - `version 1.2.1` update  
+
+1.&nbsp;Modify the details.  
+***
+<br/>
+* 2014.01.07  - `version 1.2.0` update  
 
 1.&nbsp;Window can be detached.  
 2.&nbsp;Modify the output style.  
