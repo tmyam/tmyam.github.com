@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: mac_develop | tmyam的个人博客]]></title>
+  <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-01-09T08:14:59+08:00</updated>
+  <updated>2014-02-20T15:31:44+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
+    <link href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
+    <updated>2014-02-20T14:24:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
+    <content type="html"><![CDATA[<h2>简介</h2>
+
+<p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h2>创建</h2>
+
+<p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
+<img src="/images/2014/02/20/create.png" alt="temp" /></p>
+
+<p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
+
+<h2>自建文档文件图标</h2>
+
+<p>这里省略，格式为icns&hellip;</p>
+
+<h2>关联文件类型</h2>
+
+<ul>
+<li>导入文档图标（上步创建的图标）</li>
+<li>在工程的<em>Info</em>里进行设置，如下图。 <br/>
+<img src="/images/2014/02/20/info.png" alt="temp" /> <br/>
+<strong>Document Types</strong>设置文档关联的文件，<em>Identifier</em>为文档标示。 <br/>
+<strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等。 <br/>
+而且这两项都是可以设置多个关联的，关联多个文档类，关联多种格式。</li>
+</ul>
+
+
+<h2>运行</h2>
+
+<p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
+
+<h2>编码</h2>
+
+<p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
+
+<p>``` objective-c
+&ndash; (NSData <em>)dataOfType:(NSString </em>)typeName error:(NSError **)outError
+{</p>
+
+<pre><code>if ([typeName isEqualToString:@"com.tmyam.TestDocument.document"])
+{
+    // TODO: 这里是具体的存储文件数据
+    return [@"test" dataUsingEncoding:4];
+}
+else
+{
+    if (outError)
+    {
+        *outError = [NSError errorWithDomain:@"TestDocumentErrorDomain"
+                                        code:-1
+                                    userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"Unsupported data type: %@", typeName]}];
+    }
+}
+return nil;
+</code></pre>
+
+<p>}</p>
+
+<ul>
+<li><p>(BOOL)readFromData:(NSData <em>)data ofType:(NSString </em>)typeName error:(NSError **)outError
+{
+  assert([typeName isEqualToString:@&ldquo;com.tmyam.TestDocument.document&rdquo;]);</p>
+
+<p>  // TODO: 这里是具体的读取文件数据</p>
+
+<p>  return YES;
+}
+```</p>
+
+<h2>示例</h2>
+
+<p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac app完整的发布流程]]></title>

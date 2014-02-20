@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[tmyam的个人博客]]></title>
+  <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-01-09T08:14:59+08:00</updated>
+  <updated>2014-02-20T15:31:44+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
+    <link href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
+    <updated>2014-02-20T14:24:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
+    <content type="html"><![CDATA[<h2>简介</h2>
+
+<p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h2>创建</h2>
+
+<p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
+<img src="http://tmyam.github.io/images/2014/02/20/create.png" alt="temp" /></p>
+
+<p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
+
+<h2>自建文档文件图标</h2>
+
+<p>这里省略，格式为icns&hellip;</p>
+
+<h2>关联文件类型</h2>
+
+<ul>
+<li>导入文档图标（上步创建的图标）</li>
+<li>在工程的<em>Info</em>里进行设置，如下图。 <br/>
+<img src="http://tmyam.github.io/images/2014/02/20/info.png" alt="temp" /> <br/>
+<strong>Document Types</strong>设置文档关联的文件，<em>Identifier</em>为文档标示。 <br/>
+<strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等。 <br/>
+而且这两项都是可以设置多个关联的，关联多个文档类，关联多种格式。</li>
+</ul>
+
+
+<h2>运行</h2>
+
+<p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
+
+<h2>编码</h2>
+
+<p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nf">dataOfType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">])</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// TODO: 这里是具体的存储文件数据</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">[</span><span class="s">@&quot;test&quot;</span> <span class="nl">dataUsingEncoding:</span><span class="mi">4</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">outError</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">*</span><span class="n">outError</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSError</span> <span class="nl">errorWithDomain:</span><span class="s">@&quot;TestDocumentErrorDomain&quot;</span>
+</span><span class='line'>                                            <span class="nl">code:</span><span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>                                        <span class="nl">userInfo:</span><span class="err">@</span><span class="p">{</span><span class="nl">NSLocalizedFailureReasonErrorKey:</span><span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;Unsupported data type: %@&quot;</span><span class="p">,</span> <span class="n">typeName</span><span class="p">]}];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">readFromData:</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">ofType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">assert</span><span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// TODO: 这里是具体的读取文件数据</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>示例</h2>
+
+<p><a href="http://tmyam.github.io/files/TestDocument.zip">TestDocument示例下载</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac app完整的发布流程]]></title>

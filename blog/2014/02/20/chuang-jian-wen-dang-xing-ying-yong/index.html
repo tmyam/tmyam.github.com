@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>mac app开发中添加第三方framework - tmyam's blog</title>
+  <title>Mac app，创建基于文档的app - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="环境: (mac 版本 10.9 ) ( Xcode 5.0 ) 步骤很简单，但是总是忘记，所以在这里做个记录。 在工程目录中建个文件夹，存放将要添加的第三方framework 在工程的 Build Phases 栏点击菜单，如下图，添加 Copy Files 选择Frameworks,点击+号， &hellip;">
+  <meta name="description" content="简介 基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。 创建 创建一个mac app，在下图这个界面，勾选Create Document-Based Application 其中继承自NSDocument的Document就是文档类， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework">
+  <link rel="canonical" href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
@@ -101,7 +101,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
   <header>
     
-      <h1 class="entry-title">Mac App开发中添加第三方framework</h1>
+      <h1 class="entry-title">Mac App，创建基于文档的app</h1>
     
     
       <p class="meta">
@@ -117,7 +117,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2013-11-05T15:23:00+08:00" pubdate data-updated="true">2013年11月05日</time>
+<time datetime="2014-02-20T14:24:00+08:00" pubdate data-updated="true">2014年02月20日</time>
         
 			
           | <a href="#comments">评论</a>
@@ -127,63 +127,45 @@ $(document).bind('DOMNodeInserted', function(event) {
   </header>
 
 
-<div class="entry-content"><p>环境: <code>(mac 版本 10.9 ) ( Xcode 5.0 )</code></p>
+<div class="entry-content"><h2>简介</h2>
 
-<hr />
-
-<br/>
-
-
-<h4>步骤很简单，但是总是忘记，所以在这里做个记录。</h4>
-
-<ul>
-<li>在工程目录中建个文件夹，存放将要添加的第三方framework</li>
-</ul>
-
+<p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
 <!-- more -->
 
 
+<p></p>
+
+<h2>创建</h2>
+
+<p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
+<img src="/images/2014/02/20/create.png" alt="temp" /></p>
+
+<p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
+
+<h2>自建文档文件图标</h2>
+
+<p>这里省略，格式为icns&hellip;</p>
+
+<h2>关联文件类型</h2>
+
 <ul>
-<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，如下图，添加 <em>Copy Files</em><br/>
-<img src="/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
-<li><p>选择<code>Frameworks</code>,点击<code>+</code>号，然后找到存放第三方framework的文件夹，选择要添加的framework，如下图<br/>
-<img src="/images/2013/11/05/add_framework.png" alt="temp" /></p></li>
-<li><p>展开<em>Link Binary With Libraries</em> 点击<code>+</code>号，同上一步一样，找到找到存放第三方framework的文件夹，选择要使用的framework，如下图<br/>
-<img src="/images/2013/11/05/use_framework.png" alt="temp" /></p></li>
+<li>导入文档图标（上步创建的图标）</li>
+<li>在工程的<em>Info</em>里进行设置，如下图。 <br/>
+<img src="/images/2014/02/20/info.png" alt="temp" /> <br/>
+<strong>Document Types</strong>设置文档关联的文件，<em>Identifier</em>为文档标示。 <br/>
+<strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等。 <br/>
+而且这两项都是可以设置多个关联的，关联多个文档类，关联多种格式。</li>
 </ul>
 
 
-<p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里，这时添加就完成了可以随意使用了。</p>
+<h2>运行</h2>
 
-<h4>修改关联路径</h4>
+<p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
 
-<p>一般情况下，如果将framework文件放到了工程文件夹的里面，那么在移动工程文件夹后，编译工程会出现无法找到framework头文件的错误，这是因为工程默认添加的路径使用了绝对路径的关系。</p>
+<h2>编码</h2>
 
-<ul>
-<li>修改 <br/>
-在Xcode的 <em>Build Settings</em> 里找到 <em>Framework Search Paths</em> 栏，修改参数为 <br/>
-$(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件夹</code> <br/>
-例如：
-<img src="/images/2013/11/05/change_path_framework.png" alt="temp" />
-这样就算移动工程文件夹，也不会报错了。</li>
-</ul>
-
-
-<h4>清除冗余文件</h4>
-
-<p>对于已经添加的第三方framework，在生成的app中可以查看到framework的头文件，出于两个目的的考虑。<br/>
-1. 由于程序中已经引入了这些头文件，所以重复添加浪费了空间。<br/>
-2. 出于安全性的考虑，防止被别人使用或者破解。</p>
-
-<p><strong>清除方法：</strong></p>
-
-<ul>
-<li><p>在工程的 <em>Build Phases</em> 栏点击菜单，入最上面的图里，这次添加 <em>Run Script</em><br/>
-<img src="/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
-<li><p>贴入如下代码</p></li>
-</ul>
-
+<p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -193,33 +175,58 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;build path ${TARGET_BUILD_DIR}&quot;</span>
-</span><span class='line'><span class="nb">cd</span> <span class="k">${</span><span class="nv">TARGET_BUILD_DIR</span><span class="k">}</span>/<span class="k">${</span><span class="nv">FULL_PRODUCT_NAME</span><span class="k">}</span>/Contents/Frameworks
-</span><span class='line'>rm -rf */Headers
-</span><span class='line'>rm -rf */Versions/*/Headers
-</span><span class='line'>rm -rf */Versions/*/Resources/*/Contents/Headers
-</span><span class='line'>rm -rf */PrivateHeaders
-</span><span class='line'>rm -rf */Versions/*/PrivateHeaders
-</span><span class='line'>rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nf">dataOfType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">])</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// TODO: 这里是具体的存储文件数据</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">[</span><span class="s">@&quot;test&quot;</span> <span class="nl">dataUsingEncoding:</span><span class="mi">4</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">outError</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="o">*</span><span class="n">outError</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSError</span> <span class="nl">errorWithDomain:</span><span class="s">@&quot;TestDocumentErrorDomain&quot;</span>
+</span><span class='line'>                                            <span class="nl">code:</span><span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>                                        <span class="nl">userInfo:</span><span class="err">@</span><span class="p">{</span><span class="nl">NSLocalizedFailureReasonErrorKey:</span><span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;Unsupported data type: %@&quot;</span><span class="p">,</span> <span class="n">typeName</span><span class="p">]}];</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">readFromData:</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">ofType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">assert</span><span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// TODO: 这里是具体的读取文件数据</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-如下图 <br/>
-<img src="/images/2013/11/05/clean_framework.png" alt="temp" /></p>
+<h2>示例</h2>
 
-<h4>编译问题</h4>
-
-<p>对于编译出现签名错误的问题，可以查看<a href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/">链接</a>。</p>
-
-<blockquote><p>/Users/…/xxx.app: code object is not signed at all In subcomponent: /Users/…/xxx.app/Contents/Frameworks/xxx.framework Command /usr/bin/codesign failed with exit code 1</p></blockquote>
-
-<hr />
-
-<br/>
-
-
-<p><strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
+<p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p>
 </div>
 
 
@@ -242,7 +249,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
   
 
 
-<time datetime="2013-11-05T15:23:00+08:00" pubdate data-updated="true">2013年11月05日</time>
+<time datetime="2014-02-20T14:24:00+08:00" pubdate data-updated="true">2014年02月20日</time>
       
 
 <span class="categories">
@@ -263,10 +270,8 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/" title="Previous Post: Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题">&laquo; Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题</a>
+        <a class="basic-alignment left" href="/blog/2013/11/17/mac-app-release/" title="Previous Post: mac app完整的发布流程">&laquo; mac app完整的发布流程</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/11/17/mac-app-release/" title="Next Post: mac app完整的发布流程">mac app完整的发布流程 &raquo;</a>
       
     </p>
   </footer>
@@ -384,8 +389,8 @@ var duoshuoQuery = {short_name:"tmyam"};
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/';
-        var disqus_url = 'http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/';
+        var disqus_identifier = 'http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/';
+        var disqus_url = 'http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/';
         var disqus_script = 'embed.js';
       
     (function () {
