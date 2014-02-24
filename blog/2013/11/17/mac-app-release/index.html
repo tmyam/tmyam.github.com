@@ -160,7 +160,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <h2>在iTunes Connect添加App</h2>
 
-<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开放前先将应用名占着。</p>
+<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了&hellip;）</p>
 
 <p><a href="http://my.oschina.net/joanfen/blog/133642">参考链接</a></p>
 
@@ -185,7 +185,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 <ul>
 <li><p><strong>Version Information</strong> <br/>
  <em>Version Number</em>  版本号 <br/>
- <em>Copyright</em>  版权，填写<code>2013 company Inc</code> 就可以了。</p></li>
+ <em>Copyright</em>  版权，填写<code>2013-2014 company Inc</code> 就可以了。</p></li>
 <li><p><strong>Category</strong>（app种类） <br/>
 选择app所属的两种类型。</p></li>
 <li><p><strong>Rating</strong>（分级） <br/>
@@ -328,7 +328,8 @@ var duoshuoQuery = {short_name:"tmyam"};
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
-<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (4)</a></li>
+<li class='category'><a href='/blog/categories/ios-develop/'>ios_develop (1)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (5)</a></li>
 
   </ul>
 </section><section>
@@ -353,6 +354,10 @@ var duoshuoQuery = {short_name:"tmyam"};
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/">Mac App，创建基于文档的app</a>
       </li>
     
@@ -366,10 +371,6 @@ var duoshuoQuery = {short_name:"tmyam"};
     
       <li class="post">
         <a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/09/category-and-comment/">为博客添加分类和评论功能</a>
       </li>
     
   </ul>

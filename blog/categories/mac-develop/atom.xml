@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-02-20T15:31:44+08:00</updated>
+  <updated>2014-02-24T18:26:32+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,188 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Objective-C枚举介绍]]></title>
+    <link href="http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao/"/>
+    <updated>2014-02-24T15:39:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
+    <content type="html"><![CDATA[<p>Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。</p>
+
+<h2>1. 枚举介绍</h2>
+
+<h3>enum only</h3>
+
+<p>``` objective-c
+enum
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+</code></pre>
+
+<p>};</p>
+
+<p>```
+* 这种枚举<strong>不推荐</strong>使用，因为不能用一种格式的方式表示枚举。</p>
+
+<!-- more -->
+
+
+<h3>enum 类型</h3>
+
+<p>``` objective-c
+typedef enum
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+</code></pre>
+
+<p>} TMEnumTest;</p>
+
+<p><code>
+</code> objective-c
+enum TMEnumTest
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+</code></pre>
+
+<p>};
+typedef enum TMEnumTest TMEnumTest;</p>
+
+<p>```
+* 这两种写法，将枚举描述为一个类型<em>TMEnumTest</em>。 <br/>
+但是这种写法也有局限性，在作为函数参数时，如果传入NSInteger类型的数据，则需要强制转换，否则会有类型不匹配的警告，所以这种方式也<strong>不推荐</strong>。如下图，
+<img src="/images/2014/02/24/enum_warn.png" alt="temp" /></p>
+
+<h3>老式enum写法</h3>
+
+<p>``` objective-c
+enum
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+</code></pre>
+
+<p>};
+typedef NSUInteger TMEnumTest;
+```
+* 这种写法可以指定<em>TMEnumTest</em>的类型，并且作为函数参数时，传入的值不需要进行强制类型转换。 <br/>
+但是这种写法不会检查枚举的正确性，是好是坏需要自己判断，如下图。本人<strong>推荐</strong>这种写法。
+<img src="/images/2014/02/24/enum_no_check.png" alt="temp" /></p>
+
+<h3>新式enum写法</h3>
+
+<p>``` objective-c
+typedef NS_ENUM(NSUInteger, TMEnumTest)
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+</code></pre>
+
+<p>};
+<code>
+</code> objective-c
+typedef NS_OPTIONS(NSUInteger, TMEnumTest)
+{</p>
+
+<pre><code>TMEnumTestOne  = 0,
+TMEnumTestTwo  = 1 &lt;&lt; 0,
+</code></pre>
+
+<p>};
+```
+* <strong>NS_ENUM</strong>和<strong>NS_OPTIONS</strong>本质是一样的，仅仅从字面上来区分用途。<strong>NS_ENUM</strong>是通用情况，<strong>NS_OPTIONS</strong>一般用来定义位枚举。
+<a href="http://blog.csdn.net/annkie/article/details/9877643">参考链接</a> <br/>
+* 这种写法同样作为函数参数时，传入的值不需要进行强制类型转换。但是也同样不会检查枚举的正确性，和 <strong>老式enum写法</strong> 一样，如下图。
+<img src="/images/2014/02/24/enum_no_check.png" alt="temp" />
+* 但是不同的是，<strong>新式enum写法</strong> 在使用<em>switch</em>时，会进行值的检测，如果枚举中无此值，则会弹出警告，如下图。这种方式见仁见智了。本人<strong>推荐</strong>这种写法。
+<img src="/images/2014/02/24/enum_switch.png" alt="temp" /></p>
+
+<h2>2. 枚举最大值</h2>
+
+<p>对于一般的枚举，要获取枚举的最大值是很难的，因为随着枚举的扩充，最大值在不断变化，这时推荐使用一个固定的枚举表示最大值，例如：
+``` objective-c
+typedef NS_ENUM(NSUInteger, TMEnumTest)
+{</p>
+
+<pre><code>TMEnumTestOne,
+TMEnumTestTwo,
+
+TMEnumTestMax,  // 表示最大值
+</code></pre>
+
+<p>};
+```
+这样就可以使用<em>TMEnumTestMax</em>表示枚举<em>TMEnumTest</em>的最大值了。</p>
+
+<h2>3. 位枚举</h2>
+
+<p>位枚举是一种特殊的枚举，在apple的类中使用的很多，例如<code>NSStringCompareOptions</code>等。
+``` objective-c
+typedef NS_OPTIONS(NSUInteger, TMEnumTest)
+{</p>
+
+<pre><code>TMEnumTestOne     = 0,         // 0
+TMEnumTestTwo     = 1 &lt;&lt; 0,     // 1
+TMEnumTestThree   = 1 &lt;&lt; 1,     // 2
+TMEnumTestFour    = 1 &lt;&lt; 2,     // 4
+</code></pre>
+
+<p>};
+```</p>
+
+<ul>
+<li>位枚举的特点是可以使用位运算来处理枚举值，实际使用中可以用一个变量存储多个枚举值，表示互不影响的多个设置。
+``` objective-c</li>
+<li><p>(void) test
+{
+  TMEnumTest test = TMEnumTestTwo|TMEnumTestThree;  // 3</p>
+
+<p>  /* 添加TMEnumTestFour到test中（如test已经包含TMEnumTestFour，则test值不变）</p>
+
+<pre><code> 当然这里也可以使用test += TMEnumTestFour,
+ 但是注意 + 不能在test中已经包含TMEnumTestFour的情况下使用。
+</code></pre>
+
+<p>  */
+  test |= TMEnumTestFour;  // 7</p>
+
+<p>  /* 将TMEnumTestThree从test中去除（如test不包含TMEnumTestThree，则test值不变）</p>
+
+<pre><code> 当然这里也可以使用test -= TMEnumTestThree，
+ 但是注意 - 不能在test中不包含TMEnumTestThree的情况下使用。
+</code></pre>
+
+<p>  */  <br/>
+  test &amp;= ~TMEnumTestThree; // 5</p>
+
+<p>  // 判断 TMEnumTestFour枚举 是否被包含
+  if ((test &amp; TMEnumTestFour) == TMEnumTestFour)
+  {
+      NSLog(@&ldquo;YES&rdquo;);
+  }</p>
+
+<p>  /* 判断 TMEnumTestFour枚举 是否被包含</p>
+
+<p>   因为 (test &amp; TMEnumTestFour) 的结果不是 0，就是TMEnumTestFour本身，
+   而 TMEnumTestFour > 0 ，所以可以使用简易的判断
+   */
+  if (test &amp; TMEnumTestFour)
+  {
+      NSLog(@&ldquo;YES&rdquo;);
+  }
+}
+```</p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
@@ -137,7 +319,7 @@ return nil;
 
 <h2>在iTunes Connect添加App</h2>
 
-<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开放前先将应用名占着。</p>
+<p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了&hellip;）</p>
 
 <p><a href="http://my.oschina.net/joanfen/blog/133642">参考链接</a></p>
 
@@ -162,7 +344,7 @@ return nil;
 <ul>
 <li><p><strong>Version Information</strong> <br/>
  <em>Version Number</em>  版本号 <br/>
- <em>Copyright</em>  版权，填写<code>2013 company Inc</code> 就可以了。</p></li>
+ <em>Copyright</em>  版权，填写<code>2013-2014 company Inc</code> 就可以了。</p></li>
 <li><p><strong>Category</strong>（app种类） <br/>
 选择app所属的两种类型。</p></li>
 <li><p><strong>Rating</strong>（分级） <br/>
