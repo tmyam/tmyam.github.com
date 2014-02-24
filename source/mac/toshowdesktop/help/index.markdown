@@ -24,7 +24,7 @@ footer: true
 * ### Preferences
 ![icon](/mac/toshowdesktop/help_preferences.png)
 
-* ### Extend
+* ### Plug-in
 **When click on ToShowDesktop, all windows get minimized. But when click on anything on the desktop, the Finder windows pops open.**   
 
 Because of Apple's sandbox many useful functions can not be achieved. So we need to implement this functionality through plugin. 

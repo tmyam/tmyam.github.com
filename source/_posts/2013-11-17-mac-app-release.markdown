@@ -27,7 +27,7 @@ categories: mac_develop
  一路继续，创建成功。
  
 ## 在iTunes Connect添加App
-这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开放前先将应用名占着。   
+这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了...）   
 
 [参考链接](http://my.oschina.net/joanfen/blog/133642)   
 
@@ -45,7 +45,7 @@ categories: mac_develop
     
 * **Version Information**   
    *Version Number*  版本号   
-   *Copyright*  版权，填写`2013 company Inc` 就可以了。   
+   *Copyright*  版权，填写`2013-2014 company Inc` 就可以了。   
    
 * **Category**（app种类）   
   选择app所属的两种类型。
