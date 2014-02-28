@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Objective-C遍历数组 - tmyam's blog</title>
+  <meta name="author" content="tmyam">
+
+  
+  <meta name="description" content="数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。 常用写法简介 1. 经典写法 1
+2
+3
+4
+5
+6
+7
+8
+9
+- (void) test:(NSArray*)array
+{ NSInteger count = array.count; for (NSInteger i = 0 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45438557-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">tmyam's blog</a></h1>
+  
+    <h2>time run off...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tmyam.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">博客</a></li>
+  <li><a href="/blog/archives">归档</a></li>
+  <li><a href="/mac">mac app</a></li>
+  <li><a href="/about">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Objective-C遍历数组</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T11:46:00+08:00" pubdate data-updated="true">2014年02月28日</time>
+        
+			
+          | <a href="#comments">评论</a>
+         
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
+
+<h2>常用写法简介</h2>
+
+<h3>1. 经典写法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之所以使用count来存储数组总数，而不是写成 <strong>i &lt; array.count</strong> ,是因为循环每进行一次都会调用数组的计数方法，这将导致性能变得很差。</p>
+
+<!-- more -->
+
+
+<h3>2. NSEnumerator</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">id</span> <span class="n">test</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSEnumerator</span><span class="o">*</span> <span class="n">enumerator</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="n">objectEnumerator</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">while</span> <span class="p">(</span><span class="n">test</span> <span class="o">=</span> <span class="p">[</span><span class="n">enumerator</span> <span class="n">nextObject</span><span class="p">])</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>NSEnumerator的优势在于不需要知道数据总数，所以它适合应用在结构化数据上，比如链表，数据流等。</p>
+
+<h3>3. 快速枚举</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>快速枚举是apple推荐的方式，在使用上比经典的写法性能上更快。 <br/>
+使用上如果需要反向枚举，只需要将<strong>array</strong>改成<strong>array.reverseObjectEnumerator</strong>就可以了。</p>
+
+<h3>4. 枚举块</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsUsingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}];</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>枚举块的优势在于它会返回对象和索引, 而其他的枚举方法只会返回对象.</p>
+
+<h2>并发执行</h2>
+
+<p>现在是多核的时代，为了发挥多核的优势，在有些时候并发执行就非常具有优势。如果在枚举中有许多事要做，但并不关心枚举顺序的情况下，使用并发就很合适。 <br/>
+但是对于数组总量小一些的数组，并发执行不一定会带来性能提升，反而开销可能远多于其带来的好处。<br/>
+所以具体的使用需要自己进行权衡。</p>
+
+<h3>1. 基本的并发枚举块</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsWithOptions:</span><span class="n">NSEnumerationConcurrent</span> <span class="nl">usingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}];</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种方式会为每一个枚举创建一个线程，等到所有的枚举都执行完毕才会进行下一步。</p>
+
+<h3>2. 异步GCD并发</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种方式会为每一个枚举创建一个线程，但是不会等待所有枚举执行完成，而是for循环完成后就会进行下一步了，是一种异步执行的方式。</p>
+
+<h3>3. 等待GCD并发</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">dispatch_group_t</span> <span class="n">group</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">dispatch_group_async</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">dispatch_group_wait</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">DISPATCH_TIME_FOREVER</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">dispatch_release</span><span class="p">(</span><span class="n">group</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这种方式使用group将多个block组成一组以监测这些Block全部完成或者等待全部完成。这种方式的效果类似于<code>1.基本的并发枚举块</code>。</p>
+
+<h3>4. dispatch_apply</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">dispatch_apply</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">){</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,[</span><span class="n">array</span> <span class="nl">objectAtIndex:</span><span class="n">index</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是系统提供的一种并发执行方式，这种方式的效果同样类似于<code>1.基本的并发枚举块</code>。</p>
+
+<br/>
+
+
+<h3>参考</h3>
+
+<p>本文只是粗略的介绍，如果想了解更详细的使用，建议阅读下面的链接。
+<a href="http://www.oschina.net/translate/high-performance-collection-looping-objective-c">http://www.oschina.net/translate/high-performance-collection-looping-objective-c</a></p>
+
+<p><a href="http://www.dreamingwish.com/dream-2012/gcd%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%A4%9A%E6%A0%B8%E5%BF%83%E7%9A%84%E6%80%A7%E8%83%BD.html">http://www.dreamingwish.com/dream-2012/gcd%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%A4%9A%E6%A0%B8%E5%BF%83%E7%9A%84%E6%80%A7%E8%83%BD.html</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T11:46:00+08:00" pubdate data-updated="true">2014年02月28日</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios-develop/'>ios_develop</a>, <a class='category' href='/blog/categories/mac-develop/'>mac_develop</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/24/mei-ju-jie-shao/" title="Previous Post: Objective-C枚举介绍">&laquo; Objective-C枚举介绍</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>简介</h1>
+	<li class='contact'>
+     <font size=+2 ><strong>tmyam</strong></font><br/><br/>
+     <img src="/images/logo.png" alt="faild" width="180"/><br/><br/>
+     <a href='/'>Home Page</a>
+	</li>
+   <li class='contact'>
+      <a href='mailto:tmyam@mail.com'>email</a>
+	</li>
+</section><section>
+  <h1>文章分类</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/ios-develop/'>ios_develop (2)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (6)</a></li>
+
+  </ul>
+</section><section>
+<h1>mac app</h1>
+   <li class='page'>
+		<a href='/mac/toshowdesktop'>ToShowDesktop</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/toshowdesktop/help'>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/toshowdesktop/support'>Support</a>
+	</li>
+	<li class='page'>
+		<a href='/mac/jsonxmlconvert'>JsonXmlConvert</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/jsonxmlconvert/help'>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/jsonxmlconvert/support'>Support</a>
+	</li>
+   <li class='page'>
+		<a href='/mac/jsonxmlformat'>JsonXmlFormat</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/jsonxmlformat/help'>Help</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href='/mac/jsonxmlformat/support'>Support</a>
+	</li>
+</section><section>
+  <h1>最近发表</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/">Mac App，创建基于文档的app</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/17/mac-app-release/">Mac App完整的发布流程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/05/mac-develop-add-framework/">Mac App开发中添加第三方framework</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>二维码</h1>
+	<li class='link code'>
+       <img src="/images/link_code.png" alt="faild" width="180"/>
+	</li>
+</section>
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - tmyam -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tmyam';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/';
+        var disqus_url = 'http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

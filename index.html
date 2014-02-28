@@ -104,6 +104,75 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T11:46:00+08:00" pubdate data-updated="true">2014年02月28日</time>
+        
+			
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
+
+<h2>常用写法简介</h2>
+
+<h3>1. 经典写法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之所以使用count来存储数组总数，而不是写成 <strong>i &lt; array.count</strong> ,是因为循环每进行一次都会调用数组的计数方法，这将导致性能变得很差。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/28/objective-cbian-li-shu-zu/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a></h1>
     
     
@@ -148,7 +217,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 
 <ul>
-<li>这种枚举<strong>不推荐</strong>使用，因为不能用一种格式的方式表示枚举。</li>
+<li>这种枚举<strong>不推荐</strong>使用，因为不能用一种类型的方式表示枚举。</li>
 </ul>
 
 
@@ -541,8 +610,8 @@ $(document).bind('DOMNodeInserted', function(event) {
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
-<li class='category'><a href='/blog/categories/ios-develop/'>ios_develop (1)</a></li>
-<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (5)</a></li>
+<li class='category'><a href='/blog/categories/ios-develop/'>ios_develop (2)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (6)</a></li>
 
   </ul>
 </section><section>
@@ -567,6 +636,10 @@ $(document).bind('DOMNodeInserted', function(event) {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a>
       </li>
     
@@ -580,10 +653,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2013/11/05/mac-develop-add-framework/">Mac App开发中添加第三方framework</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/">Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题</a>
       </li>
     
   </ul>
