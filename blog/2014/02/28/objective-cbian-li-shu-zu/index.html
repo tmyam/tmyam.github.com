@@ -359,7 +359,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 </span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">dispatch_apply</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">){</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,[</span><span class="n">array</span> <span class="nl">objectAtIndex:</span><span class="n">index</span><span class="p">]);</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="p">});</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>

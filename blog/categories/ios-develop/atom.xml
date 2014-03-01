@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/ios-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-02-28T16:32:42+08:00</updated>
+  <updated>2014-03-01T23:46:08+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -175,7 +175,7 @@ NSLog(@"end");
 <pre><code>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 dispatch_apply(array.count, queue, ^(size_t index){
 
-    NSLog(@"%@",[array objectAtIndex:index]);
+    NSLog(@"%@",array[index]);
 
 });
 NSLog(@"end");
