@@ -130,7 +130,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_apply(array.count, queue, ^(size_t index){
         
-        NSLog(@"%@",[array objectAtIndex:index]);
+        NSLog(@"%@",array[index]);
         
     });
     NSLog(@"end");
