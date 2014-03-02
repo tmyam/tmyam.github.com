@@ -24,7 +24,8 @@ categories: mac_develop
 * 在工程的*Info*里进行设置，如下图。   
 ![temp](/images/2014/02/20/info.png)   
 **Document Types**设置文档关联的文件，*Identifier*为文档标示。   
-**Exported UTIs**为具体的文档设置，*Identifier*必须和**Document Types**的一致，这里面可以设置图标，扩展名等等，注意图标必须设置在**Document Types**里面，运行之后就会立即生效。   
+**Exported UTIs**为具体的文档设置，*Identifier*必须和**Document Types**的一致，这里面可以设置图标，扩展名等等。   
+注意图标必须设置在**Document Types**里面，运行之后就会立即生效。   
 而且这两项都是可以设置多个关联的，关联多个文档类，关联多种格式。
 
 ## 运行
