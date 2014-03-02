@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-03-01T23:46:08+08:00</updated>
+  <updated>2014-03-02T20:36:40+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -411,7 +411,7 @@ TMEnumTestFour    = 1 &lt;&lt; 2,     // 4
 <li>在工程的<em>Info</em>里进行设置，如下图。 <br/>
 <img src="/images/2014/02/20/info.png" alt="temp" /> <br/>
 <strong>Document Types</strong>设置文档关联的文件，<em>Identifier</em>为文档标示。 <br/>
-<strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等。 <br/>
+<strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等，注意图标必须设置在<strong>Document Types</strong>里面，运行之后就会立即生效。 <br/>
 而且这两项都是可以设置多个关联的，关联多个文档类，关联多种格式。</li>
 </ul>
 
