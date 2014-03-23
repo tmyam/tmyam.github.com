@@ -13,11 +13,12 @@ footer: true
 
 * ### Description:   
 
-**Icouse** is a software used to generate the common images. It have the following functions:     
-&nbsp;&nbsp;&nbsp;&nbsp;1. Support for multiple formats of open or save.     
-&nbsp;&nbsp;&nbsp;&nbsp;2. Quick preview the effect.    
-&nbsp;&nbsp;&nbsp;&nbsp;3. Very simple setup, drag or right mouse click to load images.   
-&nbsp;&nbsp;&nbsp;&nbsp;4. It has complete running information, you can see the specific running status.   
+**Icouse** is a software used to generate the common images. It have the following functions:    
+&nbsp;&nbsp;&nbsp;&nbsp;1. Generate mac app icon and other images.     
+&nbsp;&nbsp;&nbsp;&nbsp;2. Support for multiple formats of open or save.     
+&nbsp;&nbsp;&nbsp;&nbsp;3. Quick preview the effect.    
+&nbsp;&nbsp;&nbsp;&nbsp;4. Very simple setup, drag or right mouse click to load images.   
+&nbsp;&nbsp;&nbsp;&nbsp;5. It has complete running information, you can see the specific running status.   
 
 * ### Languages: 
 
@@ -45,10 +46,11 @@ main window:
 <br/>
 * 2014.03.02  - `version 1.0.0` release  
 
-1.&nbsp;Support for multiple formats of open or save.       
-2.&nbsp;Quick preview the effect.    
-3.&nbsp;Very simple setup, drag or right mouse click to load images.    
-4.&nbsp;It has complete running information, you can see the specific running status. 
+1.&nbsp;Generate mac app icon and other images.
+2.&nbsp;Support for multiple formats of open or save.       
+3.&nbsp;Quick preview the effect.    
+4.&nbsp;Very simple setup, drag or right mouse click to load images.    
+5.&nbsp;It has complete running information, you can see the specific running status. 
 ***
 
 

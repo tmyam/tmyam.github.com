@@ -4,7 +4,7 @@ title: "iDP申请[转载]"
 date: 2014-03-09 20:06
 comments: true
 disqus: false
-categories: mac_develop ios_develop
+categories: Develop_prepare
 ---
 ## 前言
 当初我申请idp的一篇详细的文章，不过现在里面的图都挂了，我费了点劲才找回这些图，在这里进行一下还原，希望能帮到需要的人。

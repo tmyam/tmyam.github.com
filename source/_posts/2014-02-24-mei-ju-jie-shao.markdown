@@ -4,7 +4,7 @@ title: "Objective-C枚举介绍"
 date: 2014-02-24 15:39
 comments: true
 disqus: false
-categories: mac_develop ios_develop
+categories: Objective-C
 ---
 Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。
 ## 1. 枚举介绍

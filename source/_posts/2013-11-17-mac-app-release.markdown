@@ -4,7 +4,7 @@ title: "mac app完整的发布流程"
 date: 2013-11-17 10:45
 comments: true
 disqus: false
-categories: mac_develop
+categories: Develop_prepare
 ---
 发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。
 
@@ -12,11 +12,11 @@ categories: mac_develop
 1, 一个mac developer帐号
 <!-- more -->
 ## 创建APP ID
-
 * 登陆 [MemberCenter](https://developer.apple.com/membercenter)
 * 点击 **Certificates, Identifiers & Profiles** 进入管理界面，点击*Identifiers* -> *App IDs*.
 
 通常情况下我们会创建如 `com.company.*` 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。
+![temp](/images/2013/11/18/new_appid.png)    
 
 * 点击`+` 按钮，进入创建页面。   
   *App ID Description* 就是一个名称，随意输入就行，不做他用。   
@@ -24,7 +24,9 @@ categories: mac_develop
   *App ID Prefix* 标示前缀，不用管。   
   *App ID Suffix* 标示后缀，这里有两种选择 **Explicit App ID**这种就是一对一的ID，而**Wildcard App ID** 这种就是上面提到的一对多的ID。   
   这里创建 **Explicit App ID** ，*Bundle ID:* 为类似 `com.company.xxx`这种样式，`company`为公司名，`xxx`为应用程序名，注意大小写一致。   
- 一路继续，创建成功。
+ 一路继续，创建成功。   
+ 
+ 当然也可以通过 `iTunes Connect添加App` 时，点击 **You can register a new Bundle ID here.** 来快速创建。
  
 ## 在iTunes Connect添加App
 这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了...）   
@@ -34,6 +36,7 @@ categories: mac_develop
 * 通过[MemberCenter](https://developer.apple.com/membercenter) 点击进入**iTunes Connect**，这样可以使创建的ID快速生效。   
 * 点击 **Manage Your Apps**,然后点击`Add New App`按钮。
 
+![temp](/images/2013/11/18/add_new_app.png) 
 然后是填写**App Information**  
  
   * 其中*SKU Number* 是区分你自己应用的标示，只要不重复就行，这里填写和App Name一样就行了。   
@@ -45,9 +48,10 @@ categories: mac_develop
     
 * **Version Information**   
    *Version Number*  版本号   
-   *Copyright*  版权，填写`2013-2014 company Inc` 就可以了。   
+   *Copyright*  版权，填写`2014 company Inc` 就可以了。   
    
-* **Category**（app种类）   
+* **Category**（app种类）  
+![temp](/images/2013/11/18/category.png)  
   选择app所属的两种类型。
   
 * **Rating**（分级）   

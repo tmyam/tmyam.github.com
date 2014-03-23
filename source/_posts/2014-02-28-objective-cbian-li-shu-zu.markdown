@@ -4,7 +4,7 @@ title: "Objective-C遍历数组"
 date: 2014-02-28 11:46
 comments: true
 disqus: false
-categories: mac_develop ios_develop
+categories: Objective-C
 ---
 数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。
 
