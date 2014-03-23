@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-03-09T21:37:31+08:00</updated>
+  <updated>2014-03-23T18:02:48+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -94,7 +94,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="http://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#99;&#104;&#105;&#110;&#97;&#100;&#x65;&#118;&#64;&#97;&#x73;&#x69;&#97;&#46;&#x61;&#112;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#109;">&#x63;&#x68;&#x69;&#x6e;&#97;&#100;&#x65;&#118;&#64;&#x61;&#115;&#105;&#x61;&#46;&#97;&#112;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#99;&#104;&#x69;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#97;&#x73;&#x69;&#x61;&#x2e;&#97;&#112;&#x70;&#108;&#101;&#46;&#x63;&#111;&#109;">&#99;&#x68;&#105;&#x6e;&#x61;&#x64;&#x65;&#118;&#64;&#x61;&#x73;&#105;&#97;&#46;&#97;&#x70;&#112;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -826,7 +826,8 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 </ul>
 
 
-<p>通常情况下我们会创建如 <code>com.company.*</code> 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。</p>
+<p>通常情况下我们会创建如 <code>com.company.*</code> 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。
+<img src="http://tmyam.github.io/images/2013/11/18/new_appid.png" alt="temp" /></p>
 
 <ul>
 <li>点击<code>+</code> 按钮，进入创建页面。 <br/>
@@ -838,6 +839,8 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 一路继续，创建成功。</li>
 </ul>
 
+
+<p> 当然也可以通过 <code>iTunes Connect添加App</code> 时，点击 <strong>You can register a new Bundle ID here.</strong> 来快速创建。</p>
 
 <h2>在iTunes Connect添加App</h2>
 
@@ -851,7 +854,8 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 </ul>
 
 
-<p>然后是填写<strong>App Information</strong></p>
+<p><img src="http://tmyam.github.io/images/2013/11/18/add_new_app.png" alt="temp" />
+然后是填写<strong>App Information</strong></p>
 
 <ul>
 <li>其中<em>SKU Number</em> 是区分你自己应用的标示，只要不重复就行，这里填写和App Name一样就行了。</li>
@@ -866,8 +870,9 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <ul>
 <li><p><strong>Version Information</strong> <br/>
  <em>Version Number</em>  版本号 <br/>
- <em>Copyright</em>  版权，填写<code>2013-2014 company Inc</code> 就可以了。</p></li>
-<li><p><strong>Category</strong>（app种类） <br/>
+ <em>Copyright</em>  版权，填写<code>2014 company Inc</code> 就可以了。</p></li>
+<li><p><strong>Category</strong>（app种类）<br/>
+<img src="http://tmyam.github.io/images/2013/11/18/category.png" alt="temp" /><br/>
 选择app所属的两种类型。</p></li>
 <li><p><strong>Rating</strong>（分级） <br/>
 一般根据情况选择，没有就全选<em>None</em>。</p></li>
