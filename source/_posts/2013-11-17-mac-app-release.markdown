@@ -36,7 +36,7 @@ categories: Develop_prepare
 * 通过[MemberCenter](https://developer.apple.com/membercenter) 点击进入**iTunes Connect**，这样可以使创建的ID快速生效。   
 * 点击 **Manage Your Apps**,然后点击`Add New App`按钮。
 
-![temp](/images/2013/11/18/add_new_app.png) 
+![temp](/images/2013/11/18/add_new_app.png)    
 然后是填写**App Information**  
  
   * 其中*SKU Number* 是区分你自己应用的标示，只要不重复就行，这里填写和App Name一样就行了。   
