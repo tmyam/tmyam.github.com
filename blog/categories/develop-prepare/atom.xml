@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Develop_prepare | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/develop-prepare/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-03-23T18:02:48+08:00</updated>
+  <updated>2014-03-25T11:50:52+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iDP续费]]></title>
+    <link href="http://tmyam.github.io/blog/2014/03/25/idpxu-fei/"/>
+    <updated>2014-03-25T10:24:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2014/03/25/idpxu-fei</id>
+    <content type="html"><![CDATA[<p>近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。</p>
+
+<h2>基本流程</h2>
+
+<p>苹果的规则是到期前 <strong>60</strong> 天内才可以续费。</p>
+
+<h3>1. 登录</h3>
+
+<p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
+
+<!-- more -->
+
+
+<p> <br/>
+<img src="/images/2014/03/25/01.png" alt="temp" /> <br/>
+如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
+
+<h3>2</h3>
+
+<p><img src="/images/2014/03/25/02.png" alt="temp" /></p>
+
+<h3>3</h3>
+
+<p><img src="/images/2014/03/25/03.png" alt="temp" /></p>
+
+<h3>4</h3>
+
+<p><img src="/images/2014/03/25/04.png" alt="temp" /></p>
+
+<h3>5</h3>
+
+<p><img src="/images/2014/03/25/05.png" alt="temp" /></p>
+
+<h3>6. 申请结束</h3>
+
+<p>提交后，如果成功，会有一个成功的页面。如果失败会有一个失败的页面。 <br/>
+但是无论成功失败，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图 <br/>
+<img src="/images/2014/03/25/06.png" alt="temp" /> <br/>
+所以以这个页面判断申请是否提交是不准确的，我就有次遇到了失败页，但这个页面是这样的，以为提交了申请，但是等了一星期也没有扣款。</p>
+
+<p>申请提交成功是会很快收到邮件的，如下图 <br/>
+<img src="/images/2014/03/25/07.png" alt="temp" /><br/>
+所以可以以邮件判断申请是否成功，如果没收到邮件就不要傻等了，再次申请吧。</p>
+
+<h3>7. 等待</h3>
+
+<p>如果一切正常的话，2个工作日就能扣费成功，并且AppID的那个邮箱会收到一封邮件告知扣费成功，一封告知可以激活。可能有人会认为这就完了，其实没有，还需要一步。那就是查看邮件，找到绿色Activation Code，点击打开激活链接,输入邮箱中看到的激活码，然后状态就会立马更新，不会提示你快过期。</p>
+
+<p>如果没有扣费成功，那检查下帐号信息是否正确，如果有误的话再重新弄一遍，即使你重复提交，苹果扣费也只有一次，如果你确认帐号信息无误，你的信用卡里面余额也够，那多等两天吧，也许是苹果网站又被黑了，如果太担心的话，可以联系苹果开发者支持客服帮你解答你的疑惑。</p>
+
+<p>依次收到的邮件:<br/>
+购买信息  <br/>
+<img src="/images/2014/03/25/08.png" alt="temp" /></p>
+
+<p>发票  <br/>
+<img src="/images/2014/03/25/09.png" alt="temp" /></p>
+
+<p>激活码  <br/>
+<img src="/images/2014/03/25/10.png" alt="temp" /></p>
+
+<h3>8. 激活</h3>
+
+<p>点击邮件中的激活码，会跳转到一个链接，然后在里面输入激活码完成激活. <br/>
+<img src="/images/2014/03/25/11.png" alt="temp" /> <br/>
+激活成功后，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图
+<img src="/images/2014/03/25/12.png" alt="temp" /></p>
+
+<h2>遇到的问题</h2>
+
+<p>续费中遇到问题，可以联系苹果客服。</p>
+
+<p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
+或者发送邮件到 <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#99;&#104;&#x69;&#x6e;&#x61;&#x64;&#x65;&#x76;&#x40;&#x61;&#x73;&#105;&#x61;&#x2e;&#97;&#112;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#99;&#104;&#x69;&#x6e;&#x61;&#x64;&#x65;&#118;&#x40;&#x61;&#x73;&#105;&#x61;&#46;&#x61;&#112;&#112;&#x6c;&#x65;&#46;&#99;&#x6f;&#x6d;</a> (没有试过&hellip;)</p>
+
+<ul>
+<li><strong>问题：</strong> <br/>
+续费选的时候是 <strong>iOS Developer Program</strong> 结果收到了苹果的邮件通知，却变成了 <strong>Mac Developer Program</strong> 。  <br/>
+对于这种苹果犯的错误，我是通过打电话解决的，苹果方面不能直接转平台，只能退款，要4-7天才能到信用卡里。还得再次续费才行。。。</li>
+</ul>
+
+
+<h2>参考</h2>
+
+<p><a href="http://blog.sina.com.cn/s/blog_68661bd80101nme6.html">http://blog.sina.com.cn/s/blog_68661bd80101nme6.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iDP申请[转载]]]></title>
@@ -94,7 +186,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x63;&#x68;&#x69;&#x6e;&#97;&#x64;&#101;&#x76;&#x40;&#97;&#115;&#x69;&#x61;&#46;&#97;&#112;&#x70;&#108;&#101;&#46;&#99;&#111;&#x6d;">&#99;&#104;&#x69;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#97;&#x73;&#x69;&#97;&#x2e;&#x61;&#x70;&#112;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a></font>。
+<font color=red><a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#104;&#x69;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#97;&#115;&#105;&#97;&#x2e;&#97;&#112;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#99;&#104;&#x69;&#110;&#97;&#100;&#101;&#x76;&#x40;&#x61;&#115;&#105;&#x61;&#x2e;&#x61;&#112;&#112;&#108;&#101;&#46;&#99;&#111;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -231,7 +323,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 </ul>
 
 
-<p><img src="/images/2013/11/18/add_new_app.png" alt="temp" />
+<p><img src="/images/2013/11/18/add_new_app.png" alt="temp" />  <br/>
 然后是填写<strong>App Information</strong></p>
 
 <ul>
