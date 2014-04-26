@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/Icouse/icon.png)   
-&nbsp;&nbsp;**`version 1.0.0`**
+&nbsp;&nbsp;**`version 1.1.0`**
 
 <a href="https://itunes.apple.com/us/app/Icouse/id767088370" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -42,6 +42,13 @@ main window:
 ![icon](/mac/Icouse/main.png) 
 
 * ### History:
+***
+<br/>
+* 2014.04.26  - `version 1.1.0` update  
+
+1.&nbsp;Improve undo and redo capacity.    
+2.&nbsp;Optimization software code structure, using integrated framework.   
+3.&nbsp;You should select the folder when you use build.   
 ***
 <br/>
 * 2014.03.02  - `version 1.0.0` release  

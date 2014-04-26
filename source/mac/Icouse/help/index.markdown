@@ -6,7 +6,7 @@ comments: true
 disqus: true
 footer: true
 ---
-**`version 1.0.0`**
+**`version 1.1.0`**
 
 * ### Toolbar
 ![temp](/mac/Icouse/help/toolbar.png)  
