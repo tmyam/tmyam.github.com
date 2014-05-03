@@ -7,7 +7,7 @@ disqus: true
 footer: true
 ---
 ![icon](/mac/Icouse/icon.png)   
-&nbsp;&nbsp;**`version 1.1.0`**
+&nbsp;&nbsp;**`version 1.2.0`**
 
 <a href="https://itunes.apple.com/us/app/Icouse/id767088370" target="itunes_store"style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.png) no-repeat;width:165px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_macappstore-lrg.svg);}"></a>
 
@@ -19,6 +19,7 @@ footer: true
 &nbsp;&nbsp;&nbsp;&nbsp;3. Quick preview the effect.    
 &nbsp;&nbsp;&nbsp;&nbsp;4. Very simple setup, drag or right mouse click to load images.   
 &nbsp;&nbsp;&nbsp;&nbsp;5. It has complete running information, you can see the specific running status.   
+&nbsp;&nbsp;&nbsp;&nbsp;6. Perfect support import svg files. 
 
 * ### Languages: 
 
@@ -42,6 +43,12 @@ main window:
 ![icon](/mac/Icouse/main.png) 
 
 * ### History:
+***
+<br/>
+* 2014.05.03  - `version 1.2.0` update  
+
+1.&nbsp;Images are displayed in the normal ratio.    
+2.&nbsp;Perfect support import svg files.     
 ***
 <br/>
 * 2014.04.26  - `version 1.1.0` update  
