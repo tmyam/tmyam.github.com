@@ -4,7 +4,7 @@ title: "mac下使用github+Octopress搭建博客"
 date: 2013-10-08 18:09
 comments: true
 disqus: false
-categories: Octopress
+categories: Octopress github
 ---
 
 我的第一篇博文   
