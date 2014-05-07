@@ -104,6 +104,65 @@ $(document).bind('DOMNodeInserted', function(event) {
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">一个客户端设置多个github账号</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-07T21:48:00+08:00" pubdate data-updated="true">2014年05月07日</time>
+        
+			
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前言</h2>
+
+<p>最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。</p>
+
+<h2>1.前期工作</h2>
+
+<ul>
+<li>至少有两个<a href="https://github.com">github</a>账号 (假设有两个账号 一个为 <em>one</em> ，另一个为 <em>two</em>)</li>
+<li>取消git全局设置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global --unset user.name
+</span><span class='line'>git config --global --unset user.email
+</span></code></pre></td></tr></table></div></figure>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/03/25/idpxu-fei/">iDP续费</a></h1>
     
     
@@ -569,61 +628,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/09/write-blog/">Mac下编写blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-09T10:52:00+08:00" pubdate data-updated="true">2013年10月09日</time>
-        
-			
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>1.编写</h2>
-
-<ul>
-<li><p>下载markdown的编辑工具,<a href="http://mouapp.com">Mou</a></p></li>
-<li><p>在终端的octopress目录下，输入</p></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s1">&#39;article name&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/10/09/write-blog/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -650,12 +654,17 @@ $(document).bind('DOMNodeInserted', function(event) {
     <li class='category'><a href='/blog/categories/develop-prepare/'>Develop_prepare (3)</a></li>
 <li class='category'><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (3)</a></li>
 
   </ul>
 </section><section>
   <h1>最近发表</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">一个客户端设置多个github账号</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/03/25/idpxu-fei/">iDP续费</a>
@@ -671,10 +680,6 @@ $(document).bind('DOMNodeInserted', function(event) {
     
       <li class="post">
         <a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/">Mac App，创建基于文档的app</a>
       </li>
     
   </ul>
