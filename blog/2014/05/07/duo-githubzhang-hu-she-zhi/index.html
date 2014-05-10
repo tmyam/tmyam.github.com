@@ -52,6 +52,16 @@ $(document).bind('DOMNodeInserted', function(event) {
 });
 
 </script>
+
+<!-- 获取页面高度 -->
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -303,7 +313,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add .
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add -A
 </span><span class='line'>git commit -m <span class="s2">&quot;your comments&quot;</span>
 </span><span class='line'>git push
 </span></code></pre></td></tr></table></div></figure>

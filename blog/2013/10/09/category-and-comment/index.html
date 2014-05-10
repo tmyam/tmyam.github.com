@@ -51,6 +51,16 @@ $(document).bind('DOMNodeInserted', function(event) {
 });
 
 </script>
+
+<!-- 获取页面高度 -->
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
