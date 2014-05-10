@@ -49,6 +49,18 @@ $(document).bind('DOMNodeInserted', function(event) {
 });
 
 </script>
+
+
+<!-- 自动获取页面高度 -->
+<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "http://zrshz.github.io/agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
