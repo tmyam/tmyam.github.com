@@ -100,7 +100,7 @@ git remote add origin git@two.github.com:two/two.github.com.git
 ## 上传更改
 * 上面所有的设置无误后，可以修改代码，然后上传了。
 ```
-git add .
+git add -A
 git commit -m "your comments"
 git push
 ```
