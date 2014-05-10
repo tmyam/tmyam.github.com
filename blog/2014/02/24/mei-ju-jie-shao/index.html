@@ -64,8 +64,8 @@ $(document).bind('DOMNodeInserted', function(event) {
 <script type="text/javascript"> 
 function sethash(){
     hashH = document.documentElement.scrollHeight; 
-    urlC = "agent.html"; 
-    document.getElementById("http://zrshz.github.com").src=urlC+"#"+hashH; 
+    urlC = "http://zrshz.github.com"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH;
 }
 window.onload=sethash;
 </script>
