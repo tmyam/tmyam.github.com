@@ -18,14 +18,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tmyam.github.io/blog/2014/03/09/idpshen-qing">
+  <link rel="canonical" href="http://tmyam.github.io/blog/2014/03/09/idpshen-qing/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -48,17 +47,6 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 });
 
-</script>
-
-<!-- 获取页面高度 -->
-<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
-<script type="text/javascript"> 
-function sethash(){
-    hashH = document.documentElement.scrollHeight; 
-    urlC = "http://zrshz.github.io/agent.html"; 
-    document.getElementById("iframeC").src=urlC+"#"+hashH;
-}
-window.onload=sethash;
 </script>
   
   <script type="text/javascript">
@@ -213,7 +201,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#99;&#x68;&#x69;&#110;&#x61;&#x64;&#x65;&#118;&#64;&#x61;&#x73;&#105;&#97;&#46;&#x61;&#112;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#109;">&#x63;&#104;&#105;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#97;&#115;&#x69;&#x61;&#x2e;&#97;&#x70;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a></font>。
+<font color=red><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#x68;&#105;&#110;&#x61;&#100;&#101;&#x76;&#64;&#x61;&#115;&#x69;&#x61;&#x2e;&#97;&#112;&#112;&#x6c;&#101;&#46;&#99;&#111;&#x6d;">&#99;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#x40;&#x61;&#115;&#105;&#97;&#46;&#97;&#x70;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#109;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -392,7 +380,7 @@ var duoshuoQuery = {short_name:"tmyam"};
 
   </ul>
 </section><section>
-  <h1>最近发表</h1>
+  <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
@@ -436,6 +424,8 @@ var duoshuoQuery = {short_name:"tmyam"};
   <footer role="contentinfo"><p>
   Copyright &copy; 2014 - tmyam -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
 </p>
 
 </footer>
@@ -452,7 +442,7 @@ var duoshuoQuery = {short_name:"tmyam"};
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
