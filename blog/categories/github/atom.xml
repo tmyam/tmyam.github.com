@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-05-20T21:12:35+08:00</updated>
+  <updated>2014-05-20T21:16:53+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -101,11 +101,11 @@ IdentityFile ~/.ssh/id_rsa_two
 很明显，如果 User 和 Host 始终为 git 和 github.com，那么就只能使用一个私钥。 <br/>
 所以需要上面的方式配置，每个账号使用了自己的 Host，每个 Host 的域名做 CNAME 解析到 github.com，这样 ssh 在连接时就可以区别不同的账号了。 <br/>
 ```
-ssh -T <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#103;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a>        # 测试one ssh连接</p>
+ssh -T <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x67;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>        # 测试one ssh连接</p>
 
 <h1>Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.</h1>
 
-<p>ssh -T <a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x67;&#105;&#x74;&#64;&#x74;&#119;&#x6f;&#46;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#x69;&#116;&#64;&#x74;&#x77;&#111;&#x2e;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>    # 测试two ssh连接</p>
+<p>ssh -T <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#103;&#105;&#x74;&#64;&#x74;&#119;&#x6f;&#46;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#116;&#119;&#111;&#x2e;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>    # 测试two ssh连接</p>
 
 <h1>Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.</h1>
 
