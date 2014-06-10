@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-06-09T19:30:21+08:00</updated>
+  <updated>2014-06-10T16:49:38+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,258 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[mac app的开机自启动]]></title>
+    <link href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
+    <updated>2014-06-10T14:15:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
+
+<h2>非沙盒下的开机自启动</h2>
+
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项"里面看到，并进行设置。</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<p>``` objective-c
++ (BOOL) isStartAtLogin
+{</p>
+
+<pre><code>BOOL  isHaveAdd = NO;
+NSString* appPath = [[NSBundle mainBundle] bundlePath];
+LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+UInt32 seedValue = 0;
+NSArray* loginItemsArray = (NSArray*)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
+CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
+for(NSInteger i = 0 ; i&lt; [loginItemsArray count]; i ++ )
+{
+    LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
+    if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
+    {
+        NSString * urlPath = [(NSURL*)tempUrl path];
+        if ([urlPath compare:appPath] == NSOrderedSame)
+        {
+            isHaveAdd = YES;
+            break;
+        }
+    }
+}
+[loginItemsArray release];
+CFRelease(loginItems);
+return isHaveAdd;
+</code></pre>
+
+<p>}</p>
+
+<ul>
+<li>(BOOL) setStartAtLogin:(BOOL)startAtLogin
+{
+  NSString<em> appPath = [[NSBundle mainBundle] bundlePath];
+  BOOL result = NO;
+  if (startAtLogin)
+  {
+      if (![self isStartAtLogin])
+      {
+          CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
+          LSSharedFileListRef newloginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+          LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(newloginItems, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
+          if (item)
+          {
+              result = YES;
+              CFRelease(item);
+          }
+          if (newloginItems)
+          {
+              CFRelease(newloginItems);
+          }
+      }
+  }
+  else
+  {
+      LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,kLSSharedFileListSessionLoginItems, NULL);
+      UInt32 seedValue = 0;
+      NSArray</em> loginItemsArray = (NSArray<em>)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
+      CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
+      for(NSInteger i = 0 ; i &lt; [loginItemsArray count]; i ++ )
+      {
+          LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
+          if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
+          {
+              NSString * urlPath = [(NSURL</em>)tempUrl path];
+              if ([urlPath compare:appPath] == NSOrderedSame)
+              {
+                  OSStatus status = LSSharedFileListItemRemove(loginItems,itemRef);
+                  result = (status == noErr);
+              }
+          }
+      }
+      [loginItemsArray release];
+      CFRelease(loginItems);
+  }
+  return result;
+}
+```</li>
+</ul>
+
+
+<h2>沙盒下的开机自启动</h2>
+
+<p>沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。</p>
+
+<h3>1. 添加Helper程序</h3>
+
+<p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
+<img src="/images/2014/06/10/01.jpg" alt="temp" /></p>
+
+<h3>2. 设置Helper</h3>
+
+<p>test和testHelper都需要设置，这里先进行testHelper的设置.</p>
+
+<ul>
+<li>修改build Configuration 为 Release 。
+<img src="/images/2014/06/10/02.jpg" alt="temp" /></li>
+<li>修改Info.plist文件，使app在运行时不显示到前端。
+<img src="/images/2014/06/10/03.jpg" alt="temp" /></li>
+<li>删除MainMenu.xib中的window窗口，  <br/>
+并且删除 AppDelegate.h 中的<code>@property (assign) IBOutlet NSWindow *window;</code>。  <br/>
+这些都是确保app在运行时不显示到前端。
+<img src="/images/2014/06/10/04.jpg" alt="temp" /></li>
+<li>修改 Build Settings 的 <strong>Skip Install</strong> 为 YES。
+<img src="/images/2014/06/10/05.jpg" alt="temp" /></li>
+<li>设置沙盒环境，证书，描述文件。  <br/>
+这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
+<img src="/images/2014/06/10/06.jpg" alt="temp" /></li>
+</ul>
+
+
+<h3>3. 添加Helper的代码</h3>
+
+<p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
+
+<p>``` objective-c
+&ndash; (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{</p>
+
+<pre><code>[self runMainApp:@"com.tmyam.test" appName:@"test"];
+</code></pre>
+
+<p>}</p>
+
+<p>/** 运行开机自启动的app</p>
+
+<p> @param identifier 主app的标识符
+ @param appName 主app的名称（在MacOS文件夹下的名称）
+ <em>/
+&ndash; (void) runMainApp:(NSString</em>)identifier appName:(NSString*)appName
+{</p>
+
+<pre><code>// Check if main app is already running; if yes, do nothing and terminate helper app
+BOOL alreadyRunning = NO;
+NSArray *running = [[NSWorkspace sharedWorkspace] runningApplications];
+for (NSRunningApplication *app in running)
+{
+    if ([[app bundleIdentifier] isEqualToString:identifier])
+    {
+        alreadyRunning = YES;
+    }
+}
+if (!alreadyRunning)
+{
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSArray *p = [path pathComponents];
+    NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:p];
+    [pathComponents removeLastObject];
+    [pathComponents removeLastObject];
+    [pathComponents removeLastObject];
+    [pathComponents addObject:@"MacOS"];
+    [pathComponents addObject:appName];
+    NSString *newPath = [NSString pathWithComponents:pathComponents];
+    [[NSWorkspace sharedWorkspace] launchApplication:newPath];
+}
+[NSApp terminate:nil];
+</code></pre>
+
+<p>}
+```</p>
+
+<h3>4. 设置主程序</h3>
+
+<ul>
+<li>test添加Copy Files 。
+<img src="/images/2014/06/10/07.jpg" alt="temp" /></li>
+<li>设置 Copy Files 。Destination为"Wrapper"，Subpath为"Contents/Library/LoginItems"，添加"testHelper.app"如下图。 <br/>
+<img src="/images/2014/06/10/08.jpg" alt="temp" /></li>
+<li>设置依赖，如下图。<br/>
+<img src="/images/2014/06/10/09.jpg" alt="temp" /></li>
+<li>设置 Build Settings &ndash;> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
+<img src="/images/2014/06/10/10.jpg" alt="temp" /></li>
+<li>设置沙盒环境，证书，描述文件。  <br/>
+这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
+<img src="/images/2014/06/10/11.jpg" alt="temp" /></li>
+</ul>
+
+
+<h3>5. 主程序添加代码</h3>
+
+<ul>
+<li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
+<li><p>添加 ServiceManagement.framework
+<img src="/images/2014/06/10/12.jpg" alt="temp" /></p></li>
+<li><p>创建一个管理文件例如 TMStartAtLogin，负责管理开机自启动状态，并在里面粘贴以下代码。   <br/>
+别忘了 #import &ldquo;StartAtLoginController.h&rdquo;  <br/>
+这里的 Identifier是testHelper的标识符。</p></li>
+</ul>
+
+
+<p>``` objective-c
++ (BOOL) isStartAtLogin
+{</p>
+
+<pre><code>StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@"com.tmyam.testHelper"];
+BOOL startedAtLogin = [loginController startAtLogin];
+[loginController release];
+return startedAtLogin;
+</code></pre>
+
+<p>}</p>
+
+<ul>
+<li>(BOOL) setStartAtLogin:(BOOL)isStartLogin
+{
+  StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@&ldquo;com.tmyam.testHelper&rdquo;];
+  loginController.startAtLogin = isStartLogin;
+  BOOL result = loginController.enabled;
+  [loginController release];
+  return result;
+}
+```
+
+<h3>结尾</h3>
+
+<p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
+还有要注意的地方，如果要测试沙盒下的开机自启动，<strong>需要将编译出的app放入系统的应用程序目录下</strong>，否则不会生效。</p></li>
+</ul>
+
+
+<p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
+
+<h2>示例</h2>
+
+<p><a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
+<a href="/files/test-startatlogin.zip">test示例下载</a></p>
+
+<h2>参考</h2>
+
+<p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
+<a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>

@@ -9,10 +9,7 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="前言 最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。 1.前期工作 至少有两个github账号 (假设有两个账号 一个为 one ，另一个为 two)
-取消git全局设置 1
-2
-git config --global -- &hellip;">
+  <meta name="description" content="前言 在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。 非沙盒下的开机自启动 简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -111,6 +108,54 @@ window.onload=sethash;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">Mac App的开机自启动</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T14:15:00+08:00" pubdate data-updated="true">2014年06月10日</time>
+        
+			
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前言</h2>
+
+<p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
+
+<h2>非沙盒下的开机自启动</h2>
+
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在&#8221;系统偏好设置&#8221;&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项&#8221;里面看到，并进行设置。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -592,55 +637,6 @@ window.onload=sethash;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/09/category-and-comment/">为博客添加分类和评论功能</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-09T15:03:00+08:00" pubdate data-updated="true">2013年10月09日</time>
-        
-			
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>1.右侧边栏分类</h2>
-
-<ul>
-<li><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">参考链接</a><br/>
-如果想使用中文名分类，可以修改 <em>category_list.html</em> 中的<code>&lt;h1&gt;Categories&lt;/h1&gt;</code>为
-<code>&lt;h1&gt;文章分类&lt;/h1&gt;</code>。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/10/09/category-and-comment/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -667,12 +663,16 @@ window.onload=sethash;
 <li class='category'><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
-<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (3)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (4)</a></li>
 
   </ul>
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">mac app的开机自启动</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">一个客户端设置多个github账号</a>
@@ -688,10 +688,6 @@ window.onload=sethash;
     
       <li class="post">
         <a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/24/mei-ju-jie-shao/">Objective-C枚举介绍</a>
       </li>
     
   </ul>

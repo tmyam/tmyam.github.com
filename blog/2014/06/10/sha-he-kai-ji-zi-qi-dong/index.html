@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>mac app的开机自启动 - tmyam's blog</title>
+  <meta name="author" content="tmyam">
+
+  
+  <meta name="description" content="前言 在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。 非沙盒下的开机自启动 简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+<!-- 自动获取页面高度 -->
+<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "http://zrshz.github.io/agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-45438557-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">tmyam's blog</a></h1>
+  
+    <h2>time run off...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tmyam.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">博客</a></li>
+  <li><a href="/blog/archives">归档</a></li>
+  <li><a href="/about">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mac App的开机自启动</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T14:15:00+08:00" pubdate data-updated="true">2014年06月10日</time>
+        
+			
+          | <a href="#comments">评论</a>
+         
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>前言</h2>
+
+<p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
+
+<h2>非沙盒下的开机自启动</h2>
+
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在&#8221;系统偏好设置&#8221;&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项&#8221;里面看到，并进行设置。</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">BOOL</span>  <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">isHaveAdd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">startAtLogin</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">startAtLogin</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="n">isStartAtLogin</span><span class="p">])</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">CFURLRef</span> <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">LSSharedFileListRef</span> <span class="n">newloginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">item</span> <span class="o">=</span> <span class="n">LSSharedFileListInsertItemURL</span><span class="p">(</span><span class="n">newloginItems</span><span class="p">,</span> <span class="n">kLSSharedFileListItemLast</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">result</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">CFRelease</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">newloginItems</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">CFRelease</span><span class="p">(</span><span class="n">newloginItems</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">{</span>
+</span><span class='line'>                    <span class="n">OSStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">LSSharedFileListItemRemove</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span><span class="n">itemRef</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">);</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>沙盒下的开机自启动</h2>
+
+<p>沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。</p>
+
+<h3>1. 添加Helper程序</h3>
+
+<p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
+<img src="/images/2014/06/10/01.jpg" alt="temp" /></p>
+
+<h3>2. 设置Helper</h3>
+
+<p>test和testHelper都需要设置，这里先进行testHelper的设置.</p>
+
+<ul>
+<li>修改build Configuration 为 Release 。
+<img src="/images/2014/06/10/02.jpg" alt="temp" /></li>
+<li>修改Info.plist文件，使app在运行时不显示到前端。
+<img src="/images/2014/06/10/03.jpg" alt="temp" /></li>
+<li>删除MainMenu.xib中的window窗口，  <br/>
+并且删除 AppDelegate.h 中的<code>@property (assign) IBOutlet NSWindow *window;</code>。  <br/>
+这些都是确保app在运行时不显示到前端。
+<img src="/images/2014/06/10/04.jpg" alt="temp" /></li>
+<li>修改 Build Settings 的 <strong>Skip Install</strong> 为 YES。
+<img src="/images/2014/06/10/05.jpg" alt="temp" /></li>
+<li>设置沙盒环境，证书，描述文件。  <br/>
+这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
+<img src="/images/2014/06/10/06.jpg" alt="temp" /></li>
+</ul>
+
+
+<h3>3. 添加Helper的代码</h3>
+
+<p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">runMainApp:</span><span class="s">@&quot;com.tmyam.test&quot;</span> <span class="nl">appName:</span><span class="s">@&quot;test&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/** 运行开机自启动的app</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm"> @param identifier 主app的标识符</span>
+</span><span class='line'><span class="cm"> @param appName 主app的名称（在MacOS文件夹下的名称）</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">runMainApp:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span> <span class="nf">appName:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">appName</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Check if main app is already running; if yes, do nothing and terminate helper app</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSArray</span> <span class="o">*</span><span class="n">running</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">runningApplications</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSRunningApplication</span> <span class="o">*</span><span class="n">app</span> <span class="k">in</span> <span class="n">running</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">([[</span><span class="n">app</span> <span class="n">bundleIdentifier</span><span class="p">]</span> <span class="nl">isEqualToString:</span><span class="n">identifier</span><span class="p">])</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">alreadyRunning</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">NSArray</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">pathComponents</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithArray:</span><span class="n">p</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="s">@&quot;MacOS&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="n">appName</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">newPath</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">pathWithComponents:</span><span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="nl">launchApplication:</span><span class="n">newPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">NSApp</span> <span class="nl">terminate:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. 设置主程序</h3>
+
+<ul>
+<li>test添加Copy Files 。
+<img src="/images/2014/06/10/07.jpg" alt="temp" /></li>
+<li>设置 Copy Files 。Destination为&#8221;Wrapper&#8221;，Subpath为&#8221;Contents/Library/LoginItems&#8221;，添加&#8221;testHelper.app&#8221;如下图。 <br/>
+<img src="/images/2014/06/10/08.jpg" alt="temp" /></li>
+<li>设置依赖，如下图。<br/>
+<img src="/images/2014/06/10/09.jpg" alt="temp" /></li>
+<li>设置 Build Settings &ndash;> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
+<img src="/images/2014/06/10/10.jpg" alt="temp" /></li>
+<li>设置沙盒环境，证书，描述文件。  <br/>
+这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
+<img src="/images/2014/06/10/11.jpg" alt="temp" /></li>
+</ul>
+
+
+<h3>5. 主程序添加代码</h3>
+
+<ul>
+<li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
+<li><p>添加 ServiceManagement.framework
+<img src="/images/2014/06/10/12.jpg" alt="temp" /></p></li>
+<li><p>创建一个管理文件例如 TMStartAtLogin，负责管理开机自启动状态，并在里面粘贴以下代码。   <br/>
+别忘了 #import &ldquo;StartAtLoginController.h&rdquo;  <br/>
+这里的 Identifier是testHelper的标识符。</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">startedAtLogin</span> <span class="o">=</span> <span class="p">[</span><span class="n">loginController</span> <span class="n">startAtLogin</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">startedAtLogin</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isStartLogin</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">loginController</span><span class="p">.</span><span class="n">startAtLogin</span> <span class="o">=</span> <span class="n">isStartLogin</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">loginController</span><span class="p">.</span><span class="n">enabled</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>结尾</h3>
+
+<p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
+还有要注意的地方，如果要测试沙盒下的开机自启动，<strong>需要将编译出的app放入系统的应用程序目录下</strong>，否则不会生效。</p>
+
+<p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
+
+<h2>示例</h2>
+
+<p><a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
+<a href="/files/test-startatlogin.zip">test示例下载</a></p>
+
+<h2>参考</h2>
+
+<p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
+<a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T14:15:00+08:00" pubdate data-updated="true">2014年06月10日</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac-develop/'>mac_develop</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/" title="Previous Post: 一个客户端设置多个github账号">&laquo; 一个客户端设置多个github账号</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tmyam"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>简介</h1>
+	<li class='contact'>
+     <font size=+2 ><strong>tmyam</strong></font><br/><br/>
+     <img src="/images/logo.png" alt="faild" width="180"/><br/><br/>
+	</li>
+	<li class='contact'>  <a href='http://zrshz.github.com'>Home Page</a> </li>
+       <li class='contact'>  <a href='/'>Blog</a> </li>
+       <li class='contact'> <a href='mailto:tmyam@mail.com'>email</a> </li>
+</section><section>
+  <h1>文章分类</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/develop-prepare/'>Develop_prepare (3)</a></li>
+<li class='category'><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (4)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">mac app的开机自启动</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">一个客户端设置多个github账号</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/25/idpxu-fei/">iDP续费</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/09/idpshen-qing/">iDP申请[转载]</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>二维码</h1>
+	<li class='link code'>
+       <img src="/images/link_code.png" alt="faild" width="180"/>
+	</li>
+</section>
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - tmyam -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tmyam';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/';
+        var disqus_url = 'http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
