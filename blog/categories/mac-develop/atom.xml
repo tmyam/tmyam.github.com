@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-06-10T16:49:38+08:00</updated>
+  <updated>2016-03-09T10:34:09+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -247,7 +247,7 @@ return startedAtLogin;
 <h3>结尾</h3>
 
 <p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
-还有要注意的地方，如果要测试沙盒下的开机自启动，<strong>需要将编译出的app放入系统的应用程序目录下</strong>，否则不会生效。</p></li>
+还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p></li>
 </ul>
 
 
@@ -258,7 +258,7 @@ return startedAtLogin;
 <p><a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
 <a href="/files/test-startatlogin.zip">test示例下载</a></p>
 
-<h2>参考</h2>
+<h3>参考</h3>
 
 <p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
 <a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>

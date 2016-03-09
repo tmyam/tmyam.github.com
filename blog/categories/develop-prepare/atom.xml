@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Develop_prepare | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/develop-prepare/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2014-06-10T16:49:38+08:00</updated>
+  <updated>2016-03-09T10:34:09+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -90,7 +90,7 @@
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#99;&#x68;&#x69;&#110;&#x61;&#100;&#101;&#118;&#64;&#97;&#115;&#x69;&#x61;&#46;&#x61;&#x70;&#x70;&#108;&#x65;&#46;&#99;&#111;&#109;">&#99;&#104;&#x69;&#x6e;&#97;&#x64;&#x65;&#118;&#x40;&#x61;&#x73;&#105;&#97;&#x2e;&#97;&#112;&#x70;&#108;&#101;&#46;&#x63;&#111;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#99;&#104;&#x69;&#x6e;&#x61;&#100;&#x65;&#x76;&#64;&#x61;&#115;&#105;&#x61;&#x2e;&#x61;&#112;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;">&#99;&#x68;&#x69;&#110;&#97;&#100;&#101;&#x76;&#x40;&#x61;&#115;&#105;&#97;&#46;&#x61;&#x70;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -99,7 +99,7 @@
 </ul>
 
 
-<h2>参考</h2>
+<h3>参考</h3>
 
 <p><a href="http://blog.sina.com.cn/s/blog_68661bd80101nme6.html">http://blog.sina.com.cn/s/blog_68661bd80101nme6.html</a></p>
 ]]></content>
@@ -186,7 +186,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#99;&#104;&#x69;&#x6e;&#x61;&#x64;&#101;&#118;&#x40;&#97;&#x73;&#105;&#97;&#x2e;&#x61;&#112;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;">&#99;&#x68;&#x69;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#97;&#x73;&#105;&#x61;&#46;&#x61;&#112;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></font>。
+<font color=red><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x63;&#104;&#105;&#110;&#97;&#x64;&#101;&#x76;&#64;&#x61;&#115;&#105;&#x61;&#46;&#x61;&#112;&#112;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x63;&#x68;&#x69;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#x61;&#115;&#x69;&#x61;&#x2e;&#97;&#112;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -366,8 +366,9 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <li><p>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></p></li>
 <li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>Provisioning Profiles</em> &ndash;> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
 <li><p>根据提示一步一步前进，<em>Profile Name:</em>可以使用 <code>AppNameProfile</code>的样式，最后点击生成。</p></li>
-<li><p>下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书及对应的描述文件。如下图 <br/>
-<img src="/images/2013/11/18/code_sign.png" alt="temp" /></p></li>
+<li><p><del>下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书及对应的描述文件。如下图
+<img src="/images/2013/11/18/code_sign.png" alt="temp" /></del></p></li>
+<li><p>由于系统更新，现在描述文件的选择改变了地方，这里依然下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书，描述的地方选择<strong>Automatic</strong>。</p></li>
 </ul>
 
 
@@ -387,11 +388,21 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <li><p>回到Xcode工程，选择菜单 <em>Product</em> &ndash;> <em>Archive</em>,进入 Organizer 的 Archives 界面。</p></li>
 <li><p>选择<code>validate...</code>按钮验证app是否能通过验证。 <br/>
 这步是最容易发现错误的地方，错误的种类也多种多样，根据实际的错误自己修改吧。</p></li>
-<li><p>如果没有错误，完成之后点击<code>Distribute...</code>按钮，等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</p></li>
+<li><p><del>如果没有错误，完成之后点击<code>Distribute...</code>按钮，等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</del></p></li>
+<li><p>这里现在变成了<code>Upload to App Store</code>,并且在弹出的选择框中选择描述文件，如下图
+<img src="/images/2015/03/09/upload_app.png" alt="temp" />
+等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</p></li>
 <li><p>等待一段时间，机器会进行初步审核，成功后状态会变成 <strong>Waiting For Review</strong> ，失败的话有具体的提示。</p></li>
 <li><p>之后就是等待人工审核了，这里只有等了，一般2~10天不等，升级会快一些。如果想取消发布，可以点击 <strong>Binary Details</strong> ，在新页面点击右上角的 <code>Reject This Binary</code>按钮。</p></li>
 <li><p>漫长的等待之后，状态会变成 <strong>In Review</strong>，如果不顺利，那么又要从头开始上传，接着是漫长的等待&hellip; <br/>
 如果顺利，状态之后会变成 <strong>Processing for App Store</strong>，最后是 <strong>Ready for Sale</strong>，至此发布完成。</p></li>
+</ul>
+
+
+<h3>更新</h3>
+
+<ul>
+<li>2016-03-09 第一次更新，环境: <code>(mac 版本 10.11.3 ) ( Xcode 7.2.1 )</code></li>
 </ul>
 
 ]]></content>
