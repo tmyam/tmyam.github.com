@@ -63,7 +63,7 @@ categories: Develop_prepare
 续费选的时候是 **iOS Developer Program** 结果收到了苹果的邮件通知，却变成了 **Mac Developer Program** 。    
 对于这种苹果犯的错误，我是通过打电话解决的，苹果方面不能直接转平台，只能退款，要4-7天才能到信用卡里。还得再次续费才行。。。 
 
-## 参考
+### 参考
 [http://blog.sina.com.cn/s/blog_68661bd80101nme6.html](http://blog.sina.com.cn/s/blog_68661bd80101nme6.html)
 
 

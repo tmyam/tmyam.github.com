@@ -199,7 +199,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 ```
 ### 结尾
 至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
-还有要注意的地方，如果要测试沙盒下的开机自启动，**需要将编译出的app放入系统的应用程序目录下**，否则不会生效。   
+还有要注意的地方，如果要测试沙盒下的开机自启动，*需要将编译出的app放入系统的应用程序目录下*，否则不会生效。   
 
 另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到*".../Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents"*目录下，删除embedded.provisionprofile文件，就可以正确上传了。
 
@@ -207,7 +207,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 [StartAtLoginController下载](/files/StartAtLoginController.zip)   
 [test示例下载](/files/test-startatlogin.zip)
 
-## 参考
+### 参考
 <http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/>
 <http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle>
 

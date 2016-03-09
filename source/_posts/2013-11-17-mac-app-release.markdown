@@ -80,8 +80,10 @@ categories: Develop_prepare
 
 * 根据提示一步一步前进，*Profile Name:*可以使用 `AppNameProfile`的样式，最后点击生成。
 
-* 下载生成的描述文件，右键用Xcode打开，然后在工程中选择 **3rd Party Mac Developer Application:...** 的证书及对应的描述文件。如下图   
-![temp](/images/2013/11/18/code_sign.png)    
+* ~~下载生成的描述文件，右键用Xcode打开，然后在工程中选择 **3rd Party Mac Developer Application:...** 的证书及对应的描述文件。如下图
+![temp](/images/2013/11/18/code_sign.png)~~    
+
+* 由于系统更新，现在描述文件的选择改变了地方，这里依然下载生成的描述文件，右键用Xcode打开，然后在工程中选择 **3rd Party Mac Developer Application:...** 的证书，描述的地方选择**Automatic**。
 
 ## 编写程序...
 这里不多赘述了...
@@ -100,7 +102,12 @@ categories: Develop_prepare
 * 选择`validate...`按钮验证app是否能通过验证。   
   这步是最容易发现错误的地方，错误的种类也多种多样，根据实际的错误自己修改吧。 
     
-* 如果没有错误，完成之后点击`Distribute...`按钮，等待一段漫长的上传之后，回到**iTunes Connect**，状态变成了 **Upload Received**。
+* ~~如果没有错误，完成之后点击`Distribute...`按钮，等待一段漫长的上传之后，回到**iTunes Connect**，状态变成了 **Upload Received**。~~
+
+* 这里现在变成了`Upload to App Store`,并且在弹出的选择框中选择描述文件，如下图
+![temp](/images/2015/03/09/upload_app.png)
+等待一段漫长的上传之后，回到**iTunes Connect**，状态变成了 **Upload Received**。
+
 
 * 等待一段时间，机器会进行初步审核，成功后状态会变成 **Waiting For Review** ，失败的话有具体的提示。
 
@@ -109,4 +116,7 @@ categories: Develop_prepare
 * 漫长的等待之后，状态会变成 **In Review**，如果不顺利，那么又要从头开始上传，接着是漫长的等待...   
   如果顺利，状态之后会变成 **Processing for App Store**，最后是 **Ready for Sale**，至此发布完成。
 
+
+###更新
+* 2016-03-09 第一次更新，环境: `(mac 版本 10.11.3 ) ( Xcode 7.2.1 )`
   
