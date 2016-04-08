@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2016-03-09T11:01:45+08:00</updated>
+  <updated>2016-04-08T16:18:40+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,433 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[cocoa binding]]></title>
+    <link href="http://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
+    <updated>2016-04-08T10:17:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
+正向操作(转换) &mdash;&ndash;> 代码控制的操作(转换)  <br/>
+反向操作(转换) &mdash;&ndash;> 用户界面操作控制(转换)</p>
+
+<h2>简单的使用</h2>
+
+<p>比如，有这样一个需求，监控 <strong>NSPopUpButton</strong> 的选择下标的变化：  <br/>
+1. 可以用代码改变选择的下标  <br/>
+2. 当用户在界面上选择改变下标时，可以监测到这种改变</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h4>1. 一般的做法</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">,</span><span class="n">nonnull</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">NSPopUpButton</span><span class="o">*</span>   <span class="n">popupButton</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// 需求1</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">popupButton</span><span class="p">.</span><span class="n">indexOfSelectedItem</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 使用 IBAction 绑定action，可以满足需求2</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span> <span class="nf">popupButtonChangeIndex:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,[</span><span class="n">sender</span> <span class="n">indexOfSelectedItem</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
+
+<h4>2. 使用bind</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="err">写法</span> <span class="mi">1</span> <span class="p">(</span><span class="err">定义属性</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// 定义选择下标属性</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">assign</span><span class="p">)</span> <span class="n">NSInteger</span>   <span class="n">index</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// 主要是需要写这个set函数 // 需求2</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setIndex:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">index</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">_Index</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">index</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//需求1</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">写法</span> <span class="mi">2</span> <span class="p">(</span><span class="err">不定义属性</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// 需求2 // 不定义属性，则需要一个值来保存选择的下标，并写出get方法</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nl">setIndex:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="n">index</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">xx</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">index</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span> <span class="n">index</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">xx</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//需求1</span>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">写法</span><span class="mi">1</span><span class="err">的好处是简便，写法</span><span class="mi">2</span><span class="err">的好处是不受限于属性的类型，比如</span><span class="n">xx</span><span class="err">可以自定义为</span><span class="n">NSNumber</span><span class="err">类型。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>界面绑定，如下图  <br/>
+<img src="http://tmyam.github.io/images/2016/04/08/bind_selectindex.png" alt="temp" />  <br/>
+第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即<code>index</code>。
+当然也可以不使用界面绑定，使用代码绑定。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">popupButton</span> <span class="nl">bind:</span><span class="s">@&quot;selectedIndex&quot;</span> <span class="nl">toObject:</span><span class="n">self</span> <span class="nl">withKeyPath:</span><span class="s">@&quot;index&quot;</span> <span class="nl">options:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">unbind:</span><span class="s">@&quot;selectedIndex&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">@&quot;selectedIndex&quot;</span><span class="err">可以用</span><span class="n">NSSelectedIndexBinding</span><span class="err">代替</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>进阶</h2>
+
+<h4>1. 绑定NSTextField</h4>
+
+<p>输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。</p>
+
+<p>例如，下面是一个输入框，限定输入0~99。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 绑定的文本</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">NSString</span><span class="o">*</span>     <span class="n">number</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// 监听变化</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setNumber:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">number</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">number</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">number</span> <span class="o">=</span> <span class="s">@&quot;0&quot;</span><span class="p">;</span> <span class="c1">//默认值</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">number</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">_number</span> <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在界面上绑定<strong>NSTextField</strong>的<strong>value</strong>。注意勾选红色标注      <br/>
+<img src="http://tmyam.github.io/images/2016/04/08/bind_textfield.png" alt="temp" />   <br/>
+当然，这样仅仅只是可以检测文本的输入变化，并不能限制输入的内容。还需要创建一个Formatter继承自系统的NSFormatter，并重写里面的函数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">@implementation</span> <span class="nc">TMNumFormatter</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">stringForObjectValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">object</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="n">object</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">getObjectValue:</span><span class="p">(</span><span class="n">out</span> <span class="kt">id</span><span class="o">*</span><span class="p">)</span><span class="nv">object</span>
+</span><span class='line'>              <span class="nf">forString:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">string</span>
+</span><span class='line'>       <span class="nf">errorDescription:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="o">*</span><span class="n">object</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="n">string</span><span class="p">];</span><span class="c1">//必须这样写，否则bind会失效</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isPartialStringValid:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">partialString</span>
+</span><span class='line'>            <span class="nf">newEditingString:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">newString</span>
+</span><span class='line'>            <span class="nf">errorDescription:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="nl">isInteger:</span><span class="n">partialString</span><span class="p">])</span> <span class="c1">// 判断是否为纯数字</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1">// 限制长度，最多两位</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">unichar</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="nl">characterAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">{</span>
+</span><span class='line'>                    <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="k">else</span>
+</span><span class='line'>                <span class="p">{</span>
+</span><span class='line'>                    <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">// 限制大小</span>
+</span><span class='line'>            <span class="n">NSInteger</span> <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="n">integerValue</span><span class="p">];</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">99</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/** 判断文本是否为数字</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm"> @param string 输入的文本</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm"> @return 是否是纯数字</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isInteger:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">NSScanner</span><span class="o">*</span> <span class="n">scan</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSScanner</span> <span class="nl">scannerWithString:</span><span class="n">string</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">scan</span> <span class="nl">scanInteger:</span><span class="o">&amp;</span><span class="n">val</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">scan</span><span class="p">.</span><span class="n">isAtEnd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
+<img src="http://tmyam.github.io/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
+
+<h4>2. Value Transformer类型变换</h4>
+
+<p>比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">*</span>     <span class="n">inter</span><span class="p">;</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setInter:</span><span class="p">(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">inter</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">_inter</span> <span class="o">=</span> <span class="n">inter</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">inter</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>需要创建一个继承自<strong>NSValueTransformer</strong>的类，重写里面的函数。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 正向：NSNumber --&gt; NSString</span>
+</span><span class='line'><span class="c1">// 反向：NSString --&gt; NSNumber</span>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">TMValueTransformer</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 正向操作时，输出的类型（控件接收的类型）</span>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">Class</span><span class="p">)</span> <span class="nf">transformedValueClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">NSString</span> <span class="n">class</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 是否允许反向操作，只有允许反向，reverseTransformedValue:函数才有用</span>
+</span><span class='line'><span class="c1">// 如果为NO，则用户无法在界面上输入内容</span>
+</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">allowsReverseTransformation</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 正向输出，NSNumber --&gt; NSString</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">transformedValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">value</span> <span class="n">stringValue</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 反向输出，NSString --&gt; NSNumber</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">reverseTransformedValue:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="err">@</span><span class="p">([</span><span class="n">value</span> <span class="n">integerValue</span><span class="p">]);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>xib里面的绑定设置，如下图：  <br/>
+<img src="http://tmyam.github.io/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
+
+<h2>注意</h2>
+
+<h4>1. Read-Only 的绑定</h4>
+
+<p>有些bind类型，是Read-Only的，这时有些需求就无法满足了，需要注意。  <br/>
+比如<strong>NSImageView</strong>的<strong>valuePath</strong>是Read-Only的，只满足正向的操作，即可以通过代码修改路径，显示不同的图片，但是界面操作拖入一张图片的时候，绑定的属性不能获取到这张图片的路径。  <br/>
+所以对于Read-Only属性，只适合正向操作，即禁止用户进行修改的选项。  <br/>
+对于哪些bind属性是Read-Only的，可以查询<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">参考链接</a></p>
+
+<br/>
+
+
+<h3>参考</h3>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html</a>
+<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac app的开机自启动]]></title>
@@ -653,7 +1080,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#99;&#104;&#x69;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#x61;&#115;&#x69;&#97;&#46;&#97;&#x70;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#x63;&#x68;&#x69;&#x6e;&#x61;&#x64;&#x65;&#118;&#64;&#97;&#x73;&#105;&#x61;&#46;&#x61;&#112;&#112;&#108;&#101;&#x2e;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#99;&#x68;&#105;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#97;&#115;&#105;&#97;&#x2e;&#97;&#x70;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">&#99;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#64;&#x61;&#115;&#x69;&#x61;&#46;&#97;&#x70;&#x70;&#108;&#101;&#x2e;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -749,7 +1176,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="http://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#99;&#104;&#x69;&#110;&#x61;&#x64;&#101;&#118;&#64;&#x61;&#115;&#x69;&#x61;&#x2e;&#x61;&#112;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#100;&#x65;&#118;&#64;&#x61;&#115;&#x69;&#97;&#x2e;&#x61;&#112;&#x70;&#108;&#101;&#46;&#99;&#111;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#x68;&#x69;&#x6e;&#97;&#100;&#x65;&#x76;&#64;&#x61;&#115;&#105;&#x61;&#46;&#x61;&#112;&#112;&#x6c;&#x65;&#46;&#x63;&#111;&#109;">&#x63;&#104;&#x69;&#x6e;&#97;&#100;&#x65;&#x76;&#x40;&#97;&#115;&#105;&#x61;&#46;&#x61;&#112;&#112;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>

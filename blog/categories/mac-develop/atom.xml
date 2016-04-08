@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2016-03-09T11:01:45+08:00</updated>
+  <updated>2016-04-08T16:18:40+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,297 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[cocoa binding]]></title>
+    <link href="http://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
+    <updated>2016-04-08T10:17:00+08:00</updated>
+    <id>http://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
+正向操作(转换) &mdash;&ndash;> 代码控制的操作(转换)  <br/>
+反向操作(转换) &mdash;&ndash;> 用户界面操作控制(转换)</p>
+
+<h2>简单的使用</h2>
+
+<p>比如，有这样一个需求，监控 <strong>NSPopUpButton</strong> 的选择下标的变化：  <br/>
+1. 可以用代码改变选择的下标  <br/>
+2. 当用户在界面上选择改变下标时，可以监测到这种改变</p>
+
+<!-- more -->
+
+
+<p></p>
+
+<h4>1. 一般的做法</h4>
+
+<p>``` objective-c
+// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
+@property (nonatomic ,strong,nonnull) IBOutlet NSPopUpButton*   popupButton;
+// 需求1
+self.popupButton.indexOfSelectedItem = 1;</p>
+
+<p>// 使用 IBAction 绑定action，可以满足需求2
+&ndash; (IBAction) popupButtonChangeIndex:(id)sender
+{</p>
+
+<pre><code>NSLog(@"%ld",[sender indexOfSelectedItem]);
+</code></pre>
+
+<p>}</p>
+
+<p>```
+这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
+
+<h4>2. 使用bind</h4>
+
+<p>``` objective-c
+写法 1 (定义属性)
+// 定义选择下标属性
+@property (nonatomic ,assign) NSInteger   index;
+// 主要是需要写这个set函数 // 需求2
+&ndash; (void) setIndex:(NSInteger)index
+{</p>
+
+<pre><code>_Index = index;
+NSLog(@"%ld",index);
+</code></pre>
+
+<p>}
+//需求1
+self.index = 1;</p>
+
+<p>写法 2 (不定义属性)
+// 需求2 // 不定义属性，则需要一个值来保存选择的下标，并写出get方法
+&ndash; (void) setIndex:(NSInteger)index
+{</p>
+
+<pre><code>xx = index;
+NSLog(@"%ld",index);
+</code></pre>
+
+<p>}
+&ndash; (NSInteger) index
+{</p>
+
+<pre><code>return xx;
+</code></pre>
+
+<p>}
+//需求1
+self.index = 1;</p>
+
+<p>写法1的好处是简便，写法2的好处是不受限于属性的类型，比如xx可以自定义为NSNumber类型。
+<code>
+界面绑定，如下图    
+![temp](/images/2016/04/08/bind_selectindex.png)    
+第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即`index`。
+当然也可以不使用界面绑定，使用代码绑定。
+</code>objective-c
+[self.popupButton bind:@&ldquo;selectedIndex&rdquo; toObject:self withKeyPath:@&ldquo;index&rdquo; options:nil];</p>
+
+<ul>
+<li>(void) dealloc
+{
+  [self unbind:@&ldquo;selectedIndex&rdquo;];
+}</li>
+</ul>
+
+
+<p>@&ldquo;selectedIndex"可以用NSSelectedIndexBinding代替
+```</p>
+
+<h2>进阶</h2>
+
+<h4>1. 绑定NSTextField</h4>
+
+<p>输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。</p>
+
+<p>例如，下面是一个输入框，限定输入0~99。
+```objective-c
+// 绑定的文本
+@property (nonatomic ,strong) NSString<em>     number;
+// 监听变化
+&ndash; (void) setNumber:(NSString </em>)number
+{</p>
+
+<pre><code>if (!number.length)
+{
+    number = @"0"; //默认值
+}
+NSLog(@"%@",number);
+_number = number;
+</code></pre>
+
+<p>}
+<code>
+在界面上绑定**NSTextField**的**value**。注意勾选红色标注        
+![temp](/images/2016/04/08/bind_textfield.png)     
+当然，这样仅仅只是可以检测文本的输入变化，并不能限制输入的内容。还需要创建一个Formatter继承自系统的NSFormatter，并重写里面的函数。
+</code>objective-c
+@implementation TMNumFormatter</p>
+
+<ul>
+<li><p>(NSString<em>) stringForObjectValue:(id)object
+{
+  return(NSString</em>)object;
+}</p></li>
+<li><p>(BOOL) getObjectValue:(out id<em>)object
+            forString:(NSString</em>)string
+     errorDescription:(NSString<em>*)error
+{
+  </em>object = [NSString stringWithString:string];//必须这样写，否则bind会失效
+  return YES;
+}</p></li>
+<li><p>(BOOL)isPartialStringValid:(NSString*)partialString
+          newEditingString:(NSString<strong>)newString
+          errorDescription:(NSString</strong>)error
+{
+  if (partialString.length)
+  {
+      if (![self isInteger:partialString]) // 判断是否为纯数字
+      {
+          return NO;
+      }
+      else if (partialString.length > 2)   // 限制长度，最多两位
+      {
+          return NO;
+      }
+      else
+      {
+          for (NSInteger i = 0; i &lt; partialString.length ; i ++ )
+          {
+              unichar c = [partialString characterAtIndex:i];
+              if (c >= &lsquo;0&rsquo; &amp;&amp; c &lt;= &lsquo;9&rsquo;)
+              {
+                  continue;
+              }
+              else
+              {
+                  return NO;
+              }
+          }</p>
+
+<pre><code>      // 限制大小
+      NSInteger num = [partialString integerValue];
+      if (num &lt; 0 || num &gt; 99)
+      {
+          return NO;
+      }
+      return YES;
+  }
+</code></pre>
+
+<p>  }
+  else
+  {
+      return YES;
+  }
+}</p></li>
+</ul>
+
+
+<p>/** 判断文本是否为数字</p>
+
+<p> @param string 输入的文本</p>
+
+<p> @return 是否是纯数字
+ <em>/
+&ndash; (BOOL) isInteger:(NSString </em>)string
+{</p>
+
+<pre><code>NSScanner* scan = [NSScanner scannerWithString:string];
+NSInteger val = 0;
+return [scan scanInteger:&amp;val] &amp;&amp; scan.isAtEnd;
+</code></pre>
+
+<p>}</p>
+
+<p>@end
+```
+然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
+<img src="/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
+
+<h4>2. Value Transformer类型变换</h4>
+
+<p>比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。
+```objective-c
+@property (nonatomic ,strong) NSNumber<em>     inter;
+&ndash; (void) setInter:(NSNumber </em>)inter
+{</p>
+
+<pre><code>_inter = inter;
+NSLog(@"%@",inter);
+</code></pre>
+
+<p>}
+<code>
+需要创建一个继承自**NSValueTransformer**的类，重写里面的函数。
+</code>objective-c
+// 正向：NSNumber &mdash;> NSString
+// 反向：NSString &mdash;> NSNumber
+@implementation TMValueTransformer</p>
+
+<p>// 正向操作时，输出的类型（控件接收的类型）
++ (Class) transformedValueClass
+{</p>
+
+<pre><code>return [NSString class];
+</code></pre>
+
+<p>}</p>
+
+<p>// 是否允许反向操作，只有允许反向，reverseTransformedValue:函数才有用
+// 如果为NO，则用户无法在界面上输入内容
++ (BOOL) allowsReverseTransformation
+{</p>
+
+<pre><code>return YES;
+</code></pre>
+
+<p>}</p>
+
+<p>// 正向输出，NSNumber &mdash;> NSString
+&ndash; (nullable id)transformedValue:(id)value
+{</p>
+
+<pre><code>return [value stringValue];
+</code></pre>
+
+<p>}</p>
+
+<p>// 反向输出，NSString &mdash;> NSNumber
+&ndash; (nullable id)reverseTransformedValue:(nullable id)value
+{</p>
+
+<pre><code>return @([value integerValue]);
+</code></pre>
+
+<p>}
+@end
+```
+xib里面的绑定设置，如下图：  <br/>
+<img src="/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
+
+<h2>注意</h2>
+
+<h4>1. Read-Only 的绑定</h4>
+
+<p>有些bind类型，是Read-Only的，这时有些需求就无法满足了，需要注意。  <br/>
+比如<strong>NSImageView</strong>的<strong>valuePath</strong>是Read-Only的，只满足正向的操作，即可以通过代码修改路径，显示不同的图片，但是界面操作拖入一张图片的时候，绑定的属性不能获取到这张图片的路径。  <br/>
+所以对于Read-Only属性，只适合正向操作，即禁止用户进行修改的选项。  <br/>
+对于哪些bind属性是Read-Only的，可以查询<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">参考链接</a></p>
+
+<br/>
+
+
+<h3>参考</h3>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html</a>
+<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac app的开机自启动]]></title>
