@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-06T22:46:47+08:00</updated>
+  <updated>2017-03-06T23:49:45+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -68,29 +68,43 @@ ssh-add -l
 
 <h2>修改ssh config文件</h2>
 
-<code>
-cd ~/.ssh/
+<pre><code>cd ~/.ssh/
 touch config
-</code>
+</code></pre>
+
 打开.ssh文件夹下的config文件，进行配置
-```
-
-<h1>default</h1>
-
-<p>Host github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa</p></li>
-</ul>
-
-
-<h1>two</h1>
-
-<p>Host two.github.com  # 前缀名可以任意设置
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa_two
-```
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>&lt;h1&gt;default&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Host github.com
+</span><span class='line'>HostName github.com
+</span><span class='line'>User git
+</span><span class='line'>IdentityFile ~/.ssh/id_rsa&lt;/p&gt;&lt;/li&gt;
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;two&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Host two.github.com  # 前缀名可以任意设置
+</span><span class='line'>HostName github.com
+</span><span class='line'>User git
+</span><span class='line'>IdentityFile ~/.ssh/id_rsa_two</span></code></pre></td></tr></table></div></figure>
 这里必须采用这样的方式设置，否则push时会出现以下错误:</p>
 
 <blockquote><p>ERROR: Permission to two/two.github.com.git denied to one.</p></blockquote>
@@ -100,40 +114,66 @@ IdentityFile ~/.ssh/id_rsa_two
 这样的 git 地址中的 User 和 Host 来识别使用哪个本地私钥的。 <br/>
 很明显，如果 User 和 Host 始终为 git 和 github.com，那么就只能使用一个私钥。 <br/>
 所以需要上面的方式配置，每个账号使用了自己的 Host，每个 Host 的域名做 CNAME 解析到 github.com，这样 ssh 在连接时就可以区别不同的账号了。 <br/>
-```
-ssh -T <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#103;&#x69;&#116;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>        # 测试one ssh连接</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -T &lt;a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;"&gt;&#x67;&#105;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;&lt;/a&gt;        # 测试one ssh连接&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ssh -T &lt;a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x67;&#x69;&#116;&#64;&#x74;&#x77;&#111;&#46;&#103;&#105;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;"&gt;&#103;&#105;&#116;&#64;&#116;&#x77;&#111;&#46;&#x67;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;&lt;/a&gt;    # 测试two ssh连接&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;但是这样还没有完，下面还有关联的设置。
+</span><span class='line'>
+</span><span class='line'>## 新建git项目或者clone已有的项目
+</span><span class='line'>* 可以用 git init 或者 git clone 创建本地项目
+</span><span class='line'>* 分别在*one*和*two*的git项目目录下，使用下面的命令设置账号关联
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;git config user.name &ldquo;&lt;strong&gt;name&lt;/strong&gt;&rdquo;            # &lt;strong&gt;name&lt;/strong&gt; 例如 one
+</span><span class='line'>git config user.email &ldquo;&lt;strong&gt;email&lt;/strong&gt;&rdquo;          # &lt;strong&gt;email&lt;/strong&gt; 例如 &lt;a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x6f;&#110;&#x65;&#64;&#x31;&#x32;&#54;&#x2e;&#x63;&#111;&#x6d;"&gt;&#x6f;&#110;&#101;&#64;&#x31;&#50;&#x36;&#46;&#x63;&#x6f;&#x6d;&lt;/a&gt;
+</span><span class='line'>&lt;code&gt;
+</span><span class='line'>查看git项目的配置
+</span><span class='line'>&lt;/code&gt;
+</span><span class='line'>git config &ndash;list
+</span><span class='line'>&lt;code&gt;
+</span><span class='line'>查看*one*的remote.origin.url=git@github.com:one/one.github.com.git   
+</span><span class='line'>查看*two*的remote.origin.url=git@github.com:two/two.github.com.git   
+</span><span class='line'>由于*one*使用的是默认的Host，所以不需要修改，但是two使用的是*two.github.com*，则需要进行修改
+</span><span class='line'>&lt;/code&gt;
+</span><span class='line'>git remote rm origin
+</span><span class='line'>git remote add origin git@two.github.com:two/two.github.com.git</span></code></pre></td></tr></table></div></figure></p>
 
-<h1>Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.</h1>
-
-<p>ssh -T <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x67;&#x69;&#x74;&#64;&#116;&#119;&#111;&#x2e;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#116;&#119;&#x6f;&#x2e;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#109;</a>    # 测试two ssh连接</p>
-
-<h1>Hi ***! You&rsquo;ve successfully authenticated, but GitHub does not provide shell access.</h1>
-
-<p>```
-但是这样还没有完，下面还有关联的设置。</p>
-
-<h2>新建git项目或者clone已有的项目</h2>
+<h2>上传更改</h2>
 
 <ul>
-<li>可以用 git init 或者 git clone 创建本地项目</li>
-<li>分别在<em>one</em>和<em>two</em>的git项目目录下，使用下面的命令设置账号关联
-<code>
-git config user.name "__name__"            # __name__ 例如 one
-git config user.email "__email__"          # __email__ 例如 one@126.com
-</code>
-查看git项目的配置
-<code>
-git config --list
-</code>
-查看<em>one</em>的remote.origin.url=git@github.com:one/one.github.com.git <br/>
-查看<em>two</em>的remote.origin.url=git@github.com:two/two.github.com.git <br/>
-由于<em>one</em>使用的是默认的Host，所以不需要修改，但是two使用的是<em>two.github.com</em>，则需要进行修改
-<code>
-git remote rm origin
-git remote add origin git@two.github.com:two/two.github.com.git
-</code>
-
-<h2>上传更改</h2></li>
 <li>上面所有的设置无误后，可以修改代码，然后上传了。
 <code>
 git add -A
@@ -177,21 +217,21 @@ git config --global push.default simple
 
 <p><strong>配置用户信息</strong></p>
 
-<p><code>sh
-git config --global user.email "xxx@xxx.com"
+<pre><code class="sh">git config --global user.email "xxx@xxx.com"
 git config --global user.name "xxx"
-</code><br/>
-可以使用 <code>git config --list</code> 查看配置的信息</p>
+</code></pre>
+
+<p>可以使用 <code>git config --list</code> 查看配置的信息</p>
 
 <!-- more -->
 
 
 <p><strong>生成证书</strong></p>
 
-<p><code>
-ssh-keygen -t rsa -C "xxx@xxx.com"
-</code>
-<strong>登录</strong><a href="https://github.com">github</a><br/>
+<pre><code>ssh-keygen -t rsa -C "xxx@xxx.com"
+</code></pre>
+
+<p><strong>登录</strong><a href="https://github.com">github</a><br/>
 拷贝~/.ssh/id_rsa.pub的内容，在github的<code>Account Settings</code>的<code>SSH Keys</code>里，点<code>Add SSH Keys</code>，将内容粘贴到”Key”中，并输入”Title”.</p>
 
 <h2>2.安装ruby</h2>
@@ -206,37 +246,35 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 <p><strong>安装rvm.</strong> <a href="http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac">参考链接</a></p>
 
-<p><code>text
-\curl -L https://get.rvm.io | bash -s stable --ruby
-</code>
-由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
+<pre><code class="text">\curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
 
-<p><code>
-\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
-</code></p>
+<p>由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
+
+<pre><code>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
+</code></pre>
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
 
-<p><code>sh
-rvm list known
-</code></p>
+<pre><code class="sh">rvm list known
+</code></pre>
 
 <p><strong>安装ruby</strong></p>
 
-<p><code>
-rvm install ruby-2.0.0-p247
-</code>
-如果遇到以下错误</p>
+<pre><code>rvm install ruby-2.0.0-p247
+</code></pre>
+
+<p>如果遇到以下错误</p>
 
 <blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
 pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
 
 <p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
 
-<p><code>
-rvm autolibs brew
-</code>
-如果遇到以下错误</p>
+<pre><code>rvm autolibs brew
+</code></pre>
+
+<p>如果遇到以下错误</p>
 
 <blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
 please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
@@ -245,66 +283,59 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 
 <p>可以先安装homebrew</p>
 
-<p><code>
-sudo su
+<pre><code>sudo su
 curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
-</code>
-修改权限</p>
+</code></pre>
 
-<p><code>
-sudo chown -R `whoami` /Library/Caches/Homebrew/
-</code>
-之后重新安装就行了。</p>
+<p>修改权限</p>
+
+<pre><code>sudo chown -R `whoami` /Library/Caches/Homebrew/
+</code></pre>
+
+<p>之后重新安装就行了。</p>
 
 <p><strong>使用</strong></p>
 
-<p><code>
-rvm use ruby-2.0.0-p247
-</code>
-可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
+<pre><code>rvm use ruby-2.0.0-p247
+</code></pre>
+
+<p>可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
 
 <h2>3.部署blog</h2>
 
 <ul>
-<li>创建git的blog
+<li><p>创建git的blog</p>
 
 <ol>
-<li> 点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
-<li> 仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
-<li> 点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
-<li> 内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
-<li> 接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。</li>
+<li>点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
+<li>仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
+<li>点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
+<li>内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
+<li>接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。<br/>
+<br/></li>
 </ol>
 </li>
+<li><p>配置<a href="http://octopress.org">Octopress</a></p></li>
 </ul>
 
 
-<br/>
-
-
-<ul>
-<li>配置<a href="http://octopress.org">Octopress</a></li>
-</ul>
-
-
-<p><code>
-cd blog                # 想要安装的Octopress的文件夹
+<pre><code>cd blog                # 想要安装的Octopress的文件夹
 git clone https://github.com/imathis/octopress.git
 cd octopress
 gem install bundler   # 安装依赖
 bundle install      
 rake install          # 安装Octopress默认的主题
-</code></p>
+</code></pre>
 
 <ul>
 <li>部署</li>
 </ul>
 
 
-<p><code>
-rake setup_github_pages
-</code>
-执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
 
 <ul>
 <li>修改配置文件, <a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></li>
@@ -313,41 +344,47 @@ rake setup_github_pages
 
 <p><strong>可以执行以下命令生成页面和预览博客</strong></p>
 
-<p><code>
-rake generate       # 生成文件(public文件夹下)
+<pre><code>rake generate       # 生成文件(public文件夹下)
 rake preview        # 生成本地预览，地址 http://localhost:4000
-</code></p>
+</code></pre>
 
 <ul>
 <li>上传到github</li>
 </ul>
 
 
-<p><code>
-rake deploy         # 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上
-</code>
-如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
+<pre><code>rake deploy         # 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上
+</code></pre>
 
-<p><code>
-rm -rf _deploy     # 在octopress目录下
+<p>如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
+
+<pre><code>rm -rf _deploy     # 在octopress目录下
 git clone https://github.com/your_username/your_username.github.com.git "_deploy"       # 注意修改your_username
 rake generate   # 再次执行
 rake deploy        
-</code>
-这样就可以看到上传的主题博客了。</p>
+</code></pre>
+
+<p>这样就可以看到上传的主题博客了。</p>
 
 <h2>4.备份资源文件</h2>
 
 <p>在octopress目录下</p>
 
-<p><code>
-git add .
+<pre><code>git add .
 git commit -m 'your message'
 git push origin source
-</code></p>
+</code></pre>
 
-<br/>
+<h2>更新 Octopress</h2>
 
+<pre><code class="sh ">git remote add octopress git://github.com/imathis/octopress.git
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's source
+rake update_style             # update the template's style
+</code></pre>
+
+<p><br/></p>
 
 <h3>参考</h3>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="http://tmyam.github.io/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-06T22:46:47+08:00</updated>
+  <updated>2017-03-06T23:49:45+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -14,15 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[cocoa binding]]></title>
+    <title type="html"><![CDATA[Cocoa Binding]]></title>
     <link href="http://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
     <updated>2016-04-08T10:17:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
-正向操作(转换) &mdash;&ndash;> 代码控制的操作(转换)  <br/>
-反向操作(转换) &mdash;&ndash;> 用户界面操作控制(转换)</p>
+正向操作(转换) &mdash;> 代码控制的操作(转换)  <br/>
+反向操作(转换) &mdash;> 用户界面操作控制(转换)</p>
 
 <h2>简单的使用</h2>
 
@@ -30,10 +30,8 @@
 1. 可以用代码改变选择的下标  <br/>
 2. 当用户在界面上选择改变下标时，可以监测到这种改变</p>
 
-<!-- more -->
+<!-- more -->  
 
-
-<p></p>
 
 <h4>1. 一般的做法</h4>
 
@@ -47,13 +45,13 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1</span>
-</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">,</span><span class="n">nonnull</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">NSPopUpButton</span><span class="o">*</span>   <span class="n">popupButton</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span> <span class="p">,</span><span class="k">strong</span><span class="p">,</span><span class="n">nonnull</span><span class="p">)</span> <span class="kt">IBOutlet</span> <span class="n">NSPopUpButton</span><span class="o">*</span>   <span class="n">popupButton</span><span class="p">;</span>
 </span><span class='line'><span class="c1">// 需求1</span>
-</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">popupButton</span><span class="p">.</span><span class="n">indexOfSelectedItem</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">popupButton</span><span class="p">.</span><span class="n">indexOfSelectedItem</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// 使用 IBAction 绑定action，可以满足需求2</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span> <span class="nf">popupButtonChangeIndex:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span> <span class="nf">popupButtonChangeIndex:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,[</span><span class="n">sender</span> <span class="n">indexOfSelectedItem</span><span class="p">]);</span>
 </span><span class='line'><span class="p">}</span>
@@ -91,33 +89,33 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="err">写法</span> <span class="mi">1</span> <span class="p">(</span><span class="err">定义属性</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="err">写法</span> <span class="mi">1</span> <span class="p">(</span><span class="err">定义属性</span><span class="p">)</span>
 </span><span class='line'><span class="c1">// 定义选择下标属性</span>
-</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">assign</span><span class="p">)</span> <span class="n">NSInteger</span>   <span class="n">index</span><span class="p">;</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span> <span class="p">,</span><span class="k">assign</span><span class="p">)</span> <span class="bp">NSInteger</span>   <span class="n">index</span><span class="p">;</span>
 </span><span class='line'><span class="c1">// 主要是需要写这个set函数 // 需求2</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setIndex:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="nv">index</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setIndex:</span><span class="p">(</span><span class="bp">NSInteger</span><span class="p">)</span><span class="nv">index</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="n">_Index</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">index</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="c1">//需求1</span>
-</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="err">写法</span> <span class="mi">2</span> <span class="p">(</span><span class="err">不定义属性</span><span class="p">)</span>
 </span><span class='line'><span class="c1">// 需求2 // 不定义属性，则需要一个值来保存选择的下标，并写出get方法</span>
-</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nl">setIndex:</span><span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span><span class="n">index</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nl">setIndex</span><span class="p">:(</span><span class="bp">NSInteger</span><span class="p">)</span><span class="n">index</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="n">xx</span> <span class="o">=</span> <span class="n">index</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%ld&quot;</span><span class="p">,</span><span class="n">index</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="n">NSInteger</span><span class="p">)</span> <span class="n">index</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="bp">NSInteger</span><span class="p">)</span> <span class="n">index</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">xx</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="c1">//需求1</span>
-</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">写法</span><span class="mi">1</span><span class="err">的好处是简便，写法</span><span class="mi">2</span><span class="err">的好处是不受限于属性的类型，比如</span><span class="n">xx</span><span class="err">可以自定义为</span><span class="n">NSNumber</span><span class="err">类型。</span>
+</span><span class='line'><span class="err">写法</span><span class="mi">1</span><span class="err">的好处是简便，写法</span><span class="mi">2</span><span class="err">的好处是不受限于属性的类型，比如</span><span class="n">xx</span><span class="err">可以自定义为</span><span class="bp">NSNumber</span><span class="err">类型。</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -134,11 +132,11 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">popupButton</span> <span class="nl">bind:</span><span class="s">@&quot;selectedIndex&quot;</span> <span class="nl">toObject:</span><span class="n">self</span> <span class="nl">withKeyPath:</span><span class="s">@&quot;index&quot;</span> <span class="nl">options:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">popupButton</span> <span class="nl">bind</span><span class="p">:</span><span class="s">@&quot;selectedIndex&quot;</span> <span class="nl">toObject</span><span class="p">:</span><span class="nb">self</span> <span class="nl">withKeyPath</span><span class="p">:</span><span class="s">@&quot;index&quot;</span> <span class="nl">options</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">dealloc</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">unbind:</span><span class="s">@&quot;selectedIndex&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">unbind</span><span class="p">:</span><span class="s">@&quot;selectedIndex&quot;</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="s">@&quot;selectedIndex&quot;</span><span class="err">可以用</span><span class="n">NSSelectedIndexBinding</span><span class="err">代替</span>
@@ -165,10 +163,10 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 绑定的文本</span>
-</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">NSString</span><span class="o">*</span>     <span class="n">number</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 绑定的文本</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span> <span class="p">,</span><span class="k">strong</span><span class="p">)</span> <span class="bp">NSString</span><span class="o">*</span>     <span class="n">number</span><span class="p">;</span>
 </span><span class='line'><span class="c1">// 监听变化</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setNumber:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">number</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setNumber:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">number</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">number</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
@@ -257,62 +255,62 @@
 <span class='line-number'>71</span>
 <span class='line-number'>72</span>
 <span class='line-number'>73</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">@implementation</span> <span class="nc">TMNumFormatter</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@implementation</span> <span class="nc">TMNumFormatter</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">stringForObjectValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">object</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">stringForObjectValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">object</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="n">object</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="n">object</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">getObjectValue:</span><span class="p">(</span><span class="n">out</span> <span class="kt">id</span><span class="o">*</span><span class="p">)</span><span class="nv">object</span>
-</span><span class='line'>              <span class="nf">forString:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">string</span>
-</span><span class='line'>       <span class="nf">errorDescription:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">getObjectValue:</span><span class="p">(</span><span class="k">out</span> <span class="kt">id</span><span class="o">*</span><span class="p">)</span><span class="nv">object</span>
+</span><span class='line'>              <span class="nf">forString:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">string</span>
+</span><span class='line'>       <span class="nf">errorDescription:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="o">*</span><span class="n">object</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithString:</span><span class="n">string</span><span class="p">];</span><span class="c1">//必须这样写，否则bind会失效</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">*</span><span class="n">object</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithString</span><span class="p">:</span><span class="n">string</span><span class="p">];</span><span class="c1">//必须这样写，否则bind会失效</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isPartialStringValid:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">partialString</span>
-</span><span class='line'>            <span class="nf">newEditingString:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">newString</span>
-</span><span class='line'>            <span class="nf">errorDescription:</span><span class="p">(</span><span class="n">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isPartialStringValid:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">partialString</span>
+</span><span class='line'>            <span class="nf">newEditingString:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">newString</span>
+</span><span class='line'>            <span class="nf">errorDescription:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">**</span><span class="p">)</span><span class="nv">error</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="nl">isInteger:</span><span class="n">partialString</span><span class="p">])</span> <span class="c1">// 判断是否为纯数字</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="nb">self</span> <span class="nl">isInteger</span><span class="p">:</span><span class="n">partialString</span><span class="p">])</span> <span class="c1">// 判断是否为纯数字</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1">// 限制长度，最多两位</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>        <span class="k">else</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span> <span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">unichar</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="nl">characterAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>                <span class="kt">unichar</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="nl">characterAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span>
 </span><span class='line'>                <span class="p">{</span>
 </span><span class='line'>                    <span class="k">continue</span><span class="p">;</span>
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>                <span class="k">else</span>
 </span><span class='line'>                <span class="p">{</span>
-</span><span class='line'>                    <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>                    <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>            <span class="c1">// 限制大小</span>
-</span><span class='line'>            <span class="n">NSInteger</span> <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="n">integerValue</span><span class="p">];</span>
+</span><span class='line'>            <span class="bp">NSInteger</span> <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="n">integerValue</span><span class="p">];</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">99</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>                <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">else</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
@@ -322,11 +320,11 @@
 </span><span class='line'>
 </span><span class='line'><span class="cm"> @return 是否是纯数字</span>
 </span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isInteger:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isInteger:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSScanner</span><span class="o">*</span> <span class="n">scan</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSScanner</span> <span class="nl">scannerWithString:</span><span class="n">string</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">scan</span> <span class="nl">scanInteger:</span><span class="o">&amp;</span><span class="n">val</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">scan</span><span class="p">.</span><span class="n">isAtEnd</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSScanner</span><span class="o">*</span> <span class="n">scan</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSScanner</span> <span class="nl">scannerWithString</span><span class="p">:</span><span class="n">string</span><span class="p">];</span>
+</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">scan</span> <span class="nl">scanInteger</span><span class="p">:</span><span class="o">&amp;</span><span class="n">val</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">scan</span><span class="p">.</span><span class="n">isAtEnd</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">@end</span>
@@ -346,8 +344,8 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span> <span class="p">,</span><span class="n">strong</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">*</span>     <span class="n">inter</span><span class="p">;</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setInter:</span><span class="p">(</span><span class="n">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">inter</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span> <span class="p">,</span><span class="k">strong</span><span class="p">)</span> <span class="bp">NSNumber</span><span class="o">*</span>     <span class="n">inter</span><span class="p">;</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setInter:</span><span class="p">(</span><span class="bp">NSNumber</span> <span class="o">*</span><span class="p">)</span><span class="nv">inter</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">_inter</span> <span class="o">=</span> <span class="n">inter</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">inter</span><span class="p">);</span>
@@ -386,33 +384,33 @@
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="c1">// 正向：NSNumber --&gt; NSString</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 正向：NSNumber --&gt; NSString</span>
 </span><span class='line'><span class="c1">// 反向：NSString --&gt; NSNumber</span>
 </span><span class='line'><span class="k">@implementation</span> <span class="nc">TMValueTransformer</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// 正向操作时，输出的类型（控件接收的类型）</span>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="n">Class</span><span class="p">)</span> <span class="nf">transformedValueClass</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">Class</span><span class="p">)</span> <span class="nf">transformedValueClass</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">NSString</span> <span class="n">class</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="bp">NSString</span> <span class="k">class</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// 是否允许反向操作，只有允许反向，reverseTransformedValue:函数才有用</span>
 </span><span class='line'><span class="c1">// 如果为NO，则用户无法在界面上输入内容</span>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">allowsReverseTransformation</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">allowsReverseTransformation</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// 正向输出，NSNumber --&gt; NSString</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">transformedValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">transformedValue:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">value</span> <span class="n">stringValue</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// 反向输出，NSString --&gt; NSNumber</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">reverseTransformedValue:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nf">reverseTransformedValue:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nv">value</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="err">@</span><span class="p">([</span><span class="n">value</span> <span class="n">integerValue</span><span class="p">]);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="l">@(</span><span class="p">[</span><span class="n">value</span> <span class="n">integerValue</span><span class="p">]</span><span class="l">)</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="k">@end</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -430,8 +428,7 @@
 所以对于Read-Only属性，只适合正向操作，即禁止用户进行修改的选项。  <br/>
 对于哪些bind属性是Read-Only的，可以查询<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">参考链接</a></p>
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -441,7 +438,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[mac app的开机自启动]]></title>
+    <title type="html"><![CDATA[Mac App的开机自启动]]></title>
     <link href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
     <updated>2014-06-10T14:15:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
@@ -451,12 +448,12 @@
 
 <h2>非沙盒下的开机自启动</h2>
 
-<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在&#8221;系统偏好设置&#8221;&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项&#8221;里面看到，并进行设置。</p>
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
-<!-- more -->
+<!-- more -->  
 
 
-<p></p>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -530,46 +527,46 @@
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
 <span class='line-number'>72</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">BOOL</span>  <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span>  <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="kt">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>            <span class="bp">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare</span><span class="p">:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">break</span><span class="p">;</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginItemsArray</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">isHaveAdd</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">startAtLogin</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">startAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
-</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">startAtLogin</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="n">isStartAtLogin</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="nb">self</span> <span class="n">isStartAtLogin</span><span class="p">])</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">CFURLRef</span> <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">CFURLRef</span> <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
 </span><span class='line'>            <span class="n">LSSharedFileListRef</span> <span class="n">newloginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 </span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">item</span> <span class="o">=</span> <span class="n">LSSharedFileListInsertItemURL</span><span class="p">(</span><span class="n">newloginItems</span><span class="p">,</span> <span class="n">kLSSharedFileListItemLast</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">result</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">result</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>                <span class="n">CFRelease</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">newloginItems</span><span class="p">)</span>
@@ -581,23 +578,23 @@
 </span><span class='line'>    <span class="k">else</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>        <span class="kt">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="bp">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>                <span class="bp">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare</span><span class="p">:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
 </span><span class='line'>                <span class="p">{</span>
 </span><span class='line'>                    <span class="n">OSStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">LSSharedFileListItemRemove</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span><span class="n">itemRef</span><span class="p">);</span>
 </span><span class='line'>                    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">);</span>
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">loginItemsArray</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>        <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
@@ -676,9 +673,9 @@
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="bp">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">runMainApp:</span><span class="s">@&quot;com.tmyam.test&quot;</span> <span class="nl">appName:</span><span class="s">@&quot;test&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">runMainApp</span><span class="p">:</span><span class="s">@&quot;com.tmyam.test&quot;</span> <span class="nl">appName</span><span class="p">:</span><span class="s">@&quot;test&quot;</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/** 运行开机自启动的app</span>
@@ -686,32 +683,32 @@
 </span><span class='line'><span class="cm"> @param identifier 主app的标识符</span>
 </span><span class='line'><span class="cm"> @param appName 主app的名称（在MacOS文件夹下的名称）</span>
 </span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">runMainApp:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span> <span class="nf">appName:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">appName</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">runMainApp:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span> <span class="nf">appName:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">appName</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="c1">// Check if main app is already running; if yes, do nothing and terminate helper app</span>
-</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSArray</span> <span class="o">*</span><span class="n">running</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">runningApplications</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSArray</span> <span class="o">*</span><span class="n">running</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">runningApplications</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSRunningApplication</span> <span class="o">*</span><span class="n">app</span> <span class="k">in</span> <span class="n">running</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">([[</span><span class="n">app</span> <span class="n">bundleIdentifier</span><span class="p">]</span> <span class="nl">isEqualToString:</span><span class="n">identifier</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">([[</span><span class="n">app</span> <span class="n">bundleIdentifier</span><span class="p">]</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="n">identifier</span><span class="p">])</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">alreadyRunning</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSArray</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="n">pathComponents</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">pathComponents</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithArray:</span><span class="n">p</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSArray</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">pathComponents</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithArray</span><span class="p">:</span><span class="n">p</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="s">@&quot;MacOS&quot;</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="n">appName</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">newPath</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">pathWithComponents:</span><span class="n">pathComponents</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="nl">launchApplication:</span><span class="n">newPath</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;MacOS&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject</span><span class="p">:</span><span class="n">appName</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">newPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">pathWithComponents</span><span class="p">:</span><span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="nl">launchApplication</span><span class="p">:</span><span class="n">newPath</span><span class="p">];</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">NSApp</span> <span class="nl">terminate:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">NSApp</span> <span class="nl">terminate</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -721,11 +718,11 @@
 <ul>
 <li>test添加Copy Files 。
 <img src="http://tmyam.github.io/images/2014/06/10/07.jpg" alt="temp" /></li>
-<li>设置 Copy Files 。Destination为&#8221;Wrapper&#8221;，Subpath为&#8221;Contents/Library/LoginItems&#8221;，添加&#8221;testHelper.app&#8221;如下图。 <br/>
+<li>设置 Copy Files 。Destination为"Wrapper"，Subpath为"Contents/Library/LoginItems"，添加"testHelper.app"如下图。 <br/>
 <img src="http://tmyam.github.io/images/2014/06/10/08.jpg" alt="temp" /></li>
 <li>设置依赖，如下图。<br/>
 <img src="http://tmyam.github.io/images/2014/06/10/09.jpg" alt="temp" /></li>
-<li>设置 Build Settings &ndash;> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
+<li>设置 Build Settings -> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
 <img src="http://tmyam.github.io/images/2014/06/10/10.jpg" alt="temp" /></li>
 <li>设置沙盒环境，证书，描述文件。  <br/>
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
@@ -761,20 +758,20 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier</span><span class="p">:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
 </span><span class='line'>    <span class="kt">BOOL</span> <span class="n">startedAtLogin</span> <span class="o">=</span> <span class="p">[</span><span class="n">loginController</span> <span class="n">startAtLogin</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">startedAtLogin</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isStartLogin</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isStartLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier</span><span class="p">:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">loginController</span><span class="p">.</span><span class="n">startAtLogin</span> <span class="o">=</span> <span class="n">isStartLogin</span><span class="p">;</span>
 </span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">loginController</span><span class="p">.</span><span class="n">enabled</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -1018,11 +1015,10 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 
 <p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
 
-<!-- more -->
+<!-- more -->   
 
 
-<p> <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/01.png" alt="temp" /> <br/>
+<p><img src="http://tmyam.github.io/images/2014/03/25/01.png" alt="temp" /> <br/>
 如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
 
 <h3>2</h3>
@@ -1080,7 +1076,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x63;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#x40;&#97;&#115;&#105;&#97;&#x2e;&#x61;&#112;&#112;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x63;&#104;&#105;&#110;&#x61;&#x64;&#101;&#118;&#64;&#x61;&#x73;&#x69;&#x61;&#x2e;&#x61;&#112;&#112;&#108;&#101;&#x2e;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x63;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#64;&#x61;&#115;&#105;&#97;&#46;&#97;&#112;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#x68;&#x69;&#x6e;&#x61;&#x64;&#101;&#x76;&#x40;&#x61;&#115;&#x69;&#97;&#46;&#97;&#112;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -1156,7 +1152,7 @@ Street Address: Mailbox 166,Nankai University  <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;94 WeijinRd,Nankai District,Tianjin  <br/>
 Postal Code: 300072  <br/>
-Phone: 86 &ndash; 411 &ndash; 手机号</p>
+Phone: 86 - 411 - 手机号</p>
 
 <h5>9</h5>
 
@@ -1176,7 +1172,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="http://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#99;&#x68;&#105;&#110;&#x61;&#x64;&#x65;&#118;&#64;&#x61;&#115;&#105;&#x61;&#46;&#97;&#x70;&#112;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#x68;&#x69;&#110;&#97;&#100;&#101;&#x76;&#64;&#97;&#x73;&#105;&#x61;&#46;&#x61;&#x70;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;</a></font>。
+<font color=red><a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x63;&#104;&#x69;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#97;&#x73;&#x69;&#97;&#46;&#97;&#x70;&#x70;&#108;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x63;&#104;&#x69;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#97;&#115;&#x69;&#97;&#x2e;&#97;&#x70;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -1283,10 +1279,10 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span><span class='line'>    <span class="p">}</span>
@@ -1312,10 +1308,10 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="kt">id</span> <span class="n">test</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSEnumerator</span><span class="o">*</span> <span class="n">enumerator</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="n">objectEnumerator</span><span class="p">];</span>
+</span><span class='line'>    <span class="bp">NSEnumerator</span><span class="o">*</span> <span class="n">enumerator</span> <span class="o">=</span> <span class="p">[</span><span class="n">array</span> <span class="n">objectEnumerator</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">while</span> <span class="p">(</span><span class="n">test</span> <span class="o">=</span> <span class="p">[</span><span class="n">enumerator</span> <span class="n">nextObject</span><span class="p">])</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
@@ -1337,9 +1333,9 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span> <span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span> <span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">test</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
@@ -1361,9 +1357,9 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsUsingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsUsingBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="bp">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>
 </span><span class='line'>         <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}];</span>
@@ -1391,9 +1387,9 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsWithOptions:</span><span class="n">NSEnumerationConcurrent</span> <span class="nl">usingBlock:</span><span class="o">^</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="n">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">array</span> <span class="nl">enumerateObjectsWithOptions</span><span class="p">:</span><span class="n">NSEnumerationConcurrent</span> <span class="nl">usingBlock</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">obj</span><span class="p">,</span> <span class="bp">NSUInteger</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="n">stop</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
 </span><span class='line'>
@@ -1419,10 +1415,10 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="kt">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">dispatch_async</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
 </span><span class='line'>
@@ -1453,11 +1449,11 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">dispatch_group_t</span> <span class="n">group</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="kt">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">dispatch_group_t</span> <span class="n">group</span> <span class="o">=</span> <span class="n">dispatch_group_create</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span> <span class="n">test</span> <span class="k">in</span> <span class="n">array</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">dispatch_group_async</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">{</span>
 </span><span class='line'>
@@ -1485,10 +1481,10 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">dispatch_apply</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">){</span>
+</span><span class='line'>    <span class="kt">dispatch_queue_t</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">dispatch_get_global_queue</span><span class="p">(</span><span class="n">DISPATCH_QUEUE_PRIORITY_DEFAULT</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">dispatch_apply</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">,</span> <span class="n">queue</span><span class="p">,</span> <span class="o">^</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">index</span><span class="p">){</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
 </span><span class='line'>
@@ -1500,8 +1496,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p>这是系统提供的一种并发执行方式，这种方式的效果同样类似于<code>1.基本的并发枚举块</code>。</p>
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -1528,7 +1523,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">enum</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">enum</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
@@ -1552,7 +1547,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">typedef</span> <span class="k">enum</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="k">enum</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
@@ -1567,7 +1562,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">enum</span> <span class="n">TMEnumTest</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">enum</span> <span class="n">TMEnumTest</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
@@ -1591,12 +1586,12 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">enum</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">enum</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
 </span><span class='line'><span class="p">};</span>
-</span><span class='line'><span class="k">typedef</span> <span class="n">NSUInteger</span> <span class="n">TMEnumTest</span><span class="p">;</span>
+</span><span class='line'><span class="k">typedef</span> <span class="bp">NSUInteger</span> <span class="n">TMEnumTest</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1614,7 +1609,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="bp">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
@@ -1627,7 +1622,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="bp">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span>  <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span>
@@ -1656,7 +1651,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="nf">NS_ENUM</span><span class="p">(</span><span class="bp">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span><span class="p">,</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span><span class="p">,</span>
@@ -1679,7 +1674,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typedef</span> <span class="nf">NS_OPTIONS</span><span class="p">(</span><span class="bp">NSUInteger</span><span class="p">,</span> <span class="n">TMEnumTest</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTestOne</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>          <span class="c1">// 0</span>
 </span><span class='line'>    <span class="n">TMEnumTestTwo</span>     <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span>     <span class="c1">// 1</span>
@@ -1733,7 +1728,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">TMEnumTest</span> <span class="n">test</span> <span class="o">=</span> <span class="n">TMEnumTestTwo</span><span class="o">|</span><span class="n">TMEnumTestThree</span><span class="p">;</span>  <span class="c1">// 3</span>
 </span><span class='line'>
@@ -1778,7 +1773,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
+    <title type="html"><![CDATA[Mac App，创建基于文档的app]]></title>
     <link href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
     <updated>2014-02-20T14:24:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
@@ -1786,10 +1781,8 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
-<!-- more -->
+<!-- more -->   
 
-
-<p></p>
 
 <h2>创建</h2>
 
@@ -1850,32 +1843,32 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nf">dataOfType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="bp">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nf">dataOfType:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="bp">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">])</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="c1">// TODO: 这里是具体的存储文件数据</span>
-</span><span class='line'>        <span class="k">return</span> <span class="p">[</span><span class="s">@&quot;test&quot;</span> <span class="nl">dataUsingEncoding:</span><span class="mi">4</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">return</span> <span class="p">[</span><span class="s">@&quot;test&quot;</span> <span class="nl">dataUsingEncoding</span><span class="p">:</span><span class="mi">4</span><span class="p">];</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">else</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">outError</span><span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="o">*</span><span class="n">outError</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSError</span> <span class="nl">errorWithDomain:</span><span class="s">@&quot;TestDocumentErrorDomain&quot;</span>
-</span><span class='line'>                                            <span class="nl">code:</span><span class="o">-</span><span class="mi">1</span>
-</span><span class='line'>                                        <span class="nl">userInfo:</span><span class="err">@</span><span class="p">{</span><span class="nl">NSLocalizedFailureReasonErrorKey:</span><span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat:</span><span class="s">@&quot;Unsupported data type: %@&quot;</span><span class="p">,</span> <span class="n">typeName</span><span class="p">]}];</span>
+</span><span class='line'>            <span class="o">*</span><span class="n">outError</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSError</span> <span class="nl">errorWithDomain</span><span class="p">:</span><span class="s">@&quot;TestDocumentErrorDomain&quot;</span>
+</span><span class='line'>                                            <span class="nl">code</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>                                        <span class="nl">userInfo</span><span class="p">:</span><span class="l">@{</span><span class="nl">NSLocalizedFailureReasonErrorKey</span><span class="p">:[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;Unsupported data type: %@&quot;</span><span class="p">,</span> <span class="n">typeName</span><span class="p">]</span><span class="l">}</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">return</span> <span class="nb">nil</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">readFromData:</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">ofType:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">readFromData:</span><span class="p">(</span><span class="bp">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">ofType:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">typeName</span> <span class="nf">error:</span><span class="p">(</span><span class="bp">NSError</span> <span class="o">**</span><span class="p">)</span><span class="nv">outError</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">assert</span><span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">]);</span>
+</span><span class='line'>    <span class="n">assert</span><span class="p">([</span><span class="n">typeName</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&quot;com.tmyam.TestDocument.document&quot;</span><span class="p">]);</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="c1">// TODO: 这里是具体的读取文件数据</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1887,7 +1880,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[mac app完整的发布流程]]></title>
+    <title type="html"><![CDATA[Mac App完整的发布流程]]></title>
     <link href="http://tmyam.github.io/blog/2013/11/17/mac-app-release/"/>
     <updated>2013-11-17T10:45:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2013/11/17/mac-app-release</id>
@@ -1904,7 +1897,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <ul>
 <li>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></li>
-<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>App IDs</em>.</li>
+<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> -> <em>App IDs</em>.</li>
 </ul>
 
 
@@ -1977,7 +1970,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <ul>
 <li><p>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></p></li>
-<li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>Provisioning Profiles</em> &ndash;> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
+<li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> -> <em>Provisioning Profiles</em> -> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
 <li><p>根据提示一步一步前进，<em>Profile Name:</em>可以使用 <code>AppNameProfile</code>的样式，最后点击生成。</p></li>
 <li><p><del>下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书及对应的描述文件。如下图
 <img src="http://tmyam.github.io/images/2013/11/18/code_sign.png" alt="temp" /></del></p></li>
@@ -1998,7 +1991,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <ul>
 <li><p>对 <em>Description</em> 和 <em>Screenshots</em> 重写填写和上传新的截图，并保存。全部改完后点击<code>Ready to Upload Binary</code>。</p></li>
 <li><p><em>Export Compliance</em> 的提问选择 NO 就可以了。之后继续进入 <strong>Waiting For Upload</strong> 状态。</p></li>
-<li><p>回到Xcode工程，选择菜单 <em>Product</em> &ndash;> <em>Archive</em>,进入 Organizer 的 Archives 界面。</p></li>
+<li><p>回到Xcode工程，选择菜单 <em>Product</em> -> <em>Archive</em>,进入 Organizer 的 Archives 界面。</p></li>
 <li><p>选择<code>validate...</code>按钮验证app是否能通过验证。 <br/>
 这步是最容易发现错误的地方，错误的种类也多种多样，根据实际的错误自己修改吧。</p></li>
 <li><p><del>如果没有错误，完成之后点击<code>Distribute...</code>按钮，等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</del></p></li>
@@ -2022,7 +2015,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[mac app开发中添加第三方framework]]></title>
+    <title type="html"><![CDATA[Mac App开发中添加第三方framework]]></title>
     <link href="http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/"/>
     <updated>2013-11-05T15:23:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework</id>
@@ -2030,8 +2023,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <hr />
 
-<br/>
-
+<p><br/></p>
 
 <h4>步骤很简单，但是总是忘记，所以在这里做个记录。</h4>
 
@@ -2115,10 +2107,8 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 
 <hr />
 
-<br/>
-
-
-<p><strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
+<p><br/>
+<strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
 ]]></content>
   </entry>
   
@@ -2276,8 +2266,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </ul>
 
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -2286,7 +2275,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[mac下编写blog]]></title>
+    <title type="html"><![CDATA[Mac下编写blog]]></title>
     <link href="http://tmyam.github.io/blog/2013/10/09/write-blog/"/>
     <updated>2013-10-09T10:52:00+08:00</updated>
     <id>http://tmyam.github.io/blog/2013/10/09/write-blog</id>
@@ -2338,7 +2327,7 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 <ul>
 <li>语法
 
-<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#&ndash;#] <br/>
+<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#] <br/>
 code snippet <br/>
 ` ` `</p></blockquote></li>
 </ul>
@@ -2349,7 +2338,7 @@ title: 代码标题 <br/>
 url: 代码链接，点击这个可以下载你的代码 <br/>
 link text: 对链接的解释文本，默认是link <br/>
 start:#: 行号从哪里开始 <br/>
-mark:#,#&ndash;#: 标记某一行代码 <br/>
+mark:#,#-#: 标记某一行代码 <br/>
 linenos:false: 对高亮代码块不添加行号</p>
 
 <p>例如：</p>
@@ -2372,7 +2361,7 @@ rake new_post[&lsquo;article name&rsquo;] <br/>
 <li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
 text: 无格式 <br/>
 sh: shell脚本 <br/>
-objective-c: Objective-C</li>
+objc: Objective-C</li>
 </ul>
 
 
@@ -2433,10 +2422,7 @@ objective-c: Objective-C</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -2572,24 +2558,18 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 <h2>3.部署blog</h2>
 
 <ul>
-<li>创建git的blog
+<li><p>创建git的blog</p>
 
 <ol>
-<li> 点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
-<li> 仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
-<li> 点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
-<li> 内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
-<li> 接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。</li>
+<li>点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
+<li>仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
+<li>点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
+<li>内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
+<li>接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。<br/>
+<br/></li>
 </ol>
 </li>
-</ul>
-
-
-<br/>
-
-
-<ul>
-<li>配置<a href="http://octopress.org">Octopress</a></li>
+<li><p>配置<a href="http://octopress.org">Octopress</a></p></li>
 </ul>
 
 
@@ -2672,10 +2652,22 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>更新 Octopress</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote add octopress git://github.com/imathis/octopress.git
+</span><span class='line'>git pull octopress master     <span class="c"># Get the latest Octopress</span>
+</span><span class='line'>bundle install                <span class="c"># Keep gems updated</span>
+</span><span class='line'>rake update_source            <span class="c"># update the template&#39;s source</span>
+</span><span class='line'>rake update_style             <span class="c"># update the template&#39;s style</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 

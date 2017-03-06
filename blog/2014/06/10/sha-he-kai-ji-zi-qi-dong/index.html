@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>mac app的开机自启动 - tmyam's blog</title>
+  <title>Mac App的开机自启动 - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
@@ -21,10 +21,11 @@
   <link rel="canonical" href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -92,7 +93,7 @@ window.onload=sethash;
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:tmyam.github.io" />
+    <input type="hidden" name="sitesearch" value="tmyam.github.io">
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -120,18 +121,11 @@ window.onload=sethash;
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-06-10T14:15:00+08:00" pubdate data-updated="true">2014年06月10日</time>
+<time class='entry-date' datetime='2014-06-10T14:15:00+08:00'><span class='date'>2014年06月10日</span> <span class='time'>2:15 pm</span></time>
         
-			
-          | <a href="#comments">评论</a>
-         
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://tmyam.github.io">Comments</a>
+        
       </p>
     
   </header>
@@ -143,12 +137,12 @@ window.onload=sethash;
 
 <h2>非沙盒下的开机自启动</h2>
 
-<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在&#8221;系统偏好设置&#8221;&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项&#8221;里面看到，并进行设置。</p>
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
-<!-- more -->
+<!-- more -->  
 
 
-<p></p>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -222,46 +216,46 @@ window.onload=sethash;
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
 <span class='line-number'>72</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">BOOL</span>  <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span>  <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="kt">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>        <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>            <span class="bp">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare</span><span class="p">:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">isHaveAdd</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>                <span class="k">break</span><span class="p">;</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginItemsArray</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">isHaveAdd</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">startAtLogin</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">startAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
-</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSString</span><span class="o">*</span> <span class="n">appPath</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">startAtLogin</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="n">self</span> <span class="n">isStartAtLogin</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="nb">self</span> <span class="n">isStartAtLogin</span><span class="p">])</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">CFURLRef</span> <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">CFURLRef</span> <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
 </span><span class='line'>            <span class="n">LSSharedFileListRef</span> <span class="n">newloginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 </span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">item</span> <span class="o">=</span> <span class="n">LSSharedFileListInsertItemURL</span><span class="p">(</span><span class="n">newloginItems</span><span class="p">,</span> <span class="n">kLSSharedFileListItemLast</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">result</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">result</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>                <span class="n">CFRelease</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">newloginItems</span><span class="p">)</span>
@@ -273,23 +267,23 @@ window.onload=sethash;
 </span><span class='line'>    <span class="k">else</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>        <span class="n">LSSharedFileListRef</span> <span class="n">loginItems</span> <span class="o">=</span> <span class="n">LSSharedFileListCreate</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">kLSSharedFileListSessionLoginItems</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="n">NSURL</span> <span class="nl">fileURLWithPath:</span><span class="n">appPath</span><span class="p">];</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>        <span class="kt">UInt32</span> <span class="n">seedValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>        <span class="bp">NSArray</span><span class="o">*</span> <span class="n">loginItemsArray</span> <span class="o">=</span> <span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="n">LSSharedFileListCopySnapshot</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">seedValue</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CFURLRef</span> <span class="n">tempUrl</span> <span class="o">=</span> <span class="p">(</span><span class="n">CFURLRef</span><span class="p">)[</span><span class="bp">NSURL</span> <span class="nl">fileURLWithPath</span><span class="p">:</span><span class="n">appPath</span><span class="p">];</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">count</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>            <span class="n">LSSharedFileListItemRef</span> <span class="n">itemRef</span> <span class="o">=</span> <span class="p">(</span><span class="n">LSSharedFileListItemRef</span><span class="p">)[</span><span class="n">loginItemsArray</span> <span class="nl">objectAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
 </span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">LSSharedFileListItemResolve</span><span class="p">(</span><span class="n">itemRef</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempUrl</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">)</span>
 </span><span class='line'>            <span class="p">{</span>
-</span><span class='line'>                <span class="n">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="n">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
-</span><span class='line'>                <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
+</span><span class='line'>                <span class="bp">NSString</span> <span class="o">*</span> <span class="n">urlPath</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">NSURL</span><span class="o">*</span><span class="p">)</span><span class="n">tempUrl</span> <span class="n">path</span><span class="p">];</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">([</span><span class="n">urlPath</span> <span class="nl">compare</span><span class="p">:</span><span class="n">appPath</span><span class="p">]</span> <span class="o">==</span> <span class="n">NSOrderedSame</span><span class="p">)</span>
 </span><span class='line'>                <span class="p">{</span>
 </span><span class='line'>                    <span class="n">OSStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">LSSharedFileListItemRemove</span><span class="p">(</span><span class="n">loginItems</span><span class="p">,</span><span class="n">itemRef</span><span class="p">);</span>
 </span><span class='line'>                    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">noErr</span><span class="p">);</span>
 </span><span class='line'>                <span class="p">}</span>
 </span><span class='line'>            <span class="p">}</span>
 </span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">loginItemsArray</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">loginItemsArray</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>        <span class="n">CFRelease</span><span class="p">(</span><span class="n">loginItems</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
@@ -368,9 +362,9 @@ window.onload=sethash;
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching:</span><span class="p">(</span><span class="bp">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">self</span> <span class="nl">runMainApp:</span><span class="s">@&quot;com.tmyam.test&quot;</span> <span class="nl">appName:</span><span class="s">@&quot;test&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="nl">runMainApp</span><span class="p">:</span><span class="s">@&quot;com.tmyam.test&quot;</span> <span class="nl">appName</span><span class="p">:</span><span class="s">@&quot;test&quot;</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/** 运行开机自启动的app</span>
@@ -378,32 +372,32 @@ window.onload=sethash;
 </span><span class='line'><span class="cm"> @param identifier 主app的标识符</span>
 </span><span class='line'><span class="cm"> @param appName 主app的名称（在MacOS文件夹下的名称）</span>
 </span><span class='line'><span class="cm"> */</span>
-</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">runMainApp:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span> <span class="nf">appName:</span><span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">appName</span>
+</span><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">runMainApp:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">identifier</span> <span class="nf">appName:</span><span class="p">(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="nv">appName</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="c1">// Check if main app is already running; if yes, do nothing and terminate helper app</span>
-</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">NO</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">NSArray</span> <span class="o">*</span><span class="n">running</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">runningApplications</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">BOOL</span> <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">NSArray</span> <span class="o">*</span><span class="n">running</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="n">runningApplications</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="n">NSRunningApplication</span> <span class="o">*</span><span class="n">app</span> <span class="k">in</span> <span class="n">running</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">([[</span><span class="n">app</span> <span class="n">bundleIdentifier</span><span class="p">]</span> <span class="nl">isEqualToString:</span><span class="n">identifier</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">([[</span><span class="n">app</span> <span class="n">bundleIdentifier</span><span class="p">]</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="n">identifier</span><span class="p">])</span>
 </span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">alreadyRunning</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
 </span><span class='line'>        <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">alreadyRunning</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSArray</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="n">pathComponents</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">pathComponents</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="nl">arrayWithArray:</span><span class="n">p</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">path</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSBundle</span> <span class="n">mainBundle</span><span class="p">]</span> <span class="n">bundlePath</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSArray</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">pathComponents</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSMutableArray</span> <span class="nl">arrayWithArray</span><span class="p">:</span><span class="n">p</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
 </span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="n">removeLastObject</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="s">@&quot;MacOS&quot;</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject:</span><span class="n">appName</span><span class="p">];</span>
-</span><span class='line'>        <span class="n">NSString</span> <span class="o">*</span><span class="n">newPath</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">pathWithComponents:</span><span class="n">pathComponents</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="nl">launchApplication:</span><span class="n">newPath</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject</span><span class="p">:</span><span class="s">@&quot;MacOS&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">pathComponents</span> <span class="nl">addObject</span><span class="p">:</span><span class="n">appName</span><span class="p">];</span>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">newPath</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">pathWithComponents</span><span class="p">:</span><span class="n">pathComponents</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[[</span><span class="n">NSWorkspace</span> <span class="n">sharedWorkspace</span><span class="p">]</span> <span class="nl">launchApplication</span><span class="p">:</span><span class="n">newPath</span><span class="p">];</span>
 </span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">NSApp</span> <span class="nl">terminate:</span><span class="nb">nil</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">NSApp</span> <span class="nl">terminate</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -413,11 +407,11 @@ window.onload=sethash;
 <ul>
 <li>test添加Copy Files 。
 <img src="/images/2014/06/10/07.jpg" alt="temp" /></li>
-<li>设置 Copy Files 。Destination为&#8221;Wrapper&#8221;，Subpath为&#8221;Contents/Library/LoginItems&#8221;，添加&#8221;testHelper.app&#8221;如下图。 <br/>
+<li>设置 Copy Files 。Destination为"Wrapper"，Subpath为"Contents/Library/LoginItems"，添加"testHelper.app"如下图。 <br/>
 <img src="/images/2014/06/10/08.jpg" alt="temp" /></li>
 <li>设置依赖，如下图。<br/>
 <img src="/images/2014/06/10/09.jpg" alt="temp" /></li>
-<li>设置 Build Settings &ndash;> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
+<li>设置 Build Settings -> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
 <img src="/images/2014/06/10/10.jpg" alt="temp" /></li>
 <li>设置沙盒环境，证书，描述文件。  <br/>
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
@@ -453,20 +447,20 @@ window.onload=sethash;
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='objective-c'><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">isStartAtLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier</span><span class="p">:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
 </span><span class='line'>    <span class="kt">BOOL</span> <span class="n">startedAtLogin</span> <span class="o">=</span> <span class="p">[</span><span class="n">loginController</span> <span class="n">startAtLogin</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">startedAtLogin</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isStartLogin</span>
+</span><span class='line'><span class="p">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nf">setStartAtLogin:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">isStartLogin</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">StartAtLoginController</span><span class="o">*</span> <span class="n">loginController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">StartAtLoginController</span> <span class="n">alloc</span><span class="p">]</span><span class="nl">initWithIdentifier</span><span class="p">:</span><span class="s">@&quot;com.tmyam.testHelper&quot;</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">loginController</span><span class="p">.</span><span class="n">startAtLogin</span> <span class="o">=</span> <span class="n">isStartLogin</span><span class="p">;</span>
 </span><span class='line'>    <span class="kt">BOOL</span> <span class="n">result</span> <span class="o">=</span> <span class="n">loginController</span><span class="p">.</span><span class="n">enabled</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="n">release</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">loginController</span> <span class="k">release</span><span class="p">];</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -503,14 +497,7 @@ window.onload=sethash;
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-06-10T14:15:00+08:00" pubdate data-updated="true">2014年06月10日</time>
+<time class='entry-date' datetime='2014-06-10T14:15:00+08:00'><span class='date'>2014年06月10日</span> <span class='time'>2:15 pm</span></time>
       
 
 <span class="categories">
@@ -540,23 +527,10 @@ window.onload=sethash;
   </footer>
 </article>
 
-
   <section>
-    <h1>评论</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"tmyam"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END --></div>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
   </section>
 
 </div>
@@ -575,11 +549,11 @@ var duoshuoQuery = {short_name:"tmyam"};
 </section><section>
   <h1>文章分类</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/develop-prepare/'>Develop_prepare (3)</a></li>
-<li class='category'><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
+    <li class='category'><a href='/blog/categories/develop-prepare/'>develop_prepare (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (5)</a></li>
+<li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
 
   </ul>
 </section><section>
@@ -587,11 +561,11 @@ var duoshuoQuery = {short_name:"tmyam"};
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/04/08/cocoa-binding/">cocoa binding</a>
+        <a href="/blog/2016/04/08/cocoa-binding/">Cocoa Binding</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">mac app的开机自启动</a>
+        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">Mac App的开机自启动</a>
       </li>
     
       <li class="post">
@@ -645,7 +619,7 @@ var duoshuoQuery = {short_name:"tmyam"};
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>

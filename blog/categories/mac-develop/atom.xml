@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-06T22:46:47+08:00</updated>
+  <updated>2017-03-06T23:49:45+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -21,8 +21,8 @@
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
-正向操作(转换) &mdash;&ndash;> 代码控制的操作(转换)  <br/>
-反向操作(转换) &mdash;&ndash;> 用户界面操作控制(转换)</p>
+正向操作(转换) &mdash;> 代码控制的操作(转换)  <br/>
+反向操作(转换) &mdash;> 用户界面操作控制(转换)</p>
 
 <h2>简单的使用</h2>
 
@@ -30,88 +30,83 @@
 1. 可以用代码改变选择的下标  <br/>
 2. 当用户在界面上选择改变下标时，可以监测到这种改变</p>
 
-<!-- more -->
+<!-- more -->  
 
-
-<p></p>
 
 <h4>1. 一般的做法</h4>
 
-<p>``` objective-c
-// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
+<pre><code class="objc">// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
 @property (nonatomic ,strong,nonnull) IBOutlet NSPopUpButton*   popupButton;
 // 需求1
-self.popupButton.indexOfSelectedItem = 1;</p>
+self.popupButton.indexOfSelectedItem = 1;
 
-<p>// 使用 IBAction 绑定action，可以满足需求2
-&ndash; (IBAction) popupButtonChangeIndex:(id)sender
-{</p>
-
-<pre><code>NSLog(@"%ld",[sender indexOfSelectedItem]);
+// 使用 IBAction 绑定action，可以满足需求2
+- (IBAction) popupButtonChangeIndex:(id)sender
+{
+    NSLog(@"%ld",[sender indexOfSelectedItem]);
+}
 </code></pre>
 
-<p>}</p>
-
-<p>```
-这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
+<p>这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
 
 <h4>2. 使用bind</h4>
 
-<p>``` objective-c
-写法 1 (定义属性)
+<pre><code class="objc ">写法 1 (定义属性)
 // 定义选择下标属性
 @property (nonatomic ,assign) NSInteger   index;
 // 主要是需要写这个set函数 // 需求2
-&ndash; (void) setIndex:(NSInteger)index
-{</p>
-
-<pre><code>_Index = index;
-NSLog(@"%ld",index);
-</code></pre>
-
-<p>}
-//需求1
-self.index = 1;</p>
-
-<p>写法 2 (不定义属性)
-// 需求2 // 不定义属性，则需要一个值来保存选择的下标，并写出get方法
-&ndash; (void) setIndex:(NSInteger)index
-{</p>
-
-<pre><code>xx = index;
-NSLog(@"%ld",index);
-</code></pre>
-
-<p>}
-&ndash; (NSInteger) index
-{</p>
-
-<pre><code>return xx;
-</code></pre>
-
-<p>}
-//需求1
-self.index = 1;</p>
-
-<p>写法1的好处是简便，写法2的好处是不受限于属性的类型，比如xx可以自定义为NSNumber类型。
-<code>
-界面绑定，如下图    
-![temp](/images/2016/04/08/bind_selectindex.png)    
-第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即`index`。
-当然也可以不使用界面绑定，使用代码绑定。
-</code>objective-c
-[self.popupButton bind:@&ldquo;selectedIndex&rdquo; toObject:self withKeyPath:@&ldquo;index&rdquo; options:nil];</p>
-
-<ul>
-<li>(void) dealloc
+- (void) setIndex:(NSInteger)index
 {
-  [self unbind:@&ldquo;selectedIndex&rdquo;];
-}</li>
-</ul>
+    _Index = index;
+    NSLog(@"%ld",index);
+}
+//需求1
+self.index = 1;
 
+写法 2 (不定义属性)
+// 需求2 // 不定义属性，则需要一个值来保存选择的下标，并写出get方法
+- (void) setIndex:(NSInteger)index
+{
+    xx = index;
+    NSLog(@"%ld",index);
+}
+- (NSInteger) index
+{
+    return xx;
+}
+//需求1
+self.index = 1;
 
-<p>@&ldquo;selectedIndex"可以用NSSelectedIndexBinding代替
-```</p>
+写法1的好处是简便，写法2的好处是不受限于属性的类型，比如xx可以自定义为NSNumber类型。
+</code></pre>
+
+<p>界面绑定，如下图  <br/>
+<img src="/images/2016/04/08/bind_selectindex.png" alt="temp" />  <br/>
+第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即<code>index</code>。
+当然也可以不使用界面绑定，使用代码绑定。
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">popupButton</span> <span class="nl">bind</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">selectedIndex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="nl">toObject</span><span class="p">:</span><span class="nb">self</span> <span class="nl">withKeyPath</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">index</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span> <span class="nl">options</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dealloc</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="p">[</span><span class="nb">self</span> <span class="nl">unbind</span><span class="p">:@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">selectedIndex</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;];</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">selectedIndex</span><span class="s">&quot;可以用NSSelectedIndexBinding代替</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2>进阶</h2>
 
@@ -120,168 +115,250 @@ self.index = 1;</p>
 <p>输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。</p>
 
 <p>例如，下面是一个输入框，限定输入0~99。
-```objective-c
+<code>objc
 // 绑定的文本
-@property (nonatomic ,strong) NSString<em>     number;
+@property (nonatomic ,strong) NSString*     number;
 // 监听变化
-&ndash; (void) setNumber:(NSString </em>)number
-{</p>
-
-<pre><code>if (!number.length)
+- (void) setNumber:(NSString *)number
 {
-    number = @"0"; //默认值
+    if (!number.length)
+    {
+        number = @"0"; //默认值
+    }
+    NSLog(@"%@",number);
+    _number = number;
 }
-NSLog(@"%@",number);
-_number = number;
-</code></pre>
-
-<p>}
-<code>
-在界面上绑定**NSTextField**的**value**。注意勾选红色标注        
-![temp](/images/2016/04/08/bind_textfield.png)     
+</code>
+在界面上绑定<strong>NSTextField</strong>的<strong>value</strong>。注意勾选红色标注      <br/>
+<img src="/images/2016/04/08/bind_textfield.png" alt="temp" />   <br/>
 当然，这样仅仅只是可以检测文本的输入变化，并不能限制输入的内容。还需要创建一个Formatter继承自系统的NSFormatter，并重写里面的函数。
-</code>objective-c
-@implementation TMNumFormatter</p>
-
-<ul>
-<li><p>(NSString<em>) stringForObjectValue:(id)object
-{
-  return(NSString</em>)object;
-}</p></li>
-<li><p>(BOOL) getObjectValue:(out id<em>)object
-            forString:(NSString</em>)string
-     errorDescription:(NSString<em>*)error
-{
-  </em>object = [NSString stringWithString:string];//必须这样写，否则bind会失效
-  return YES;
-}</p></li>
-<li><p>(BOOL)isPartialStringValid:(NSString*)partialString
-          newEditingString:(NSString<strong>)newString
-          errorDescription:(NSString</strong>)error
-{
-  if (partialString.length)
-  {
-      if (![self isInteger:partialString]) // 判断是否为纯数字
-      {
-          return NO;
-      }
-      else if (partialString.length > 2)   // 限制长度，最多两位
-      {
-          return NO;
-      }
-      else
-      {
-          for (NSInteger i = 0; i &lt; partialString.length ; i ++ )
-          {
-              unichar c = [partialString characterAtIndex:i];
-              if (c >= &lsquo;0&rsquo; &amp;&amp; c &lt;= &lsquo;9&rsquo;)
-              {
-                  continue;
-              }
-              else
-              {
-                  return NO;
-              }
-          }</p>
-
-<pre><code>      // 限制大小
-      NSInteger num = [partialString integerValue];
-      if (num &lt; 0 || num &gt; 99)
-      {
-          return NO;
-      }
-      return YES;
-  }
-</code></pre>
-
-<p>  }
-  else
-  {
-      return YES;
-  }
-}</p></li>
-</ul>
-
-
-<p>/** 判断文本是否为数字</p>
-
-<p> @param string 输入的文本</p>
-
-<p> @return 是否是纯数字
- <em>/
-&ndash; (BOOL) isInteger:(NSString </em>)string
-{</p>
-
-<pre><code>NSScanner* scan = [NSScanner scannerWithString:string];
-NSInteger val = 0;
-return [scan scanInteger:&amp;val] &amp;&amp; scan.isAtEnd;
-</code></pre>
-
-<p>}</p>
-
-<p>@end
-```
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@implementation</span> <span class="nc">TMNumFormatter</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">(</span><span class="bp">NSString</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="p">)</span> <span class="nl">stringForObjectValue</span><span class="p">:(</span><span class="kt">id</span><span class="p">)</span><span class="n">object</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span><span class="p">(</span><span class="bp">NSString</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="p">)</span><span class="n">object</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nl">getObjectValue</span><span class="p">:(</span><span class="k">out</span> <span class="kt">id</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="p">)</span><span class="n">object</span>
+</span><span class='line'>            <span class="nl">forString</span><span class="p">:(</span><span class="bp">NSString</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="p">)</span><span class="n">string</span>
+</span><span class='line'>     <span class="nl">errorDescription</span><span class="p">:(</span><span class="bp">NSString</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;*</span><span class="p">)</span><span class="n">error</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">object</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithString</span><span class="p">:</span><span class="n">string</span><span class="p">];</span><span class="c1">//必须这样写，否则bind会失效</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">isPartialStringValid</span><span class="p">:(</span><span class="bp">NSString</span><span class="o">*</span><span class="p">)</span><span class="n">partialString</span>
+</span><span class='line'>          <span class="nl">newEditingString</span><span class="p">:(</span><span class="bp">NSString</span><span class="o">&lt;</span><span class="k">strong</span><span class="o">&gt;</span><span class="p">)</span><span class="n">newString</span>
+</span><span class='line'>          <span class="nl">errorDescription</span><span class="p">:(</span><span class="bp">NSString</span><span class="o">&lt;/</span><span class="k">strong</span><span class="o">&gt;</span><span class="p">)</span><span class="n">error</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">[</span><span class="nb">self</span> <span class="nl">isInteger</span><span class="p">:</span><span class="n">partialString</span><span class="p">])</span> <span class="c1">// 判断是否为纯数字</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1">// 限制长度，最多两位</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">partialString</span><span class="p">.</span><span class="n">length</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>              <span class="kt">unichar</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="nl">characterAtIndex</span><span class="p">:</span><span class="n">i</span><span class="p">];</span>
+</span><span class='line'>              <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">c</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="mi">9</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
+</span><span class='line'>              <span class="p">{</span>
+</span><span class='line'>                  <span class="k">continue</span><span class="p">;</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>              <span class="k">else</span>
+</span><span class='line'>              <span class="p">{</span>
+</span><span class='line'>                  <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>          <span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>      <span class="c1">// 限制大小</span>
+</span><span class='line'>      <span class="bp">NSInteger</span> <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="n">partialString</span> <span class="n">integerValue</span><span class="p">];</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">num</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">99</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">NO</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/**</span> <span class="err">判断文本是否为数字</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="p">@</span><span class="n">param</span> <span class="n">string</span> <span class="err">输入的文本</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="p">@</span><span class="k">return</span> <span class="err">是否是纯数字</span>
+</span><span class='line'> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="nl">isInteger</span><span class="p">:(</span><span class="bp">NSString</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="p">)</span><span class="n">string</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSScanner</span><span class="o">*</span> <span class="n">scan</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSScanner</span> <span class="nl">scannerWithString</span><span class="p">:</span><span class="n">string</span><span class="p">];</span>
+</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">scan</span> <span class="nl">scanInteger</span><span class="p">:</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">val</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">scan</span><span class="p">.</span><span class="n">isAtEnd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
 然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
 <img src="/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
 
 <h4>2. Value Transformer类型变换</h4>
 
 <p>比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。
-```objective-c
-@property (nonatomic ,strong) NSNumber<em>     inter;
-&ndash; (void) setInter:(NSNumber </em>)inter
-{</p>
-
-<pre><code>_inter = inter;
-NSLog(@"%@",inter);
-</code></pre>
-
-<p>}
-<code>
-需要创建一个继承自**NSValueTransformer**的类，重写里面的函数。
-</code>objective-c
-// 正向：NSNumber &mdash;> NSString
-// 反向：NSString &mdash;> NSNumber
-@implementation TMValueTransformer</p>
-
-<p>// 正向操作时，输出的类型（控件接收的类型）
-+ (Class) transformedValueClass
-{</p>
-
-<pre><code>return [NSString class];
-</code></pre>
-
-<p>}</p>
-
-<p>// 是否允许反向操作，只有允许反向，reverseTransformedValue:函数才有用
-// 如果为NO，则用户无法在界面上输入内容
-+ (BOOL) allowsReverseTransformation
-{</p>
-
-<pre><code>return YES;
-</code></pre>
-
-<p>}</p>
-
-<p>// 正向输出，NSNumber &mdash;> NSString
-&ndash; (nullable id)transformedValue:(id)value
-{</p>
-
-<pre><code>return [value stringValue];
-</code></pre>
-
-<p>}</p>
-
-<p>// 反向输出，NSString &mdash;> NSNumber
-&ndash; (nullable id)reverseTransformedValue:(nullable id)value
-{</p>
-
-<pre><code>return @([value integerValue]);
-</code></pre>
-
-<p>}
-@end
-```
+<code>objc
+@property (nonatomic ,strong) NSNumber*     inter;
+- (void) setInter:(NSNumber *)inter
+{
+    _inter = inter;
+    NSLog(@"%@",inter);
+}
+</code>
+需要创建一个继承自<strong>NSValueTransformer</strong>的类，重写里面的函数。
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="c1">// 正向：NSNumber &amp;ndash;&gt; NSString</span>
+</span><span class='line'><span class="c1">// 反向：NSString &amp;ndash;&gt; NSNumber</span>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">TMValueTransformer</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 正向操作时，输出的类型（控件接收的类型）</span>
+</span><span class='line'><span class="o">+</span> <span class="p">(</span><span class="kt">Class</span><span class="p">)</span> <span class="n">transformedValueClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="bp">NSString</span> <span class="k">class</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 是否允许反向操作，只有允许反向，reverseTransformedValue:函数才有用</span>
+</span><span class='line'><span class="c1">// 如果为NO，则用户无法在界面上输入内容</span>
+</span><span class='line'><span class="o">+</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span> <span class="n">allowsReverseTransformation</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 正向输出，NSNumber &amp;ndash;&gt; NSString</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nl">transformedValue</span><span class="p">:(</span><span class="kt">id</span><span class="p">)</span><span class="n">value</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[</span><span class="n">value</span> <span class="n">stringValue</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// 反向输出，NSString &amp;ndash;&gt; NSNumber</span>
+</span><span class='line'><span class="o">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="nl">reverseTransformedValue</span><span class="p">:(</span><span class="n">nullable</span> <span class="kt">id</span><span class="p">)</span><span class="n">value</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="l">@(</span><span class="p">[</span><span class="n">value</span> <span class="n">integerValue</span><span class="p">]</span><span class="l">)</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
 xib里面的绑定设置，如下图：  <br/>
 <img src="/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
 
@@ -294,8 +371,7 @@ xib里面的绑定设置，如下图：  <br/>
 所以对于Read-Only属性，只适合正向操作，即禁止用户进行修改的选项。  <br/>
 对于哪些bind属性是Read-Only的，可以查询<a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">参考链接</a></p>
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -315,93 +391,84 @@ xib里面的绑定设置，如下图：  <br/>
 
 <h2>非沙盒下的开机自启动</h2>
 
-<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"&ndash;>&ldquo;用户与群组&rdquo;&ndash;>&ldquo;登录项"里面看到，并进行设置。</p>
+<p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
-<!-- more -->
+<!-- more -->  
 
 
-<p></p>
-
-<p>``` objective-c
-+ (BOOL) isStartAtLogin
-{</p>
-
-<pre><code>BOOL  isHaveAdd = NO;
-NSString* appPath = [[NSBundle mainBundle] bundlePath];
-LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-UInt32 seedValue = 0;
-NSArray* loginItemsArray = (NSArray*)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
-CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
-for(NSInteger i = 0 ; i&lt; [loginItemsArray count]; i ++ )
+<pre><code class="objc">+ (BOOL) isStartAtLogin
 {
-    LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
-    if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
+    BOOL  isHaveAdd = NO;
+    NSString* appPath = [[NSBundle mainBundle] bundlePath];
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    UInt32 seedValue = 0;
+    NSArray* loginItemsArray = (NSArray*)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
+    CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
+    for(NSInteger i = 0 ; i&lt; [loginItemsArray count]; i ++ )
     {
-        NSString * urlPath = [(NSURL*)tempUrl path];
-        if ([urlPath compare:appPath] == NSOrderedSame)
+        LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
+        if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
         {
-            isHaveAdd = YES;
-            break;
+            NSString * urlPath = [(NSURL*)tempUrl path];
+            if ([urlPath compare:appPath] == NSOrderedSame)
+            {
+                isHaveAdd = YES;
+                break;
+            }
         }
     }
+    [loginItemsArray release];
+    CFRelease(loginItems);
+    return isHaveAdd;
 }
-[loginItemsArray release];
-CFRelease(loginItems);
-return isHaveAdd;
-</code></pre>
 
-<p>}</p>
-
-<ul>
-<li>(BOOL) setStartAtLogin:(BOOL)startAtLogin
++ (BOOL) setStartAtLogin:(BOOL)startAtLogin
 {
-  NSString<em> appPath = [[NSBundle mainBundle] bundlePath];
-  BOOL result = NO;
-  if (startAtLogin)
-  {
-      if (![self isStartAtLogin])
-      {
-          CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
-          LSSharedFileListRef newloginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-          LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(newloginItems, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
-          if (item)
-          {
-              result = YES;
-              CFRelease(item);
-          }
-          if (newloginItems)
-          {
-              CFRelease(newloginItems);
-          }
-      }
-  }
-  else
-  {
-      LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,kLSSharedFileListSessionLoginItems, NULL);
-      UInt32 seedValue = 0;
-      NSArray</em> loginItemsArray = (NSArray<em>)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
-      CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
-      for(NSInteger i = 0 ; i &lt; [loginItemsArray count]; i ++ )
-      {
-          LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
-          if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
-          {
-              NSString * urlPath = [(NSURL</em>)tempUrl path];
-              if ([urlPath compare:appPath] == NSOrderedSame)
-              {
-                  OSStatus status = LSSharedFileListItemRemove(loginItems,itemRef);
-                  result = (status == noErr);
-              }
-          }
-      }
-      [loginItemsArray release];
-      CFRelease(loginItems);
-  }
-  return result;
+    NSString* appPath = [[NSBundle mainBundle] bundlePath];
+    BOOL result = NO;
+    if (startAtLogin)
+    {
+        if (![self isStartAtLogin])
+        {
+            CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
+            LSSharedFileListRef newloginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+            LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(newloginItems, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL); 
+            if (item)
+            {
+                result = YES;
+                CFRelease(item);
+            }
+            if (newloginItems)
+            {
+                CFRelease(newloginItems);
+            }
+        }
+    }
+    else
+    {
+        LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,kLSSharedFileListSessionLoginItems, NULL);
+        UInt32 seedValue = 0;
+        NSArray* loginItemsArray = (NSArray*)LSSharedFileListCopySnapshot(loginItems, &amp;seedValue);
+        CFURLRef tempUrl = (CFURLRef)[NSURL fileURLWithPath:appPath];
+        for(NSInteger i = 0 ; i &lt; [loginItemsArray count]; i ++ )
+        {
+            LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray objectAtIndex:i];
+            if (LSSharedFileListItemResolve(itemRef, 0,&amp;tempUrl, NULL) == noErr)
+            {
+                NSString * urlPath = [(NSURL*)tempUrl path];
+                if ([urlPath compare:appPath] == NSOrderedSame)
+                {
+                    OSStatus status = LSSharedFileListItemRemove(loginItems,itemRef);
+                    result = (status == noErr);
+                }
+            }
+        }
+        [loginItemsArray release];
+        CFRelease(loginItems);
+    }
+    return result;
 }
-```</li>
-</ul>
-
+</code></pre>
 
 <h2>沙盒下的开机自启动</h2>
 
@@ -437,51 +504,44 @@ return isHaveAdd;
 
 <p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
 
-<p>``` objective-c
-&ndash; (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{</p>
+<pre><code class="objc">- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    [self runMainApp:@"com.tmyam.test" appName:@"test"];
+}
 
-<pre><code>[self runMainApp:@"com.tmyam.test" appName:@"test"];
-</code></pre>
+/** 运行开机自启动的app
 
-<p>}</p>
-
-<p>/** 运行开机自启动的app</p>
-
-<p> @param identifier 主app的标识符
+ @param identifier 主app的标识符
  @param appName 主app的名称（在MacOS文件夹下的名称）
- <em>/
-&ndash; (void) runMainApp:(NSString</em>)identifier appName:(NSString*)appName
-{</p>
-
-<pre><code>// Check if main app is already running; if yes, do nothing and terminate helper app
-BOOL alreadyRunning = NO;
-NSArray *running = [[NSWorkspace sharedWorkspace] runningApplications];
-for (NSRunningApplication *app in running)
+ */
+- (void) runMainApp:(NSString*)identifier appName:(NSString*)appName
 {
-    if ([[app bundleIdentifier] isEqualToString:identifier])
+    // Check if main app is already running; if yes, do nothing and terminate helper app
+    BOOL alreadyRunning = NO;
+    NSArray *running = [[NSWorkspace sharedWorkspace] runningApplications];
+    for (NSRunningApplication *app in running)
     {
-        alreadyRunning = YES;
+        if ([[app bundleIdentifier] isEqualToString:identifier])
+        {
+            alreadyRunning = YES;
+        }
     }
+    if (!alreadyRunning)
+    {
+        NSString *path = [[NSBundle mainBundle] bundlePath];
+        NSArray *p = [path pathComponents];
+        NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:p];
+        [pathComponents removeLastObject];
+        [pathComponents removeLastObject];
+        [pathComponents removeLastObject];
+        [pathComponents addObject:@"MacOS"];
+        [pathComponents addObject:appName];
+        NSString *newPath = [NSString pathWithComponents:pathComponents];
+        [[NSWorkspace sharedWorkspace] launchApplication:newPath];
+    }
+    [NSApp terminate:nil];
 }
-if (!alreadyRunning)
-{
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSArray *p = [path pathComponents];
-    NSMutableArray *pathComponents = [NSMutableArray arrayWithArray:p];
-    [pathComponents removeLastObject];
-    [pathComponents removeLastObject];
-    [pathComponents removeLastObject];
-    [pathComponents addObject:@"MacOS"];
-    [pathComponents addObject:appName];
-    NSString *newPath = [NSString pathWithComponents:pathComponents];
-    [[NSWorkspace sharedWorkspace] launchApplication:newPath];
-}
-[NSApp terminate:nil];
 </code></pre>
-
-<p>}
-```</p>
 
 <h3>4. 设置主程序</h3>
 
@@ -492,7 +552,7 @@ if (!alreadyRunning)
 <img src="/images/2014/06/10/08.jpg" alt="temp" /></li>
 <li>设置依赖，如下图。<br/>
 <img src="/images/2014/06/10/09.jpg" alt="temp" /></li>
-<li>设置 Build Settings &ndash;> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
+<li>设置 Build Settings -> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
 <img src="/images/2014/06/10/10.jpg" alt="temp" /></li>
 <li>设置沙盒环境，证书，描述文件。  <br/>
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
@@ -512,35 +572,28 @@ if (!alreadyRunning)
 </ul>
 
 
-<p>``` objective-c
-+ (BOOL) isStartAtLogin
-{</p>
-
-<pre><code>StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@"com.tmyam.testHelper"];
-BOOL startedAtLogin = [loginController startAtLogin];
-[loginController release];
-return startedAtLogin;
-</code></pre>
-
-<p>}</p>
-
-<ul>
-<li>(BOOL) setStartAtLogin:(BOOL)isStartLogin
+<pre><code class="objc">+ (BOOL) isStartAtLogin
 {
-  StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@&ldquo;com.tmyam.testHelper&rdquo;];
-  loginController.startAtLogin = isStartLogin;
-  BOOL result = loginController.enabled;
-  [loginController release];
-  return result;
+    StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@"com.tmyam.testHelper"];
+    BOOL startedAtLogin = [loginController startAtLogin];
+    [loginController release];
+    return startedAtLogin;
 }
-```
+
++ (BOOL) setStartAtLogin:(BOOL)isStartLogin
+{
+    StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@"com.tmyam.testHelper"];
+    loginController.startAtLogin = isStartLogin;
+    BOOL result = loginController.enabled;
+    [loginController release];
+    return result;
+}
+</code></pre>
 
 <h3>结尾</h3>
 
 <p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
-还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p></li>
-</ul>
-
+还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p>
 
 <p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
 
@@ -565,10 +618,8 @@ return startedAtLogin;
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
-<!-- more -->
+<!-- more -->   
 
-
-<p></p>
 
 <h2>创建</h2>
 
@@ -602,45 +653,38 @@ return startedAtLogin;
 
 <p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
 
-<p>``` objective-c
-&ndash; (NSData <em>)dataOfType:(NSString </em>)typeName error:(NSError **)outError
-{</p>
-
-<pre><code>if ([typeName isEqualToString:@"com.tmyam.TestDocument.document"])
+<pre><code class="objc">- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    // TODO: 这里是具体的存储文件数据
-    return [@"test" dataUsingEncoding:4];
-}
-else
-{
-    if (outError)
+    if ([typeName isEqualToString:@"com.tmyam.TestDocument.document"])
     {
-        *outError = [NSError errorWithDomain:@"TestDocumentErrorDomain"
-                                        code:-1
-                                    userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"Unsupported data type: %@", typeName]}];
+        // TODO: 这里是具体的存储文件数据
+        return [@"test" dataUsingEncoding:4];
     }
+    else
+    {
+        if (outError)
+        {
+            *outError = [NSError errorWithDomain:@"TestDocumentErrorDomain"
+                                            code:-1
+                                        userInfo:@{NSLocalizedFailureReasonErrorKey:[NSString stringWithFormat:@"Unsupported data type: %@", typeName]}];
+        }
+    }
+    return nil;
 }
-return nil;
-</code></pre>
 
-<p>}</p>
-
-<ul>
-<li><p>(BOOL)readFromData:(NSData <em>)data ofType:(NSString </em>)typeName error:(NSError **)outError
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-  assert([typeName isEqualToString:@&ldquo;com.tmyam.TestDocument.document&rdquo;]);</p>
+    assert([typeName isEqualToString:@"com.tmyam.TestDocument.document"]);
 
-<p>  // TODO: 这里是具体的读取文件数据</p>
+    // TODO: 这里是具体的读取文件数据
 
-<p>  return YES;
+    return YES;
 }
-```</p>
+</code></pre>
 
 <h2>示例</h2>
 
-<p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p></li>
-</ul>
-
+<p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p>
 ]]></content>
   </entry>
   
@@ -653,8 +697,7 @@ return nil;
 
 <hr />
 
-<br/>
-
+<p><br/></p>
 
 <h4>步骤很简单，但是总是忘记，所以在这里做个记录。</h4>
 
@@ -707,17 +750,17 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 </ul>
 
 
-<p><code>sh
-echo "build path ${TARGET_BUILD_DIR}"  
+<pre><code class="sh">echo "build path ${TARGET_BUILD_DIR}"  
 cd ${TARGET_BUILD_DIR}/${FULL_PRODUCT_NAME}/Contents/Frameworks   
 rm -rf */Headers   
-rm -rf */Versions/*/Headers
+rm -rf */Versions/*/Headers 
 rm -rf */Versions/*/Resources/*/Contents/Headers
 rm -rf */PrivateHeaders
 rm -rf */Versions/*/PrivateHeaders
 rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
-</code><br/>
-如下图 <br/>
+</code></pre>
+
+<p>如下图 <br/>
 <img src="/images/2013/11/05/clean_framework.png" alt="temp" /></p>
 
 <h4>编译问题</h4>
@@ -728,10 +771,8 @@ rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
 
 <hr />
 
-<br/>
-
-
-<p><strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
+<p><br/>
+<strong>另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。</strong></p>
 ]]></content>
   </entry>
   

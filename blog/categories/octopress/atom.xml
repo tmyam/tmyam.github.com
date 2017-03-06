@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | tmyam's blog]]></title>
+  <title><![CDATA[Category: octopress | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-06T22:46:47+08:00</updated>
+  <updated>2017-03-06T23:49:45+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -44,57 +44,78 @@
 </ul>
 
 
-<p>```
-可以在此添加一个标签页，使用命令：</p>
+<pre><code>可以在此添加一个标签页，使用命令：
+</code></pre>
 
-<p><code>sh
-rake new_page['about']
-</code>
-创建一个页面，页面路径为source\about\index.markdown;</p>
-
-<p>修改上面的navigation.html为：</p>
-
-<p>``` html</p>
-
-<ul class="main-navigation"> 
-  <li><a href="/">首页</a></li> 
-  <li><a href="/blog/archives">归档</a></li> 
-  <li><a href="/about">关于</a></li> 
-</ul>
-
-
-<p>```</p>
-
-<h2><del>3.添加disqus评论</del></h2>
-
-<ul>
-<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
-<li><p>参考下图，点击<code>Dashboard</code></p></li>
-</ul>
-
-
-<p><img src="/images/2013/10/09/comment_dashboard.png" alt="temp" /></p>
-
-<ul>
-<li>然后点击下图中的<code>add</code>按钮</li>
-</ul>
-
-
-<p><img src="/images/2013/10/09/comment_add.png" alt="temp" /></p>
-
-<ul>
-<li><p>之后根据提示添加信息，一步一步直到完成。</p></li>
-<li><p>然后修改<strong>_config.yml</strong>文件</p></li>
-</ul>
-
-
-<p>``` sh</p>
-
-<h1>Disqus Comments</h1>
-
-<p>disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
-disqus_show_comment_count: true
-```</p>
+<p>rake new_page[&lsquo;about&rsquo;]
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>创建一个页面，页面路径为source\about\index.markdown;&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;修改上面的navigation.html为：&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;``` html&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul class="main-navigation"&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/"&gt;首页&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/blog/archives"&gt;归档&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>  &lt;li&gt;&lt;a href="/about"&gt;关于&lt;/a&gt;&lt;/li&gt; 
+</span><span class='line'>&lt;/ul&gt;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;
+</span><span class='line'>##~~3.添加disqus评论~~
+</span><span class='line'>* 使用第三方的评论系统，在[disqus](http://www.disqus.com)注册一个账号，并登录。
+</span><span class='line'>
+</span><span class='line'>* 参考下图，点击`Dashboard`  
+</span><span class='line'>
+</span><span class='line'>![temp](/images/2013/10/09/comment_dashboard.png)
+</span><span class='line'>
+</span><span class='line'>* 然后点击下图中的`add`按钮  
+</span><span class='line'>
+</span><span class='line'>![temp](/images/2013/10/09/comment_add.png)
+</span><span class='line'>
+</span><span class='line'>* 之后根据提示添加信息，一步一步直到完成。
+</span><span class='line'>
+</span><span class='line'>* 然后修改**_config.yml**文件
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Disqus Comments&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
+</span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure></p>
 
 <h2>4.添加多说评论</h2>
 
@@ -106,8 +127,7 @@ disqus_show_comment_count: true
 </ul>
 
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -128,10 +148,10 @@ disqus_show_comment_count: true
 </ul>
 
 
-<p><code>sh
-rake new_post['article name']
-</code>
-然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
+<pre><code class="sh">rake new_post['article name']
+</code></pre>
+
+<p>然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
 
 <!-- more -->
 
@@ -166,7 +186,7 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 <ul>
 <li>语法
 
-<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#&ndash;#] <br/>
+<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#] <br/>
 code snippet <br/>
 ` ` `</p></blockquote></li>
 </ul>
@@ -177,7 +197,7 @@ title: 代码标题 <br/>
 url: 代码链接，点击这个可以下载你的代码 <br/>
 link text: 对链接的解释文本，默认是link <br/>
 start:#: 行号从哪里开始 <br/>
-mark:#,#&ndash;#: 标记某一行代码 <br/>
+mark:#,#-#: 标记某一行代码 <br/>
 linenos:false: 对高亮代码块不添加行号</p>
 
 <p>例如：</p>
@@ -196,7 +216,7 @@ rake new_post['article name']
 <li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
 text: 无格式 <br/>
 sh: shell脚本 <br/>
-objective-c: Objective-C</li>
+objc: Objective-C</li>
 </ul>
 
 
@@ -207,46 +227,45 @@ objective-c: Objective-C</li>
 </ul>
 
 
-<p><code>text
-rake generate
-</code>
-* 预览<br/>
-地址 <a href="http://localhost:4000">http://localhost:4000</a> ,时时的修改markdown文件，可以刷新网页看到刚刚修改的效果。</p>
+<pre><code class="text">rake generate 
+</code></pre>
 
-<p><code>
-rake preview
-</code></p>
+<ul>
+<li>预览<br/>
+地址 <a href="http://localhost:4000">http://localhost:4000</a> ,时时的修改markdown文件，可以刷新网页看到刚刚修改的效果。</li>
+</ul>
+
+
+<pre><code>rake preview
+</code></pre>
 
 <ul>
 <li>部署到GitHub上</li>
 </ul>
 
 
-<p><code>
-rake deploy
-</code></p>
+<pre><code>rake deploy
+</code></pre>
 
 <h2>4.备份</h2>
 
 <p>将文件更新备份到github上。</p>
 
-<p><code>sh
-git add -A
+<pre><code class="sh">git add -A
 git commit -m 'your message'
 git push origin source
-</code>
-如果遇到<strong>warning</strong></p>
+</code></pre>
+
+<p>如果遇到<strong>warning</strong></p>
 
 <blockquote><p>warning: push.default is unset; its implicit value is changing in Git 2.0 from &lsquo;matching&rsquo; to &lsquo;simple&rsquo;. To squelch this messageand maintain the current behavior after the default changes, use:&hellip;</p></blockquote>
 
 <p>推荐使用下面命令设置。</p>
 
-<p><code>
-git config --global push.default simple
-</code></p>
+<pre><code>git config --global push.default simple
+</code></pre>
 
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -272,21 +291,21 @@ git config --global push.default simple
 
 <p><strong>配置用户信息</strong></p>
 
-<p><code>sh
-git config --global user.email "xxx@xxx.com"
+<pre><code class="sh">git config --global user.email "xxx@xxx.com"
 git config --global user.name "xxx"
-</code><br/>
-可以使用 <code>git config --list</code> 查看配置的信息</p>
+</code></pre>
+
+<p>可以使用 <code>git config --list</code> 查看配置的信息</p>
 
 <!-- more -->
 
 
 <p><strong>生成证书</strong></p>
 
-<p><code>
-ssh-keygen -t rsa -C "xxx@xxx.com"
-</code>
-<strong>登录</strong><a href="https://github.com">github</a><br/>
+<pre><code>ssh-keygen -t rsa -C "xxx@xxx.com"
+</code></pre>
+
+<p><strong>登录</strong><a href="https://github.com">github</a><br/>
 拷贝~/.ssh/id_rsa.pub的内容，在github的<code>Account Settings</code>的<code>SSH Keys</code>里，点<code>Add SSH Keys</code>，将内容粘贴到”Key”中，并输入”Title”.</p>
 
 <h2>2.安装ruby</h2>
@@ -301,37 +320,35 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 <p><strong>安装rvm.</strong> <a href="http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac">参考链接</a></p>
 
-<p><code>text
-\curl -L https://get.rvm.io | bash -s stable --ruby
-</code>
-由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
+<pre><code class="text">\curl -L https://get.rvm.io | bash -s stable --ruby
+</code></pre>
 
-<p><code>
-\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
-</code></p>
+<p>由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
+
+<pre><code>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
+</code></pre>
 
 <p><strong>查看网络上最新的ruby版本</strong></p>
 
-<p><code>sh
-rvm list known
-</code></p>
+<pre><code class="sh">rvm list known
+</code></pre>
 
 <p><strong>安装ruby</strong></p>
 
-<p><code>
-rvm install ruby-2.0.0-p247
-</code>
-如果遇到以下错误</p>
+<pre><code>rvm install ruby-2.0.0-p247
+</code></pre>
+
+<p>如果遇到以下错误</p>
 
 <blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
 pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
 
 <p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
 
-<p><code>
-rvm autolibs brew
-</code>
-如果遇到以下错误</p>
+<pre><code>rvm autolibs brew
+</code></pre>
+
+<p>如果遇到以下错误</p>
 
 <blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
 please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
@@ -340,66 +357,59 @@ please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_aut
 
 <p>可以先安装homebrew</p>
 
-<p><code>
-sudo su
+<pre><code>sudo su
 curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /usr/local
-</code>
-修改权限</p>
+</code></pre>
 
-<p><code>
-sudo chown -R `whoami` /Library/Caches/Homebrew/
-</code>
-之后重新安装就行了。</p>
+<p>修改权限</p>
+
+<pre><code>sudo chown -R `whoami` /Library/Caches/Homebrew/
+</code></pre>
+
+<p>之后重新安装就行了。</p>
 
 <p><strong>使用</strong></p>
 
-<p><code>
-rvm use ruby-2.0.0-p247
-</code>
-可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
+<pre><code>rvm use ruby-2.0.0-p247
+</code></pre>
+
+<p>可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
 
 <h2>3.部署blog</h2>
 
 <ul>
-<li>创建git的blog
+<li><p>创建git的blog</p>
 
 <ol>
-<li> 点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
-<li> 仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
-<li> 点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
-<li> 内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
-<li> 接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。</li>
+<li>点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
+<li>仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
+<li>点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
+<li>内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
+<li>接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。<br/>
+<br/></li>
 </ol>
 </li>
+<li><p>配置<a href="http://octopress.org">Octopress</a></p></li>
 </ul>
 
 
-<br/>
-
-
-<ul>
-<li>配置<a href="http://octopress.org">Octopress</a></li>
-</ul>
-
-
-<p><code>
-cd blog                # 想要安装的Octopress的文件夹
+<pre><code>cd blog                # 想要安装的Octopress的文件夹
 git clone https://github.com/imathis/octopress.git
 cd octopress
 gem install bundler   # 安装依赖
 bundle install      
 rake install          # 安装Octopress默认的主题
-</code></p>
+</code></pre>
 
 <ul>
 <li>部署</li>
 </ul>
 
 
-<p><code>
-rake setup_github_pages
-</code>
-执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
+<pre><code>rake setup_github_pages
+</code></pre>
+
+<p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
 
 <ul>
 <li>修改配置文件, <a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></li>
@@ -408,41 +418,47 @@ rake setup_github_pages
 
 <p><strong>可以执行以下命令生成页面和预览博客</strong></p>
 
-<p><code>
-rake generate       # 生成文件(public文件夹下)
+<pre><code>rake generate       # 生成文件(public文件夹下)
 rake preview        # 生成本地预览，地址 http://localhost:4000
-</code></p>
+</code></pre>
 
 <ul>
 <li>上传到github</li>
 </ul>
 
 
-<p><code>
-rake deploy         # 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上
-</code>
-如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
+<pre><code>rake deploy         # 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上
+</code></pre>
 
-<p><code>
-rm -rf _deploy     # 在octopress目录下
+<p>如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
+
+<pre><code>rm -rf _deploy     # 在octopress目录下
 git clone https://github.com/your_username/your_username.github.com.git "_deploy"       # 注意修改your_username
 rake generate   # 再次执行
 rake deploy        
-</code>
-这样就可以看到上传的主题博客了。</p>
+</code></pre>
+
+<p>这样就可以看到上传的主题博客了。</p>
 
 <h2>4.备份资源文件</h2>
 
 <p>在octopress目录下</p>
 
-<p><code>
-git add .
+<pre><code>git add .
 git commit -m 'your message'
 git push origin source
-</code></p>
+</code></pre>
 
-<br/>
+<h2>更新 Octopress</h2>
 
+<pre><code class="sh ">git remote add octopress git://github.com/imathis/octopress.git
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's source
+rake update_style             # update the template's style
+</code></pre>
+
+<p><br/></p>
 
 <h3>参考</h3>
 

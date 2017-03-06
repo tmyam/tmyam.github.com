@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Develop_prepare | tmyam's blog]]></title>
+  <title><![CDATA[Category: develop_prepare | tmyam's blog]]></title>
   <link href="http://tmyam.github.io/blog/categories/develop-prepare/atom.xml" rel="self"/>
   <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-06T22:46:47+08:00</updated>
+  <updated>2017-03-06T23:49:45+08:00</updated>
   <id>http://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -28,11 +28,10 @@
 
 <p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
 
-<!-- more -->
+<!-- more -->   
 
 
-<p> <br/>
-<img src="/images/2014/03/25/01.png" alt="temp" /> <br/>
+<p><img src="/images/2014/03/25/01.png" alt="temp" /> <br/>
 如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
 
 <h3>2</h3>
@@ -90,7 +89,7 @@
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x63;&#104;&#x69;&#110;&#97;&#x64;&#x65;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#x2e;&#97;&#112;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#x63;&#x68;&#x69;&#x6e;&#x61;&#x64;&#101;&#118;&#64;&#97;&#x73;&#105;&#x61;&#46;&#x61;&#112;&#112;&#108;&#101;&#46;&#x63;&#x6f;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x63;&#x68;&#105;&#x6e;&#97;&#100;&#101;&#x76;&#64;&#x61;&#x73;&#x69;&#97;&#46;&#x61;&#112;&#112;&#108;&#101;&#x2e;&#99;&#x6f;&#109;">&#x63;&#104;&#x69;&#110;&#97;&#100;&#x65;&#x76;&#x40;&#97;&#x73;&#105;&#97;&#x2e;&#97;&#112;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -166,7 +165,7 @@ Street Address: Mailbox 166,Nankai University  <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;94 WeijinRd,Nankai District,Tianjin  <br/>
 Postal Code: 300072  <br/>
-Phone: 86 &ndash; 411 &ndash; 手机号</p>
+Phone: 86 - 411 - 手机号</p>
 
 <h5>9</h5>
 
@@ -186,7 +185,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <p><img src="/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#99;&#x68;&#105;&#x6e;&#97;&#100;&#x65;&#118;&#64;&#x61;&#x73;&#x69;&#97;&#46;&#x61;&#x70;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#104;&#105;&#x6e;&#97;&#x64;&#x65;&#x76;&#64;&#97;&#115;&#x69;&#97;&#46;&#97;&#112;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a></font>。
+<font color=red><a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#99;&#x68;&#105;&#110;&#x61;&#100;&#101;&#x76;&#64;&#x61;&#x73;&#x69;&#x61;&#46;&#x61;&#x70;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#109;">&#99;&#x68;&#x69;&#x6e;&#97;&#x64;&#x65;&#118;&#x40;&#97;&#115;&#x69;&#x61;&#46;&#x61;&#112;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -291,7 +290,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <ul>
 <li>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></li>
-<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>App IDs</em>.</li>
+<li>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> -> <em>App IDs</em>.</li>
 </ul>
 
 
@@ -364,7 +363,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 
 <ul>
 <li><p>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></p></li>
-<li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> &ndash;> <em>Provisioning Profiles</em> &ndash;> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
+<li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> -> <em>Provisioning Profiles</em> -> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
 <li><p>根据提示一步一步前进，<em>Profile Name:</em>可以使用 <code>AppNameProfile</code>的样式，最后点击生成。</p></li>
 <li><p><del>下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书及对应的描述文件。如下图
 <img src="/images/2013/11/18/code_sign.png" alt="temp" /></del></p></li>
@@ -385,7 +384,7 @@ Phone: 86 &ndash; 411 &ndash; 手机号</p>
 <ul>
 <li><p>对 <em>Description</em> 和 <em>Screenshots</em> 重写填写和上传新的截图，并保存。全部改完后点击<code>Ready to Upload Binary</code>。</p></li>
 <li><p><em>Export Compliance</em> 的提问选择 NO 就可以了。之后继续进入 <strong>Waiting For Upload</strong> 状态。</p></li>
-<li><p>回到Xcode工程，选择菜单 <em>Product</em> &ndash;> <em>Archive</em>,进入 Organizer 的 Archives 界面。</p></li>
+<li><p>回到Xcode工程，选择菜单 <em>Product</em> -> <em>Archive</em>,进入 Organizer 的 Archives 界面。</p></li>
 <li><p>选择<code>validate...</code>按钮验证app是否能通过验证。 <br/>
 这步是最容易发现错误的地方，错误的种类也多种多样，根据实际的错误自己修改吧。</p></li>
 <li><p><del>如果没有错误，完成之后点击<code>Distribute...</code>按钮，等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</del></p></li>

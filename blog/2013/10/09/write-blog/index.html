@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>mac下编写blog - tmyam's blog</title>
+  <title>Mac下编写blog - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
@@ -23,10 +23,11 @@ rake new_post[&#39;article name&#39;] 然后可以在source/_post/目录下找�
   <link rel="canonical" href="http://tmyam.github.io/blog/2013/10/09/write-blog/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -94,7 +95,7 @@ window.onload=sethash;
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:tmyam.github.io" />
+    <input type="hidden" name="sitesearch" value="tmyam.github.io">
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -122,18 +123,11 @@ window.onload=sethash;
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-10-09T10:52:00+08:00" pubdate data-updated="true">2013年10月09日</time>
+<time class='entry-date' datetime='2013-10-09T10:52:00+08:00'><span class='date'>2013年10月09日</span> <span class='time'>10:52 am</span></time>
         
-			
-          | <a href="#comments">评论</a>
-         
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://tmyam.github.io">Comments</a>
+        
       </p>
     
   </header>
@@ -187,7 +181,7 @@ excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; lin
 <ul>
 <li>语法
 
-<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#&ndash;#] <br/>
+<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#] <br/>
 code snippet <br/>
 ` ` `</p></blockquote></li>
 </ul>
@@ -198,7 +192,7 @@ title: 代码标题 <br/>
 url: 代码链接，点击这个可以下载你的代码 <br/>
 link text: 对链接的解释文本，默认是link <br/>
 start:#: 行号从哪里开始 <br/>
-mark:#,#&ndash;#: 标记某一行代码 <br/>
+mark:#,#-#: 标记某一行代码 <br/>
 linenos:false: 对高亮代码块不添加行号</p>
 
 <p>例如：</p>
@@ -221,7 +215,7 @@ rake new_post[&lsquo;article name&rsquo;] <br/>
 <li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
 text: 无格式 <br/>
 sh: shell脚本 <br/>
-objective-c: Objective-C</li>
+objc: Objective-C</li>
 </ul>
 
 
@@ -282,10 +276,7 @@ objective-c: Objective-C</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<br/>
-
+<p><br/></p>
 
 <h3>参考</h3>
 
@@ -305,19 +296,12 @@ objective-c: Objective-C</li>
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-10-09T10:52:00+08:00" pubdate data-updated="true">2013年10月09日</time>
+<time class='entry-date' datetime='2013-10-09T10:52:00+08:00'><span class='date'>2013年10月09日</span> <span class='time'>10:52 am</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
   
 </span>
 
@@ -342,23 +326,10 @@ objective-c: Objective-C</li>
   </footer>
 </article>
 
-
   <section>
-    <h1>评论</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"tmyam"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END --></div>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
   </section>
 
 </div>
@@ -377,11 +348,11 @@ var duoshuoQuery = {short_name:"tmyam"};
 </section><section>
   <h1>文章分类</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/develop-prepare/'>Develop_prepare (3)</a></li>
-<li class='category'><a href='/blog/categories/objective-c/'>Objective-C (2)</a></li>
-<li class='category'><a href='/blog/categories/octopress/'>Octopress (3)</a></li>
+    <li class='category'><a href='/blog/categories/develop-prepare/'>develop_prepare (3)</a></li>
 <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac_develop (5)</a></li>
+<li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
 
   </ul>
 </section><section>
@@ -389,11 +360,11 @@ var duoshuoQuery = {short_name:"tmyam"};
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2016/04/08/cocoa-binding/">cocoa binding</a>
+        <a href="/blog/2016/04/08/cocoa-binding/">Cocoa Binding</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">mac app的开机自启动</a>
+        <a href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/">Mac App的开机自启动</a>
       </li>
     
       <li class="post">
@@ -447,7 +418,7 @@ var duoshuoQuery = {short_name:"tmyam"};
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
