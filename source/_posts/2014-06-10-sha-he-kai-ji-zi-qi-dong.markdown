@@ -13,7 +13,7 @@ categories: mac_develop
 简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->"用户与群组"->"登录项"里面看到，并进行设置。
 <!-- more -->  
 
-``` objective-c
+``` objc
 + (BOOL) isStartAtLogin
 {
     BOOL  isHaveAdd = NO;
@@ -115,7 +115,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 ### 3. 添加Helper的代码
 参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。
 
-``` objective-c
+``` objc
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self runMainApp:@"com.tmyam.test" appName:@"test"];
@@ -179,7 +179,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 别忘了 #import "StartAtLoginController.h"    
 这里的 Identifier是testHelper的标识符。
 
-``` objective-c
+``` objc
 + (BOOL) isStartAtLogin
 {
     StartAtLoginController* loginController = [[StartAtLoginController alloc]initWithIdentifier:@"com.tmyam.testHelper"];

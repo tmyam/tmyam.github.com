@@ -10,7 +10,7 @@ Objective-C枚举的使用，常见的方式总结，以便自己使用时方便
 ## 1. 枚举介绍
 ### enum only
 
-``` objective-c
+``` objc
 enum
 {
     TMEnumTestOne,
@@ -22,7 +22,7 @@ enum
 <!-- more -->
 
 ### enum 类型
-``` objective-c
+``` objc
 typedef enum
 {
     TMEnumTestOne,
@@ -31,7 +31,7 @@ typedef enum
 } TMEnumTest;
 
 ```
-``` objective-c
+``` objc
 enum TMEnumTest
 {
     TMEnumTestOne,
@@ -45,7 +45,7 @@ typedef enum TMEnumTest TMEnumTest;
 ![temp](/images/2014/02/24/enum_warn.png) 
 
 ### 老式enum写法
-``` objective-c
+``` objc
 enum
 {
     TMEnumTestOne,
@@ -58,14 +58,14 @@ typedef NSUInteger TMEnumTest;
 ![temp](/images/2014/02/24/enum_no_check.png) 
 
 ### 新式enum写法
-``` objective-c
+``` objc
 typedef NS_ENUM(NSUInteger, TMEnumTest)
 {
     TMEnumTestOne,
     TMEnumTestTwo,
 };
 ```
-``` objective-c
+``` objc
 typedef NS_OPTIONS(NSUInteger, TMEnumTest)
 {
     TMEnumTestOne  = 0,
@@ -81,7 +81,7 @@ typedef NS_OPTIONS(NSUInteger, TMEnumTest)
 
 ## 2. 枚举最大值
 对于一般的枚举，要获取枚举的最大值是很难的，因为随着枚举的扩充，最大值在不断变化，这时推荐使用一个固定的枚举表示最大值，例如：
-``` objective-c
+``` objc
 typedef NS_ENUM(NSUInteger, TMEnumTest)
 {
     TMEnumTestOne,
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, TMEnumTest)
 
 ## 3. 位枚举
 位枚举是一种特殊的枚举，在apple的类中使用的很多，例如`NSStringCompareOptions`等。
-``` objective-c
+``` objc
 typedef NS_OPTIONS(NSUInteger, TMEnumTest)
 {
     TMEnumTestOne     = 0,		   // 0
@@ -105,7 +105,8 @@ typedef NS_OPTIONS(NSUInteger, TMEnumTest)
 ``` 
 
 * 位枚举的特点是可以使用位运算来处理枚举值，实际使用中可以用一个变量存储多个枚举值，表示互不影响的多个设置。
-``` objective-c
+
+``` objc 
 - (void) test
 {
     TMEnumTest test = TMEnumTestTwo|TMEnumTestThree;  // 3
@@ -144,8 +145,6 @@ typedef NS_OPTIONS(NSUInteger, TMEnumTest)
     }
 }
 ``` 
-
-
 
 
 

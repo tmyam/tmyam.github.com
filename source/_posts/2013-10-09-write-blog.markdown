@@ -71,7 +71,7 @@ rake new_post['article name']
 * 常用的高亮格式，[参考链接](http://vvstyle.com/blog/2013/08/13/backtick-code/)   
 text: 无格式   
 sh: shell脚本   
-objective-c: Objective-C   
+objc: Objective-C   
 
 
 ##3.生成

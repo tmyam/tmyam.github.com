@@ -34,7 +34,7 @@ categories: mac_develop
 ## 编码
 在**Document.m**文件里已经有两个函数。
 
-``` objective-c
+``` objc
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
     if ([typeName isEqualToString:@"com.tmyam.TestDocument.document"])
@@ -65,3 +65,4 @@ categories: mac_develop
 ```
 ## 示例
 [TestDocument示例下载](/files/TestDocument.zip)
+

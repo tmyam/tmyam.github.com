@@ -18,7 +18,7 @@ cocoa binding一项可以让开发变得更加便捷的技能，网上的资料�
 2. 当用户在界面上选择改变下标时，可以监测到这种改变
 <!-- more -->  
 ####1. 一般的做法
-``` objective-c 
+``` objc
 // 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
 @property (nonatomic ,strong,nonnull) IBOutlet NSPopUpButton*   popupButton;
 // 需求1
@@ -34,7 +34,7 @@ self.popupButton.indexOfSelectedItem = 1;
 这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。
 ####2. 使用bind      
 
-``` objective-c 
+``` objc 
 写法 1 (定义属性)
 // 定义选择下标属性
 @property (nonatomic ,assign) NSInteger   index;
@@ -67,7 +67,7 @@ self.index = 1;
 ![temp](/images/2016/04/08/bind_selectindex.png)    
 第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即`index`。
 当然也可以不使用界面绑定，使用代码绑定。
-```objective-c
+```objc
 [self.popupButton bind:@"selectedIndex" toObject:self withKeyPath:@"index" options:nil];
 
 - (void) dealloc
@@ -82,7 +82,7 @@ self.index = 1;
 输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。
 
 例如，下面是一个输入框，限定输入0~99。
-```objective-c
+```objc
 // 绑定的文本
 @property (nonatomic ,strong) NSString*     number;
 // 监听变化
@@ -99,7 +99,7 @@ self.index = 1;
 在界面上绑定**NSTextField**的**value**。注意勾选红色标注        
 ![temp](/images/2016/04/08/bind_textfield.png)     
 当然，这样仅仅只是可以检测文本的输入变化，并不能限制输入的内容。还需要创建一个Formatter继承自系统的NSFormatter，并重写里面的函数。
-```objective-c
+```objc
 @implementation TMNumFormatter
 
 - (NSString*) stringForObjectValue:(id)object
@@ -179,7 +179,7 @@ self.index = 1;
 
 ####2. Value Transformer类型变换
 比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。
-```objective-c
+```objc
 @property (nonatomic ,strong) NSNumber*     inter;
 - (void) setInter:(NSNumber *)inter
 {
@@ -188,7 +188,7 @@ self.index = 1;
 }
 ```
 需要创建一个继承自**NSValueTransformer**的类，重写里面的函数。
-```objective-c
+```objc
 // 正向：NSNumber --> NSString
 // 反向：NSString --> NSNumber
 @implementation TMValueTransformer

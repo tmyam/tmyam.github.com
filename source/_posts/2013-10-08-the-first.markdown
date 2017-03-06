@@ -154,6 +154,15 @@ git commit -m 'your message'
 git push origin source
 ```
 	
+## 更新 Octopress
+``` sh 
+git remote add octopress git://github.com/imathis/octopress.git
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's source
+rake update_style             # update the template's style
+```
+	
 <br/>
 ### 参考
  <http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/>
@@ -164,3 +173,4 @@ git push origin source
 [github]: https://github.com
 [Octopress]: http://octopress.org
  
+

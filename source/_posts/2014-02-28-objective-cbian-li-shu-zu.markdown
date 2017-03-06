@@ -11,7 +11,7 @@ categories: Objective-C
 
 ## 常用写法简介
 ### 1. 经典写法
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     NSInteger count = array.count;
@@ -26,7 +26,7 @@ categories: Objective-C
 <!-- more -->
 
 ### 2. NSEnumerator
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     id test = nil;
@@ -41,7 +41,7 @@ categories: Objective-C
 NSEnumerator的优势在于不需要知道数据总数，所以它适合应用在结构化数据上，比如链表，数据流等。
 
 ### 3. 快速枚举
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     for (NSString* test in array )
@@ -55,7 +55,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 使用上如果需要反向枚举，只需要将**array**改成**array.reverseObjectEnumerator**就可以了。
 
 ### 4. 枚举块
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     [array enumerateObjectsUsingBlock:^(NSString* obj, NSUInteger idx, BOOL *stop) {
@@ -73,7 +73,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 所以具体的使用需要自己进行权衡。
 
 ### 1. 基本的并发枚举块
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     [array enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(NSString* obj, NSUInteger idx, BOOL *stop) {
@@ -87,7 +87,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 这种方式会为每一个枚举创建一个线程，等到所有的枚举都执行完毕才会进行下一步。
 
 ### 2. 异步GCD并发
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -104,7 +104,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 这种方式会为每一个枚举创建一个线程，但是不会等待所有枚举执行完成，而是for循环完成后就会进行下一步了，是一种异步执行的方式。
 
 ### 3. 等待GCD并发 
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -124,7 +124,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 这种方式使用group将多个block组成一组以监测这些Block全部完成或者等待全部完成。这种方式的效果类似于`1.基本的并发枚举块`。
 
 ### 4. dispatch_apply
-``` objective-c
+``` objc
 - (void) test:(NSArray*)array
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
