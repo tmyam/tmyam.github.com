@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mac_develop | tmyam's blog]]></title>
-  <link href="http://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
-  <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-07T17:35:21+08:00</updated>
-  <id>http://tmyam.github.io/</id>
+  <link href="https://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-07T17:44:11+08:00</updated>
+  <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[cocoa binding]]></title>
-    <link href="http://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
+    <link href="https://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
     <updated>2016-04-08T10:17:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
+    <id>https://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
@@ -382,9 +382,9 @@ xib里面的绑定设置，如下图：  <br/>
   
   <entry>
     <title type="html"><![CDATA[mac app的开机自启动]]></title>
-    <link href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
+    <link href="https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
     <updated>2014-06-10T14:15:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
+    <id>https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
@@ -611,9 +611,9 @@ xib里面的绑定设置，如下图：  <br/>
   
   <entry>
     <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
     <updated>2014-02-20T14:24:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
+    <id>https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
     <content type="html"><![CDATA[<h2>简介</h2>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
@@ -690,9 +690,9 @@ xib里面的绑定设置，如下图：  <br/>
   
   <entry>
     <title type="html"><![CDATA[mac app开发中添加第三方framework]]></title>
-    <link href="http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/"/>
+    <link href="https://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/"/>
     <updated>2013-11-05T15:23:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework</id>
+    <id>https://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework</id>
     <content type="html"><![CDATA[<p>环境: <code>(mac 版本 10.9 ) ( Xcode 5.0 )</code></p>
 
 <hr />
@@ -778,9 +778,9 @@ rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
   
   <entry>
     <title type="html"><![CDATA[Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题]]></title>
-    <link href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
+    <link href="https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
     <updated>2013-11-05T10:05:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
+    <id>https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
     <content type="html"><![CDATA[<h2>前因</h2>
 
 <p>最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。

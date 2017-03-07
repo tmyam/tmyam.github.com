@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: objective-c | tmyam's blog]]></title>
-  <link href="http://tmyam.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
-  <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-07T17:35:21+08:00</updated>
-  <id>http://tmyam.github.io/</id>
+  <link href="https://tmyam.github.io/blog/categories/objective-c/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-07T17:44:11+08:00</updated>
+  <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Objective-C遍历数组]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/"/>
     <updated>2014-02-28T11:46:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu</id>
+    <id>https://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu</id>
     <content type="html"><![CDATA[<p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
 
 <h2>常用写法简介</h2>
@@ -174,9 +174,9 @@
   
   <entry>
     <title type="html"><![CDATA[Objective-C枚举介绍]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao/"/>
     <updated>2014-02-24T15:39:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
+    <id>https://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
     <content type="html"><![CDATA[<p>Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。</p>
 
 <h2>1. 枚举介绍</h2>

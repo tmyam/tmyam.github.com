@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: octopress | tmyam's blog]]></title>
-  <link href="http://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-07T17:35:21+08:00</updated>
-  <id>http://tmyam.github.io/</id>
+  <link href="https://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-07T17:44:11+08:00</updated>
+  <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[为博客添加分类和评论功能]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
     <updated>2013-10-09T15:03:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
+    <id>https://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
     <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
 
 <ul>
@@ -137,9 +137,9 @@
   
   <entry>
     <title type="html"><![CDATA[mac下编写blog]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/09/write-blog/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/09/write-blog/"/>
     <updated>2013-10-09T10:52:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/09/write-blog</id>
+    <id>https://tmyam.github.io/blog/2013/10/09/write-blog</id>
     <content type="html"><![CDATA[<h2>1.编写</h2>
 
 <ul>
@@ -167,8 +167,8 @@
 如果要在文章中使用图片，直接copy到<strong>/source/images</strong>目录下即可。在文章中可以直接使用<code>![temp](/images/temp.png)</code>。也可以选一些大的图床站点，使用链接的方式。<br/>
 例如：<img src="/images/2013/10/09/temp.png" alt="temp" /> <br/>
 如果需要调整图片大小，则需要使用html。    <br/>
-<code>&lt;img src="http://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
-<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
+<code>&lt;img src="https://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
+<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
 <li><p>首页缩略显示<br/>
 在首页展示文章的一部分内容，而不是显示全部。<br/>
 只需要在文章的markdown文件中，在需要显示在首页的文字后面添加<code>&lt;!-- more --&gt;</code>就行了。</p></li>
@@ -275,9 +275,9 @@ git push origin source
   
   <entry>
     <title type="html"><![CDATA[mac下使用github+Octopress搭建博客]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/08/the-first/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/08/the-first/"/>
     <updated>2013-10-08T18:09:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/08/the-first</id>
+    <id>https://tmyam.github.io/blog/2013/10/08/the-first</id>
     <content type="html"><![CDATA[<p>我的第一篇博文 <br/>
 <code>(mac 版本 10.8.5)</code></p>
 

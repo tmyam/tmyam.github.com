@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[tmyam's blog]]></title>
-  <link href="http://tmyam.github.io/atom.xml" rel="self"/>
-  <link href="http://tmyam.github.io/"/>
-  <updated>2017-03-07T17:35:21+08:00</updated>
-  <id>http://tmyam.github.io/</id>
+  <link href="https://tmyam.github.io/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-07T17:44:11+08:00</updated>
+  <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[cocoa binding]]></title>
-    <link href="http://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
+    <link href="https://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
     <updated>2016-04-08T10:17:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
+    <id>https://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
@@ -120,7 +120,7 @@
 
 
 <p>界面绑定，如下图  <br/>
-<img src="http://tmyam.github.io/images/2016/04/08/bind_selectindex.png" alt="temp" />  <br/>
+<img src="https://tmyam.github.io/images/2016/04/08/bind_selectindex.png" alt="temp" />  <br/>
 第一个红线标注的是选择绑定的对象，第二个标注的是绑定对象的属性，即<code>index</code>。
 当然也可以不使用界面绑定，使用代码绑定。</p>
 
@@ -179,7 +179,7 @@
 
 
 <p>在界面上绑定<strong>NSTextField</strong>的<strong>value</strong>。注意勾选红色标注      <br/>
-<img src="http://tmyam.github.io/images/2016/04/08/bind_textfield.png" alt="temp" />   <br/>
+<img src="https://tmyam.github.io/images/2016/04/08/bind_textfield.png" alt="temp" />   <br/>
 当然，这样仅仅只是可以检测文本的输入变化，并不能限制输入的内容。还需要创建一个Formatter继承自系统的NSFormatter，并重写里面的函数。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -332,7 +332,7 @@
 
 
 <p>然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
-<img src="http://tmyam.github.io/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
 
 <h4>2. Value Transformer类型变换</h4>
 
@@ -417,7 +417,7 @@
 
 
 <p>xib里面的绑定设置，如下图：  <br/>
-<img src="http://tmyam.github.io/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
 
 <h2>注意</h2>
 
@@ -439,9 +439,9 @@
   
   <entry>
     <title type="html"><![CDATA[mac app的开机自启动]]></title>
-    <link href="http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
+    <link href="https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
     <updated>2014-06-10T14:15:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
+    <id>https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
@@ -609,7 +609,7 @@
 <h3>1. 添加Helper程序</h3>
 
 <p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
-<img src="http://tmyam.github.io/images/2014/06/10/01.jpg" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/06/10/01.jpg" alt="temp" /></p>
 
 <h3>2. 设置Helper</h3>
 
@@ -617,18 +617,18 @@
 
 <ul>
 <li>修改build Configuration 为 Release 。
-<img src="http://tmyam.github.io/images/2014/06/10/02.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/02.jpg" alt="temp" /></li>
 <li>修改Info.plist文件，使app在运行时不显示到前端。
-<img src="http://tmyam.github.io/images/2014/06/10/03.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/03.jpg" alt="temp" /></li>
 <li>删除MainMenu.xib中的window窗口，  <br/>
 并且删除 AppDelegate.h 中的<code>@property (assign) IBOutlet NSWindow *window;</code>。  <br/>
 这些都是确保app在运行时不显示到前端。
-<img src="http://tmyam.github.io/images/2014/06/10/04.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/04.jpg" alt="temp" /></li>
 <li>修改 Build Settings 的 <strong>Skip Install</strong> 为 YES。
-<img src="http://tmyam.github.io/images/2014/06/10/05.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/05.jpg" alt="temp" /></li>
 <li>设置沙盒环境，证书，描述文件。  <br/>
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
-<img src="http://tmyam.github.io/images/2014/06/10/06.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/06.jpg" alt="temp" /></li>
 </ul>
 
 
@@ -717,25 +717,25 @@
 
 <ul>
 <li>test添加Copy Files 。
-<img src="http://tmyam.github.io/images/2014/06/10/07.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/07.jpg" alt="temp" /></li>
 <li>设置 Copy Files 。Destination为"Wrapper"，Subpath为"Contents/Library/LoginItems"，添加"testHelper.app"如下图。 <br/>
-<img src="http://tmyam.github.io/images/2014/06/10/08.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/08.jpg" alt="temp" /></li>
 <li>设置依赖，如下图。<br/>
-<img src="http://tmyam.github.io/images/2014/06/10/09.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/09.jpg" alt="temp" /></li>
 <li>设置 Build Settings -> &ldquo;Strip Debug Symbols During Copy&rdquo; 为 NO 。
-<img src="http://tmyam.github.io/images/2014/06/10/10.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/10.jpg" alt="temp" /></li>
 <li>设置沙盒环境，证书，描述文件。  <br/>
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
-<img src="http://tmyam.github.io/images/2014/06/10/11.jpg" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/06/10/11.jpg" alt="temp" /></li>
 </ul>
 
 
 <h3>5. 主程序添加代码</h3>
 
 <ul>
-<li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="http://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
+<li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="https://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
 <li><p>添加 ServiceManagement.framework
-<img src="http://tmyam.github.io/images/2014/06/10/12.jpg" alt="temp" /></p></li>
+<img src="https://tmyam.github.io/images/2014/06/10/12.jpg" alt="temp" /></p></li>
 <li><p>创建一个管理文件例如 TMStartAtLogin，负责管理开机自启动状态，并在里面粘贴以下代码。   <br/>
 别忘了 #import &ldquo;StartAtLoginController.h&rdquo;  <br/>
 这里的 Identifier是testHelper的标识符。</p></li>
@@ -786,8 +786,8 @@
 
 <h2>示例</h2>
 
-<p><a href="http://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
-<a href="http://tmyam.github.io/files/test-startatlogin.zip">test示例下载</a></p>
+<p><a href="https://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
+<a href="https://tmyam.github.io/files/test-startatlogin.zip">test示例下载</a></p>
 
 <h3>参考</h3>
 
@@ -798,9 +798,9 @@
   
   <entry>
     <title type="html"><![CDATA[一个客户端设置多个github账号]]></title>
-    <link href="http://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi/"/>
+    <link href="https://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi/"/>
     <updated>2014-05-07T21:48:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi</id>
+    <id>https://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。</p>
@@ -1002,9 +1002,9 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
   
   <entry>
     <title type="html"><![CDATA[iDP续费]]></title>
-    <link href="http://tmyam.github.io/blog/2014/03/25/idpxu-fei/"/>
+    <link href="https://tmyam.github.io/blog/2014/03/25/idpxu-fei/"/>
     <updated>2014-03-25T10:24:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/03/25/idpxu-fei</id>
+    <id>https://tmyam.github.io/blog/2014/03/25/idpxu-fei</id>
     <content type="html"><![CDATA[<p>近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。</p>
 
 <h2>基本流程</h2>
@@ -1018,34 +1018,34 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <!-- more -->   
 
 
-<p><img src="http://tmyam.github.io/images/2014/03/25/01.png" alt="temp" /> <br/>
+<p><img src="https://tmyam.github.io/images/2014/03/25/01.png" alt="temp" /> <br/>
 如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
 
 <h3>2</h3>
 
-<p><img src="http://tmyam.github.io/images/2014/03/25/02.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/25/02.png" alt="temp" /></p>
 
 <h3>3</h3>
 
-<p><img src="http://tmyam.github.io/images/2014/03/25/03.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/25/03.png" alt="temp" /></p>
 
 <h3>4</h3>
 
-<p><img src="http://tmyam.github.io/images/2014/03/25/04.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/25/04.png" alt="temp" /></p>
 
 <h3>5</h3>
 
-<p><img src="http://tmyam.github.io/images/2014/03/25/05.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/25/05.png" alt="temp" /></p>
 
 <h3>6. 申请结束</h3>
 
 <p>提交后，如果成功，会有一个成功的页面。如果失败，会有一个失败的页面。 <br/>
 但是无论成功失败，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图 <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/06.png" alt="temp" /> <br/>
+<img src="https://tmyam.github.io/images/2014/03/25/06.png" alt="temp" /> <br/>
 所以以这个页面判断申请是否提交是不准确的，我就有次遇到了失败页，但这个页面是这样的，以为提交了申请，但是等了一星期也没有扣款。</p>
 
 <p>申请提交成功是会很快收到邮件的，如下图 <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/07.png" alt="temp" /><br/>
+<img src="https://tmyam.github.io/images/2014/03/25/07.png" alt="temp" /><br/>
 所以可以以邮件判断申请是否成功，如果没收到邮件就不要傻等了，再次申请吧。</p>
 
 <h3>7. 等待</h3>
@@ -1056,27 +1056,27 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 
 <p>依次收到的邮件:<br/>
 购买信息  <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/08.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/03/25/08.png" alt="temp" /></p>
 
 <p>发票  <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/09.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/03/25/09.png" alt="temp" /></p>
 
 <p>激活码  <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/10.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/03/25/10.png" alt="temp" /></p>
 
 <h3>8. 激活</h3>
 
 <p>点击邮件中的激活码，会跳转到一个链接，然后在里面输入激活码完成激活。 <br/>
-<img src="http://tmyam.github.io/images/2014/03/25/11.png" alt="temp" /> <br/>
+<img src="https://tmyam.github.io/images/2014/03/25/11.png" alt="temp" /> <br/>
 激活成功后，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图
-<img src="http://tmyam.github.io/images/2014/03/25/12.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/03/25/12.png" alt="temp" /></p>
 
 <h2>遇到的问题</h2>
 
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#99;&#104;&#x69;&#x6e;&#x61;&#x64;&#x65;&#118;&#64;&#97;&#x73;&#105;&#97;&#x2e;&#97;&#112;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#109;">&#99;&#104;&#x69;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#x61;&#x73;&#105;&#97;&#46;&#x61;&#x70;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x63;&#x68;&#105;&#x6e;&#x61;&#x64;&#101;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#46;&#97;&#112;&#x70;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;">&#x63;&#104;&#x69;&#110;&#x61;&#100;&#101;&#x76;&#x40;&#x61;&#x73;&#x69;&#97;&#46;&#x61;&#x70;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -1093,9 +1093,9 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
   
   <entry>
     <title type="html"><![CDATA[iDP申请[转载]]]></title>
-    <link href="http://tmyam.github.io/blog/2014/03/09/idpshen-qing/"/>
+    <link href="https://tmyam.github.io/blog/2014/03/09/idpshen-qing/"/>
     <updated>2014-03-09T20:06:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/03/09/idpshen-qing</id>
+    <id>https://tmyam.github.io/blog/2014/03/09/idpshen-qing</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
 <p>当初我申请idp的一篇详细的文章，不过现在里面的图都挂了，我费了点劲才找回这些图，在这里进行一下还原，希望能帮到需要的人。</p>
@@ -1110,40 +1110,40 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 
 <h5>1</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/01.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/01.png" alt="temp" />
 我是从申请过developer开始的。Apple id和developer太简单了，就不说了，不过填信息也不能乱填，下面说。这张图是登入developer的画面。</p>
 
 <h5>2</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/02.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/02.png" alt="temp" /></p>
 
 <h5>3</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/03.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/03.png" alt="temp" /></p>
 
 <h5>4</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/04.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/04.png" alt="temp" />
 因为已经注册过Apple id和developer了，所以我选的是红圈那项。</p>
 
 <h5>5</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/05.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/05.png" alt="temp" />
 左边是个人，右边是团队。我光杆司令一个，所以选了左边。</p>
 
 <h5>6</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/06.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/06.png" alt="temp" />
 不知是不是cookie过期了，到了这里要重新登录一次。</p>
 
 <h5>7</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/07.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/07.png" alt="temp" />
 这里的信息是信用卡(借记卡可不行)的信息：我(假如叫<strong>王五</strong>)所有名字顺序，除了在银行流留的是中英文<strong>王五</strong>，apple的各种页面上都是英文<strong>Wu Wang</strong>。</p>
 
 <h5>8</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/08.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/08.png" alt="temp" />
 这里奉上英文的地址写法一例： <br/>
 Mailbox 166,Nankai University,94 WeijinRd,Nankai District,Tianjin 300072.  <br/>
 这个页面上  <br/>
@@ -1156,100 +1156,100 @@ Phone: 86 - 411 - 手机号</p>
 
 <h5>9</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/09.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/09.png" alt="temp" /></p>
 
 <h5>10</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/10.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/10.png" alt="temp" />
 上面提到过developer申请时信息不能乱写。这图上面的信息就是从那里映射过来的，你可以看到地址有些出入，不过还好影响不大。各位填写时应尽量保持一致。</p>
 
 <h5>11</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/11.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/11.png" alt="temp" />
 这张表下下来，用PS填写各种信息，大部分是银行信息。</p>
 
 <h5>12</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#x68;&#x69;&#x6e;&#x61;&#100;&#x65;&#118;&#64;&#97;&#x73;&#105;&#97;&#46;&#x61;&#112;&#112;&#x6c;&#101;&#46;&#99;&#x6f;&#x6d;">&#x63;&#104;&#105;&#x6e;&#x61;&#100;&#x65;&#x76;&#x40;&#x61;&#115;&#105;&#97;&#46;&#x61;&#112;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x63;&#104;&#x69;&#x6e;&#97;&#x64;&#101;&#118;&#64;&#97;&#x73;&#x69;&#x61;&#x2e;&#97;&#112;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#105;&#x61;&#x2e;&#97;&#x70;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/13.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/13.png" alt="temp" />
 收到上图邮件后就能进ituesconnect.apple.com了，进contract，tax，and banking，就能看到上图。上面的是可以申请的合同，下面是已经生效的。因为免费app合同不用申请进进来就在下面了。</p>
 
 <h5>14</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/14.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/14.png" alt="temp" /></p>
 
 <h5>15</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/15.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/15.png" alt="temp" /></p>
 
 <h5>16</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/16.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/16.png" alt="temp" />
 红圈子里是需要逐个填写的。</p>
 
 <h5>17</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/17.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/17.png" alt="temp" />
 <strong>contract info</strong>  <br/>
 这里第一次进去会需要创建一个新人。然后高管，财务，技术，科技等等职位，都是我一个人担任。</p>
 
 <h5>18</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/18.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/18.png" alt="temp" />
 <strong>Bank info</strong></p>
 
 <h5>19</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/19.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/19.png" alt="temp" />
 <strong>CNAPS</strong>，应该是叫“联行号”不要跟银行的人说英文，他们不懂。办信用卡的时候问好，95588这种电话问不到。 <br/>
 补充：这里填写的银行号为储蓄卡，千万不能填信用卡的，不然收款都到信用卡里了。 <br/>
 查询CNAPS：<a href="https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp">https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp</a></p>
 
 <h5>20</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/20.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/20.png" alt="temp" />
 这里的信息要写的简洁，要不查不到。</p>
 
 <h5>21</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/21.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/21.png" alt="temp" />
 添加一个账户信息。</p>
 
 <h5>22</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/22.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/22.png" alt="temp" /></p>
 
 <h5>23</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/23.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/23.png" alt="temp" />
 储蓄卡卡号，名字当然是储蓄卡开户名，比如<strong>Wu Wang</strong>。  <br/>
 另外这里收款要选择<strong>USD</strong>，如果选择<strong>RMB</strong>的话，apple打款时是以美元结算的，会多一次汇率转换，白白浪费钱。</p>
 
 <h5>24</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/24.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2014/03/09/24.png" alt="temp" /></p>
 
 <h5>25</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/25.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/25.png" alt="temp" />
 <strong>Tax info</strong>  <br/>
 会有几个问题，照实回答，难度不大。  <br/>
 给自己随便封个号，我的是chairman。</p>
 
 <h5>26</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/26.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/26.png" alt="temp" />
 完事会审核，这个很快，吃顿饭就好了。</p>
 
 <h5>27</h5>
 
-<p><img src="http://tmyam.github.io/images/2014/03/09/27.png" alt="temp" />
+<p><img src="https://tmyam.github.io/images/2014/03/09/27.png" alt="temp" />
 这个事我现在的状态。iAd Network的合同是不小心申请的，其实不用。
 时间有点长了，有些细节我慢慢想，慢慢往上写。写的潦草，大家见谅。</p>
 
@@ -1261,9 +1261,9 @@ Phone: 86 - 411 - 手机号</p>
   
   <entry>
     <title type="html"><![CDATA[Objective-C遍历数组]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu/"/>
     <updated>2014-02-28T11:46:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu</id>
+    <id>https://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu</id>
     <content type="html"><![CDATA[<p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
 
 <h2>常用写法简介</h2>
@@ -1509,9 +1509,9 @@ Phone: 86 - 411 - 手机号</p>
   
   <entry>
     <title type="html"><![CDATA[Objective-C枚举介绍]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao/"/>
     <updated>2014-02-24T15:39:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
+    <id>https://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
     <content type="html"><![CDATA[<p>Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。</p>
 
 <h2>1. 枚举介绍</h2>
@@ -1574,7 +1574,7 @@ Phone: 86 - 411 - 手机号</p>
 <ul>
 <li>这两种写法，将枚举描述为一个类型<em>TMEnumTest</em>。 <br/>
 但是这种写法也有局限性，在作为函数参数时，如果传入NSInteger类型的数据，则需要强制转换，否则会有类型不匹配的警告，所以这种方式也<strong>不推荐</strong>。如下图，
-<img src="http://tmyam.github.io/images/2014/02/24/enum_warn.png" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/02/24/enum_warn.png" alt="temp" /></li>
 </ul>
 
 
@@ -1598,7 +1598,7 @@ Phone: 86 - 411 - 手机号</p>
 <ul>
 <li>这种写法可以指定<em>TMEnumTest</em>的类型，并且作为函数参数时，传入的值不需要进行强制类型转换。 <br/>
 但是这种写法不会检查枚举的正确性，是好是坏需要自己判断，如下图。本人<strong>推荐</strong>这种写法。
-<img src="http://tmyam.github.io/images/2014/02/24/enum_no_check.png" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/02/24/enum_no_check.png" alt="temp" /></li>
 </ul>
 
 
@@ -1634,9 +1634,9 @@ Phone: 86 - 411 - 手机号</p>
 <li><strong>NS_ENUM</strong>和<strong>NS_OPTIONS</strong>本质是一样的，仅仅从字面上来区分用途。<strong>NS_ENUM</strong>是通用情况，<strong>NS_OPTIONS</strong>一般用来定义位枚举。
 <a href="http://blog.csdn.net/annkie/article/details/9877643">参考链接</a></li>
 <li>这种写法同样作为函数参数时，传入的值不需要进行强制类型转换。但是也同样不会检查枚举的正确性，和 <strong>老式enum写法</strong> 一样，如下图。
-<img src="http://tmyam.github.io/images/2014/02/24/enum_no_check.png" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/02/24/enum_no_check.png" alt="temp" /></li>
 <li>但是不同的是，<strong>新式enum写法</strong> 在使用<em>switch</em>时，会进行值的检测，如果枚举中无此值，则会弹出警告，如下图。这种方式见仁见智了。本人<strong>推荐</strong>这种写法。
-<img src="http://tmyam.github.io/images/2014/02/24/enum_switch.png" alt="temp" /></li>
+<img src="https://tmyam.github.io/images/2014/02/24/enum_switch.png" alt="temp" /></li>
 </ul>
 
 
@@ -1774,9 +1774,9 @@ Phone: 86 - 411 - 手机号</p>
   
   <entry>
     <title type="html"><![CDATA[Mac app，创建基于文档的app]]></title>
-    <link href="http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
+    <link href="https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
     <updated>2014-02-20T14:24:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
+    <id>https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
     <content type="html"><![CDATA[<h2>简介</h2>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
@@ -1787,7 +1787,7 @@ Phone: 86 - 411 - 手机号</p>
 <h2>创建</h2>
 
 <p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
-<img src="http://tmyam.github.io/images/2014/02/20/create.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2014/02/20/create.png" alt="temp" /></p>
 
 <p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
 
@@ -1800,7 +1800,7 @@ Phone: 86 - 411 - 手机号</p>
 <ul>
 <li>导入文档图标（上步创建的图标）</li>
 <li>在工程的<em>Info</em>里进行设置，如下图。 <br/>
-<img src="http://tmyam.github.io/images/2014/02/20/info.png" alt="temp" /> <br/>
+<img src="https://tmyam.github.io/images/2014/02/20/info.png" alt="temp" /> <br/>
 <strong>Document Types</strong>设置文档关联的文件，<em>Identifier</em>为文档标示。 <br/>
 <strong>Exported UTIs</strong>为具体的文档设置，<em>Identifier</em>必须和<strong>Document Types</strong>的一致，这里面可以设置图标，扩展名等等。 <br/>
 注意图标必须设置在<strong>Document Types</strong>里面，运行之后就会立即生效。 <br/>
@@ -1875,15 +1875,15 @@ Phone: 86 - 411 - 手机号</p>
 
 <h2>示例</h2>
 
-<p><a href="http://tmyam.github.io/files/TestDocument.zip">TestDocument示例下载</a></p>
+<p><a href="https://tmyam.github.io/files/TestDocument.zip">TestDocument示例下载</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[mac app完整的发布流程]]></title>
-    <link href="http://tmyam.github.io/blog/2013/11/17/mac-app-release/"/>
+    <link href="https://tmyam.github.io/blog/2013/11/17/mac-app-release/"/>
     <updated>2013-11-17T10:45:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/11/17/mac-app-release</id>
+    <id>https://tmyam.github.io/blog/2013/11/17/mac-app-release</id>
     <content type="html"><![CDATA[<p>发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。</p>
 
 <h2>前提条件</h2>
@@ -1902,7 +1902,7 @@ Phone: 86 - 411 - 手机号</p>
 
 
 <p>通常情况下我们会创建如 <code>com.company.*</code> 这样的通用型APP ID，可以适用于大部分程序,但是对于需要推送功能，以及app内含有其他app的程序，这样的ID就不行了。保险起见还是创建单独的APP ID。
-<img src="http://tmyam.github.io/images/2013/11/18/new_appid.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2013/11/18/new_appid.png" alt="temp" /></p>
 
 <ul>
 <li>点击<code>+</code> 按钮，进入创建页面。 <br/>
@@ -1929,7 +1929,7 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<p><img src="http://tmyam.github.io/images/2013/11/18/add_new_app.png" alt="temp" />  <br/>
+<p><img src="https://tmyam.github.io/images/2013/11/18/add_new_app.png" alt="temp" />  <br/>
 然后是填写<strong>App Information</strong></p>
 
 <ul>
@@ -1947,7 +1947,7 @@ Phone: 86 - 411 - 手机号</p>
  <em>Version Number</em>  版本号 <br/>
  <em>Copyright</em>  版权，填写<code>2014 company Inc</code> 就可以了。</p></li>
 <li><p><strong>Category</strong>（app种类）<br/>
-<img src="http://tmyam.github.io/images/2013/11/18/category.png" alt="temp" /><br/>
+<img src="https://tmyam.github.io/images/2013/11/18/category.png" alt="temp" /><br/>
 选择app所属的两种类型。</p></li>
 <li><p><strong>Rating</strong>（分级） <br/>
 一般根据情况选择，没有就全选<em>None</em>。</p></li>
@@ -1973,7 +1973,7 @@ Phone: 86 - 411 - 手机号</p>
 <li><p>点击 <strong>Certificates, Identifiers &amp; Profiles</strong> 进入管理界面，点击<em>Identifiers</em> -> <em>Provisioning Profiles</em> -> <em>Distribution</em>, 点击 <code>+</code> 按钮。</p></li>
 <li><p>根据提示一步一步前进，<em>Profile Name:</em>可以使用 <code>AppNameProfile</code>的样式，最后点击生成。</p></li>
 <li><p><del>下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书及对应的描述文件。如下图
-<img src="http://tmyam.github.io/images/2013/11/18/code_sign.png" alt="temp" /></del></p></li>
+<img src="https://tmyam.github.io/images/2013/11/18/code_sign.png" alt="temp" /></del></p></li>
 <li><p>由于系统更新，现在描述文件的选择改变了地方，这里依然下载生成的描述文件，右键用Xcode打开，然后在工程中选择 <strong>3rd Party Mac Developer Application:&hellip;</strong> 的证书，描述的地方选择<strong>Automatic</strong>。</p></li>
 </ul>
 
@@ -1996,7 +1996,7 @@ Phone: 86 - 411 - 手机号</p>
 这步是最容易发现错误的地方，错误的种类也多种多样，根据实际的错误自己修改吧。</p></li>
 <li><p><del>如果没有错误，完成之后点击<code>Distribute...</code>按钮，等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</del></p></li>
 <li><p>这里现在变成了<code>Upload to App Store</code>,并且在弹出的选择框中选择描述文件，如下图
-<img src="http://tmyam.github.io/images/2015/03/09/upload_app.png" alt="temp" />
+<img src="https://tmyam.github.io/images/2015/03/09/upload_app.png" alt="temp" />
 等待一段漫长的上传之后，回到<strong>iTunes Connect</strong>，状态变成了 <strong>Upload Received</strong>。</p></li>
 <li><p>等待一段时间，机器会进行初步审核，成功后状态会变成 <strong>Waiting For Review</strong> ，失败的话有具体的提示。</p></li>
 <li><p>之后就是等待人工审核了，这里只有等了，一般2~10天不等，升级会快一些。如果想取消发布，可以点击 <strong>Binary Details</strong> ，在新页面点击右上角的 <code>Reject This Binary</code>按钮。</p></li>
@@ -2016,9 +2016,9 @@ Phone: 86 - 411 - 手机号</p>
   
   <entry>
     <title type="html"><![CDATA[mac app开发中添加第三方framework]]></title>
-    <link href="http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/"/>
+    <link href="https://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework/"/>
     <updated>2013-11-05T15:23:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework</id>
+    <id>https://tmyam.github.io/blog/2013/11/05/mac-develop-add-framework</id>
     <content type="html"><![CDATA[<p>环境: <code>(mac 版本 10.9 ) ( Xcode 5.0 )</code></p>
 
 <hr />
@@ -2037,11 +2037,11 @@ Phone: 86 - 411 - 手机号</p>
 
 <ul>
 <li><p>在工程的 <em>Build Phases</em> 栏点击菜单，如下图，添加 <em>Copy Files</em><br/>
-<img src="http://tmyam.github.io/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
+<img src="https://tmyam.github.io/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
 <li><p>选择<code>Frameworks</code>,点击<code>+</code>号，然后找到存放第三方framework的文件夹，选择要添加的framework，如下图<br/>
-<img src="http://tmyam.github.io/images/2013/11/05/add_framework.png" alt="temp" /></p></li>
+<img src="https://tmyam.github.io/images/2013/11/05/add_framework.png" alt="temp" /></p></li>
 <li><p>展开<em>Link Binary With Libraries</em> 点击<code>+</code>号，同上一步一样，找到找到存放第三方framework的文件夹，选择要使用的framework，如下图<br/>
-<img src="http://tmyam.github.io/images/2013/11/05/use_framework.png" alt="temp" /></p></li>
+<img src="https://tmyam.github.io/images/2013/11/05/use_framework.png" alt="temp" /></p></li>
 </ul>
 
 
@@ -2056,7 +2056,7 @@ Phone: 86 - 411 - 手机号</p>
 在Xcode的 <em>Build Settings</em> 里找到 <em>Framework Search Paths</em> 栏，修改参数为 <br/>
 $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件夹</code> <br/>
 例如：
-<img src="http://tmyam.github.io/images/2013/11/05/change_path_framework.png" alt="temp" />
+<img src="https://tmyam.github.io/images/2013/11/05/change_path_framework.png" alt="temp" />
 这样就算移动工程文件夹，也不会报错了。</li>
 </ul>
 
@@ -2071,7 +2071,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 
 <ul>
 <li><p>在工程的 <em>Build Phases</em> 栏点击菜单，入最上面的图里，这次添加 <em>Run Script</em><br/>
-<img src="http://tmyam.github.io/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
+<img src="https://tmyam.github.io/images/2013/11/05/add_copy_files.png" alt="temp" /></p></li>
 <li><p>贴入如下代码</p></li>
 </ul>
 
@@ -2097,7 +2097,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 
 <p>
 如下图 <br/>
-<img src="http://tmyam.github.io/images/2013/11/05/clean_framework.png" alt="temp" /></p>
+<img src="https://tmyam.github.io/images/2013/11/05/clean_framework.png" alt="temp" /></p>
 
 <h4>编译问题</h4>
 
@@ -2114,9 +2114,9 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
   
   <entry>
     <title type="html"><![CDATA[Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题]]></title>
-    <link href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
+    <link href="https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
     <updated>2013-11-05T10:05:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
+    <id>https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
     <content type="html"><![CDATA[<h2>前因</h2>
 
 <p>最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。
@@ -2155,9 +2155,9 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 
 <ul>
 <li>修改很简单，点击<em>MainMenu.xib</em>，找到如下图的位置，点击 <code>Base</code><br/>
-<img src="http://tmyam.github.io/images/2013/11/05/xib_change.png" alt="temp" /><br/>
+<img src="https://tmyam.github.io/images/2013/11/05/xib_change.png" alt="temp" /><br/>
 之后弹出对话框，如下图，点击 <code>Move</code>
-<img src="http://tmyam.github.io/images/2013/11/05/xib_move.png" alt="temp" /> <br/>
+<img src="https://tmyam.github.io/images/2013/11/05/xib_move.png" alt="temp" /> <br/>
 工程中的<code>Base.lproj</code>文件夹已经没有用了，可以选择删除。</li>
 </ul>
 
@@ -2168,9 +2168,9 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[为博客添加分类和评论功能]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
     <updated>2013-10-09T15:03:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
+    <id>https://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
     <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
 
 <ul>
@@ -2232,14 +2232,14 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </ul>
 
 
-<p><img src="http://tmyam.github.io/images/2013/10/09/comment_dashboard.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2013/10/09/comment_dashboard.png" alt="temp" /></p>
 
 <ul>
 <li>然后点击下图中的<code>add</code>按钮</li>
 </ul>
 
 
-<p><img src="http://tmyam.github.io/images/2013/10/09/comment_add.png" alt="temp" /></p>
+<p><img src="https://tmyam.github.io/images/2013/10/09/comment_add.png" alt="temp" /></p>
 
 <ul>
 <li><p>之后根据提示添加信息，一步一步直到完成。</p></li>
@@ -2276,9 +2276,9 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
   
   <entry>
     <title type="html"><![CDATA[mac下编写blog]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/09/write-blog/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/09/write-blog/"/>
     <updated>2013-10-09T10:52:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/09/write-blog</id>
+    <id>https://tmyam.github.io/blog/2013/10/09/write-blog</id>
     <content type="html"><![CDATA[<h2>1.编写</h2>
 
 <ul>
@@ -2306,10 +2306,10 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 +表示比当前字号大，-表示比当前字号小。</p></li>
 <li><p>图片<br/>
 如果要在文章中使用图片，直接copy到<strong>/source/images</strong>目录下即可。在文章中可以直接使用<code>![temp](/images/temp.png)</code>。也可以选一些大的图床站点，使用链接的方式。<br/>
-例如：<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="temp" /> <br/>
+例如：<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="temp" /> <br/>
 如果需要调整图片大小，则需要使用html。    <br/>
-<code>&lt;img src="http://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
-<img src="http://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
+<code>&lt;img src="https://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
+<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
 <li><p>首页缩略显示<br/>
 在首页展示文章的一部分内容，而不是显示全部。<br/>
 只需要在文章的markdown文件中，在需要显示在首页的文字后面添加<code>&lt;!-- more --&gt;</code>就行了。</p></li>
@@ -2432,9 +2432,9 @@ objc: Objective-C</li>
   
   <entry>
     <title type="html"><![CDATA[mac下使用github+Octopress搭建博客]]></title>
-    <link href="http://tmyam.github.io/blog/2013/10/08/the-first/"/>
+    <link href="https://tmyam.github.io/blog/2013/10/08/the-first/"/>
     <updated>2013-10-08T18:09:00+08:00</updated>
-    <id>http://tmyam.github.io/blog/2013/10/08/the-first</id>
+    <id>https://tmyam.github.io/blog/2013/10/08/the-first</id>
     <content type="html"><![CDATA[<p>我的第一篇博文 <br/>
 <code>(mac 版本 10.8.5)</code></p>
 
