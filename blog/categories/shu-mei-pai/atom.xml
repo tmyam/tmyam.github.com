@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 树莓派 | tmyam's blog]]></title>
+  <link href="https://tmyam.github.io/blog/categories/shu-mei-pai/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-08T15:02:53+08:00</updated>
+  <id>https://tmyam.github.io/</id>
+  <author>
+    <name><![CDATA[tmyam]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[初识树莓派]]></title>
+    <link href="https://tmyam.github.io/blog/2017/03/07/chu-shi-shu-mei-pai/"/>
+    <updated>2017-03-07T20:39:37+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/03/07/chu-shi-shu-mei-pai</id>
+    <content type="html"><![CDATA[<p>环境: <code>(Mac 版本 10.11 )</code></p>
+
+<h2>前言</h2>
+
+<p>现在的计算机硬件已经很发达了，成本也在不断的降低。树莓派就是一个价格低廉的单板计算机，它拥有计算机的功能，还有许多扩展接口，无论是学习还是DIY都是不错的选择。到了树莓派3b，性能也有了很大的提升。
+学习Linux有很多种方式，虚拟机无疑是一种简单的方式，使用树莓派是另外一种方式，而且可以任意折腾，还有许多虚拟机办不到的事（比如集群）。由于树莓派使用的是ARM架构的CPU，Windows系统是装不了（虽然有Win10 IOT，但是基本没啥用）。尽管可以安装Linux，但是和桌面版相比，系统的支持还是弱了点。
+我选择树莓派，一是看中了它可以安装完整的Linux系统，无论是学习还是教别人都说不错的选择，二是看中了它的低功耗，据网友估算树莓派3b的功耗不连屏幕，U盘大概在2.5w左右，三是看中了它的DIY功能，谁小时候没有想要动手DIY的心情，只是那时候没有这个条件，现在年龄大了又玩不动了，如果有好的想法还是可以玩玩，毕竟设备就在手上。</p>
+
+<!-- more -->
+
+
+<p> <img src="/images/2017/03/08/raspbianpi3b.jpg" alt="temp" /></p>
+
+<h2>制作系统</h2>
+
+<ul>
+<li><p>下载系统包 <a href="https://www.raspberrypi.org/downloads/">(下载地址)</a>  ,下载完成后解压缩，得到 <code>2017-03-02-raspbian-jessie-lite.img</code>系统镜像文件。
+这里使用的镜像是 <code>2017-03-02-raspbian-jessie-lite</code>版本，lite是精简版，没有GUI图形界面，可以更省空间，也更省内存。</p></li>
+<li><p>制作镜像
+以下步骤适用于Mac OS X:
+1、打开终端 <code>cd</code> 到<code>2017-03-02-raspbian-jessie-lite.img</code>镜像所在目录
+2、插入你的TF卡，运行 <code>df –h</code> 会发现多了一个<strong>/dev/disk2s1</strong>的设备(disk2s1不同的机器名称可能不同)
+3、卸载TF卡，输入<code>sudo diskutil unmount /dev/disk2s1</code>
+4、写入镜像：
+输入 <code>sudo dd bs=4m if=2017-03-02-raspbian-jessie-lite.img of=/dev/rdisk2</code>
+这里的<strong>rdisk2</strong>是根据<strong>disk2s1</strong>来的，根据自己的数字修改。
+5、写入的过程需要一点时间，大概4分钟左右。当dd完成了它的工作以后，将TF卡安全移除。可以输入<code>diskutil unmountdisk /dev/disk2</code>来移除。</p></li>
+</ul>
+
+
+<h2>修改密码</h2>
+
+<ul>
+<li>经过上面的步骤系统已经写进了卡里，但是还无法直接应ssh登录。因为树莓派2016-11-25更新版本时，ssh默认关闭了。
+要使用ssh，则需要在TF卡<strong>/root</strong>目录下新建一个ssh文件。
+电脑上插上TF卡</li>
+</ul>
+
+
+<pre><code class="sh ">cd /volumes/boot
+sudo touch ssh
+</code></pre>
+
+<p>这样，树莓派开机时默认启动ssh。</p>
+
+<ul>
+<li>准备路由器，网线，将树莓派接入路由器，查看路由器中树莓派的IP，然后使用</li>
+</ul>
+
+
+<pre><code class="sh ">ssh pi@192.168.1.111
+</code></pre>
+
+<p>登录，默认密码为<code>raspberry</code>。</p>
+
+<ul>
+<li>修改pi密码</li>
+</ul>
+
+
+<pre><code class="sh">sudo passwd pi
+</code></pre>
+
+<p>重新开启root账号，可由pi用户登录后，在终端执行</p>
+
+<pre><code class="sh">sudo passwd root
+</code></pre>
+
+<p>执行此命令后系统会提示输入两遍的root密码，输入你想设的密码即可，然后在执行解锁root账户。</p>
+
+<pre><code class="sh">sudo passwd --unlock root
+</code></pre>
+
+<ul>
+<li>切换用户</li>
+</ul>
+
+
+<pre><code class="sh">su root
+su pi
+</code></pre>
+
+<h2>配置网络</h2>
+
+<ul>
+<li>这里打算让树莓派作为服务器使用，所以要配置静态IP，为了携带方便，还要满足这些条件。 <br/>
+1、没有WIFI时，插上网线可以连接，有线网卡地址为静态IP。 <br/>
+2、没插网线，有WIFI时，连接WIFI，WIFI网卡地址为静态IP。 <br/>
+3、多个WIFI信号时，优先连接优先级高的信号。</li>
+<li>编辑网络配置文件</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano /etc/network/interfaces
+</code></pre>
+
+<p>我的初始显示是这样的</p>
+
+<pre><code class="text">auto lo
+iface lo inet loopback
+
+iface eth0 inet manual
+
+allow-hotplug wlan0
+iface wlan0 inet manual
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+allow-hotplug wlan1
+iface wlan1 inet manual
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre>
+
+<p>这里进行修改：</p>
+
+<pre><code class="text">auto lo
+iface lo inet loopback
+
+#auto eth0
+iface eth0 inet static      # 使用静态IP
+address 192.168.1.200       # 有线网卡的静态IP
+netmask 255.255.255.0       # 有线网卡的子网掩码
+gateway 192.168.1.1         # 有线网卡的网关
+#dns-nameservers 192.168.1.1
+
+auto wlan0                  # 自动连接WIFI
+allow-hotplug wlan0         # WIFI允许热插拔
+iface wlan0 inet static     # 使用静态IP
+address 192.168.1.201       # WIFI网卡的静态IP
+netmask 255.255.255.0       # WIFI网卡的子网掩码
+gateway 192.168.1.1         # WIFI网卡的网关
+#dns-nameservers 192.168.1.1
+#wap-essid not-telling-you
+#wap-psk not telling-you-this-either
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre>
+
+<p>这里 注释掉auto eth0，是因为它会导致树莓派开机时等待有线网卡动态分配IP，但实际上你的有线网口并没有连接到路由器，这里会让内核等待更长的时间，从而拖慢开机速度。</p>
+
+<ul>
+<li>添加WIFI信息</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+</code></pre>
+
+<p>修改为</p>
+
+<pre><code class="text">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+ ssid="TP-Link1234"     # 信号名
+ psk="xxxx"             # 密码
+ priority=5             # 优先级
+}
+
+network={
+ ssid="Tenda_1234"
+ psk="xxxx"
+ priority=1
+}
+</code></pre>
+
+<p>上面的信号名，密码，优先级均需要根据自己的情况进行更改。</p>
+
+<ul>
+<li>重启</li>
+</ul>
+
+
+<pre><code class="sh ">sudo reboot
+</code></pre>
+
+<p>ifconfig 查看各网卡信息
+iwconfig 查看当前联网的信息
+<strong>注意：</strong>每次切换网络（有线变无线，无线变有线）均需要重新启动。</p>
+
+<h2>安装vim</h2>
+
+<pre><code class="sh">sudo apt-get update             # 更新软件源列表
+sudo apt-get upgrade            # 更新系统 
+sudo apt-get remove vim-common  # 删除vim   
+sudo apt-get install vim        #安装vim 
+</code></pre>
+
+<h2>安装中文字体</h2>
+
+<p>树莓派系统默认不支持中文，需要自己安装</p>
+
+<pre><code class="sh">sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
+</code></pre>
+
+<h2>备份系统</h2>
+
+<p>我想大部分人都不想折腾同样的东西吧，有备无患。</p>
+
+<ul>
+<li>Windows系统下官方推荐的工具 Win32DiskImager <a href="http://sqdownb.onlinedown.net/down/Win32DiskImager-0.9.5-binary.zip">下载地址</a></li>
+<li>在Windows系统下插上你的TF卡，新建一个文本，文件扩展名改为<code>.img</code>。</li>
+<li>打开win32Diskimager</li>
+<li>Image File 选择刚才你创建的.img文件路径</li>
+<li>Device 选择你的TF卡盘符</li>
+<li>然后点Read</li>
+</ul>
+
+
+<p><br/></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.jianshu.com/p/c0b589b380a1">http://www.jianshu.com/p/c0b589b380a1</a></p>
+
+<p><a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a></p>
+
+<p><a href="http://blog.csdn.net/shaopengf/article/details/52411926">http://blog.csdn.net/shaopengf/article/details/52411926</a></p>
+
+<p><a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://tmyam.github.io/blog/2017/03/07/chu-shi-shu-mei-pai/</loc>
+<lastmod>2017-03-07T20:39:37+08:00</lastmod>
+</url>
+<url>
 <loc>https://tmyam.github.io/blog/2016/04/08/cocoa-binding/</loc>
 <lastmod>2016-04-08T10:17:00+08:00</lastmod>
 </url>
@@ -79,6 +83,12 @@
 </url>
 <url>
 <loc>https://tmyam.github.io/blog/categories/objective-c/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/shu-mei-pai/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/posts/2/</loc>
 </url>
 <url>
 <loc>https://tmyam.github.io/mac/Icouse/help/index.html</loc>
