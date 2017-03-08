@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-08T15:21:10+08:00</updated>
+  <updated>2017-03-08T15:24:14+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -172,10 +172,7 @@
 例如：<img src="/images/2013/10/09/temp.png" alt="temp" /> <br/>
 如果需要调整图片大小，则可以使用html。    <br/>
 <code>&lt;img src="https://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
-<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/> <br/>
-或者使用<code>![temp -w100](/images/temp.png)</code> <br/>
-<img src="/images/temp.png" alt="temp2-w100" /> <br/>
-<img src="http://zh.mweb.im/asset/img/set-up-git.gif" alt="GitHub set up-w140" /></p></li>
+<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
 <li><p>首页缩略显示<br/>
 在首页展示文章的一部分内容，而不是显示全部。<br/>
 只需要在文章的markdown文件中，在需要显示在首页的文字后面添加<code>&lt;!-- more --&gt;</code>就行了。</p></li>
