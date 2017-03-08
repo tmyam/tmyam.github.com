@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: 树莓派 | tmyam's blog]]></title>
-  <link href="https://tmyam.github.io/blog/categories/shu-mei-pai/atom.xml" rel="self"/>
+  <title><![CDATA[Category: linux | tmyam's blog]]></title>
+  <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
   <updated>2017-03-08T21:45:27+08:00</updated>
   <id>https://tmyam.github.io/</id>
