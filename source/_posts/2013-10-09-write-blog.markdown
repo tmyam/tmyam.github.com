@@ -25,13 +25,17 @@ rake new_post['article name']
 `<font size=+2>大2号字</font>`&nbsp;&nbsp;&nbsp;&nbsp; <font size=+2>大2号字</font>    
 +表示比当前字号大，-表示比当前字号小。
 
+* 段落缩进
+半方大的空白`&ensp;`或`&#8194;`   
+全方大的空白`&emsp;`或`&#8195;`   
+空白格`&nbsp;`或`&#160;`
 
 * 图片  
 如果要在文章中使用图片，直接copy到**/source/images**目录下即可。在文章中可以直接使用`![temp](/images/temp.png)`。也可以选一些大的图床站点，使用链接的方式。  
 例如：![temp](/images/2013/10/09/temp.png)   
-如果需要调整图片大小，则需要使用html。      
+如果需要调整图片大小，则可以使用html。      
 `<img src="/images/temp.png" alt="faild" width="100"/>`   
-<img src="/images/2013/10/09/temp.png" alt="faild" width="100"/>
+<img src="/images/2013/10/09/temp.png" alt="faild" width="100"/>   
 
 * 首页缩略显示  
 在首页展示文章的一部分内容，而不是显示全部。  

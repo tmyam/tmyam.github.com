@@ -4,7 +4,7 @@ title: "Mac app，创建基于文档的app"
 date: 2014-02-20 14:24
 comments: true
 disqus: false
-categories: mac_develop
+categories: Mac-develop
 ---
 
 ## 简介

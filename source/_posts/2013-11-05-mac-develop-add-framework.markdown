@@ -4,9 +4,9 @@ title: "mac app开发中添加第三方framework"
 date: 2013-11-05 15:23
 comments: true
 disqus: false
-categories: mac_develop
+categories: Mac-develop
 ---
-环境: `(mac 版本 10.9 ) ( Xcode 5.0 )`  
+环境: `(Mac 版本 10.9 ) ( Xcode 5.0 )`  
 ***
 <br/>
 ####步骤很简单，但是总是忘记，所以在这里做个记录。
@@ -69,3 +69,4 @@ rm -rf */Versions/*/Resources/*/Contents/PrivateHeaders
 ***
 <br/>
 **另外，由于framework中含有文件夹的快捷方式，在使用svn等版本管理软件时，新checkout的framework中的快捷方式会丢失，虽然编译运行没有问题，但是提交到mac appstore时无法通过，所以需要注意做压缩备份。**
+

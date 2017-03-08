@@ -4,7 +4,7 @@ title: "cocoa binding"
 date: 2016-04-08 10:17
 comments: true
 disqus: false
-categories: mac_develop
+categories: Mac-develop
 ---
 ## 前言
 cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:    

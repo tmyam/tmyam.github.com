@@ -4,7 +4,7 @@ title: "mac app完整的发布流程"
 date: 2013-11-17 10:45
 comments: true
 disqus: false
-categories: Develop_prepare
+categories: Mac-develop 
 ---
 发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。
 
@@ -120,3 +120,5 @@ categories: Develop_prepare
 ###更新
 * 2016-03-09 第一次更新，环境: `(mac 版本 10.11.3 ) ( Xcode 7.2.1 )`
   
+
+

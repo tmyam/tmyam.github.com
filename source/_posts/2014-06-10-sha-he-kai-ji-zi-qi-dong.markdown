@@ -4,7 +4,7 @@ title: "mac app的开机自启动"
 date: 2014-06-10 14:15
 comments: true
 disqus: false
-categories: mac_develop
+categories: Mac-develop
 ---
 ## 前言
 在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。

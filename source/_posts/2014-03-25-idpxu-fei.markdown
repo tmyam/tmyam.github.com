@@ -4,7 +4,7 @@ title: "iDP续费"
 date: 2014-03-25 10:24
 comments: true
 disqus: false
-categories: Develop_prepare
+categories: Mac-develop iOS-develop
 ---
 近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。
 
@@ -69,3 +69,4 @@ categories: Develop_prepare
 
 [Member Center]:https://developer.apple.com/membercenter/index.action
 [Programs & Add-ons]: https://developer.apple.com/membercenter/index.action#progSummary
+

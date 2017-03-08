@@ -21,23 +21,23 @@ $solarized: light;
 /* If you want to tweak the Solarized colors you can do that here */
 //$base03:          #002b36; //darkest blue
 //$base02:          #073642; //dark blue
-//$base01:          #586e75; //darkest gray
+$base01:          #667B83; //darkest gray
 //$base00:          #657b83; //dark gray
 //$base0:           #839496; //medium gray
-//$base1:           #93a1a1; //medium light gray
-//$base2:           #eee8d5; //cream
-//$base3:           #fdf6e3; //white
+$base1:           #667B83; //medium light gray  //下标
+$base2:           #CBCBCB; //cream
+$base3:           #F6F6F6; //white
 //$solar-yellow:    #b58900;
-//$solar-orange:    #cb4b16;
-//$solar-red:       #dc322f;
-//$solar-magenta:   #d33682;
-//$solar-violet:    #6c71c4;
-//$solar-blue:      #268bd2;
-//$solar-cyan:      #2aa198;
-//$solar-green:     #859900;
+$solar-orange:    #F4990F;
+$solar-red:       #E83729;
+$solar-magenta:   #39C0C5; //#EB41CE;
+$solar-violet:    #2891DB; //#7746B4;
+$solar-blue:      #7746B4; //#2891DB;
+$solar-cyan:      #EB41CE; //#39C0C5;
+$solar-green:     #008A13;
 
 
 /* Non highlighted code colors */
 //$pre-bg: $base03;
-//$pre-border: darken($base02, 5);
+$pre-border: $base2;
 //$pre-color: $base1;
