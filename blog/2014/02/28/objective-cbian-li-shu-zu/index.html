@@ -71,18 +71,6 @@ function sethash(){
 window.onload=sethash;
 </script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-45438557-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
 
 </head>
 
@@ -99,15 +87,13 @@ window.onload=sethash;
   <li><a href="" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
-  <!--
-
--->
-<!-- site search -->
-<form action="" method="get">
+  
+<form action="https://tmyam.github.io" method="get">
   <fieldset role="search">
-    <input class="search" type="text" name="q" results="0" placeholder="搜索"/>
+    <input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech />
   </fieldset>
 </form>
+  
 <ul class="main-navigation">
   <li><a href="/">博客</a></li>
   <li><a href="/blog/archives/">归档</a></li>
@@ -530,7 +516,7 @@ window.onload=sethash;
   <footer role="contentinfo"><p>
   Copyright &copy; 2017 - tmyam -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">tmyam</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">tmyam</a></span>   
   <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261455210'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261455210%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 </p>
 </footer>
