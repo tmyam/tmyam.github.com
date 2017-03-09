@@ -31,17 +31,17 @@ ssh-keygen -t rsa -C "two@126.com"  # 之后会提示输入文件名
 * [github]添加公钥 id_rsa.pub , id_rsa_two.pub   
 分别登陆*one*,*two*的账号，在 `Account Settings` 的 `SSH Keys` 里，点 `Add SSH Keys` ，将公钥(.pub文件)中的内容粘贴到”Key”中，并输入”Title”.
 
-* 添加 ssh key   
+* 添加 ssh key
+``` sh
+ssh-add -K ~/.ssh/id_rsa        # 使用-K可以将私钥添加到钥匙串，不用每次开机后还要再次输入这条命令了
+ssh-add -K ~/.ssh/id_rsa_two
 ```
-ssh-add ~/.ssh/id_rsa
-ssh-add ~/.ssh/id_rsa_two
-```
-可以在添加前使用下面命令删除所有的key
-``` 
+可以在添加前使用下面命令删除所有的key   
+``` sh
 ssh-add -D
 ```
 最后可以通过下面命令，查看key的设置
-```
+``` sh
 ssh-add -l
 ```
 ## 修改ssh config文件
@@ -120,3 +120,4 @@ git config --global push.default simple
 
 
 [github]: https://github.com
+

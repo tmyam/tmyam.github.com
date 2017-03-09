@@ -66,8 +66,11 @@ disqus作为国外的评论系统，可用的登录基本都被墙了，所以�
 
 * 到 [多说](http://duoshuo.com) 关联个账号,然后点击首页的`我要安装`,填写信息。
 
-* [参考链接](http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html) 
+* 具体安装 [参考链接](http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)  
+**注意：** 为了让多说支持https，添加**source/_includes/post/duoshuo.html**文件时，需要将`ds.src = 'http://static.duoshuo.com/embed.js';`这句改为`ds.src = 'https://static.duoshuo.com/embed.js';`   
+这样，多说就同时支持https了。
 
 <br/>
 ###参考  
 <http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html>
+

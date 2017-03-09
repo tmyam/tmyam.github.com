@@ -6,7 +6,7 @@ url: https://tmyam.github.io
 title: tmyam's blog
 subtitle: time run off...
 author: tmyam
-simple_search: https://google.com/search
+simple_search: /search/
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -98,7 +98,9 @@ duoshuo_comments: true
 duoshuo_short_name: tmyam
 
 # Google Analytics
-google_analytics_tracking_id: UA-45438557-1
+# google_analytics_tracking_id: UA-45438557-1
 
 # Facebook Like
 facebook_like: false
+
+tapir_token: 58c143be14ad6677f5a884d4
