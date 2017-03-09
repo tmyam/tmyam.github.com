@@ -78,7 +78,7 @@ window.onload=sethash;
   
 </ul>
   
-<form action="https://tmyam.github.io" method="get">
+<form action="/search" method="get">
   <fieldset role="search">
     <input class="search" name="query" id="query" type="text" placeholder="Search..." x-webkit-speech />
     <input id="btnSubmit" value="search" type="submit">
@@ -94,23 +94,7 @@ window.onload=sethash;
 </nav>
   <div id="main">
     <div id="content">
-        <h1 class="entry-title"><center>搜索结果</center></h1>
-  <div id="search_loading" style="margin: 40px 0">
-      <center><img src="/images/loading.gif"></center>
-  </div>
-
-  <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
-  <div id="search_results" style="display:none">
-  <br>
-  </div>
-  <script>
-       $('#search_results').tapir({
-           'token': 'your_token',
-           'complete' : function() { document.getElementById('search_loading').style.display="none"; }
-       });
-  </script>
-  
-<div class="blog-index">
+      <div class="blog-index">
   
   
   
