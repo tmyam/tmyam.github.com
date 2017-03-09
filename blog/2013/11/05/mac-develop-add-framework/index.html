@@ -290,7 +290,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
   (function() {
     var ds = document.createElement('script');
     ds.type = 'text/javascript';ds.async = true;
-    ds.src = 'https://static.duoshuo.com/embed.js';
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
     ds.charset = 'UTF-8';
     (document.getElementsByTagName('head')[0] 
     || document.getElementsByTagName('body')[0]).appendChild(ds);
