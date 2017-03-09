@@ -118,7 +118,8 @@ window.onload=sethash;
 </div>
 <script>
          $('#search_results').tapir({
-             'token': '58c143be14ad6677f5a884d4';}
+             'token': '58c143be14ad6677f5a884d4',
+             'complete' : function() { document.getElementById('search_loading').style.display="none";}
          });
 </script>
   
