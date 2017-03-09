@@ -111,13 +111,14 @@ window.onload=sethash;
     <center><img src="/images/loading.gif"></center>
 </div>
 
+<script type="text/javascript" src="/javascripts/libs/jquery.min.js"></script>
 <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
 <div id="search_results" style="display:none">
 </div>
 <script>
          $('#search_results').tapir({
              'token': '58c143be14ad6677f5a884d4',
-             'complete' : function() { document.getElementById('search_loading').style.display="none"; }
+             'complete' : function() { document.getElementById('search_loading').style.display="none";alert("I'm done searching!"); }
          });
 </script>
   

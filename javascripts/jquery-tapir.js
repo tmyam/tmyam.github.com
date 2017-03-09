@@ -25,7 +25,7 @@
 	},3000);
 
       $.getJSON(
-        'https://tapirgo.com/api/1/search.json?token=' + settings.token + '&query=' + paramValue(settings.query_param) + '&callback=?', function(data){
+        'http://www.tapirgo.com/api/1/search.json?token=' + settings.token + '&query=' + paramValue(settings.query_param) + '&callback=?', function(data){
           if(settings['complete']) { settings.complete() }
           $.each(data, function(key, val) {
           document.getElementById('search_results').style.display="block";
