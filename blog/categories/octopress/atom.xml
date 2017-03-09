@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-09T13:28:05+08:00</updated>
+  <updated>2017-03-09T13:29:29+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -123,8 +123,8 @@
 
 <ul>
 <li><p>到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p></li>
-<li><p>具体安装 <a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a>
-<strong>注意：</strong> 为了让多说支持https，添加<strong>source/_includes/post/duoshuo.html</strong>文件时，需要将<code>ds.src = 'http://static.duoshuo.com/embed.js';</code>这句改为<code>ds.src = 'https://static.duoshuo.com/embed.js';</code>
+<li><p>具体安装 <a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a><br/>
+<strong>注意：</strong> 为了让多说支持https，添加<strong>source/_includes/post/duoshuo.html</strong>文件时，需要将<code>ds.src = 'http://static.duoshuo.com/embed.js';</code>这句改为<code>ds.src = 'https://static.duoshuo.com/embed.js';</code> <br/>
 这样，多说就同时支持https了。</p></li>
 </ul>
 
