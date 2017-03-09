@@ -130,10 +130,12 @@ window.onload=sethash;
 
 
 <time datetime="2013-10-09T10:52:00+08:00" pubdate data-updated="true"></time>
-        
+        <!--
+
 			
           | <a href="#comments">评论</a>
          
+-->
       </p>
     
   </header>
@@ -346,19 +348,18 @@ objc: Objective-C</li>
 
   <section>
     <h1>评论</h1>
-    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="Mac下编写blog"></div>
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"tmyam"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+  var duoshuoQuery = {short_name:"tmyam"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
 <!-- Duoshuo Comment END --></div>
   </section>
 
