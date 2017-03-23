@@ -183,6 +183,11 @@ sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 * Device 选择你的TF卡盘符
 * 然后点Read
 
+## 关机命令
+
+```sh
+sudo poweroff       #关机
+```
 <br/>
 ### 参考
 <http://www.jianshu.com/p/c0b589b380a1>
