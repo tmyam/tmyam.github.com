@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-18T13:53:49+08:00</updated>
+  <updated>2017-03-23T19:00:17+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -224,6 +224,11 @@ sudo apt-get install vim        #安装vim
 <li>然后点Read</li>
 </ul>
 
+
+<h2>关机命令</h2>
+
+<pre><code class="sh">sudo poweroff       #关机
+</code></pre>
 
 <p><br/></p>
 
