@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-27T16:27:31+08:00</updated>
+  <updated>2017-03-27T16:28:29+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -20,9 +20,11 @@
     <id>https://tmyam.github.io/blog/2017/03/27/apt-getxiao-ji</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
-<p>&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。 <br/>
-&emsp;&emsp;在Windows下安装软件，我们只需要有exe文件，然后双击，下一步直接OK就可以了。但在Linux下，不是这样的。每个Linux的发行版，比如Debian，都会维护一个自己的软件仓库，我们常用的几乎所有软件都在这里面。这里面的软件绝对安全，而且绝对的能正常安装。    <br/>
-&emsp;&emsp;那我们要怎么安装呢？在Debian下，我们维护一个源列表，源列表里面都是一些网址信息，这每一条网址就是一个源，这个地址指向的数据标识着这台源服务器上有哪些软件可以安装使用。</p>
+<p>&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。</p>
+
+<p>&emsp;&emsp;在Windows下安装软件，我们只需要有exe文件，然后双击，下一步直接OK就可以了。但在Linux下，不是这样的。每个Linux的发行版，比如Debian，都会维护一个自己的软件仓库，我们常用的几乎所有软件都在这里面。这里面的软件绝对安全，而且绝对的能正常安装。</p>
+
+<p>&emsp;&emsp;那我们要怎么安装呢？在Debian下，我们维护一个源列表，源列表里面都是一些网址信息，这每一条网址就是一个源，这个地址指向的数据标识着这台源服务器上有哪些软件可以安装使用。</p>
 
 <!-- more -->
 
@@ -32,7 +34,8 @@
 <pre><code class="sh">sudo apt-get update
 </code></pre>
 
-<p>这个命令，会同步源服务器的源列表（APT服务器的RPM索引清单置于base资料夹内，使用者端电脑取得base资料夹内的bz2 RPM索引清单压缩档后，会将其解压置放于/var/state/apt/lists/）。使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。</p>
+<p>这个命令，会同步源服务器的源列表（APT服务器的RPM索引清单置于base资料夹内，使用者端电脑取得base资料夹内的bz2 RPM索引清单压缩档后，会将其解压置放于/var/state/apt/lists/）。 <br/>
+使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。</p>
 
 <h2>更新软件(upgrade)</h2>
 
