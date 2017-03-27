@@ -188,6 +188,13 @@ sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 ```sh
 sudo poweroff       #关机
 ```
+
+## 查看系统信息
+
+``` sh
+hostnamectl
+```
+
 <br/>
 ### 参考
 <http://www.jianshu.com/p/c0b589b380a1>
