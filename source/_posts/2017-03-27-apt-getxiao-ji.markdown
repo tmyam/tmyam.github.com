@@ -8,16 +8,20 @@ categories: Linux 树莓派
 ---
 
 ## 前言
-入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。
-在Windows下安装软件，我们只需要有exe文件，然后双击，下一步直接OK就可以了。但在Linux下，不是这样的。每个Linux的发行版，比如Debian，都会维护一个自己的软件仓库，我们常用的几乎所有软件都在这里面。这里面的软件绝对安全，而且绝对的能正常安装。
-那我们要怎么安装呢？在Debian下，我们维护一个源列表，源列表里面都是一些网址信息，这每一条网址就是一个源，这个地址指向的数据标识着这台源服务器上有哪些软件可以安装使用。
-
+&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。    
+  
+&emsp;&emsp;在Windows下安装软件，我们只需要有exe文件，然后双击，下一步直接OK就可以了。但在Linux下，不是这样的。每个Linux的发行版，比如Debian，都会维护一个自己的软件仓库，我们常用的几乎所有软件都在这里面。这里面的软件绝对安全，而且绝对的能正常安装。   
+      
+&emsp;&emsp;那我们要怎么安装呢？在Debian下，我们维护一个源列表，源列表里面都是一些网址信息，这每一条网址就是一个源，这个地址指向的数据标识着这台源服务器上有哪些软件可以安装使用。
+<!-- more -->
 ## 更新软件源
 
 ``` sh
 sudo apt-get update
 ```
-这个命令，会同步源服务器的源列表（APT服务器的RPM索引清单置于base资料夹内，使用者端电脑取得base资料夹内的bz2 RPM索引清单压缩档后，会将其解压置放于/var/state/apt/lists/）。使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。
+这个命令，会同步源服务器的源列表（APT服务器的RPM索引清单置于base资料夹内，使用者端电脑取得base资料夹内的bz2 RPM索引清单压缩档后，会将其解压置放于/var/state/apt/lists/）。
+   
+使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。
 
 
 ## 更新软件(upgrade)
@@ -124,7 +128,8 @@ sudo apt-get check
 * 安装rpi-update
 
 ``` sh
-sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update\
+ && sudo chmod +x /usr/bin/rpi-update
 ```
 * 升级firmware
 

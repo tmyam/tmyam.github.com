@@ -25,7 +25,7 @@ rake new_post['article name']
 `<font size=+2>大2号字</font>`&nbsp;&nbsp;&nbsp;&nbsp; <font size=+2>大2号字</font>    
 +表示比当前字号大，-表示比当前字号小。
 
-* 段落缩进
+* 段落缩进   
 半方大的空白`&ensp;`或`&#8194;`   
 全方大的空白`&emsp;`或`&#8195;`   
 空白格`&nbsp;`或`&#160;`
