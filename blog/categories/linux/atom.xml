@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-27T16:24:47+08:00</updated>
+  <updated>2017-03-27T16:27:31+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -171,7 +171,8 @@
 </ul>
 
 
-<pre><code class="sh">sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update &amp;&amp; sudo chmod +x /usr/bin/rpi-update
+<pre><code class="sh">sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update\
+ &amp;&amp; sudo chmod +x /usr/bin/rpi-update
 </code></pre>
 
 <ul>
