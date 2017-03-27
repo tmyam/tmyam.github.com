@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-27T16:22:41+08:00</updated>
+  <updated>2017-03-27T16:24:47+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -23,6 +23,9 @@
 <p>&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。 <br/>
 &emsp;&emsp;在Windows下安装软件，我们只需要有exe文件，然后双击，下一步直接OK就可以了。但在Linux下，不是这样的。每个Linux的发行版，比如Debian，都会维护一个自己的软件仓库，我们常用的几乎所有软件都在这里面。这里面的软件绝对安全，而且绝对的能正常安装。    <br/>
 &emsp;&emsp;那我们要怎么安装呢？在Debian下，我们维护一个源列表，源列表里面都是一些网址信息，这每一条网址就是一个源，这个地址指向的数据标识着这台源服务器上有哪些软件可以安装使用。</p>
+
+<!-- more -->
+
 
 <h2>更新软件源</h2>
 
