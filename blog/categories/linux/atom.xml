@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T09:23:21+08:00</updated>
+  <updated>2017-03-28T09:25:59+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -438,10 +438,9 @@ sudo apt-get install vim        #安装vim
 
 <p>显示结果</p>
 
-<pre><code class="text">/dev/mmcblk0:
+<blockquote><p>/dev/mmcblk0:
  Timing cached reads:   1280 MB in  2.00 seconds = 640.05 MB/sec
- Timing buffered disk reads:  66 MB in  3.04 seconds =  21.70 MB/sec
-</code></pre>
+ Timing buffered disk reads:  66 MB in  3.04 seconds =  21.70 MB/sec</p></blockquote>
 
 <ul>
 <li>测试（写）</li>
@@ -454,10 +453,9 @@ rm ~/test.img
 
 <p>显示结果</p>
 
-<pre><code class="text">100000+0 records in
+<blockquote><p>100000+0 records in
 100000+0 records out
-409600000 bytes (410 MB) copied, 23.1721 s, 17.7 MB/s
-</code></pre>
+409600000 bytes (410 MB) copied, 23.1721 s, 17.7 MB/s</p></blockquote>
 
 <p><br/></p>
 
