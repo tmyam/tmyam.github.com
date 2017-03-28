@@ -80,7 +80,7 @@ mkdir projects
 2、更改版本库所示的用户、组
 
 ``` sh
-sudo chown -R root:subversion projects
+sudo chown -R www-data:subversion projects
 ```
 
 3、创建SVN仓库
@@ -133,7 +133,7 @@ svnserve -d -r /home/svn/
 至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了
 
 ``` sh
-svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
+svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 ```
 
 ### 参考

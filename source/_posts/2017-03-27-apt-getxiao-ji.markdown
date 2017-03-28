@@ -138,9 +138,9 @@ sudo rpi-update
 ```
 
 ### 参考
-<http://www.baiyuxiong.com/?p=529>
-<http://blog.csdn.net/tiankongtiankong01/article/details/53869975>
-<http://blog.csdn.net/huayucong/article/details/54178049>
+<http://www.baiyuxiong.com/?p=529>   
+<http://blog.csdn.net/tiankongtiankong01/article/details/53869975>   
+<http://blog.csdn.net/huayucong/article/details/54178049>   
 <https://item.congci.com/-/content/shumeipai-raspbian-gujian-shengji-rpi-update>
 
 
