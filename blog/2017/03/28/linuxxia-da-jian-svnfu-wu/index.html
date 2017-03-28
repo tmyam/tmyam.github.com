@@ -5,14 +5,16 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>一个客户端设置多个github账号 - tmyam's blog</title>
+  <title>Linux下搭建SVN服务 - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="前言 最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。 1.前期工作 至少有两个github账号 (假设有两个账号 一个为 one ，另一个为 two)
-取消git全局设置 1
+  <meta name="description" content="前言 最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。 相关软件安装 使用SSH远程登录服务器 1
+ssh pi@192.168.1.201 # 例如 安装软件 1
 2
-git config --global -- &hellip;">
+3
+sudo apt-get install subversion
+sudo apt-get install &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +23,7 @@ git config --global -- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">
+  <link rel="canonical" href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -104,7 +106,7 @@ window.onload=sethash;
   
   <header>
     
-      <h1 class="entry-title">一个客户端设置多个github账号</h1>
+      <h1 class="entry-title">Linux下搭建SVN服务</h1>
     
     
       <p class="meta">
@@ -120,7 +122,7 @@ window.onload=sethash;
   
 
 
-<time datetime="2014-05-07T21:48:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-03-28T11:40:39+08:00" pubdate data-updated="true"></time>
         <!--
 
 			
@@ -134,200 +136,184 @@ window.onload=sethash;
 
 <div class="entry-content"><h2>前言</h2>
 
-<p>最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。</p>
+<p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
 
-<h2>1.前期工作</h2>
+<h2>相关软件安装</h2>
 
 <ul>
-<li>至少有两个<a href="https://github.com">github</a>账号 (假设有两个账号 一个为 <em>one</em> ，另一个为 <em>two</em>)</li>
-<li>取消git全局设置</li>
+<li>使用SSH远程登录服务器</li>
 </ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global --unset user.name
-</span><span class='line'>git config --global --unset user.email
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh pi@192.168.1.201 <span class="c"># 例如</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <!-- more -->
 
 
-<h2>2.SSH配置</h2>
-
 <ul>
-<li>生成 id_rsa 私钥 , id_rsa.pub 公钥    <br/>
-one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-keygen -t rsa -C <span class="s2">&quot;one@126.com&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但是two会出现提示输入文件名，输入与默认配置不一样的文件名，比如: id_rsa_two。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.ssh
-</span><span class='line'>ssh-keygen -t rsa -C <span class="s2">&quot;two@126.com&quot;</span>  <span class="c"># 之后会提示输入文件名</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><p><a href="https://github.com">github</a>添加公钥 id_rsa.pub , id_rsa_two.pub <br/>
-分别登陆<em>one</em>,<em>two</em>的账号，在 <code>Account Settings</code> 的 <code>SSH Keys</code> 里，点 <code>Add SSH Keys</code> ，将公钥(.pub文件)中的内容粘贴到”Key”中，并输入”Title”.</p></li>
-<li><p>添加 ssh key</p></li>
+<li>安装软件</li>
 </ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-add -K ~/.ssh/id_rsa        <span class="c"># 使用-K可以将私钥添加到钥匙串，不用每次开机后还要再次输入这条命令了</span>
-</span><span class='line'>ssh-add -K ~/.ssh/id_rsa_two
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
+</span><span class='line'>sudo apt-get install apache2
+</span><span class='line'>sudo apt-get install libapache2-svn
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>可以在添加前使用下面命令删除所有的key</p>
+<p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-add -D
-</span></code></pre></td></tr></table></div></figure>
+<h2>配置</h2>
 
-
-<p>最后可以通过下面命令，查看key的设置</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-add -l
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>修改ssh config文件</h2>
+<h3>相关用户、组的设定</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.ssh/
-</span><span class='line'>touch config
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo addgroup subversion
+</span><span class='line'>sudo usermod -G subversion -a www-data
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>打开.ssh文件夹下的config文件，进行配置</p>
+<h3>创建项目的目录</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir /home/svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>配置 Subversion</h3>
+
+<ul>
+<li>配置dav_svn.conf文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/apache2/mods-available/dav_svn.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按照下面的步骤进行配置即可
+1、删除<Location /svn>和DAV svn这两行前面的注释
+<img src="/images/2017/03/28/svn_01.png" alt="temp" /></p>
+
+<p>2、删除<code>SVNParentPath ...</code>前面的注释，并且把后面的路径替换成创建的SVN的项目路径<code>/home/svn</code>
+<img src="/images/2017/03/28/svn_02.png" alt="temp" /></p>
+
+<p>3、删除AuthType Basic、AuthName “Subversion Repository”前面的注释，去掉AuthUserFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.passwd</code>，去掉AuthzSVNAccessFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.authz</code>,删除Require valid-user和</Location>前面的注释，具体如下所示：
+<img src="/images/2017/03/28/svn_03.png" alt="temp" /></p>
+
+<p>其中：</p>
+
+<p><code>/etc/subversion/dav_svn.passwd</code>文件是SVN用户名和密码的配置，指定基本用户验证的密码文件存放的位置</p>
+
+<p><code>/etc/subversion/dav_svn.authz</code>文件是访问权限配置</p>
+
+<ul>
+<li>重启Apache2 WEB服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo /etc/init.d/apache2 restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>创建SVN文件仓库</h3>
+
+<p>1、创建指定的项目存放路径</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /home/svn
+</span><span class='line'>mkdir projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、更改版本库所示的用户、组</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R root:subversion projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3、创建SVN仓库</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo svnadmin create /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4、赋予组成员对所有新加入文件仓库的文件拥有相应的权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chmod -R g+rws projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>用户和权限配置</h3>
+
+<p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo htpasswd -c /etc/subversion/dav_svn.passwd admin001
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>继续添加新用户，去掉-c，否则会覆盖本文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo htpasswd /etc/subversion/dav_svn.passwd admin002
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、创建授权文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/subversion/dav_svn.authz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>里面加入projects的权限配置，如</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># default</span>
-</span><span class='line'>Host github.com
-</span><span class='line'>HostName github.com
-</span><span class='line'>User git
-</span><span class='line'>IdentityFile ~/.ssh/id_rsa
+</pre></td><td class='code'><pre><code class='text'><span class='line'>[groups]
+</span><span class='line'>administrator=admin001,admin002
 </span><span class='line'>
-</span><span class='line'><span class="c"># two</span>
-</span><span class='line'>Host two.github.com  <span class="c"># 前缀名可以任意设置</span>
-</span><span class='line'>HostName github.com
-</span><span class='line'>User git
-</span><span class='line'>IdentityFile ~/.ssh/id_rsa_two
+</span><span class='line'>[projects:/]
+</span><span class='line'>@administrator=rw
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>这里必须采用这样的方式设置，否则push时会出现以下错误:</p>
-
-<blockquote><p>ERROR: Permission to two/two.github.com.git denied to one.</p></blockquote>
-
-<p>简单分析下原因，我们可以发现 ssh 客户端是通过类似:  <br/>
-<strong>git@github.com:one/one.github.com.git</strong> <br/>
-这样的 git 地址中的 User 和 Host 来识别使用哪个本地私钥的。 <br/>
-很明显，如果 User 和 Host 始终为 git 和 github.com，那么就只能使用一个私钥。 <br/>
-所以需要上面的方式配置，每个账号使用了自己的 Host，每个 Host 的域名做 CNAME 解析到 github.com，这样 ssh 在连接时就可以区别不同的账号了。</p>
+<h3>重启SVN服务器</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh -T git@github.com        <span class="c"># 测试one ssh连接</span>
-</span><span class='line'><span class="c">#Hi ***! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
-</span><span class='line'>ssh -T git@two.github.com    <span class="c"># 测试two ssh连接</span>
-</span><span class='line'><span class="c">#Hi ***! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>killall svnserve
+</span><span class='line'>svnserve -d -r /home/svn/
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>但是这样还没有完，下面还有关联的设置。</p>
-
-<h2>新建git项目或者clone已有的项目</h2>
-
-<ul>
-<li>可以用 git init 或者 git clone 创建本地项目</li>
-<li>分别在<em>one</em>和<em>two</em>的git项目目录下，使用下面的命令设置账号关联</li>
-</ul>
-
+<p>至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config user.name <span class="s2">&quot;__name__&quot;</span>            <span class="c"># __name__ 例如 one</span>
-</span><span class='line'>git config user.email <span class="s2">&quot;__email__&quot;</span>          <span class="c"># __email__ 例如 one@126.com</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>查看git项目的配置</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --list
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>查看<em>one</em>的remote.origin.url=git@github.com:one/one.github.com.git <br/>
-查看<em>two</em>的remote.origin.url=git@github.com:two/two.github.com.git <br/>
-由于<em>one</em>使用的是默认的Host，所以不需要修改，但是two使用的是<em>two.github.com</em>，则需要进行修改</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote rm origin
-</span><span class='line'>git remote add origin git@two.github.com:two/two.github.com.git
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>上传更改</h2>
-
-<ul>
-<li>上面所有的设置无误后，可以修改代码，然后上传了。</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add -A
-</span><span class='line'>git commit -m <span class="s2">&quot;your comments&quot;</span>
-</span><span class='line'>git push
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果遇到warning</p>
-
-<blockquote><p>warning: push.default is unset; its implicit value is changing in Git 2.0 from ‘matching’ to ‘simple’. To squelch this messageand maintain the current behavior after the default changes, use&hellip;</p></blockquote>
-
-<p>推荐使用下面命令设置。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global push.default simple
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
 </span></code></pre></td></tr></table></div></figure>
 
 
 <h3>参考</h3>
 
-<p><a href="http://blog.csdn.net/wzy_1988/article/details/19967465">http://blog.csdn.net/wzy_1988/article/details/19967465</a> <br/>
-<a href="http://testerhome.com/topics/752">http://testerhome.com/topics/752</a> <br/>
-<a href="http://hily.me/blog/2013/05/github-multiple-account-and-multiple-repository/">http://hily.me/blog/2013/05/github-multiple-account-and-multiple-repository/</a></p>
+<p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 </div>
 
 
@@ -350,12 +336,12 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
   
 
 
-<time datetime="2014-05-07T21:48:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-03-28T11:40:39+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/github/'>github</a>
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/shu-mei-pai/'>树莓派</a>
   
 </span>
 
@@ -371,10 +357,8 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/03/25/idpxu-fei/" title="Previous Post: iDP续费">&laquo; iDP续费</a>
+        <a class="basic-alignment left" href="/blog/2017/03/27/apt-getxiao-ji/" title="Previous Post: apt-get小记">&laquo; apt-get小记</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/" title="Next Post: mac app的开机自启动">mac app的开机自启动 &raquo;</a>
       
     </p>
   </footer>
@@ -383,7 +367,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 
   <section>
     <h1>评论</h1>
-    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="一个客户端设置多个github账号"></div>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="Linux下搭建SVN服务"></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"tmyam"};
   (function() {

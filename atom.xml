@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T09:36:43+08:00</updated>
+  <updated>2017-03-28T11:53:32+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,194 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
+    <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
+    <updated>2017-03-28T11:40:39+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
+
+<h2>相关软件安装</h2>
+
+<ul>
+<li>使用SSH远程登录服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh pi@192.168.1.201 <span class="c"># 例如</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<ul>
+<li>安装软件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
+</span><span class='line'>sudo apt-get install apache2
+</span><span class='line'>sudo apt-get install libapache2-svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
+
+<h2>配置</h2>
+
+<h3>相关用户、组的设定</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo addgroup subversion
+</span><span class='line'>sudo usermod -G subversion -a www-data
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>创建项目的目录</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir /home/svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>配置 Subversion</h3>
+
+<ul>
+<li>配置dav_svn.conf文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/apache2/mods-available/dav_svn.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>按照下面的步骤进行配置即可
+1、删除<Location /svn>和DAV svn这两行前面的注释
+<img src="https://tmyam.github.io/images/2017/03/28/svn_01.png" alt="temp" /></p>
+
+<p>2、删除<code>SVNParentPath ...</code>前面的注释，并且把后面的路径替换成创建的SVN的项目路径<code>/home/svn</code>
+<img src="https://tmyam.github.io/images/2017/03/28/svn_02.png" alt="temp" /></p>
+
+<p>3、删除AuthType Basic、AuthName “Subversion Repository”前面的注释，去掉AuthUserFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.passwd</code>，去掉AuthzSVNAccessFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.authz</code>,删除Require valid-user和</Location>前面的注释，具体如下所示：
+<img src="https://tmyam.github.io/images/2017/03/28/svn_03.png" alt="temp" /></p>
+
+<p>其中：</p>
+
+<p><code>/etc/subversion/dav_svn.passwd</code>文件是SVN用户名和密码的配置，指定基本用户验证的密码文件存放的位置</p>
+
+<p><code>/etc/subversion/dav_svn.authz</code>文件是访问权限配置</p>
+
+<ul>
+<li>重启Apache2 WEB服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo /etc/init.d/apache2 restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>创建SVN文件仓库</h3>
+
+<p>1、创建指定的项目存放路径</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /home/svn
+</span><span class='line'>mkdir projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、更改版本库所示的用户、组</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R root:subversion projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3、创建SVN仓库</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo svnadmin create /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4、赋予组成员对所有新加入文件仓库的文件拥有相应的权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chmod -R g+rws projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>用户和权限配置</h3>
+
+<p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo htpasswd -c /etc/subversion/dav_svn.passwd admin001
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>继续添加新用户，去掉-c，否则会覆盖本文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo htpasswd /etc/subversion/dav_svn.passwd admin002
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、创建授权文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/subversion/dav_svn.authz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>里面加入projects的权限配置，如</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>[groups]
+</span><span class='line'>administrator=admin001,admin002
+</span><span class='line'>
+</span><span class='line'>[projects:/]
+</span><span class='line'>@administrator=rw
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>重启SVN服务器</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>killall svnserve
+</span><span class='line'>svnserve -d -r /home/svn/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>参考</h3>
+
+<p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[apt-get小记]]></title>
@@ -1654,7 +1842,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x63;&#104;&#105;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#97;&#115;&#105;&#x61;&#46;&#97;&#x70;&#x70;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#99;&#x68;&#105;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#x61;&#115;&#105;&#x61;&#46;&#97;&#x70;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x63;&#x68;&#105;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#x61;&#x73;&#105;&#97;&#46;&#97;&#x70;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">&#x63;&#x68;&#105;&#x6e;&#97;&#x64;&#101;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#x2e;&#x61;&#112;&#112;&#108;&#x65;&#46;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -1750,7 +1938,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#x63;&#104;&#105;&#110;&#97;&#x64;&#x65;&#x76;&#x40;&#97;&#x73;&#105;&#x61;&#46;&#97;&#x70;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;">&#x63;&#x68;&#105;&#110;&#97;&#100;&#101;&#118;&#x40;&#97;&#x73;&#x69;&#97;&#46;&#97;&#x70;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a></font>。
+<font color=red><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#99;&#104;&#105;&#x6e;&#97;&#100;&#x65;&#x76;&#x40;&#97;&#x73;&#105;&#97;&#x2e;&#97;&#112;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;">&#x63;&#104;&#105;&#110;&#x61;&#100;&#x65;&#x76;&#64;&#x61;&#x73;&#x69;&#x61;&#x2e;&#97;&#112;&#x70;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>

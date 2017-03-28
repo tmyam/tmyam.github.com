@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: svn | tmyam's blog]]></title>
+  <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-03-28T11:53:32+08:00</updated>
+  <id>https://tmyam.github.io/</id>
+  <author>
+    <name><![CDATA[tmyam]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
+    <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
+    <updated>2017-03-28T11:40:39+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
+
+<h2>相关软件安装</h2>
+
+<ul>
+<li>使用SSH远程登录服务器</li>
+</ul>
+
+
+<pre><code class="sh">ssh pi@192.168.1.201 # 例如
+</code></pre>
+
+<!-- more -->
+
+
+<ul>
+<li>安装软件</li>
+</ul>
+
+
+<pre><code class="sh">sudo apt-get install subversion
+sudo apt-get install apache2
+sudo apt-get install libapache2-svn
+</code></pre>
+
+<p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
+
+<h2>配置</h2>
+
+<h3>相关用户、组的设定</h3>
+
+<pre><code class="sh">sudo addgroup subversion
+sudo usermod -G subversion -a www-data
+</code></pre>
+
+<h3>创建项目的目录</h3>
+
+<pre><code class="sh">sudo mkdir /home/svn
+</code></pre>
+
+<h3>配置 Subversion</h3>
+
+<ul>
+<li>配置dav_svn.conf文件</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+
+<p>按照下面的步骤进行配置即可
+1、删除<Location /svn>和DAV svn这两行前面的注释
+<img src="/images/2017/03/28/svn_01.png" alt="temp" /></p>
+
+<p>2、删除<code>SVNParentPath ...</code>前面的注释，并且把后面的路径替换成创建的SVN的项目路径<code>/home/svn</code>
+<img src="/images/2017/03/28/svn_02.png" alt="temp" /></p>
+
+<p>3、删除AuthType Basic、AuthName “Subversion Repository”前面的注释，去掉AuthUserFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.passwd</code>，去掉AuthzSVNAccessFile所在行前面的注释，并且修改后面的路径为<code>/etc/subversion/dav_svn.authz</code>,删除Require valid-user和</Location>前面的注释，具体如下所示：
+<img src="/images/2017/03/28/svn_03.png" alt="temp" /></p>
+
+<p>其中：</p>
+
+<p><code>/etc/subversion/dav_svn.passwd</code>文件是SVN用户名和密码的配置，指定基本用户验证的密码文件存放的位置</p>
+
+<p><code>/etc/subversion/dav_svn.authz</code>文件是访问权限配置</p>
+
+<ul>
+<li>重启Apache2 WEB服务器</li>
+</ul>
+
+
+<pre><code class="sh">sudo /etc/init.d/apache2 restart
+</code></pre>
+
+<h3>创建SVN文件仓库</h3>
+
+<p>1、创建指定的项目存放路径</p>
+
+<pre><code class="sh">cd /home/svn
+mkdir projects
+</code></pre>
+
+<p>2、更改版本库所示的用户、组</p>
+
+<pre><code class="sh">sudo chown -R root:subversion projects
+</code></pre>
+
+<p>3、创建SVN仓库</p>
+
+<pre><code class="sh">sudo svnadmin create /home/svn/projects
+</code></pre>
+
+<p>4、赋予组成员对所有新加入文件仓库的文件拥有相应的权限</p>
+
+<pre><code class="sh">sudo chmod -R g+rws projects
+</code></pre>
+
+<h3>用户和权限配置</h3>
+
+<p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
+
+<pre><code class="sh">sudo htpasswd -c /etc/subversion/dav_svn.passwd admin001
+</code></pre>
+
+<p>继续添加新用户，去掉-c，否则会覆盖本文件</p>
+
+<pre><code class="sh">sudo htpasswd /etc/subversion/dav_svn.passwd admin002
+</code></pre>
+
+<p>2、创建授权文件</p>
+
+<pre><code class="sh">sudo nano /etc/subversion/dav_svn.authz
+</code></pre>
+
+<p>里面加入projects的权限配置，如</p>
+
+<pre><code class="text">[groups]
+administrator=admin001,admin002
+
+[projects:/]
+@administrator=rw
+</code></pre>
+
+<h3>重启SVN服务器</h3>
+
+<pre><code class="sh">killall svnserve
+svnserve -d -r /home/svn/
+</code></pre>
+
+<p>至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了</p>
+
+<pre><code class="sh">svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
+</code></pre>
+
+<h3>参考</h3>
+
+<p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>
