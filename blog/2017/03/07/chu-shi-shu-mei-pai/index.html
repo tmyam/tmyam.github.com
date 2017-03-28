@@ -426,6 +426,62 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>测试TF卡速度</h2>
+
+<ul>
+<li>安装测试磁盘速度的软件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install hdparm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>测速（读）</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo hdparm -Tt /dev/mmcblk0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>显示结果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>/dev/mmcblk0:
+</span><span class='line'> Timing cached reads:   1280 MB in  2.00 seconds = 640.05 MB/sec
+</span><span class='line'> Timing buffered disk reads:  66 MB in  3.04 seconds =  21.70 MB/sec
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>测试（写）</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">time </span>dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>~/test.img <span class="nv">bs</span><span class="o">=</span>4k <span class="nv">count</span><span class="o">=</span>100000
+</span><span class='line'>rm ~/test.img
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>显示结果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>100000+0 records in
+</span><span class='line'>100000+0 records out
+</span><span class='line'>409600000 bytes (410 MB) copied, 23.1721 s, 17.7 MB/s
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p><br/></p>
 
 <h3>参考</h3>
@@ -433,7 +489,8 @@ iwconfig 查看当前联网的信息
 <p><a href="http://www.jianshu.com/p/c0b589b380a1">http://www.jianshu.com/p/c0b589b380a1</a>
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>
 <a href="http://blog.csdn.net/shaopengf/article/details/52411926">http://blog.csdn.net/shaopengf/article/details/52411926</a>
-<a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a></p>
+<a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a>
+<a href="http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html">http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html</a></p>
 </div>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-27T16:31:12+08:00</updated>
+  <updated>2017-03-28T09:23:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -418,6 +418,47 @@ sudo apt-get install vim        #安装vim
 <pre><code class="sh">hostnamectl
 </code></pre>
 
+<h2>测试TF卡速度</h2>
+
+<ul>
+<li>安装测试磁盘速度的软件</li>
+</ul>
+
+
+<pre><code class="sh">sudo apt-get install hdparm 
+</code></pre>
+
+<ul>
+<li>测速（读）</li>
+</ul>
+
+
+<pre><code class="sh">sudo hdparm -Tt /dev/mmcblk0
+</code></pre>
+
+<p>显示结果</p>
+
+<pre><code class="text">/dev/mmcblk0:
+ Timing cached reads:   1280 MB in  2.00 seconds = 640.05 MB/sec
+ Timing buffered disk reads:  66 MB in  3.04 seconds =  21.70 MB/sec
+</code></pre>
+
+<ul>
+<li>测试（写）</li>
+</ul>
+
+
+<pre><code class="sh">time dd if=/dev/zero of=~/test.img bs=4k count=100000
+rm ~/test.img
+</code></pre>
+
+<p>显示结果</p>
+
+<pre><code class="text">100000+0 records in
+100000+0 records out
+409600000 bytes (410 MB) copied, 23.1721 s, 17.7 MB/s
+</code></pre>
+
 <p><br/></p>
 
 <h3>参考</h3>
@@ -425,7 +466,8 @@ sudo apt-get install vim        #安装vim
 <p><a href="http://www.jianshu.com/p/c0b589b380a1">http://www.jianshu.com/p/c0b589b380a1</a>
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>
 <a href="http://blog.csdn.net/shaopengf/article/details/52411926">http://blog.csdn.net/shaopengf/article/details/52411926</a>
-<a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a></p>
+<a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a>
+<a href="http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html">http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html</a></p>
 ]]></content>
   </entry>
   
