@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T11:53:32+08:00</updated>
+  <updated>2017-03-28T11:59:17+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -70,8 +70,9 @@ sudo usermod -G subversion -a www-data
 <pre><code class="sh">sudo nano /etc/apache2/mods-available/dav_svn.conf
 </code></pre>
 
-<p>按照下面的步骤进行配置即可
-1、删除<Location /svn>和DAV svn这两行前面的注释
+<p>按照下面的步骤进行配置即可</p>
+
+<p>1、删除<Location /svn>和DAV svn这两行前面的注释
 <img src="/images/2017/03/28/svn_01.png" alt="temp" /></p>
 
 <p>2、删除<code>SVNParentPath ...</code>前面的注释，并且把后面的路径替换成创建的SVN的项目路径<code>/home/svn</code>
