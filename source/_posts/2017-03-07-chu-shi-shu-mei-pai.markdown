@@ -195,10 +195,41 @@ sudo poweroff       #关机
 hostnamectl
 ```
 
+## 测试TF卡速度
+
+* 安装测试磁盘速度的软件
+
+``` sh
+sudo apt-get install hdparm 
+```
+* 测速（读）
+
+``` sh
+sudo hdparm -Tt /dev/mmcblk0
+```
+显示结果
+>/dev/mmcblk0:   
+ Timing cached reads:   1280 MB in  2.00 seconds = 640.05 MB/sec   
+ Timing buffered disk reads:  66 MB in  3.04 seconds =  21.70 MB/sec
+
+* 测试（写）
+
+``` sh
+time dd if=/dev/zero of=~/test.img bs=4k count=100000
+rm ~/test.img
+```
+显示结果
+
+>100000+0 records in   
+100000+0 records out   
+409600000 bytes (410 MB) copied, 23.1721 s, 17.7 MB/s
+
 <br/>
 ### 参考
 <http://www.jianshu.com/p/c0b589b380a1>
 <http://blog.csdn.net/u014271612/article/details/53767669>
 <http://blog.csdn.net/shaopengf/article/details/52411926>
 <http://blog.csdn.net/shooter32/article/details/45126525>
+<http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html>
+
 
