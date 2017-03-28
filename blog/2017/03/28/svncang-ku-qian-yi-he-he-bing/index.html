@@ -159,8 +159,10 @@ window.onload=sethash;
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 压缩备份</span>
 </span><span class='line'>sudo svnadmin dump /path/repository <span class="p">|</span> sudo gzip &gt; /path/repository-backup.gz.2017-03-28
+</span><span class='line'>
 </span><span class='line'><span class="c"># 不压缩备份</span>
 </span><span class='line'>sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </span></code></pre></td></tr></table></div></figure>
@@ -242,20 +244,34 @@ window.onload=sethash;
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 建立新的svn仓库</span>
 </span><span class='line'>sudo svnadmin create /path/new_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># check</span>
 </span><span class='line'>ls -l /path/new_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># 赋予组成员对所有新加入文件仓库的文件拥有相应的权限</span>
 </span><span class='line'>sudo chmod -R g+rws /path/new_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># 导入没压缩数据</span>
 </span><span class='line'>sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
+</span><span class='line'>
 </span><span class='line'><span class="c"># 导入被压缩数据</span>
 </span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/new_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># 删除旧仓库</span>
 </span><span class='line'>sudo rm -r /path/main_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># 修改新仓库名</span>
 </span><span class='line'>sudo mv /path/new_repository /path/main_repository
+</span><span class='line'>
 </span><span class='line'><span class="c"># 修改权限</span>
 </span><span class='line'>sudo chown -R www-data:subversion /path/main_repository
 </span></code></pre></td></tr></table></div></figure>
@@ -267,8 +283,9 @@ window.onload=sethash;
 
 <h3>参考</h3>
 
-<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a>
-<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a></p>
+
+<p><a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
 </div>
 
 

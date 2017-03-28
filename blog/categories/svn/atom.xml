@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T16:16:36+08:00</updated>
+  <updated>2017-03-28T17:15:14+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -42,6 +42,7 @@
 
 <pre><code class="sh"># 压缩备份
 sudo svnadmin dump /path/repository | sudo gzip &gt; /path/repository-backup.gz.2017-03-28
+
 # 不压缩备份
 sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </code></pre>
@@ -96,18 +97,25 @@ sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
 
 <pre><code class="sh"># 建立新的svn仓库
 sudo svnadmin create /path/new_repository
+
 # check
 ls -l /path/new_repository
+
 # 赋予组成员对所有新加入文件仓库的文件拥有相应的权限
 sudo chmod -R g+rws /path/new_repository
+
 # 导入没压缩数据
 sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
+
 # 导入被压缩数据
 sudo zcat /home/repository-backup.gz.2017-03-28 | sudo svnadmin load /path/new_repository
+
 # 删除旧仓库
 sudo rm -r /path/main_repository
+
 # 修改新仓库名
 sudo mv /path/new_repository /path/main_repository
+
 # 修改权限
 sudo chown -R www-data:subversion /path/main_repository
 </code></pre>
@@ -118,8 +126,9 @@ sudo chown -R www-data:subversion /path/main_repository
 
 <h3>参考</h3>
 
-<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a>
-<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a></p>
+
+<p><a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
 ]]></content>
   </entry>
   
