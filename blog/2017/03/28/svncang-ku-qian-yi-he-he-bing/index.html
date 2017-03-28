@@ -5,13 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>为博客添加分类和评论功能 - tmyam's blog</title>
+  <title>SVN仓库备份和迁移 - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="1.右侧边栏分类 参考链接
-如果想使用中文名分类，可以修改 category_list.html 中的&lt;h1&gt;Categories&lt;/h1&gt;为
-&lt;h1&gt;文章分类&lt;/h1&gt;。 2.添加关于页面 参考链接 打开文件source\_includes\ &hellip;">
+  <meta name="description" content="前言 本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。 仓库备份 svnadmin dump 1、备份方式多样
+2、如果版本数过多，dump的过程将非常慢
+3、备份耗时，恢复更耗时
+4、备份时数据变大，恢复后数据可能会变小
+5、库下的passwd和authz不会备份 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://tmyam.github.io/blog/2013/10/09/category-and-comment/">
+  <link rel="canonical" href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -103,7 +105,7 @@ window.onload=sethash;
   
   <header>
     
-      <h1 class="entry-title">为博客添加分类和评论功能</h1>
+      <h1 class="entry-title">SVN仓库备份和迁移</h1>
     
     
       <p class="meta">
@@ -119,7 +121,7 @@ window.onload=sethash;
   
 
 
-<time datetime="2013-10-09T15:03:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-03-28T15:09:11+08:00" pubdate data-updated="true"></time>
         <!--
 
 			
@@ -131,108 +133,140 @@ window.onload=sethash;
   </header>
 
 
-<div class="entry-content"><h2>1.右侧边栏分类</h2>
+<div class="entry-content"><h2>前言</h2>
+
+<p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
+
+<h2>仓库备份</h2>
 
 <ul>
-<li><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">参考链接</a><br/>
-如果想使用中文名分类，可以修改 <em>category_list.html</em> 中的<code>&lt;h1&gt;Categories&lt;/h1&gt;</code>为
-<code>&lt;h1&gt;文章分类&lt;/h1&gt;</code>。</li>
+<li><strong>svnadmin dump</strong></li>
 </ul>
 
 
-<!-- more -->
+<p>1、备份方式多样
+2、如果版本数过多，dump的过程将非常慢
+3、备份耗时，恢复更耗时
+4、备份时数据变大，恢复后数据可能会变小
+5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
+
+<!--more-->
 
 
-<h2>2.添加关于页面</h2>
-
-<p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></p>
-
-<p>打开文件source\_includes\custom\navigation.html，默认情况下如下所示：</p>
+<p>在需要备份SVN仓库的服务器上，</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>Blog<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 压缩备份</span>
+</span><span class='line'>sudo svnadmin dump /path/repository <span class="p">|</span> sudo gzip &gt; /path/repository-backup.gz.2017-03-28
+</span><span class='line'><span class="c"># 不压缩备份</span>
+</span><span class='line'>sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>可以在此添加一个标签页，使用命令：</p>
+<h2>仓库迁移</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_page<span class="o">[</span><span class="s1">&#39;about&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
+</ul>
 
 
-<p>创建一个页面，页面路径为source\about\index.markdown;</p>
+<h2>仓库合并</h2>
 
-<p>修改上面的navigation.html为：</p>
+<ul>
+<li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
+<li><p>在本地checkout目的服务器的主仓库</p></li>
+<li><p>如果需要将迁移的仓库存储到SVN中指定的目录 <code>A</code> 下，则在本地创建这个指定的目录 <code>A</code>，并用svn工具提交到目的服务器。然后登录目的服务器：</p></li>
+</ul>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">&quot;main-navigation&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>首页<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/blog/archives&quot;</span><span class="nt">&gt;</span>归档<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/about&quot;</span><span class="nt">&gt;</span>关于<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository --parent-dir A
+</span><span class='line'>
+</span><span class='line'><span class="c"># 不解压缩合并</span>
+</span><span class='line'>sudo svnadmin load /path/main_repository --parent-dir A  &lt; /home/repository-backup.2017-03-28
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2><del>3.添加disqus评论</del></h2>
+<p>参数 <code>--parent-dir</code> 是指定版本库<code>main_repository</code>下的具体路径，这里是第一级目录<code>A</code>.</p>
 
 <ul>
-<li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
-<li><p>参考下图，点击<code>Dashboard</code></p></li>
-</ul>
-
-
-<p><img src="/images/2013/10/09/comment_dashboard.png" alt="temp" /></p>
-
-<ul>
-<li>然后点击下图中的<code>add</code>按钮</li>
-</ul>
-
-
-<p><img src="/images/2013/10/09/comment_add.png" alt="temp" /></p>
-
-<ul>
-<li><p>之后根据提示添加信息，一步一步直到完成。</p></li>
-<li><p>然后修改<strong>_config.yml</strong>文件</p></li>
+<li>如果不用迁移到指定目录下，只需要迁移到根目录下，则登录目的服务器：</li>
 </ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Disqus Comments </span>
-</span><span class='line'>disqus_short_name: tmyam   <span class="c"># tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)</span>
-</span><span class='line'>disqus_show_comment_count: <span class="nb">true</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository
+</span><span class='line'>
+</span><span class='line'><span class="c"># 不解压缩合并</span>
+</span><span class='line'>sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>4.添加多说评论</h2>
+<p>这样就可以将多个仓库合并成一个仓库了。</p>
 
-<p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
+<h2>仓库恢复</h2>
 
 <ul>
-<li><p>到 <a href="http://duoshuo.com">多说</a> 关联个账号,然后点击首页的<code>我要安装</code>,填写信息。</p></li>
-<li><p>具体安装 <a href="http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">参考链接</a><br/>
-<strong>注意：</strong> 为了让多说支持https，添加<strong>source/_includes/post/duoshuo.html</strong>文件时，需要将<code>ds.src = 'http://static.duoshuo.com/embed.js';</code>这句改为<code>ds.src = 'https://static.duoshuo.com/embed.js';</code> <br/>
-这样，多说就同时支持https了。</p></li>
+<li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
+<li>使用FTP等工具，将备份的文件传输到需要恢复的服务器上，例如 <code>/home</code>目录下</li>
+<li>登录需要恢复的服务器</li>
 </ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 建立新的svn仓库</span>
+</span><span class='line'>sudo svnadmin create /path/new_repository
+</span><span class='line'><span class="c"># check</span>
+</span><span class='line'>ls -l /path/new_repository
+</span><span class='line'><span class="c"># 赋予组成员对所有新加入文件仓库的文件拥有相应的权限</span>
+</span><span class='line'>sudo chmod -R g+rws /path/new_repository
+</span><span class='line'><span class="c"># 导入没压缩数据</span>
+</span><span class='line'>sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
+</span><span class='line'><span class="c"># 导入被压缩数据</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/new_repository
+</span><span class='line'><span class="c"># 删除旧仓库</span>
+</span><span class='line'>sudo rm -r /path/main_repository
+</span><span class='line'><span class="c"># 修改新仓库名</span>
+</span><span class='line'>sudo mv /path/new_repository /path/main_repository
+</span><span class='line'><span class="c"># 修改权限</span>
+</span><span class='line'>sudo chown -R www-data:subversion /path/main_repository
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><br/></p>
 
 <h3>参考</h3>
 
-<p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
 </div>
 
 
@@ -255,12 +289,12 @@ window.onload=sethash;
   
 
 
-<time datetime="2013-10-09T15:03:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-03-28T15:09:11+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/svn/'>svn</a>, <a class='category' href='/blog/categories/shu-mei-pai/'>树莓派</a>
   
 </span>
 
@@ -276,10 +310,8 @@ window.onload=sethash;
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/10/09/write-blog/" title="Previous Post: mac下编写blog">&laquo; mac下编写blog</a>
+        <a class="basic-alignment left" href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/" title="Previous Post: Linux下搭建SVN服务">&laquo; Linux下搭建SVN服务</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/11/05/xcode5-mac-app-running-on-lion/" title="Next Post: Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题">Xcode 5.0在Mavericks下创建的mac app在Lion下无法运行的问题 &raquo;</a>
       
     </p>
   </footer>
@@ -288,7 +320,7 @@ window.onload=sethash;
 
   <section>
     <h1>评论</h1>
-    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="为博客添加分类和评论功能"></div>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="SVN仓库备份和迁移"></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"tmyam"};
   (function() {

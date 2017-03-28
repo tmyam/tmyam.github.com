@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T11:59:17+08:00</updated>
+  <updated>2017-03-28T16:14:51+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,148 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SVN仓库备份和迁移]]></title>
+    <link href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/"/>
+    <updated>2017-03-28T15:09:11+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
+
+<h2>仓库备份</h2>
+
+<ul>
+<li><strong>svnadmin dump</strong></li>
+</ul>
+
+
+<p>1、备份方式多样
+2、如果版本数过多，dump的过程将非常慢
+3、备份耗时，恢复更耗时
+4、备份时数据变大，恢复后数据可能会变小
+5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
+
+<!--more-->
+
+
+<p>在需要备份SVN仓库的服务器上，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 压缩备份</span>
+</span><span class='line'>sudo svnadmin dump /path/repository <span class="p">|</span> sudo gzip &gt; /path/repository-backup.gz.2017-03-28
+</span><span class='line'><span class="c"># 不压缩备份</span>
+</span><span class='line'>sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>仓库迁移</h2>
+
+<ul>
+<li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
+</ul>
+
+
+<h2>仓库合并</h2>
+
+<ul>
+<li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
+<li><p>在本地checkout目的服务器的主仓库</p></li>
+<li><p>如果需要将迁移的仓库存储到SVN中指定的目录 <code>A</code> 下，则在本地创建这个指定的目录 <code>A</code>，并用svn工具提交到目的服务器。然后登录目的服务器：</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository --parent-dir A
+</span><span class='line'>
+</span><span class='line'><span class="c"># 不解压缩合并</span>
+</span><span class='line'>sudo svnadmin load /path/main_repository --parent-dir A  &lt; /home/repository-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参数 <code>--parent-dir</code> 是指定版本库<code>main_repository</code>下的具体路径，这里是第一级目录<code>A</code>.</p>
+
+<ul>
+<li>如果不用迁移到指定目录下，只需要迁移到根目录下，则登录目的服务器：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository
+</span><span class='line'>
+</span><span class='line'><span class="c"># 不解压缩合并</span>
+</span><span class='line'>sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就可以将多个仓库合并成一个仓库了。</p>
+
+<h2>仓库恢复</h2>
+
+<ul>
+<li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
+<li>使用FTP等工具，将备份的文件传输到需要恢复的服务器上，例如 <code>/home</code>目录下</li>
+<li>登录需要恢复的服务器</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 建立新的svn仓库</span>
+</span><span class='line'>sudo svnadmin create /path/new_repository
+</span><span class='line'><span class="c"># check</span>
+</span><span class='line'>ls -l /path/new_repository
+</span><span class='line'><span class="c"># 赋予组成员对所有新加入文件仓库的文件拥有相应的权限</span>
+</span><span class='line'>sudo chmod -R g+rws /path/new_repository
+</span><span class='line'><span class="c"># 导入没压缩数据</span>
+</span><span class='line'>sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
+</span><span class='line'><span class="c"># 导入被压缩数据</span>
+</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/new_repository
+</span><span class='line'><span class="c"># 删除旧仓库</span>
+</span><span class='line'>sudo rm -r /path/main_repository
+</span><span class='line'><span class="c"># 修改新仓库名</span>
+</span><span class='line'>sudo mv /path/new_repository /path/main_repository
+</span><span class='line'><span class="c"># 修改权限</span>
+</span><span class='line'>sudo chown -R www-data:subversion /path/main_repository
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><br/></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
@@ -124,7 +266,7 @@
 <p>2、更改版本库所示的用户、组</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R root:subversion projects
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R www-data:subversion projects
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -192,7 +334,7 @@
 <p>至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1843,7 +1985,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x63;&#x68;&#105;&#110;&#x61;&#x64;&#x65;&#x76;&#64;&#97;&#115;&#x69;&#x61;&#x2e;&#97;&#x70;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#104;&#105;&#110;&#97;&#x64;&#x65;&#x76;&#64;&#97;&#115;&#105;&#x61;&#x2e;&#x61;&#112;&#x70;&#x6c;&#101;&#46;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#99;&#104;&#105;&#x6e;&#97;&#x64;&#x65;&#x76;&#64;&#97;&#115;&#105;&#97;&#x2e;&#x61;&#x70;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#99;&#104;&#105;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#x61;&#115;&#105;&#x61;&#46;&#97;&#x70;&#112;&#108;&#x65;&#46;&#99;&#111;&#x6d;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -1939,7 +2081,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#99;&#x68;&#105;&#x6e;&#97;&#x64;&#x65;&#x76;&#x40;&#x61;&#x73;&#x69;&#97;&#x2e;&#97;&#x70;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;">&#99;&#x68;&#x69;&#x6e;&#97;&#x64;&#101;&#x76;&#x40;&#x61;&#x73;&#105;&#x61;&#46;&#97;&#112;&#112;&#x6c;&#x65;&#x2e;&#x63;&#111;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#99;&#104;&#105;&#x6e;&#x61;&#x64;&#x65;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#x2e;&#x61;&#112;&#112;&#108;&#101;&#x2e;&#x63;&#111;&#109;">&#99;&#104;&#105;&#110;&#x61;&#100;&#x65;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#x2e;&#x61;&#112;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>

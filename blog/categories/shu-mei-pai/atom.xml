@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 树莓派 | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/shu-mei-pai/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T11:59:17+08:00</updated>
+  <updated>2017-03-28T16:14:51+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SVN仓库备份和迁移]]></title>
+    <link href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/"/>
+    <updated>2017-03-28T15:09:11+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
+
+<h2>仓库备份</h2>
+
+<ul>
+<li><strong>svnadmin dump</strong></li>
+</ul>
+
+
+<p>1、备份方式多样
+2、如果版本数过多，dump的过程将非常慢
+3、备份耗时，恢复更耗时
+4、备份时数据变大，恢复后数据可能会变小
+5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
+
+<!--more-->
+
+
+<p>在需要备份SVN仓库的服务器上，</p>
+
+<pre><code class="sh"># 压缩备份
+sudo svnadmin dump /path/repository | sudo gzip &gt; /path/repository-backup.gz.2017-03-28
+# 不压缩备份
+sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</code></pre>
+
+<h2>仓库迁移</h2>
+
+<ul>
+<li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
+</ul>
+
+
+<h2>仓库合并</h2>
+
+<ul>
+<li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
+<li><p>在本地checkout目的服务器的主仓库</p></li>
+<li><p>如果需要将迁移的仓库存储到SVN中指定的目录 <code>A</code> 下，则在本地创建这个指定的目录 <code>A</code>，并用svn工具提交到目的服务器。然后登录目的服务器：</p></li>
+</ul>
+
+
+<pre><code class="sh"># 解压缩合并
+sudo zcat /home/repository-backup.gz.2017-03-28 | sudo svnadmin load /path/main_repository --parent-dir A
+
+# 不解压缩合并
+sudo svnadmin load /path/main_repository --parent-dir A  &lt; /home/repository-backup.2017-03-28
+</code></pre>
+
+<p>参数 <code>--parent-dir</code> 是指定版本库<code>main_repository</code>下的具体路径，这里是第一级目录<code>A</code>.</p>
+
+<ul>
+<li>如果不用迁移到指定目录下，只需要迁移到根目录下，则登录目的服务器：</li>
+</ul>
+
+
+<pre><code class="sh"># 解压缩合并
+sudo zcat /home/repository-backup.gz.2017-03-28 | sudo svnadmin load /path/main_repository
+
+# 不解压缩合并
+sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
+</code></pre>
+
+<p>这样就可以将多个仓库合并成一个仓库了。</p>
+
+<h2>仓库恢复</h2>
+
+<ul>
+<li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
+<li>使用FTP等工具，将备份的文件传输到需要恢复的服务器上，例如 <code>/home</code>目录下</li>
+<li>登录需要恢复的服务器</li>
+</ul>
+
+
+<pre><code class="sh"># 建立新的svn仓库
+sudo svnadmin create /path/new_repository
+# check
+ls -l /path/new_repository
+# 赋予组成员对所有新加入文件仓库的文件拥有相应的权限
+sudo chmod -R g+rws /path/new_repository
+# 导入没压缩数据
+sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
+# 导入被压缩数据
+sudo zcat /home/repository-backup.gz.2017-03-28 | sudo svnadmin load /path/new_repository
+# 删除旧仓库
+sudo rm -r /path/main_repository
+# 修改新仓库名
+sudo mv /path/new_repository /path/main_repository
+# 修改权限
+sudo chown -R www-data:subversion /path/main_repository
+</code></pre>
+
+<p><br/></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
@@ -105,7 +213,7 @@ mkdir projects
 
 <p>2、更改版本库所示的用户、组</p>
 
-<pre><code class="sh">sudo chown -R root:subversion projects
+<pre><code class="sh">sudo chown -R www-data:subversion projects
 </code></pre>
 
 <p>3、创建SVN仓库</p>
@@ -152,7 +260,7 @@ svnserve -d -r /home/svn/
 
 <p>至此SVN服务器搭建完成，可以在终端执行来下面代码checkout项目了</p>
 
-<pre><code class="sh">svn checkout http://hostname/svn/projects project1 --username 用户名 --password 密码
+<pre><code class="sh">svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 </code></pre>
 
 <h3>参考</h3>
