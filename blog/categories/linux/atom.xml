@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T17:15:14+08:00</updated>
+  <updated>2017-03-28T17:16:56+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -126,9 +126,8 @@ sudo chown -R www-data:subversion /path/main_repository
 
 <h3>参考</h3>
 
-<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a></p>
-
-<p><a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
 ]]></content>
   </entry>
   
@@ -456,9 +455,9 @@ svnserve -d -r /home/svn/
 
 <h3>参考</h3>
 
-<p><a href="http://www.baiyuxiong.com/?p=529">http://www.baiyuxiong.com/?p=529</a>
-<a href="http://blog.csdn.net/tiankongtiankong01/article/details/53869975">http://blog.csdn.net/tiankongtiankong01/article/details/53869975</a>
-<a href="http://blog.csdn.net/huayucong/article/details/54178049">http://blog.csdn.net/huayucong/article/details/54178049</a>
+<p><a href="http://www.baiyuxiong.com/?p=529">http://www.baiyuxiong.com/?p=529</a> <br/>
+<a href="http://blog.csdn.net/tiankongtiankong01/article/details/53869975">http://blog.csdn.net/tiankongtiankong01/article/details/53869975</a> <br/>
+<a href="http://blog.csdn.net/huayucong/article/details/54178049">http://blog.csdn.net/huayucong/article/details/54178049</a> <br/>
 <a href="https://item.congci.com/-/content/shumeipai-raspbian-gujian-shengji-rpi-update">https://item.congci.com/-/content/shumeipai-raspbian-gujian-shengji-rpi-update</a></p>
 ]]></content>
   </entry>
