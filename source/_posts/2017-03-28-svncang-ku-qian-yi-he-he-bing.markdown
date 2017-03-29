@@ -19,6 +19,9 @@ categories: SVN Linux 树莓派
 4、备份时数据变大，恢复后数据可能会变小
 5、库下的`passwd`和`authz`不会备份
 <!--more-->
+
+* 全备份 
+
 在需要备份SVN仓库的服务器上，
 
 ``` sh
@@ -28,6 +31,28 @@ sudo svnadmin dump /path/repository | sudo gzip > /path/repository-backup.gz.201
 # 不压缩备份
 sudo svnadmin dump /path/repository > /path/repository-backup.2017-03-28
 ```
+* 只备份指定的子目录   
+
+1、导出整个库的内容
+
+``` sh
+svnadmin dump /path/repository > /path/repository-backup.2017-03-28
+```
+2、从备份文件中过滤出要导出的目录(可以过滤多个目录)
+
+``` sh
+cat /path/repository-backup.2017-03-28 | svndumpfilter  include /projects > /path/projects-backup.2017-03-28
+```
+3、选择是否压缩
+
+``` sh
+gzip /path/projects-backup.2017-03-28
+```
+
+**注意**: `projects`目录必须是没有**rename**的目录，如果是**rename**后的目录，则导出的文件都是空记录，使用**rename**前的目录名导出的备份还是**rename**前的。   
+为了正确导出**rename**后的文件，假如**rename**前的目录名为`apple`，步骤2改为`include /projects /apple`，这样就可以导出**rename**后的文件了。
+
+
 
 ## 仓库迁移
 * 使用FTP等工具，将备份的文件传输到目的服务器上，例如 `/home`目录下
@@ -93,6 +118,6 @@ sudo chown -R www-data:subversion /path/main_repository
 <br/>
 ### 参考
 <http://www.jianshu.com/p/295b423d50ad>   
-<http://blog.chinaunix.net/uid-10449864-id-3048714.html>
-
+<http://blog.chinaunix.net/uid-10449864-id-3048714.html>   
+<http://blog.chinaunix.net/uid-725717-id-3147440.html>
 
