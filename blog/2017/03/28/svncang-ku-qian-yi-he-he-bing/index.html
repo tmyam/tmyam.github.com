@@ -168,6 +168,34 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li>只备份指定的子目录
+1、导出整个库的内容</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、从备份文件中过滤出要导出的目录(可以过滤多个目录)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>cat /path/repository-backup.2017-03-28 <span class="p">|</span> svndumpfilter  include /projects &gt; /path/projects-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3、选择是否压缩</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gzip /path/projects-backup.2017-03-28
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
+为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
+
 <h2>仓库迁移</h2>
 
 <ul>
@@ -284,7 +312,8 @@ window.onload=sethash;
 <h3>参考</h3>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
-<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
+<a href="http://blog.chinaunix.net/uid-725717-id-3147440.html">http://blog.chinaunix.net/uid-725717-id-3147440.html</a></p>
 </div>
 
 

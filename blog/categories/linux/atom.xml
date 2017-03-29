@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-28T17:16:56+08:00</updated>
+  <updated>2017-03-29T14:27:37+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -46,6 +46,28 @@ sudo svnadmin dump /path/repository | sudo gzip &gt; /path/repository-backup.gz.
 # 不压缩备份
 sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </code></pre>
+
+<ul>
+<li>只备份指定的子目录
+1、导出整个库的内容</li>
+</ul>
+
+
+<pre><code class="sh">svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</code></pre>
+
+<p>2、从备份文件中过滤出要导出的目录(可以过滤多个目录)</p>
+
+<pre><code class="sh">cat /path/repository-backup.2017-03-28 | svndumpfilter  include /projects &gt; /path/projects-backup.2017-03-28
+</code></pre>
+
+<p>3、选择是否压缩</p>
+
+<pre><code class="sh">gzip /path/projects-backup.2017-03-28
+</code></pre>
+
+<p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
+为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
 
 <h2>仓库迁移</h2>
 
@@ -127,7 +149,8 @@ sudo chown -R www-data:subversion /path/main_repository
 <h3>参考</h3>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
-<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a></p>
+<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
+<a href="http://blog.chinaunix.net/uid-725717-id-3147440.html">http://blog.chinaunix.net/uid-725717-id-3147440.html</a></p>
 ]]></content>
   </entry>
   
