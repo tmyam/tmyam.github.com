@@ -13,7 +13,7 @@
 2、如果版本数过多，dump的过程将非常慢
 3、备份耗时，恢复更耗时
 4、备份时数据变大，恢复后数据可能会变小
-5、库下的passwd和authz不会备份 &hellip;">
+5、库下的passwd和authz不会备份 全备份 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -153,6 +153,11 @@ window.onload=sethash;
 <!--more-->
 
 
+<ul>
+<li>全备份</li>
+</ul>
+
+
 <p>在需要备份SVN仓库的服务器上，</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -169,10 +174,11 @@ window.onload=sethash;
 
 
 <ul>
-<li>只备份指定的子目录
-1、导出整个库的内容</li>
+<li>只备份指定的子目录</li>
 </ul>
 
+
+<p>1、导出整个库的内容</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28

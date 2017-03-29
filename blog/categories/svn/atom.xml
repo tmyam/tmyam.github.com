@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-29T14:27:37+08:00</updated>
+  <updated>2017-03-29T14:47:12+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -38,6 +38,11 @@
 <!--more-->
 
 
+<ul>
+<li>全备份</li>
+</ul>
+
+
 <p>在需要备份SVN仓库的服务器上，</p>
 
 <pre><code class="sh"># 压缩备份
@@ -48,10 +53,11 @@ sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </code></pre>
 
 <ul>
-<li>只备份指定的子目录
-1、导出整个库的内容</li>
+<li>只备份指定的子目录</li>
 </ul>
 
+
+<p>1、导出整个库的内容</p>
 
 <pre><code class="sh">svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 </code></pre>
