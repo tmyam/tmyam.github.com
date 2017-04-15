@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux下搭建SVN服务"
+title: "Linux下搭建可以http访问的SVN服务"
 date: 2017-03-28 11:40:39 +0800
 comments: true
 disqus: false
