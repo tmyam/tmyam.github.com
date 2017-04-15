@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-29T14:47:12+08:00</updated>
+  <updated>2017-04-15T15:51:27+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,152 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux安装SVN服务]]></title>
+    <link href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/"/>
+    <updated>2017-04-15T15:49:26+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu</id>
+    <content type="html"><![CDATA[<h2>安装SVN软件</h2>
+
+<pre><code class="sh">sudo apt-get install subversion
+</code></pre>
+
+<h2>创建目录</h2>
+
+<ul>
+<li>新建仓库目录</li>
+</ul>
+
+
+<pre><code class="sh">sudo mkdir -p /home/svn/projects
+</code></pre>
+
+<p>一般来说，可以创建在任何位置</p>
+
+<ul>
+<li>生成svn仓库</li>
+</ul>
+
+
+<pre><code class="sh">sudo svnadmin create /home/svn/projects
+</code></pre>
+
+<h2>配置</h2>
+
+<ul>
+<li>修改仓库配置</li>
+</ul>
+
+
+<pre><code class="sh">cd /home/svn/projects/conf/ # 进入配置文件夹
+</code></pre>
+
+<ul>
+<li>svnserve.conf 配置服务器文件</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano svnserve.conf
+</code></pre>
+
+<pre><code class="sh">[general]
+# 匿名访问的权限，可以是read,write,none,默认为read
+anon-access = none
+# 认证用户的权限，可以是read,write,none,默认为write
+auth-access = write
+# 密码数据库的路径，去掉前面的#
+password-db = passwd
+# 配置权限文件
+authz-db = authz
+# 仓库名 - 根据自己情况修改
+realm = projects
+</code></pre>
+
+<p><strong>注意</strong>：所有的行都必须顶格，否则报错。</p>
+
+<ul>
+<li>authz 配置权限</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano authz
+</code></pre>
+
+<pre><code class="sh">[groups] 
+# harry_and_sally = harry,sally
+# harry_sally_and_joe = harry,sally,&amp;joe
+admin = tmyam # admin是用户组，tmyam是用户
+test = one，two
+
+[projects:/]
+@admin = rw  # admin用户组的所有用户，对仓库有读写权限
+@test = r    # test 用户组的所有用户，对仓库有只读权限
+
+[projects:/test]
+one = rw    # one用户对仓库下的test文件夹有读写权限
+</code></pre>
+
+<ul>
+<li>passwd 配置密码</li>
+</ul>
+
+
+<pre><code class="sh">sudo nano passwd
+</code></pre>
+
+<pre><code class="sh">[users]
+# harry = harryssecret
+# sally = sallyssecret
+tmyam = 1234
+one = 1234
+two = 1234
+</code></pre>
+
+<h2>启动服务</h2>
+
+<pre><code class="sh">killall svnserve
+svnserve -d -r /home/svn
+</code></pre>
+
+<pre><code class="sh"># 查看启动情况
+ps aux | grep svn
+
+# 查看端口使用情况，SVN默认端口：3690
+netstat -tln
+</code></pre>
+
+<h2>设置开机自启动</h2>
+
+<ul>
+<li>查看svnserve位置</li>
+</ul>
+
+
+<pre><code class="sh">whereis svnserve
+</code></pre>
+
+<p><strong>注意</strong>：我们用终端操作的时候，可以直接使用svnserve命令，
+但是在/etc/rc.local 文件中必须写上完整的路径！</p>
+
+<pre><code class="sh">sudo nano /etc/rc.local
+</code></pre>
+
+<p>在<code>exit 0</code>之前添加：</p>
+
+<blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
+
+<h2>连接</h2>
+
+<p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
+<a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
+<a href="http://blog.csdn.net/testcs_dn/article/details/45395645">http://blog.csdn.net/testcs_dn/article/details/45395645</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SVN仓库备份和迁移]]></title>
@@ -29,10 +175,10 @@
 </ul>
 
 
-<p>1、备份方式多样
-2、如果版本数过多，dump的过程将非常慢
-3、备份耗时，恢复更耗时
-4、备份时数据变大，恢复后数据可能会变小
+<p>1、备份方式多样 <br/>
+2、如果版本数过多，dump的过程将非常慢 <br/>
+3、备份耗时，恢复更耗时 <br/>
+4、备份时数据变大，恢复后数据可能会变小 <br/>
 5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
 
 <!--more-->
@@ -161,7 +307,7 @@ sudo chown -R www-data:subversion /path/main_repository
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
+    <title type="html"><![CDATA[Linux下搭建可以http访问的SVN服务]]></title>
     <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
     <updated>2017-03-28T11:40:39+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>

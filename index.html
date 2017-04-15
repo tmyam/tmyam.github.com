@@ -9,11 +9,10 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="前言 本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。 仓库备份 svnadmin dump 1、备份方式多样
-2、如果版本数过多，dump的过程将非常慢
-3、备份耗时，恢复更耗时
-4、备份时数据变大，恢复后数据可能会变小
-5、库下的passwd和authz不会备份 ">
+  <meta name="description" content="安装SVN软件 1
+sudo apt-get install subversion 创建目录 新建仓库目录 1
+sudo mkdir -p /home/svn/projects 一般来说，可以创建在任何位置 生成svn仓库 1
+sudo svnadmin create /home/svn/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +107,249 @@ window.onload=sethash;
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-15T15:49:26+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+-->
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>安装SVN软件</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>创建目录</h2>
+
+<ul>
+<li>新建仓库目录</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir -p /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一般来说，可以创建在任何位置</p>
+
+<ul>
+<li>生成svn仓库</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo svnadmin create /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>配置</h2>
+
+<ul>
+<li>修改仓库配置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /home/svn/projects/conf/ <span class="c"># 进入配置文件夹</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>svnserve.conf 配置服务器文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano svnserve.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>general<span class="o">]</span>
+</span><span class='line'><span class="c"># 匿名访问的权限，可以是read,write,none,默认为read</span>
+</span><span class='line'>anon-access <span class="o">=</span> none
+</span><span class='line'><span class="c"># 认证用户的权限，可以是read,write,none,默认为write</span>
+</span><span class='line'>auth-access <span class="o">=</span> write
+</span><span class='line'><span class="c"># 密码数据库的路径，去掉前面的#</span>
+</span><span class='line'>password-db <span class="o">=</span> passwd
+</span><span class='line'><span class="c"># 配置权限文件</span>
+</span><span class='line'>authz-db <span class="o">=</span> authz
+</span><span class='line'><span class="c"># 仓库名 - 根据自己情况修改</span>
+</span><span class='line'><span class="nv">realm</span> <span class="o">=</span> projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>：所有的行都必须顶格，否则报错。</p>
+
+<ul>
+<li>authz 配置权限</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano authz
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>groups<span class="o">]</span>
+</span><span class='line'><span class="c"># harry_and_sally = harry,sally</span>
+</span><span class='line'><span class="c"># harry_sally_and_joe = harry,sally,&amp;joe</span>
+</span><span class='line'><span class="nv">admin</span> <span class="o">=</span> tmyam <span class="c"># admin是用户组，tmyam是用户</span>
+</span><span class='line'><span class="nb">test</span> <span class="o">=</span> one，two
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>projects:/<span class="o">]</span>
+</span><span class='line'>@admin <span class="o">=</span> rw  <span class="c"># admin用户组的所有用户，对仓库有读写权限</span>
+</span><span class='line'>@test <span class="o">=</span> r    <span class="c"># test 用户组的所有用户，对仓库有只读权限</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>projects:/test<span class="o">]</span>
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> rw    <span class="c"># one用户对仓库下的test文件夹有读写权限</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>passwd 配置密码</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano passwd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>users<span class="o">]</span>
+</span><span class='line'><span class="c"># harry = harryssecret</span>
+</span><span class='line'><span class="c"># sally = sallyssecret</span>
+</span><span class='line'><span class="nv">tmyam</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">two</span> <span class="o">=</span> 1234
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>启动服务</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>killall svnserve
+</span><span class='line'>svnserve -d -r /home/svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 查看启动情况</span>
+</span><span class='line'>ps aux <span class="p">|</span> grep svn
+</span><span class='line'>
+</span><span class='line'><span class="c"># 查看端口使用情况，SVN默认端口：3690</span>
+</span><span class='line'>netstat -tln
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置开机自启动</h2>
+
+<ul>
+<li>查看svnserve位置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>whereis svnserve
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>：我们用终端操作的时候，可以直接使用svnserve命令，
+但是在/etc/rc.local 文件中必须写上完整的路径！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/rc.local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>exit 0</code>之前添加：</p>
+
+<blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
+
+<h2>连接</h2>
+
+<p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
+<a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
+<a href="http://blog.csdn.net/testcs_dn/article/details/45395645">http://blog.csdn.net/testcs_dn/article/details/45395645</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a></h1>
     
     
@@ -145,10 +387,10 @@ window.onload=sethash;
 </ul>
 
 
-<p>1、备份方式多样
-2、如果版本数过多，dump的过程将非常慢
-3、备份耗时，恢复更耗时
-4、备份时数据变大，恢复后数据可能会变小
+<p>1、备份方式多样 <br/>
+2、如果版本数过多，dump的过程将非常慢 <br/>
+3、备份耗时，恢复更耗时 <br/>
+4、备份时数据变大，恢复后数据可能会变小 <br/>
 5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
 
 </div>
@@ -167,7 +409,7 @@ window.onload=sethash;
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建SVN服务</a></h1>
+      <h1 class="entry-title"><a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建可以http访问的SVN服务</a></h1>
     
     
       <p class="meta">
@@ -588,77 +830,6 @@ window.onload=sethash;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-28T11:46:00+08:00" pubdate data-updated="true"></time>
-        <!--
-
-			
--->
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
-
-<h2>常用写法简介</h2>
-
-<h3>1. 经典写法</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>之所以使用count来存储数组总数，而不是写成 <strong>i &lt; array.count</strong> ,是因为循环每进行一次都会调用数组的计数方法，这将导致性能变得很差。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/02/28/objective-cbian-li-shu-zu/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2/">&larr; Older</a>
@@ -683,12 +854,12 @@ window.onload=sethash;
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
 <li class='category'><a href='/blog/categories/ios-develop/'>ios-develop (2)</a></li>
-<li class='category'><a href='/blog/categories/linux/'>linux (4)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (5)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac-develop (8)</a></li>
 <li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
-<li class='category'><a href='/blog/categories/svn/'>svn (2)</a></li>
-<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (4)</a></li>
+<li class='category'><a href='/blog/categories/svn/'>svn (3)</a></li>
+<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (5)</a></li>
 
   </ul>
 </section><section>
@@ -696,11 +867,15 @@ window.onload=sethash;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建SVN服务</a>
+        <a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建可以http访问的SVN服务</a>
       </li>
     
       <li class="post">
@@ -709,10 +884,6 @@ window.onload=sethash;
     
       <li class="post">
         <a href="/blog/2017/03/07/chu-shi-shu-mei-pai/">初识树莓派</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/04/08/cocoa-binding/">cocoa binding</a>
       </li>
     
   </ul>

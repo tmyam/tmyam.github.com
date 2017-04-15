@@ -9,14 +9,17 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。 1. 枚举介绍 enum only 1
+  <meta name="description" content="数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。 常用写法简介 1. 经典写法 1
 2
 3
 4
 5
-enum
-{ TMEnumTestOne, TMEnumTestTwo,
-}; 这种枚举不推荐使用，因为不能用一种类型的方式表示枚举。 ">
+6
+7
+8
+9
+- (void) test:(NSArray*)array
+{ NSInteger count = array.count; for (NSInteger i = 0 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +108,77 @@ window.onload=sethash;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/28/objective-cbian-li-shu-zu/">Objective-C遍历数组</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T11:46:00+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+-->
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
+
+<h2>常用写法简介</h2>
+
+<h3>1. 经典写法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">test:</span><span class="p">(</span><span class="bp">NSArray</span><span class="o">*</span><span class="p">)</span><span class="nv">array</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSInteger</span> <span class="n">count</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">count</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="bp">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;%@&quot;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;end&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之所以使用count来存储数组总数，而不是写成 <strong>i &lt; array.count</strong> ,是因为循环每进行一次都会调用数组的计数方法，这将导致性能变得很差。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/02/28/objective-cbian-li-shu-zu/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -565,12 +639,12 @@ window.onload=sethash;
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
 <li class='category'><a href='/blog/categories/ios-develop/'>ios-develop (2)</a></li>
-<li class='category'><a href='/blog/categories/linux/'>linux (4)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (5)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac-develop (8)</a></li>
 <li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
-<li class='category'><a href='/blog/categories/svn/'>svn (2)</a></li>
-<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (4)</a></li>
+<li class='category'><a href='/blog/categories/svn/'>svn (3)</a></li>
+<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (5)</a></li>
 
   </ul>
 </section><section>
@@ -578,11 +652,15 @@ window.onload=sethash;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建SVN服务</a>
+        <a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建可以http访问的SVN服务</a>
       </li>
     
       <li class="post">
@@ -591,10 +669,6 @@ window.onload=sethash;
     
       <li class="post">
         <a href="/blog/2017/03/07/chu-shi-shu-mei-pai/">初识树莓派</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/04/08/cocoa-binding/">cocoa binding</a>
       </li>
     
   </ul>

@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>SVN仓库备份和迁移 - tmyam's blog</title>
+  <title>Linux安装SVN服务 - tmyam's blog</title>
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="前言 本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。 仓库备份 svnadmin dump 1、备份方式多样 2、如果版本数过多，dump的过程将非常慢 3、备份耗时，恢复更耗时 4、备份时数据变大，恢复后数据可能会变小 5、库下的passwd和authz不会备份 全备份 &hellip;">
+  <meta name="description" content="安装SVN软件 1
+sudo apt-get install subversion 创建目录 新建仓库目录 1
+sudo mkdir -p /home/svn/projects 一般来说，可以创建在任何位置 生成svn仓库 1
+sudo svnadmin create /home/svn/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">
+  <link rel="canonical" href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -101,7 +104,7 @@ window.onload=sethash;
   
   <header>
     
-      <h1 class="entry-title">SVN仓库备份和迁移</h1>
+      <h1 class="entry-title">Linux安装SVN服务</h1>
     
     
       <p class="meta">
@@ -117,7 +120,7 @@ window.onload=sethash;
   
 
 
-<time datetime="2017-03-28T15:09:11+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-04-15T15:49:26+08:00" pubdate data-updated="true"></time>
         <!--
 
 			
@@ -129,89 +132,59 @@ window.onload=sethash;
   </header>
 
 
-<div class="entry-content"><h2>前言</h2>
-
-<p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
-
-<h2>仓库备份</h2>
-
-<ul>
-<li><strong>svnadmin dump</strong></li>
-</ul>
-
-
-<p>1、备份方式多样 <br/>
-2、如果版本数过多，dump的过程将非常慢 <br/>
-3、备份耗时，恢复更耗时 <br/>
-4、备份时数据变大，恢复后数据可能会变小 <br/>
-5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
-
-<!--more-->
-
-
-<ul>
-<li>全备份</li>
-</ul>
-
-
-<p>在需要备份SVN仓库的服务器上，</p>
+<div class="entry-content"><h2>安装SVN软件</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 压缩备份</span>
-</span><span class='line'>sudo svnadmin dump /path/repository <span class="p">|</span> sudo gzip &gt; /path/repository-backup.gz.2017-03-28
-</span><span class='line'>
-</span><span class='line'><span class="c"># 不压缩备份</span>
-</span><span class='line'>sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>创建目录</h2>
+
+<ul>
+<li>新建仓库目录</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir -p /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一般来说，可以创建在任何位置</p>
+
+<ul>
+<li>生成svn仓库</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo svnadmin create /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>配置</h2>
+
+<ul>
+<li>修改仓库配置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /home/svn/projects/conf/ <span class="c"># 进入配置文件夹</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
-<li>只备份指定的子目录</li>
+<li>svnserve.conf 配置服务器文件</li>
 </ul>
 
 
-<p>1、导出整个库的内容</p>
-
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano svnserve.conf
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>2、从备份文件中过滤出要导出的目录(可以过滤多个目录)</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>cat /path/repository-backup.2017-03-28 <span class="p">|</span> svndumpfilter  include /projects &gt; /path/projects-backup.2017-03-28
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3、选择是否压缩</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>gzip /path/projects-backup.2017-03-28
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
-为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
-
-<h2>仓库迁移</h2>
-
-<ul>
-<li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
-</ul>
-
-
-<h2>仓库合并</h2>
-
-<ul>
-<li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
-<li><p>在本地checkout目的服务器的主仓库</p></li>
-<li><p>如果需要将迁移的仓库存储到SVN中指定的目录 <code>A</code> 下，则在本地创建这个指定的目录 <code>A</code>，并用svn工具提交到目的服务器。然后登录目的服务器：</p></li>
-</ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -219,43 +192,38 @@ window.onload=sethash;
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
-</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository --parent-dir A
-</span><span class='line'>
-</span><span class='line'><span class="c"># 不解压缩合并</span>
-</span><span class='line'>sudo svnadmin load /path/main_repository --parent-dir A  &lt; /home/repository-backup.2017-03-28
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>general<span class="o">]</span>
+</span><span class='line'><span class="c"># 匿名访问的权限，可以是read,write,none,默认为read</span>
+</span><span class='line'>anon-access <span class="o">=</span> none
+</span><span class='line'><span class="c"># 认证用户的权限，可以是read,write,none,默认为write</span>
+</span><span class='line'>auth-access <span class="o">=</span> write
+</span><span class='line'><span class="c"># 密码数据库的路径，去掉前面的#</span>
+</span><span class='line'>password-db <span class="o">=</span> passwd
+</span><span class='line'><span class="c"># 配置权限文件</span>
+</span><span class='line'>authz-db <span class="o">=</span> authz
+</span><span class='line'><span class="c"># 仓库名 - 根据自己情况修改</span>
+</span><span class='line'><span class="nv">realm</span> <span class="o">=</span> projects
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>参数 <code>--parent-dir</code> 是指定版本库<code>main_repository</code>下的具体路径，这里是第一级目录<code>A</code>.</p>
+<p><strong>注意</strong>：所有的行都必须顶格，否则报错。</p>
 
 <ul>
-<li>如果不用迁移到指定目录下，只需要迁移到根目录下，则登录目的服务器：</li>
+<li>authz 配置权限</li>
 </ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 解压缩合并</span>
-</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/main_repository
-</span><span class='line'>
-</span><span class='line'><span class="c"># 不解压缩合并</span>
-</span><span class='line'>sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano authz
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>这样就可以将多个仓库合并成一个仓库了。</p>
-
-<h2>仓库恢复</h2>
-
-<ul>
-<li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
-<li>使用FTP等工具，将备份的文件传输到需要恢复的服务器上，例如 <code>/home</code>目录下</li>
-<li>登录需要恢复的服务器</li>
-</ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -270,52 +238,105 @@ window.onload=sethash;
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 建立新的svn仓库</span>
-</span><span class='line'>sudo svnadmin create /path/new_repository
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>groups<span class="o">]</span>
+</span><span class='line'><span class="c"># harry_and_sally = harry,sally</span>
+</span><span class='line'><span class="c"># harry_sally_and_joe = harry,sally,&amp;joe</span>
+</span><span class='line'><span class="nv">admin</span> <span class="o">=</span> tmyam <span class="c"># admin是用户组，tmyam是用户</span>
+</span><span class='line'><span class="nb">test</span> <span class="o">=</span> one，two
 </span><span class='line'>
-</span><span class='line'><span class="c"># check</span>
-</span><span class='line'>ls -l /path/new_repository
+</span><span class='line'><span class="o">[</span>projects:/<span class="o">]</span>
+</span><span class='line'>@admin <span class="o">=</span> rw  <span class="c"># admin用户组的所有用户，对仓库有读写权限</span>
+</span><span class='line'>@test <span class="o">=</span> r    <span class="c"># test 用户组的所有用户，对仓库有只读权限</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># 赋予组成员对所有新加入文件仓库的文件拥有相应的权限</span>
-</span><span class='line'>sudo chmod -R g+rws /path/new_repository
-</span><span class='line'>
-</span><span class='line'><span class="c"># 导入没压缩数据</span>
-</span><span class='line'>sudo svnadmin load /path/new_repository &lt; /home/repository-backup.2017-03-28
-</span><span class='line'>
-</span><span class='line'><span class="c"># 导入被压缩数据</span>
-</span><span class='line'>sudo zcat /home/repository-backup.gz.2017-03-28 <span class="p">|</span> sudo svnadmin load /path/new_repository
-</span><span class='line'>
-</span><span class='line'><span class="c"># 删除旧仓库</span>
-</span><span class='line'>sudo rm -r /path/main_repository
-</span><span class='line'>
-</span><span class='line'><span class="c"># 修改新仓库名</span>
-</span><span class='line'>sudo mv /path/new_repository /path/main_repository
-</span><span class='line'>
-</span><span class='line'><span class="c"># 修改权限</span>
-</span><span class='line'>sudo chown -R www-data:subversion /path/main_repository
+</span><span class='line'><span class="o">[</span>projects:/test<span class="o">]</span>
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> rw    <span class="c"># one用户对仓库下的test文件夹有读写权限</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>如果是清空svn仓库，则只要去掉导入的步骤就可以了。</p>
+<ul>
+<li>passwd 配置密码</li>
+</ul>
 
-<p><br/></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano passwd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>users<span class="o">]</span>
+</span><span class='line'><span class="c"># harry = harryssecret</span>
+</span><span class='line'><span class="c"># sally = sallyssecret</span>
+</span><span class='line'><span class="nv">tmyam</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">two</span> <span class="o">=</span> 1234
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>启动服务</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>killall svnserve
+</span><span class='line'>svnserve -d -r /home/svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 查看启动情况</span>
+</span><span class='line'>ps aux <span class="p">|</span> grep svn
+</span><span class='line'>
+</span><span class='line'><span class="c"># 查看端口使用情况，SVN默认端口：3690</span>
+</span><span class='line'>netstat -tln
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置开机自启动</h2>
+
+<ul>
+<li>查看svnserve位置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>whereis svnserve
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>：我们用终端操作的时候，可以直接使用svnserve命令，
+但是在/etc/rc.local 文件中必须写上完整的路径！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/rc.local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>exit 0</code>之前添加：</p>
+
+<blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
+
+<h2>连接</h2>
+
+<p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
 
 <h3>参考</h3>
 
-<p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
-<a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
-<a href="http://blog.chinaunix.net/uid-725717-id-3147440.html">http://blog.chinaunix.net/uid-725717-id-3147440.html</a></p>
+<p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
+<a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
+<a href="http://blog.csdn.net/testcs_dn/article/details/45395645">http://blog.csdn.net/testcs_dn/article/details/45395645</a></p>
 </div>
 
 
@@ -338,7 +359,7 @@ window.onload=sethash;
   
 
 
-<time datetime="2017-03-28T15:09:11+08:00" pubdate data-updated="true"></time>
+<time datetime="2017-04-15T15:49:26+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
@@ -359,10 +380,8 @@ window.onload=sethash;
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/" title="Previous Post: Linux下搭建可以http访问的SVN服务">&laquo; Linux下搭建可以http访问的SVN服务</a>
+        <a class="basic-alignment left" href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/" title="Previous Post: SVN仓库备份和迁移">&laquo; SVN仓库备份和迁移</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/" title="Next Post: Linux安装SVN服务">Linux安装SVN服务 &raquo;</a>
       
     </p>
   </footer>
@@ -371,7 +390,7 @@ window.onload=sethash;
 
   <section>
     <h1>评论</h1>
-    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="SVN仓库备份和迁移"></div>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="Linux安装SVN服务"></div>
 <script type="text/javascript">
   var duoshuoQuery = {short_name:"tmyam"};
   (function() {

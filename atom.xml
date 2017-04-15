@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-03-29T14:47:12+08:00</updated>
+  <updated>2017-04-15T15:51:27+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,219 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux安装SVN服务]]></title>
+    <link href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/"/>
+    <updated>2017-04-15T15:49:26+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu</id>
+    <content type="html"><![CDATA[<h2>安装SVN软件</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>创建目录</h2>
+
+<ul>
+<li>新建仓库目录</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir -p /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一般来说，可以创建在任何位置</p>
+
+<ul>
+<li>生成svn仓库</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo svnadmin create /home/svn/projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>配置</h2>
+
+<ul>
+<li>修改仓库配置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /home/svn/projects/conf/ <span class="c"># 进入配置文件夹</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>svnserve.conf 配置服务器文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano svnserve.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>general<span class="o">]</span>
+</span><span class='line'><span class="c"># 匿名访问的权限，可以是read,write,none,默认为read</span>
+</span><span class='line'>anon-access <span class="o">=</span> none
+</span><span class='line'><span class="c"># 认证用户的权限，可以是read,write,none,默认为write</span>
+</span><span class='line'>auth-access <span class="o">=</span> write
+</span><span class='line'><span class="c"># 密码数据库的路径，去掉前面的#</span>
+</span><span class='line'>password-db <span class="o">=</span> passwd
+</span><span class='line'><span class="c"># 配置权限文件</span>
+</span><span class='line'>authz-db <span class="o">=</span> authz
+</span><span class='line'><span class="c"># 仓库名 - 根据自己情况修改</span>
+</span><span class='line'><span class="nv">realm</span> <span class="o">=</span> projects
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>：所有的行都必须顶格，否则报错。</p>
+
+<ul>
+<li>authz 配置权限</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano authz
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>groups<span class="o">]</span>
+</span><span class='line'><span class="c"># harry_and_sally = harry,sally</span>
+</span><span class='line'><span class="c"># harry_sally_and_joe = harry,sally,&amp;joe</span>
+</span><span class='line'><span class="nv">admin</span> <span class="o">=</span> tmyam <span class="c"># admin是用户组，tmyam是用户</span>
+</span><span class='line'><span class="nb">test</span> <span class="o">=</span> one，two
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>projects:/<span class="o">]</span>
+</span><span class='line'>@admin <span class="o">=</span> rw  <span class="c"># admin用户组的所有用户，对仓库有读写权限</span>
+</span><span class='line'>@test <span class="o">=</span> r    <span class="c"># test 用户组的所有用户，对仓库有只读权限</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>projects:/test<span class="o">]</span>
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> rw    <span class="c"># one用户对仓库下的test文件夹有读写权限</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>passwd 配置密码</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano passwd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">[</span>users<span class="o">]</span>
+</span><span class='line'><span class="c"># harry = harryssecret</span>
+</span><span class='line'><span class="c"># sally = sallyssecret</span>
+</span><span class='line'><span class="nv">tmyam</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">one</span> <span class="o">=</span> 1234
+</span><span class='line'><span class="nv">two</span> <span class="o">=</span> 1234
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>启动服务</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>killall svnserve
+</span><span class='line'>svnserve -d -r /home/svn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># 查看启动情况</span>
+</span><span class='line'>ps aux <span class="p">|</span> grep svn
+</span><span class='line'>
+</span><span class='line'><span class="c"># 查看端口使用情况，SVN默认端口：3690</span>
+</span><span class='line'>netstat -tln
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置开机自启动</h2>
+
+<ul>
+<li>查看svnserve位置</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>whereis svnserve
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>注意</strong>：我们用终端操作的时候，可以直接使用svnserve命令，
+但是在/etc/rc.local 文件中必须写上完整的路径！</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/rc.local
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>exit 0</code>之前添加：</p>
+
+<blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
+
+<h2>连接</h2>
+
+<p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
+<a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
+<a href="http://blog.csdn.net/testcs_dn/article/details/45395645">http://blog.csdn.net/testcs_dn/article/details/45395645</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SVN仓库备份和迁移]]></title>
@@ -29,10 +242,10 @@
 </ul>
 
 
-<p>1、备份方式多样
-2、如果版本数过多，dump的过程将非常慢
-3、备份耗时，恢复更耗时
-4、备份时数据变大，恢复后数据可能会变小
+<p>1、备份方式多样 <br/>
+2、如果版本数过多，dump的过程将非常慢 <br/>
+3、备份耗时，恢复更耗时 <br/>
+4、备份时数据变大，恢复后数据可能会变小 <br/>
 5、库下的<code>passwd</code>和<code>authz</code>不会备份</p>
 
 <!--more-->
@@ -209,7 +422,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux下搭建SVN服务]]></title>
+    <title type="html"><![CDATA[Linux下搭建可以http访问的SVN服务]]></title>
     <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
     <updated>2017-03-28T11:40:39+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
@@ -2038,7 +2251,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x63;&#104;&#x69;&#x6e;&#x61;&#100;&#x65;&#x76;&#x40;&#x61;&#115;&#105;&#x61;&#46;&#97;&#x70;&#112;&#108;&#101;&#x2e;&#x63;&#x6f;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#100;&#101;&#118;&#x40;&#97;&#x73;&#105;&#x61;&#x2e;&#x61;&#112;&#112;&#x6c;&#101;&#46;&#99;&#111;&#x6d;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x63;&#104;&#105;&#x6e;&#97;&#100;&#x65;&#118;&#x40;&#x61;&#115;&#105;&#97;&#46;&#x61;&#112;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#99;&#x68;&#x69;&#110;&#x61;&#100;&#101;&#x76;&#64;&#x61;&#115;&#x69;&#x61;&#46;&#x61;&#x70;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -2134,7 +2347,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#99;&#x68;&#105;&#x6e;&#x61;&#x64;&#101;&#118;&#x40;&#x61;&#115;&#105;&#97;&#46;&#x61;&#x70;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#99;&#104;&#x69;&#110;&#x61;&#100;&#101;&#118;&#64;&#x61;&#x73;&#105;&#97;&#46;&#97;&#112;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a></font>。
+<font color=red><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x63;&#104;&#105;&#x6e;&#x61;&#100;&#x65;&#118;&#64;&#x61;&#x73;&#x69;&#x61;&#x2e;&#x61;&#x70;&#112;&#108;&#101;&#46;&#99;&#x6f;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#x73;&#x69;&#x61;&#x2e;&#97;&#x70;&#x70;&#x6c;&#101;&#x2e;&#99;&#x6f;&#109;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
