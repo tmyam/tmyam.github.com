@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-04-15T15:51:27+08:00</updated>
+  <updated>2017-04-15T15:53:38+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -28,6 +28,9 @@
 <ul>
 <li>新建仓库目录</li>
 </ul>
+
+
+<!--more-->
 
 
 <pre><code class="sh">sudo mkdir -p /home/svn/projects
