@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-04-15T15:53:38+08:00</updated>
+  <updated>2017-04-22T13:29:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -684,7 +684,7 @@ svnserve -d -r /home/svn/
 </ul>
 
 
-<pre><code class="sh ">cd /volumes/boot
+<pre><code class="sh ">cd /Volumes/boot
 sudo touch ssh
 </code></pre>
 
@@ -738,6 +738,8 @@ su pi
 </ul>
 
 
+<p><strong>方法 1</strong>（不推荐）</p>
+
 <pre><code class="sh">sudo nano /etc/network/interfaces
 </code></pre>
 
@@ -782,6 +784,29 @@ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 </code></pre>
 
 <p>这里 注释掉auto eth0，是因为它会导致树莓派开机时等待有线网卡动态分配IP，但实际上你的有线网口并没有连接到路由器，这里会让内核等待更长的时间，从而拖慢开机速度。</p>
+
+<p><strong>方法 2</strong>（推荐）
+由于方法1，有些时候并不总是生效，并且在插入网线，开启无线的时候，系统会优先使用无线，显然速度会受限，应该优先使用有线。这里就要使用方法2了，也是官方推荐的方法。</p>
+
+<pre><code class="sh">sudo nano /etc/dhcpcd.conf
+</code></pre>
+
+<p>最末尾添加：</p>
+
+<pre><code class="sh">interface eth0                  
+static ip_address=192.168.1.200  
+static netmask=255.255.255.0
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+
+interface wlan0
+static ip_address=192.168.1.201
+static netmask=255.255.255.0
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+</code></pre>
+
+<p>这样就可以了。</p>
 
 <ul>
 <li>添加WIFI信息</li>
@@ -852,6 +877,19 @@ sudo apt-get install vim        #安装vim
 </ul>
 
 
+<h2>恢复TF卡容量</h2>
+
+<p>写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。</p>
+
+<ul>
+<li><p>下载 bootsector.img<a href="http://www.alexpage.de/download/usbit/bootsector.img">下载地址</a></p></li>
+<li><p>打开win32Diskimager，将下载的 bootsector.img 写入（Write）TF卡</p></li>
+<li>在windows资源管理器下格式化TF卡（一般格式化成FAT32）</li>
+</ul>
+
+
+<p>这样TF卡就恢复了原始容量。</p>
+
 <h2>关机命令</h2>
 
 <pre><code class="sh">sudo poweroff       #关机
@@ -909,6 +947,7 @@ rm ~/test.img
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>
 <a href="http://blog.csdn.net/shaopengf/article/details/52411926">http://blog.csdn.net/shaopengf/article/details/52411926</a>
 <a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a>
+<a href="http://blog.163.com/ch3c_am/blog/static/18963721320168911852245/?t=1474203973809">http://blog.163.com/ch3c_am/blog/static/18963721320168911852245/?t=1474203973809</a>
 <a href="http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html">http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html</a></p>
 ]]></content>
   </entry>

@@ -170,7 +170,7 @@ window.onload=sethash;
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /volumes/boot
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> /Volumes/boot
 </span><span class='line'>sudo touch ssh
 </span></code></pre></td></tr></table></div></figure>
 
@@ -235,6 +235,8 @@ window.onload=sethash;
 <li>编辑网络配置文件</li>
 </ul>
 
+
+<p><strong>方法 1</strong>（不推荐）</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/network/interfaces
@@ -316,6 +318,43 @@ window.onload=sethash;
 
 
 <p>这里 注释掉auto eth0，是因为它会导致树莓派开机时等待有线网卡动态分配IP，但实际上你的有线网口并没有连接到路由器，这里会让内核等待更长的时间，从而拖慢开机速度。</p>
+
+<p><strong>方法 2</strong>（推荐）
+由于方法1，有些时候并不总是生效，并且在插入网线，开启无线的时候，系统会优先使用无线，显然速度会受限，应该优先使用有线。这里就要使用方法2了，也是官方推荐的方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo nano /etc/dhcpcd.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最末尾添加：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>interface eth0
+</span><span class='line'>static <span class="nv">ip_address</span><span class="o">=</span>192.168.1.200
+</span><span class='line'>static <span class="nv">netmask</span><span class="o">=</span>255.255.255.0
+</span><span class='line'>static <span class="nv">routers</span><span class="o">=</span>192.168.1.1
+</span><span class='line'>static <span class="nv">domain_name_servers</span><span class="o">=</span>192.168.1.1
+</span><span class='line'>
+</span><span class='line'>interface wlan0
+</span><span class='line'>static <span class="nv">ip_address</span><span class="o">=</span>192.168.1.201
+</span><span class='line'>static <span class="nv">netmask</span><span class="o">=</span>255.255.255.0
+</span><span class='line'>static <span class="nv">routers</span><span class="o">=</span>192.168.1.1
+</span><span class='line'>static <span class="nv">domain_name_servers</span><span class="o">=</span>192.168.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就可以了。</p>
 
 <ul>
 <li>添加WIFI信息</li>
@@ -412,6 +451,19 @@ iwconfig 查看当前联网的信息
 </ul>
 
 
+<h2>恢复TF卡容量</h2>
+
+<p>写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。</p>
+
+<ul>
+<li><p>下载 bootsector.img<a href="http://www.alexpage.de/download/usbit/bootsector.img">下载地址</a></p></li>
+<li><p>打开win32Diskimager，将下载的 bootsector.img 写入（Write）TF卡</p></li>
+<li>在windows资源管理器下格式化TF卡（一般格式化成FAT32）</li>
+</ul>
+
+
+<p>这样TF卡就恢复了原始容量。</p>
+
 <h2>关机命令</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -480,6 +532,7 @@ iwconfig 查看当前联网的信息
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>
 <a href="http://blog.csdn.net/shaopengf/article/details/52411926">http://blog.csdn.net/shaopengf/article/details/52411926</a>
 <a href="http://blog.csdn.net/shooter32/article/details/45126525">http://blog.csdn.net/shooter32/article/details/45126525</a>
+<a href="http://blog.163.com/ch3c_am/blog/static/18963721320168911852245/?t=1474203973809">http://blog.163.com/ch3c_am/blog/static/18963721320168911852245/?t=1474203973809</a>
 <a href="http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html">http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html</a></p>
 </div>
 
