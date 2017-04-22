@@ -34,7 +34,7 @@ categories: 树莓派 Linux
 电脑上插上TF卡
 
 ``` sh 
-cd /volumes/boot
+cd /Volumes/boot
 sudo touch ssh
 ```
 这样，树莓派开机时默认启动ssh。
@@ -75,6 +75,8 @@ su pi
 2、没插网线，有WIFI时，连接WIFI，WIFI网卡地址为静态IP。   
 3、多个WIFI信号时，优先连接优先级高的信号。   
 * 编辑网络配置文件
+
+**方法 1**（不推荐）
 
 ``` sh
 sudo nano /etc/network/interfaces
@@ -122,6 +124,29 @@ gateway 192.168.1.1         # WIFI网卡的网关
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 这里 注释掉auto eth0，是因为它会导致树莓派开机时等待有线网卡动态分配IP，但实际上你的有线网口并没有连接到路由器，这里会让内核等待更长的时间，从而拖慢开机速度。
+
+**方法 2**（推荐）
+由于方法1，有些时候并不总是生效，并且在插入网线，开启无线的时候，系统会优先使用无线，显然速度会受限，应该优先使用有线。这里就要使用方法2了，也是官方推荐的方法。
+
+``` sh
+sudo nano /etc/dhcpcd.conf
+```
+最末尾添加：
+
+``` sh
+interface eth0                  
+static ip_address=192.168.1.200  
+static netmask=255.255.255.0
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+
+interface wlan0
+static ip_address=192.168.1.201
+static netmask=255.255.255.0
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+```
+这样就可以了。
 
 * 添加WIFI信息
 
@@ -183,6 +208,15 @@ sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 * Device 选择你的TF卡盘符
 * 然后点Read
 
+## 恢复TF卡容量
+写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。
+
+* 下载 bootsector.img[下载地址](http://www.alexpage.de/download/usbit/bootsector.img)
+
+* 打开win32Diskimager，将下载的 bootsector.img 写入（Write）TF卡 
+* 在windows资源管理器下格式化TF卡（一般格式化成FAT32）
+
+这样TF卡就恢复了原始容量。
 ## 关机命令
 
 ```sh
@@ -230,6 +264,7 @@ rm ~/test.img
 <http://blog.csdn.net/u014271612/article/details/53767669>
 <http://blog.csdn.net/shaopengf/article/details/52411926>
 <http://blog.csdn.net/shooter32/article/details/45126525>
+<http://blog.163.com/ch3c_am/blog/static/18963721320168911852245/?t=1474203973809>
 <http://shumeipai.nxez.com/2014/03/31/raspberry-pi-disk-speed-problem-solving.html>
 
 
