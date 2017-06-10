@@ -4,7 +4,7 @@
   <title><![CDATA[Category: maven | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/maven/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:25:09+08:00</updated>
+  <updated>2017-06-10T14:40:06+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -20,9 +20,9 @@
     <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
-<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+<p>对于Java web应用来说，SpringMVC已经越来越流行。这里就对SpringMVC环境的搭建做一个记录。</p>
 
-<h2>创建Maven java web项目</h2>
+<h2>创建Maven Java web项目</h2>
 
 <p>这里可以参考以前的文章，这里就不多说了。</p>
 
@@ -31,10 +31,7 @@
 
 <h2>创建目录</h2>
 
-<ol>
-<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
-</ol>
-
+<p>1、 在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</p>
 
 <p><img src="/images/2017/06/11/01.jpg" alt="" /></p>
 
@@ -57,11 +54,8 @@
     &lt;/content&gt;
 </code></pre>
 
-<ol>
-<li>添加依赖库
-可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
-</ol>
-
+<p>2、 添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</p>
 
 <p><img src="/images/2017/06/11/02.jpg" alt="" /></p>
 
@@ -159,16 +153,9 @@
 <p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
 <img src="/images/2017/06/11/03.jpg" alt="" /></p>
 
-<ol>
-<li>进行SpringMVC配置
-
-<ul>
-<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
-<img src="/images/2017/06/11/04.jpg" alt="" /></li>
-</ul>
-</li>
-</ol>
-
+<p>3、 进行SpringMVC配置
+    * 首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="/images/2017/06/11/04.jpg" alt="" /></p>
 
 <pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;beans xmlns="http://www.springframework.org/schema/beans"
@@ -312,18 +299,21 @@ public class TestController {
 
 <p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
 
-<p>这里介绍如何搭建项目：
-1. 配置Maven，参考下图：
+<p>这里介绍如何搭建项目：</p>
+
+<p>1、 配置Maven，参考下图：
 <img src="/images/2017/06/10/01.jpg" alt="" /></p>
 
 <ul>
 <li>如上图标注 1 所示，Import Maven projects automatically 表示 IntelliJ IDEA 会实时监控项目的 pom.xml 文件，进行项目变动设置。</li>
-<li><p>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</p></li>
-<li><p>创建java web项目
-创建<strong>Project</strong>，如下图：
-<img src="/images/2017/06/10/02.jpg" alt="" /></p></li>
+<li>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</li>
 </ul>
 
+
+<p>2、 创建java web项目</p>
+
+<p>创建<strong>Project</strong>，如下图：
+<img src="/images/2017/06/10/02.jpg" alt="" /></p>
 
 <p><img src="/images/2017/06/10/03.jpg" alt="" />
 <strong>GroupId</strong> 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。</p>
@@ -345,30 +335,21 @@ public class TestController {
 <p>创建成功的项目目录如下：
 <img src="/images/2017/06/10/04.jpg" alt="" /></p>
 
-<h2>java web 启动配置</h2>
+<h2>Java web 启动配置</h2>
 
-<ol>
-<li>配置 Facets</li>
-</ol>
-
+<p>1、 配置 Facets</p>
 
 <p><img src="/images/2017/06/10/05.jpg" alt="" /></p>
 
 <p><img src="/images/2017/06/10/06.jpg" alt="" /></p>
 
-<ol>
-<li>配置 Artifacts</li>
-</ol>
-
+<p>2、 配置 Artifacts</p>
 
 <p><img src="/images/2017/06/10/07.jpg" alt="" /></p>
 
 <p><img src="/images/2017/06/10/08.jpg" alt="" /></p>
 
-<ol>
-<li>配置 Edit Configurations</li>
-</ol>
-
+<p>3、 配置 Edit Configurations</p>
 
 <p><img src="/images/2017/06/10/09.jpg" alt="" /></p>
 
@@ -385,10 +366,7 @@ public class TestController {
 
 <p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
 
-<ol>
-<li>配置 war包的Artifacts</li>
-</ol>
-
+<p>1、 配置 war包的Artifacts</p>
 
 <p>选择从已经存在的项目打包。
 <img src="/images/2017/06/10/13.jpg" alt="" /></p>

@@ -9,7 +9,7 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="前言 对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。 创建Maven java web项目 这里可以参考以前的文章，这里就不多说了。 创建目录 在 src/main/ 下创建 java 和 resources 目录。创建好的目录， &hellip;">
+  <meta name="description" content="前言 对于Java web应用来说，SpringMVC已经越来越流行。这里就对SpringMVC环境的搭建做一个记录。 创建Maven Java web项目 这里可以参考以前的文章，这里就不多说了。 创建目录 1、 在 src/main/ 下创建 java 和 resources 目录。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -131,9 +131,9 @@ window.onload=sethash;
 
 <div class="entry-content"><h2>前言</h2>
 
-<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+<p>对于Java web应用来说，SpringMVC已经越来越流行。这里就对SpringMVC环境的搭建做一个记录。</p>
 
-<h2>创建Maven java web项目</h2>
+<h2>创建Maven Java web项目</h2>
 
 <p>这里可以参考以前的文章，这里就不多说了。</p>
 
@@ -142,10 +142,7 @@ window.onload=sethash;
 
 <h2>创建目录</h2>
 
-<ol>
-<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
-</ol>
-
+<p>1、 在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</p>
 
 <p><img src="/images/2017/06/11/01.jpg" alt="" /></p>
 
@@ -174,11 +171,8 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ol>
-<li>添加依赖库
-可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
-</ol>
-
+<p>2、 添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</p>
 
 <p><img src="/images/2017/06/11/02.jpg" alt="" /></p>
 
@@ -364,16 +358,9 @@ window.onload=sethash;
 <p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
 <img src="/images/2017/06/11/03.jpg" alt="" /></p>
 
-<ol>
-<li>进行SpringMVC配置
-
-<ul>
-<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
-<img src="/images/2017/06/11/04.jpg" alt="" /></li>
-</ul>
-</li>
-</ol>
-
+<p>3、 进行SpringMVC配置
+    * 首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="/images/2017/06/11/04.jpg" alt="" /></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

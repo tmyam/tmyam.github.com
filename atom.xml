@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:25:09+08:00</updated>
+  <updated>2017-06-10T14:40:06+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -20,9 +20,9 @@
     <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
     <content type="html"><![CDATA[<h2>前言</h2>
 
-<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+<p>对于Java web应用来说，SpringMVC已经越来越流行。这里就对SpringMVC环境的搭建做一个记录。</p>
 
-<h2>创建Maven java web项目</h2>
+<h2>创建Maven Java web项目</h2>
 
 <p>这里可以参考以前的文章，这里就不多说了。</p>
 
@@ -31,10 +31,7 @@
 
 <h2>创建目录</h2>
 
-<ol>
-<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
-</ol>
-
+<p>1、 在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/11/01.jpg" alt="" /></p>
 
@@ -63,11 +60,8 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ol>
-<li>添加依赖库
-可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
-</ol>
-
+<p>2、 添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/11/02.jpg" alt="" /></p>
 
@@ -253,16 +247,9 @@
 <p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
 <img src="https://tmyam.github.io/images/2017/06/11/03.jpg" alt="" /></p>
 
-<ol>
-<li>进行SpringMVC配置
-
-<ul>
-<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
-<img src="https://tmyam.github.io/images/2017/06/11/04.jpg" alt="" /></li>
-</ul>
-</li>
-</ol>
-
+<p>3、 进行SpringMVC配置
+    * 首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="https://tmyam.github.io/images/2017/06/11/04.jpg" alt="" /></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -466,18 +453,21 @@
 
 <p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
 
-<p>这里介绍如何搭建项目：
-1. 配置Maven，参考下图：
+<p>这里介绍如何搭建项目：</p>
+
+<p>1、 配置Maven，参考下图：
 <img src="https://tmyam.github.io/images/2017/06/10/01.jpg" alt="" /></p>
 
 <ul>
 <li>如上图标注 1 所示，Import Maven projects automatically 表示 IntelliJ IDEA 会实时监控项目的 pom.xml 文件，进行项目变动设置。</li>
-<li><p>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</p></li>
-<li><p>创建java web项目
-创建<strong>Project</strong>，如下图：
-<img src="https://tmyam.github.io/images/2017/06/10/02.jpg" alt="" /></p></li>
+<li>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</li>
 </ul>
 
+
+<p>2、 创建java web项目</p>
+
+<p>创建<strong>Project</strong>，如下图：
+<img src="https://tmyam.github.io/images/2017/06/10/02.jpg" alt="" /></p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/03.jpg" alt="" />
 <strong>GroupId</strong> 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。</p>
@@ -499,30 +489,21 @@
 <p>创建成功的项目目录如下：
 <img src="https://tmyam.github.io/images/2017/06/10/04.jpg" alt="" /></p>
 
-<h2>java web 启动配置</h2>
+<h2>Java web 启动配置</h2>
 
-<ol>
-<li>配置 Facets</li>
-</ol>
-
+<p>1、 配置 Facets</p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/05.jpg" alt="" /></p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/06.jpg" alt="" /></p>
 
-<ol>
-<li>配置 Artifacts</li>
-</ol>
-
+<p>2、 配置 Artifacts</p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/07.jpg" alt="" /></p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/08.jpg" alt="" /></p>
 
-<ol>
-<li>配置 Edit Configurations</li>
-</ol>
-
+<p>3、 配置 Edit Configurations</p>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/09.jpg" alt="" /></p>
 
@@ -539,10 +520,7 @@
 
 <p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
 
-<ol>
-<li>配置 war包的Artifacts</li>
-</ol>
-
+<p>1、 配置 war包的Artifacts</p>
 
 <p>选择从已经存在的项目打包。
 <img src="https://tmyam.github.io/images/2017/06/10/13.jpg" alt="" /></p>
@@ -565,34 +543,28 @@
     <link href="https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea/"/>
     <updated>2017-06-10T14:05:50+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>InteliJ IDEA作为java开发工具，有其优越性存在。作为一位java初学者，选择IDE非常重要，考虑到Android Studio是在社区版的IDEA上开发的，为了减少以后的学习成本，IDEA是一个不错的选择。</p>
 
-<h2>安装</h2>
+<h3>安装</h3>
 
-<ol>
-<li>在官网下载软件安装包 <a href="http://www.jetbrains.com/idea/download">下载地址</a></li>
-</ol>
-
+<p>1、 在官网下载软件安装包 <a href="http://www.jetbrains.com/idea/download">下载地址</a></p>
 
 <p> <strong>Ultimate</strong>（旗舰版），<strong>Community</strong>（社区版，开源版）</p>
 
 <!-- more -->
 
 
-<ol>
-<li>安装
-细节就不说了，很简单。</li>
-</ol>
+<p>2、 安装
+细节就不说了，很简单。</p>
 
-
-<h2>目录结构</h2>
+<h3>目录结构</h3>
 
 <p>网上关于IDEA创建的工程，目录结构总是和Eclipse作对比，对于没用过Eclipse的人来说，仍是一头雾水。
 我的理解是<strong>Project</strong>是一个完整的项目，<strong>Module</strong>是项目中的模块，模块可以是包，可以是分层等。</p>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
 <ul>
 <li>安装最新的JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">下载地址</a></li>
@@ -662,7 +634,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 <p>启动IDEA，打开<strong>Build,Execution,Deployment</strong>，参考下图设置：
 <img src="https://tmyam.github.io/images/2017/06/10/idea_01.jpg" alt="temp" /></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.csdn.net/u013673242/article/details/72243066">http://blog.csdn.net/u013673242/article/details/72243066</a>
 <a href="http://blog.csdn.net/qq_15096707/article/details/51142509">http://blog.csdn.net/qq_15096707/article/details/51142509</a>
@@ -2966,7 +2938,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#99;&#104;&#x69;&#x6e;&#x61;&#100;&#x65;&#x76;&#64;&#97;&#x73;&#x69;&#97;&#x2e;&#97;&#112;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#99;&#x68;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#105;&#x61;&#46;&#97;&#x70;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x63;&#104;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#105;&#97;&#46;&#97;&#x70;&#112;&#x6c;&#101;&#46;&#99;&#x6f;&#109;">&#x63;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#x40;&#x61;&#115;&#105;&#97;&#46;&#97;&#x70;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -3062,7 +3034,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x63;&#x68;&#105;&#110;&#97;&#x64;&#101;&#118;&#64;&#x61;&#115;&#105;&#x61;&#46;&#97;&#112;&#112;&#108;&#101;&#46;&#x63;&#x6f;&#109;">&#x63;&#104;&#x69;&#x6e;&#x61;&#100;&#101;&#118;&#x40;&#97;&#115;&#x69;&#97;&#x2e;&#97;&#112;&#112;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;</a></font>。
+<font color=red><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#x68;&#105;&#110;&#x61;&#100;&#x65;&#118;&#64;&#97;&#115;&#105;&#97;&#x2e;&#97;&#x70;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#x64;&#x65;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#46;&#x61;&#112;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
