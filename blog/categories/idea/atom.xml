@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: idea | tmyam's blog]]></title>
+  <link href="https://tmyam.github.io/blog/categories/idea/atom.xml" rel="self"/>
+  <link href="https://tmyam.github.io/"/>
+  <updated>2017-06-10T14:25:09+08:00</updated>
+  <id>https://tmyam.github.io/</id>
+  <author>
+    <name><![CDATA[tmyam]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javaweb学习：Maven下使用springmvc]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/"/>
+    <updated>2017-06-11T14:18:00+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+
+<h2>创建Maven java web项目</h2>
+
+<p>这里可以参考以前的文章，这里就不多说了。</p>
+
+<!--more-->
+
+
+<h2>创建目录</h2>
+
+<ol>
+<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
+</ol>
+
+
+<p><img src="/images/2017/06/11/01.jpg" alt="" /></p>
+
+<blockquote><p><strong>Sources</strong> 一般用于标注类似 src 这种可编译目录。有时候我们不单单项目的 src 目录要可编译，还有其他一些特别的目录也许我们也要作为可编译的目录，就需要对该目录进行此标注。只有 Sources 这种可编译目录才可以新建 Java 类和包，这一点需要牢记。</p>
+
+<p><strong>Tests</strong> 一般用于标注可编译的单元测试目录。在规范的 maven 项目结构中，顶级目录是 src，maven 的 src 我们是不会设置为 Sources 的，而是在其子目录 main 目录下的 java 目录，我们会设置为 Sources。而单元测试的目录是 src - test - java，这里的 java 目录我们就会设置为 Tests，表示该目录是作为可编译的单元测试目录。一般这个和后面几个我们都是在 maven 项目下进行配置的，但是我这里还是会先说说。从这一点我们也可以看出 IntelliJ IDEA 对 maven 项目的支持是比较彻底的。</p>
+
+<p><strong>Resources</strong> 一般用于标注资源文件目录。在 maven 项目下，资源目录是单独划分出来的，其目录为：src - main -resources，这里的 resources 目录我们就会设置为 Resources，表示该目录是作为资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Test Resources</strong> 一般用于标注单元测试的资源文件目录。在 maven 项目下，单元测试的资源目录是单独划分出来的，其目录为：src - test -resources，这里的 resources 目录我们就会设置为 Test Resources，表示该目录是作为单元测试的资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Excluded</strong> 一般用于标注排除目录。被排除的目录不会被 IntelliJ IDEA 创建索引，相当于被 IntelliJ IDEA 废弃，该目录下的代码文件是不具备代码检查和智能提示等常规代码功能。</p></blockquote>
+
+<p>可以在 <strong>hellotest.iml</strong> 中看到目录被引入，可以被识别了。</p>
+
+<pre><code class="xml">&lt;content url="file://$MODULE_DIR$"&gt;
+      &lt;sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" /&gt;
+      &lt;sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" /&gt;
+      &lt;excludeFolder url="file://$MODULE_DIR$/target" /&gt;
+    &lt;/content&gt;
+</code></pre>
+
+<ol>
+<li>添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
+</ol>
+
+
+<p><img src="/images/2017/06/11/02.jpg" alt="" /></p>
+
+<p>在 pom.xml 添加 dependencies, plugins，以下是 pom.xml 设置后的完整文件：</p>
+
+<pre><code class="xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+  &lt;groupId&gt;com.zhl.hellotest&lt;/groupId&gt;
+  &lt;artifactId&gt;hellotest&lt;/artifactId&gt;
+  &lt;packaging&gt;war&lt;/packaging&gt;
+  &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+  &lt;name&gt;hellotest Maven Webapp&lt;/name&gt;
+  &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;!-- spring版本号 --&gt;
+    &lt;spring.version&gt;4.3.8.RELEASE&lt;/spring.version&gt;
+  &lt;/properties&gt;
+
+
+  &lt;dependencies&gt;
+  &lt;!--单元测试依赖 --&gt; 
+  &lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;3.8.1&lt;/version&gt;
+    &lt;!-- 表示开发的时候引入，发布的时候不会加载此包 --&gt; 
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;!--spring单元测试依赖 --&gt; 
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;!-- spring核心包 --&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;!-- SpringMVC核心包 --&gt;  
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+  &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+
+  &lt;build&gt;
+    &lt;finalName&gt;hellotest&lt;/finalName&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+
+<p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
+<img src="/images/2017/06/11/03.jpg" alt="" /></p>
+
+<ol>
+<li>进行SpringMVC配置
+
+<ul>
+<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="/images/2017/06/11/04.jpg" alt="" /></li>
+</ul>
+</li>
+</ol>
+
+
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;
+
+    &lt;!-- 扫描指定包带@Controller注解的类--&gt;
+    &lt;context:component-scan base-package="com.zhl.hellotest.controller"&gt;&lt;/context:component-scan&gt;
+    &lt;!--视图解析器--&gt;
+    &lt;bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+
+<p>注意：如果没有加下面的内容，会导致错误：</p>
+
+<pre><code class="text ">xmlns:context="http://www.springframework.org/schema/context"
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+</code></pre>
+
+<ul>
+<li>在web.xml配置前端控制器，并加载springmvc.xml的配置文件，内容如下：</li>
+</ul>
+
+
+<pre><code class="xml">&lt;!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;
+
+&lt;web-app&gt;
+  &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt;
+
+  &lt;!--springMvc前端控制器--&gt;
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;!--contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器等）--&gt;
+    &lt;!--如果不配置，则默认加载/WEB-INFO/servlet名称-servlet.xml(springmvc-servlet.xml)--&gt;
+    &lt;init-param&gt;
+      &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+      &lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+  &lt;/servlet&gt;
+
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</code></pre>
+
+<ul>
+<li>至此，文件配置完毕，下面我们用注解写一个方法测试一下，测试类放在springmvc.xml配置的扫描的包中，此处包名要与配置文件中扫描的包名一致。</li>
+</ul>
+
+
+<p>创建包<strong>com.zhl.hellotest.controller</strong>,java文件<strong>TestController</strong>。
+<img src="/images/2017/06/11/05.jpg" alt="" /></p>
+
+<p><strong>TestController</strong>内容如下：</p>
+
+<pre><code class="java">package com.zhl.hellotest.controller;
+
+/** 注意不加下面的import，会导致出现找不到符号 Controller等的错误 */
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * Created by zhl on 2017/6/5.
+ */
+@Controller
+public class TestController {
+    @RequestMapping(value = "/admin")
+    @ResponseBody
+    public String testSpring(){
+        return "My testSpring";
+    }
+}
+</code></pre>
+
+<p>此代码需要说明一下：
+注解 @Controller 表示这是一个控制器，当请求来时将会扫描是否有匹配的RequestMapping。
+注解 @RequestMapping 表示映射的路由，这里表示的是 /admin。
+注解 @ResponseBody 表示返回的响应数据。</p>
+
+<h2>运行</h2>
+
+<ul>
+<li>编译，会出现如下错误：
+<img src="/images/2017/06/11/06.jpg" alt="" /></li>
+</ul>
+
+
+<p>这里重新设置项目的java版本。
+<img src="/images/2017/06/11/07.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/11/08.jpg" alt="" /></p>
+
+<p>点击运行，打开浏览器后输入<a href="http://localhost:8080/admin">http://localhost:8080/admin</a>，可以看到 <strong>My testSpring</strong>。
+<img src="/images/2017/06/11/09.jpg" alt="" /></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.tuicool.com/articles/aMzM7jR">http://www.tuicool.com/articles/aMzM7jR</a>
+<a href="http://blog.csdn.net/yege2006/article/details/51377674">http://blog.csdn.net/yege2006/article/details/51377674</a>
+<a href="http://blog.csdn.net/chunleixiahe/article/details/55001989">http://blog.csdn.net/chunleixiahe/article/details/55001989</a>
+<a href="http://blog.csdn.net/u011275152/article/details/45242201">http://blog.csdn.net/u011275152/article/details/45242201</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javaweb学习：创建Maven项目]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/"/>
+    <updated>2017-06-10T14:12:17+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
+
+<!--more-->
+
+
+<h2>Maven的作用</h2>
+
+<ol>
+<li>在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"，我们想到的是，难道还差jar包？</li>
+<li>每个Java项目的目录结构都没有一个统一的标准，配置文件到处都是，单元测试代码到底应该放在那里也没有一个权威的规范。</li>
+<li>Maven主要做了两件事：
+
+<ul>
+<li>统一开发规范与工具</li>
+<li>统一管理jar包</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>搭建项目</h2>
+
+<p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
+
+<p>这里介绍如何搭建项目：
+1. 配置Maven，参考下图：
+<img src="/images/2017/06/10/01.jpg" alt="" /></p>
+
+<ul>
+<li>如上图标注 1 所示，Import Maven projects automatically 表示 IntelliJ IDEA 会实时监控项目的 pom.xml 文件，进行项目变动设置。</li>
+<li><p>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</p></li>
+<li><p>创建java web项目
+创建<strong>Project</strong>，如下图：
+<img src="/images/2017/06/10/02.jpg" alt="" /></p></li>
+</ul>
+
+
+<p><img src="/images/2017/06/10/03.jpg" alt="" />
+<strong>GroupId</strong> 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。</p>
+
+<p><strong>ArtifactId</strong> 就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。一般GroupId就是填com.zhl.hellotest这样子。</p>
+
+<p><strong>Version</strong> 1.0.0-SNAPSHOT 表示还在开发中。</p>
+
+<p>一步一步创建完成之后，会创建成功，如果缺少jar包则会去自动下载。</p>
+
+<blockquote><p>[INFO] BUILD SUCCESS
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Total time: 9.553 s
+[INFO] Finished at: 2017-06-05T10:10:35+08:00
+[INFO] Final Memory: 12M/126M
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Maven execution finished</p></blockquote>
+
+<p>创建成功的项目目录如下：
+<img src="/images/2017/06/10/04.jpg" alt="" /></p>
+
+<h2>java web 启动配置</h2>
+
+<ol>
+<li>配置 Facets</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/05.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/06.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Artifacts</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/07.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/08.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Edit Configurations</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/09.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/10.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/11.jpg" alt="" /></p>
+
+<h2>运行项目</h2>
+
+<p><img src="/images/2017/06/10/12.jpg" alt="" />
+之后会自动打开浏览器的 <a href="http://localhost:8080">http://localhost:8080</a> 看到 <strong>Hello World!</strong>。</p>
+
+<h2>创建java war发布包</h2>
+
+<p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
+
+<ol>
+<li>配置 war包的Artifacts</li>
+</ol>
+
+
+<p>选择从已经存在的项目打包。
+<img src="/images/2017/06/10/13.jpg" alt="" /></p>
+
+<p>单独为war包配置Tomcat也是可以的，这里配置在已经存在的运行环境里。
+在运行 <strong>hellotest:war exploded</strong>里，配置build <strong>hellotest:war</strong>。
+<img src="/images/2017/06/10/14.jpg" alt="" /></p>
+
+<p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
+<a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[安装InteliJ IDEA]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea/"/>
+    <updated>2017-06-10T14:05:50+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>InteliJ IDEA作为java开发工具，有其优越性存在。作为一位java初学者，选择IDE非常重要，考虑到Android Studio是在社区版的IDEA上开发的，为了减少以后的学习成本，IDEA是一个不错的选择。</p>
+
+<h2>安装</h2>
+
+<ol>
+<li>在官网下载软件安装包 <a href="http://www.jetbrains.com/idea/download">下载地址</a></li>
+</ol>
+
+
+<p> <strong>Ultimate</strong>（旗舰版），<strong>Community</strong>（社区版，开源版）</p>
+
+<!-- more -->
+
+
+<ol>
+<li>安装
+细节就不说了，很简单。</li>
+</ol>
+
+
+<h2>目录结构</h2>
+
+<p>网上关于IDEA创建的工程，目录结构总是和Eclipse作对比，对于没用过Eclipse的人来说，仍是一头雾水。
+我的理解是<strong>Project</strong>是一个完整的项目，<strong>Module</strong>是项目中的模块，模块可以是包，可以是分层等。</p>
+
+<h2>配置</h2>
+
+<ul>
+<li>安装最新的JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">下载地址</a></li>
+</ul>
+
+
+<p>注意是安装 <strong>Java SE Development Kit</strong>，不是 <strong>Java SE Runtime Environment</strong>。</p>
+
+<p>终端输入命令:</p>
+
+<pre><code class="sh">java -version
+</code></pre>
+
+<p>输出：</p>
+
+<blockquote><p>java version &ldquo;1.8.0_131&rdquo;
+Java&trade; SE Runtime Environment (build 1.8.0_131-b11)
+Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockquote>
+
+<ul>
+<li>安装Tomcat</li>
+</ul>
+
+
+<p>1、 下载最新的Tomcat <a href="http://tomcat.apache.org">下载地址</a></p>
+
+<p>将下载的Tomcat压缩包解压缩，得到Tomcat文件夹，文件夹可以修改名称。
+然后将文件夹放入一个目录当中，这个目录可以由自己选择。这里我将内容放在：</p>
+
+<pre><code class="sh">~/Library/Tomcat/8.5.15/
+</code></pre>
+
+<p>2、 修改权限
+启动终端：输入下面代码，以使shell文件可以正常运行。</p>
+
+<pre><code class="sh">sudo chmod 755 ~/Library/Tomcat/8.5.15/bin/*.sh
+</code></pre>
+
+<p>3、 验证
+在终端输入</p>
+
+<pre><code class="sh">~/Library/Tomcat/8.5.15/bin/startup.sh
+</code></pre>
+
+<p>输出结果没有错误，表示安装成功，打开 <a href="http://localhost:8080/">http://localhost:8080/</a> 可以看到主页。</p>
+
+<p>4、 关闭</p>
+
+<pre><code class="sh">~/Library/Tomcat/8.5.15/bin/shutdown.sh
+</code></pre>
+
+<ul>
+<li>配置Tomcat</li>
+</ul>
+
+
+<p>启动IDEA，打开<strong>Build,Execution,Deployment</strong>，参考下图设置：
+<img src="/images/2017/06/10/idea_01.jpg" alt="temp" /></p>
+
+<h3>参考</h3>
+
+<p><a href="http://blog.csdn.net/u013673242/article/details/72243066">http://blog.csdn.net/u013673242/article/details/72243066</a>
+<a href="http://blog.csdn.net/qq_15096707/article/details/51142509">http://blog.csdn.net/qq_15096707/article/details/51142509</a>
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+<a href="http://www.jianshu.com/p/bd5b3ece8158">http://www.jianshu.com/p/bd5b3ece8158</a>
+<a href="http://blog.csdn.net/huyisu/article/details/38372663">http://blog.csdn.net/huyisu/article/details/38372663</a></p>
+]]></content>
+  </entry>
+  
+</feed>

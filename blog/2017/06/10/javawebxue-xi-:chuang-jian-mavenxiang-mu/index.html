@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Javaweb学习：创建Maven项目 - tmyam's blog</title>
+  <meta name="author" content="tmyam">
+
+  
+  <meta name="description" content="前言 做项目开发，前期最重要的就是规范和整体架构，Maven正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。 Maven的作用 在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/jquery-tapir.js"></script>
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+<!-- 自动获取页面高度 -->
+<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "http://zrshz.github.io/agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">tmyam's blog</a></h1>
+  
+    <h2>time run off...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="/search/" method="get">
+  <fieldset role="search">
+    <input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech />
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">博客</a></li>
+  <li><a href="/blog/archives/">归档</a></li>
+  <li><a href="/about/">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Javaweb学习：创建Maven项目</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-10T14:12:17+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+          | <a href="#comments">评论</a>
+         
+-->
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>前言</h2>
+
+<p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
+
+<!--more-->
+
+
+<h2>Maven的作用</h2>
+
+<ol>
+<li>在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"，我们想到的是，难道还差jar包？</li>
+<li>每个Java项目的目录结构都没有一个统一的标准，配置文件到处都是，单元测试代码到底应该放在那里也没有一个权威的规范。</li>
+<li>Maven主要做了两件事：
+
+<ul>
+<li>统一开发规范与工具</li>
+<li>统一管理jar包</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>搭建项目</h2>
+
+<p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
+
+<p>这里介绍如何搭建项目：
+1. 配置Maven，参考下图：
+<img src="/images/2017/06/10/01.jpg" alt="" /></p>
+
+<ul>
+<li>如上图标注 1 所示，Import Maven projects automatically 表示 IntelliJ IDEA 会实时监控项目的 pom.xml 文件，进行项目变动设置。</li>
+<li><p>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</p></li>
+<li><p>创建java web项目
+创建<strong>Project</strong>，如下图：
+<img src="/images/2017/06/10/02.jpg" alt="" /></p></li>
+</ul>
+
+
+<p><img src="/images/2017/06/10/03.jpg" alt="" />
+<strong>GroupId</strong> 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。</p>
+
+<p><strong>ArtifactId</strong> 就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。一般GroupId就是填com.zhl.hellotest这样子。</p>
+
+<p><strong>Version</strong> 1.0.0-SNAPSHOT 表示还在开发中。</p>
+
+<p>一步一步创建完成之后，会创建成功，如果缺少jar包则会去自动下载。</p>
+
+<blockquote><p>[INFO] BUILD SUCCESS
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Total time: 9.553 s
+[INFO] Finished at: 2017-06-05T10:10:35+08:00
+[INFO] Final Memory: 12M/126M
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Maven execution finished</p></blockquote>
+
+<p>创建成功的项目目录如下：
+<img src="/images/2017/06/10/04.jpg" alt="" /></p>
+
+<h2>java web 启动配置</h2>
+
+<ol>
+<li>配置 Facets</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/05.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/06.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Artifacts</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/07.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/08.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Edit Configurations</li>
+</ol>
+
+
+<p><img src="/images/2017/06/10/09.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/10.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/10/11.jpg" alt="" /></p>
+
+<h2>运行项目</h2>
+
+<p><img src="/images/2017/06/10/12.jpg" alt="" />
+之后会自动打开浏览器的 <a href="http://localhost:8080">http://localhost:8080</a> 看到 <strong>Hello World!</strong>。</p>
+
+<h2>创建java war发布包</h2>
+
+<p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
+
+<ol>
+<li>配置 war包的Artifacts</li>
+</ol>
+
+
+<p>选择从已经存在的项目打包。
+<img src="/images/2017/06/10/13.jpg" alt="" /></p>
+
+<p>单独为war包配置Tomcat也是可以的，这里配置在已经存在的运行环境里。
+在运行 <strong>hellotest:war exploded</strong>里，配置build <strong>hellotest:war</strong>。
+<img src="/images/2017/06/10/14.jpg" alt="" /></p>
+
+<p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
+<a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-10T14:12:17+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/idea/'>idea</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javaweb/'>javaweb</a>, <a class='category' href='/blog/categories/maven/'>maven</a>, <a class='category' href='/blog/categories/web/'>web</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/06/10/an-zhuang-intelij-idea/" title="Previous Post: 安装InteliJ IDEA">&laquo; 安装InteliJ IDEA</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/" title="Next Post: Javaweb学习：Maven下使用springmvc">Javaweb学习：Maven下使用springmvc &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="Javaweb学习：创建Maven项目"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tmyam"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>简介</h1>
+	<li class='contact'>
+     <font size=+2 ><strong>tmyam</strong></font><br/><br/>
+     <img src="/images/logo.png" alt="faild" width="180"/><br/><br/>
+	</li>
+	<li class='contact'>  <a href='http://zrshz.github.com'>Home Page</a> </li>
+       <li class='contact'>  <a href='/'>Blog</a> </li>
+       <li class='contact'> <a href='mailto:tmyam@mail.com'>email</a> </li>
+</section><section>
+  <h1>文章分类</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
+<li class='category'><a href='/blog/categories/idea/'>idea (3)</a></li>
+<li class='category'><a href='/blog/categories/ios-develop/'>ios-develop (2)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (3)</a></li>
+<li class='category'><a href='/blog/categories/javaweb/'>javaweb (2)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (5)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac-develop (8)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>maven (2)</a></li>
+<li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/springmvc/'>springmvc (1)</a></li>
+<li class='category'><a href='/blog/categories/svn/'>svn (3)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (5)</a></li>
+
+  </ul>
+</section><section>
+  <h1>最近更新</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">Javaweb学习：Maven下使用springmvc</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">Javaweb学习：创建Maven项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/an-zhuang-intelij-idea/">安装InteliJ IDEA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>二维码</h1>
+	<li class='link code'>
+       <img src="/images/link_code.png" alt="faild" width="180"/>
+	</li>
+</section>
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - tmyam -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">tmyam</a></span>   
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261455210'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261455210%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+</footer>
+</html>

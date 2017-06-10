@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-04-22T13:29:21+08:00</updated>
+  <updated>2017-06-10T14:25:09+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -12,6 +12,665 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Javaweb学习：Maven下使用springmvc]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/"/>
+    <updated>2017-06-11T14:18:00+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+
+<h2>创建Maven java web项目</h2>
+
+<p>这里可以参考以前的文章，这里就不多说了。</p>
+
+<!--more-->
+
+
+<h2>创建目录</h2>
+
+<ol>
+<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
+</ol>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/11/01.jpg" alt="" /></p>
+
+<blockquote><p><strong>Sources</strong> 一般用于标注类似 src 这种可编译目录。有时候我们不单单项目的 src 目录要可编译，还有其他一些特别的目录也许我们也要作为可编译的目录，就需要对该目录进行此标注。只有 Sources 这种可编译目录才可以新建 Java 类和包，这一点需要牢记。</p>
+
+<p><strong>Tests</strong> 一般用于标注可编译的单元测试目录。在规范的 maven 项目结构中，顶级目录是 src，maven 的 src 我们是不会设置为 Sources 的，而是在其子目录 main 目录下的 java 目录，我们会设置为 Sources。而单元测试的目录是 src - test - java，这里的 java 目录我们就会设置为 Tests，表示该目录是作为可编译的单元测试目录。一般这个和后面几个我们都是在 maven 项目下进行配置的，但是我这里还是会先说说。从这一点我们也可以看出 IntelliJ IDEA 对 maven 项目的支持是比较彻底的。</p>
+
+<p><strong>Resources</strong> 一般用于标注资源文件目录。在 maven 项目下，资源目录是单独划分出来的，其目录为：src - main -resources，这里的 resources 目录我们就会设置为 Resources，表示该目录是作为资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Test Resources</strong> 一般用于标注单元测试的资源文件目录。在 maven 项目下，单元测试的资源目录是单独划分出来的，其目录为：src - test -resources，这里的 resources 目录我们就会设置为 Test Resources，表示该目录是作为单元测试的资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Excluded</strong> 一般用于标注排除目录。被排除的目录不会被 IntelliJ IDEA 创建索引，相当于被 IntelliJ IDEA 废弃，该目录下的代码文件是不具备代码检查和智能提示等常规代码功能。</p></blockquote>
+
+<p>可以在 <strong>hellotest.iml</strong> 中看到目录被引入，可以被识别了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;content</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;sourceFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/src/main/java&quot;</span> <span class="na">isTestSource=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;sourceFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/src/main/resources&quot;</span> <span class="na">type=</span><span class="s">&quot;java-resource&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;excludeFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/target&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/content&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
+</ol>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/11/02.jpg" alt="" /></p>
+
+<p>在 pom.xml 添加 dependencies, plugins，以下是 pom.xml 设置后的完整文件：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.zhl.hellotest<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>hellotest<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;name&gt;</span>hellotest Maven Webapp<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;properties&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- spring版本号 --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;spring.version&gt;</span>4.3.8.RELEASE<span class="nt">&lt;/spring.version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/properties&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--单元测试依赖 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- 表示开发的时候引入，发布的时候不会加载此包 --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-context<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-orm<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-context-support<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!--spring单元测试依赖 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-test<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- spring核心包 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- SpringMVC核心包 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-aop<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-beans<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;finalName&gt;</span>hellotest<span class="nt">&lt;/finalName&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/build&gt;</span>
+</span><span class='line'><span class="nt">&lt;/project&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
+<img src="https://tmyam.github.io/images/2017/06/11/03.jpg" alt="" /></p>
+
+<ol>
+<li>进行SpringMVC配置
+
+<ul>
+<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="https://tmyam.github.io/images/2017/06/11/04.jpg" alt="" /></li>
+</ul>
+</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>       <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>       <span class="na">xmlns:context=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+</span><span class='line'>       <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c">&lt;!-- 扫描指定包带@Controller注解的类--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;com.zhl.hellotest.controller&quot;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--视图解析器--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意：如果没有加下面的内容，会导致错误：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+</span><span class='line'>http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在web.xml配置前端控制器，并加载springmvc.xml的配置文件，内容如下：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE web-app PUBLIC</span>
+</span><span class='line'><span class="cp"> &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span>
+</span><span class='line'><span class="cp"> &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot; &gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;web-app&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;display-name&gt;</span>Archetype Created Web Application<span class="nt">&lt;/display-name&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!--springMvc前端控制器--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;servlet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器等）--&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--如果不配置，则默认加载/WEB-INFO/servlet名称-servlet.xml(springmvc-servlet.xml)--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param-value&gt;</span>classpath:springmvc.xml<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/servlet&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;servlet-mapping&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/servlet-mapping&gt;</span>
+</span><span class='line'><span class="nt">&lt;/web-app&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>至此，文件配置完毕，下面我们用注解写一个方法测试一下，测试类放在springmvc.xml配置的扫描的包中，此处包名要与配置文件中扫描的包名一致。</li>
+</ul>
+
+
+<p>创建包<strong>com.zhl.hellotest.controller</strong>,java文件<strong>TestController</strong>。
+<img src="https://tmyam.github.io/images/2017/06/11/05.jpg" alt="" /></p>
+
+<p><strong>TestController</strong>内容如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">zhl</span><span class="o">.</span><span class="na">hellotest</span><span class="o">.</span><span class="na">controller</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/** 注意不加下面的import，会导致出现找不到符号 Controller等的错误 */</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseBody</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Created by zhl on 2017/6/5.</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nd">@Controller</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestController</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/admin&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="nd">@ResponseBody</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">testSpring</span><span class="o">(){</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&quot;My testSpring&quot;</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此代码需要说明一下：
+注解 @Controller 表示这是一个控制器，当请求来时将会扫描是否有匹配的RequestMapping。
+注解 @RequestMapping 表示映射的路由，这里表示的是 /admin。
+注解 @ResponseBody 表示返回的响应数据。</p>
+
+<h2>运行</h2>
+
+<ul>
+<li>编译，会出现如下错误：
+<img src="https://tmyam.github.io/images/2017/06/11/06.jpg" alt="" /></li>
+</ul>
+
+
+<p>这里重新设置项目的java版本。
+<img src="https://tmyam.github.io/images/2017/06/11/07.jpg" alt="" /></p>
+
+<p><img src="https://tmyam.github.io/images/2017/06/11/08.jpg" alt="" /></p>
+
+<p>点击运行，打开浏览器后输入<a href="http://localhost:8080/admin">http://localhost:8080/admin</a>，可以看到 <strong>My testSpring</strong>。
+<img src="https://tmyam.github.io/images/2017/06/11/09.jpg" alt="" /></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.tuicool.com/articles/aMzM7jR">http://www.tuicool.com/articles/aMzM7jR</a>
+<a href="http://blog.csdn.net/yege2006/article/details/51377674">http://blog.csdn.net/yege2006/article/details/51377674</a>
+<a href="http://blog.csdn.net/chunleixiahe/article/details/55001989">http://blog.csdn.net/chunleixiahe/article/details/55001989</a>
+<a href="http://blog.csdn.net/u011275152/article/details/45242201">http://blog.csdn.net/u011275152/article/details/45242201</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javaweb学习：创建Maven项目]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/"/>
+    <updated>2017-06-10T14:12:17+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
+
+<!--more-->
+
+
+<h2>Maven的作用</h2>
+
+<ol>
+<li>在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"，我们想到的是，难道还差jar包？</li>
+<li>每个Java项目的目录结构都没有一个统一的标准，配置文件到处都是，单元测试代码到底应该放在那里也没有一个权威的规范。</li>
+<li>Maven主要做了两件事：
+
+<ul>
+<li>统一开发规范与工具</li>
+<li>统一管理jar包</li>
+</ul>
+</li>
+</ol>
+
+
+<h2>搭建项目</h2>
+
+<p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
+
+<p>这里介绍如何搭建项目：
+1. 配置Maven，参考下图：
+<img src="https://tmyam.github.io/images/2017/06/10/01.jpg" alt="" /></p>
+
+<ul>
+<li>如上图标注 1 所示，Import Maven projects automatically 表示 IntelliJ IDEA 会实时监控项目的 pom.xml 文件，进行项目变动设置。</li>
+<li><p>如上图标注2 所示，在 Maven 导入依赖包的时候是否自动下载源码和文档。默认是没有勾选的，也不建议勾选，原因是这样可以加快项目从外网导入依赖包的速度，如果我们需要源码和文档的时候我们到时候再针对某个依赖包进行联网下载即可。IntelliJ IDEA 支持直接从公网下载源码和文档的。</p></li>
+<li><p>创建java web项目
+创建<strong>Project</strong>，如下图：
+<img src="https://tmyam.github.io/images/2017/06/10/02.jpg" alt="" /></p></li>
+</ul>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/03.jpg" alt="" />
+<strong>GroupId</strong> 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构。</p>
+
+<p><strong>ArtifactId</strong> 就是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。一般GroupId就是填com.zhl.hellotest这样子。</p>
+
+<p><strong>Version</strong> 1.0.0-SNAPSHOT 表示还在开发中。</p>
+
+<p>一步一步创建完成之后，会创建成功，如果缺少jar包则会去自动下载。</p>
+
+<blockquote><p>[INFO] BUILD SUCCESS
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Total time: 9.553 s
+[INFO] Finished at: 2017-06-05T10:10:35+08:00
+[INFO] Final Memory: 12M/126M
+[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+[INFO] Maven execution finished</p></blockquote>
+
+<p>创建成功的项目目录如下：
+<img src="https://tmyam.github.io/images/2017/06/10/04.jpg" alt="" /></p>
+
+<h2>java web 启动配置</h2>
+
+<ol>
+<li>配置 Facets</li>
+</ol>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/05.jpg" alt="" /></p>
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/06.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Artifacts</li>
+</ol>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/07.jpg" alt="" /></p>
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/08.jpg" alt="" /></p>
+
+<ol>
+<li>配置 Edit Configurations</li>
+</ol>
+
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/09.jpg" alt="" /></p>
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/10.jpg" alt="" /></p>
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/11.jpg" alt="" /></p>
+
+<h2>运行项目</h2>
+
+<p><img src="https://tmyam.github.io/images/2017/06/10/12.jpg" alt="" />
+之后会自动打开浏览器的 <a href="http://localhost:8080">http://localhost:8080</a> 看到 <strong>Hello World!</strong>。</p>
+
+<h2>创建java war发布包</h2>
+
+<p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
+
+<ol>
+<li>配置 war包的Artifacts</li>
+</ol>
+
+
+<p>选择从已经存在的项目打包。
+<img src="https://tmyam.github.io/images/2017/06/10/13.jpg" alt="" /></p>
+
+<p>单独为war包配置Tomcat也是可以的，这里配置在已经存在的运行环境里。
+在运行 <strong>hellotest:war exploded</strong>里，配置build <strong>hellotest:war</strong>。
+<img src="https://tmyam.github.io/images/2017/06/10/14.jpg" alt="" /></p>
+
+<p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
+<a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[安装InteliJ IDEA]]></title>
+    <link href="https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea/"/>
+    <updated>2017-06-10T14:05:50+08:00</updated>
+    <id>https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea</id>
+    <content type="html"><![CDATA[<h2>前言</h2>
+
+<p>InteliJ IDEA作为java开发工具，有其优越性存在。作为一位java初学者，选择IDE非常重要，考虑到Android Studio是在社区版的IDEA上开发的，为了减少以后的学习成本，IDEA是一个不错的选择。</p>
+
+<h2>安装</h2>
+
+<ol>
+<li>在官网下载软件安装包 <a href="http://www.jetbrains.com/idea/download">下载地址</a></li>
+</ol>
+
+
+<p> <strong>Ultimate</strong>（旗舰版），<strong>Community</strong>（社区版，开源版）</p>
+
+<!-- more -->
+
+
+<ol>
+<li>安装
+细节就不说了，很简单。</li>
+</ol>
+
+
+<h2>目录结构</h2>
+
+<p>网上关于IDEA创建的工程，目录结构总是和Eclipse作对比，对于没用过Eclipse的人来说，仍是一头雾水。
+我的理解是<strong>Project</strong>是一个完整的项目，<strong>Module</strong>是项目中的模块，模块可以是包，可以是分层等。</p>
+
+<h2>配置</h2>
+
+<ul>
+<li>安装最新的JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">下载地址</a></li>
+</ul>
+
+
+<p>注意是安装 <strong>Java SE Development Kit</strong>，不是 <strong>Java SE Runtime Environment</strong>。</p>
+
+<p>终端输入命令:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出：</p>
+
+<blockquote><p>java version &ldquo;1.8.0_131&rdquo;
+Java&trade; SE Runtime Environment (build 1.8.0_131-b11)
+Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockquote>
+
+<ul>
+<li>安装Tomcat</li>
+</ul>
+
+
+<p>1、 下载最新的Tomcat <a href="http://tomcat.apache.org">下载地址</a></p>
+
+<p>将下载的Tomcat压缩包解压缩，得到Tomcat文件夹，文件夹可以修改名称。
+然后将文件夹放入一个目录当中，这个目录可以由自己选择。这里我将内容放在：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~/Library/Tomcat/8.5.15/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2、 修改权限
+启动终端：输入下面代码，以使shell文件可以正常运行。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chmod <span class="m">755</span> ~/Library/Tomcat/8.5.15/bin/*.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3、 验证
+在终端输入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~/Library/Tomcat/8.5.15/bin/startup.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输出结果没有错误，表示安装成功，打开 <a href="http://localhost:8080/">http://localhost:8080/</a> 可以看到主页。</p>
+
+<p>4、 关闭</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~/Library/Tomcat/8.5.15/bin/shutdown.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>配置Tomcat</li>
+</ul>
+
+
+<p>启动IDEA，打开<strong>Build,Execution,Deployment</strong>，参考下图设置：
+<img src="https://tmyam.github.io/images/2017/06/10/idea_01.jpg" alt="temp" /></p>
+
+<h3>参考</h3>
+
+<p><a href="http://blog.csdn.net/u013673242/article/details/72243066">http://blog.csdn.net/u013673242/article/details/72243066</a>
+<a href="http://blog.csdn.net/qq_15096707/article/details/51142509">http://blog.csdn.net/qq_15096707/article/details/51142509</a>
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+<a href="http://www.jianshu.com/p/bd5b3ece8158">http://www.jianshu.com/p/bd5b3ece8158</a>
+<a href="http://blog.csdn.net/huyisu/article/details/38372663">http://blog.csdn.net/huyisu/article/details/38372663</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux安装SVN服务]]></title>
@@ -2307,7 +2966,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x63;&#104;&#105;&#110;&#97;&#x64;&#x65;&#118;&#64;&#97;&#x73;&#x69;&#97;&#46;&#97;&#112;&#x70;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;">&#99;&#x68;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#x69;&#97;&#x2e;&#97;&#112;&#x70;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#99;&#104;&#x69;&#x6e;&#x61;&#100;&#x65;&#x76;&#64;&#97;&#x73;&#x69;&#97;&#x2e;&#97;&#112;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#109;">&#99;&#x68;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#105;&#x61;&#46;&#97;&#x70;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -2403,7 +3062,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#99;&#x68;&#x69;&#x6e;&#97;&#100;&#101;&#118;&#x40;&#x61;&#x73;&#105;&#x61;&#x2e;&#97;&#x70;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#x6d;">&#99;&#104;&#105;&#110;&#97;&#x64;&#101;&#x76;&#x40;&#x61;&#x73;&#105;&#x61;&#x2e;&#97;&#x70;&#112;&#108;&#101;&#46;&#x63;&#111;&#109;</a></font>。
+<font color=red><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x63;&#x68;&#105;&#110;&#97;&#x64;&#101;&#118;&#64;&#x61;&#115;&#105;&#x61;&#46;&#97;&#112;&#112;&#108;&#101;&#46;&#x63;&#x6f;&#109;">&#x63;&#104;&#x69;&#x6e;&#x61;&#100;&#101;&#118;&#x40;&#97;&#115;&#x69;&#97;&#x2e;&#97;&#112;&#112;&#x6c;&#x65;&#46;&#x63;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
 <h5>13</h5>
@@ -3504,411 +4163,6 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 <h3>参考</h3>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[mac下编写blog]]></title>
-    <link href="https://tmyam.github.io/blog/2013/10/09/write-blog/"/>
-    <updated>2013-10-09T10:52:00+08:00</updated>
-    <id>https://tmyam.github.io/blog/2013/10/09/write-blog</id>
-    <content type="html"><![CDATA[<h2>1.编写</h2>
-
-<ul>
-<li><p>下载markdown的编辑工具,<a href="http://mouapp.com">Mou</a></p></li>
-<li><p>在终端的octopress目录下，输入</p></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s1">&#39;article name&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然后可以在source/_post/目录下找到一个.markdown文件，使用<a href="http://mouapp.com">Mou</a>打开它，写入你想写的内容。</p>
-
-<!-- more -->
-
-
-<ul>
-<li><p>特殊需求 <br/>
-由于markdown无法插入空格，这里可以使用html的<code>&amp;nbsp;</code>代替，同样换行可以使用<code>&lt;br/&gt;</code>。 <br/>
-另外由于无法调整文字的颜色和大小，这里也需要使用html代替。 <br/>
-<code>&lt;font color=green&gt;绿色&lt;/font&gt;</code>&nbsp;&nbsp; <font color=green>绿色</font> <br/>
-<code>&lt;font size=+2&gt;大2号字&lt;/font&gt;</code>&nbsp;&nbsp;&nbsp;&nbsp; <font size=+2>大2号字</font>  <br/>
-+表示比当前字号大，-表示比当前字号小。</p></li>
-<li><p>段落缩进 <br/>
-半方大的空白<code>&amp;ensp;</code>或<code>&amp;#8194;</code> <br/>
-全方大的空白<code>&amp;emsp;</code>或<code>&amp;#8195;</code> <br/>
-空白格<code>&amp;nbsp;</code>或<code>&amp;#160;</code></p></li>
-<li><p>图片<br/>
-如果要在文章中使用图片，直接copy到<strong>/source/images</strong>目录下即可。在文章中可以直接使用<code>![temp](/images/temp.png)</code>。也可以选一些大的图床站点，使用链接的方式。<br/>
-例如：<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="temp" /> <br/>
-如果需要调整图片大小，则可以使用html。    <br/>
-<code>&lt;img src="https://tmyam.github.io/images/temp.png" alt="faild" width="100"/&gt;</code> <br/>
-<img src="https://tmyam.github.io/images/2013/10/09/temp.png" alt="faild" width="100"/></p></li>
-<li><p>首页缩略显示<br/>
-在首页展示文章的一部分内容，而不是显示全部。<br/>
-只需要在文章的markdown文件中，在需要显示在首页的文字后面添加<code>&lt;!-- more --&gt;</code>就行了。</p></li>
-</ul>
-
-
-<p>如果想将Read on 修改为中文，可以修改_config.yml文件<br/>
-excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; link text at the bottom of excerpted articles 中的<code>Read on</code> 改为 <code>阅读全文</code>。</p>
-
-<h2>2.代码高亮</h2>
-
-<p>octopress原生支持代码高亮，<a href="http://octopress.org/docs/blogging/code/">参考链接</a> <br/>
-使用<code>Backtick</code>来实现语法高亮，<a href="http://m.blog.csdn.net/blog/trochiluses/12906265">参考链接</a></p>
-
-<ul>
-<li>语法
-
-<blockquote><p>` ` ` [language] [title] [url] [link text] [linenos:false] [start:#] [mark:#,#-#] <br/>
-code snippet <br/>
-` ` `</p></blockquote></li>
-</ul>
-
-
-<p>language: 指明你所使用的语言 <br/>
-title: 代码标题 <br/>
-url: 代码链接，点击这个可以下载你的代码 <br/>
-link text: 对链接的解释文本，默认是link <br/>
-start:#: 行号从哪里开始 <br/>
-mark:#,#-#: 标记某一行代码 <br/>
-linenos:false: 对高亮代码块不添加行号</p>
-
-<p>例如：</p>
-
-<blockquote><p>` ` ` sh <br/>
-rake new_post[&lsquo;article name&rsquo;] <br/>
-` ` `</p></blockquote>
-
-<p>显示为</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s1">&#39;article name&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> <br/>
-由于一旦设置了高亮格式，之后所有的代码高亮都会使用这种格式，有好处也有坏处。可以在下一个代码高亮的地方将<code>language</code>设置成<code>text</code>来取消对下面的影响。</p>
-
-<ul>
-<li>常用的高亮格式，<a href="http://vvstyle.com/blog/2013/08/13/backtick-code/">参考链接</a> <br/>
-text: 无格式 <br/>
-sh: shell脚本 <br/>
-objc: Objective-C</li>
-</ul>
-
-
-<h2>3.生成</h2>
-
-<ul>
-<li>生成静态文件</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>rake generate
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>预览<br/>
-地址 <a href="http://localhost:4000">http://localhost:4000</a> ,时时的修改markdown文件，可以刷新网页看到刚刚修改的效果。</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>rake preview
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>部署到GitHub上</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>rake deploy
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>4.备份</h2>
-
-<p>将文件更新备份到github上。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add -A
-</span><span class='line'>git commit -m <span class="s1">&#39;your message&#39;</span>
-</span><span class='line'>git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果遇到<strong>warning</strong></p>
-
-<blockquote><p>warning: push.default is unset; its implicit value is changing in Git 2.0 from &lsquo;matching&rsquo; to &lsquo;simple&rsquo;. To squelch this messageand maintain the current behavior after the default changes, use:&hellip;</p></blockquote>
-
-<p>推荐使用下面命令设置。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global push.default simple
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><br/></p>
-
-<h3>参考</h3>
-
-<p><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[mac下使用github+Octopress搭建博客]]></title>
-    <link href="https://tmyam.github.io/blog/2013/10/08/the-first/"/>
-    <updated>2013-10-08T18:09:00+08:00</updated>
-    <id>https://tmyam.github.io/blog/2013/10/08/the-first</id>
-    <content type="html"><![CDATA[<p>我的第一篇博文 <br/>
-<code>(mac 版本 10.8.5)</code></p>
-
-<h2>1.git配置</h2>
-
-<ul>
-<li>申请<a href="https://github.com">github</a>账号</li>
-<li>配置git环境</li>
-</ul>
-
-
-<p><strong>配置用户信息</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global user.email <span class="s2">&quot;xxx@xxx.com&quot;</span>
-</span><span class='line'>git config --global user.name <span class="s2">&quot;xxx&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-可以使用 <code>git config --list</code> 查看配置的信息</p>
-
-<!-- more -->
-
-
-<p><strong>生成证书</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ssh-keygen -t rsa -C <span class="s2">&quot;xxx@xxx.com&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>登录</strong><a href="https://github.com">github</a><br/>
-拷贝~/.ssh/id_rsa.pub的内容，在github的<code>Account Settings</code>的<code>SSH Keys</code>里，点<code>Add SSH Keys</code>，将内容粘贴到”Key”中，并输入”Title”.</p>
-
-<h2>2.安装ruby</h2>
-
-<p>使用Octopress需要最低Ruby版本为1.9.3,所以必须安装ruby。</p>
-
-<ul>
-<li>如果没有安装了XCode及Command Line Tools则需要先安装apple-gcc42。</li>
-<li>使用RVM安装ruby最新版本</li>
-</ul>
-
-
-<p><strong>安装rvm.</strong> <a href="http://stackoverflow.com/questions/3696564/how-to-update-ruby-to-1-9-x-on-mac">参考链接</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>\curl -L https://get.rvm.io | bash -s stable --ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>由于国内被墙的缘故，可能遇见 <code>curl: (7) couldn't connect to host</code> 错误.可以使用下面的方式</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>\curl https://rawgithub.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable --ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>查看网络上最新的ruby版本</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm list known
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>安装ruby</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm install ruby-2.0.0-p247
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果遇到以下错误</p>
-
-<blockquote><p>Error running &lsquo;requirements_osx_port_libs_install autoconf automake libtool pkgconfig apple-gcc42 libiconv libyaml libffi readline libxml2 libxslt libksba openssl curl-ca-bundle sqlite3 zlib gdbm ncurses&rsquo;, please read /Users/xxx/.rvm/log/1371125385_package_install_autoconf_automake_libtool_
-pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_openssl_curl-ca-bundle_sqlite3_zlib_gdbm_ncurses.log</p></blockquote>
-
-<p>可以尝试使用下面的语句解决. <a href="http://stackoverflow.com/questions/17086996/rvm-install-issue-unable-to-execute-port-autoconf">参考链接</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm autolibs brew
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果遇到以下错误</p>
-
-<blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
-please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
-
-<h4>Requirements installation failed with status: 1.</h4></blockquote>
-
-<p>可以先安装homebrew</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo su
-</span><span class='line'>curl -L http://github.com/mxcl/homebrew/tarball/master <span class="p">|</span> tar xz --strip <span class="m">1</span> -C /usr/local
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改权限</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo chown -R <span class="sb">`</span>whoami<span class="sb">`</span> /Library/Caches/Homebrew/
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>之后重新安装就行了。</p>
-
-<p><strong>使用</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rvm use ruby-2.0.0-p247
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
-
-<h2>3.部署blog</h2>
-
-<ul>
-<li><p>创建git的blog</p>
-
-<ol>
-<li>点击github主页的 <strong>Tab</strong> <code>Repositories</code>,点击 <code>New</code> 按钮,创建一个public的仓库。</li>
-<li>仓库的名称必须为 <em>your_username.github.com</em> ,其中<strong>your_username</strong>是需要修改的地方,然后点击 <code>Create repository</code> 按钮。</li>
-<li>点击右侧的 ”Settings” 图标，在 <strong>“GitHub Pages”</strong> 栏，点击 <code>Automatic Page Generator</code> 按钮。</li>
-<li>内容不需要填，直接点击 <code>Continue to Layouts</code> 按钮。</li>
-<li>接着是选择模板，直接点击 <code>PUBLISH</code> 按钮即可。大约十分钟之后可以看到生成的静态页面，不过这个页面是没什么用的。<br/>
-<br/></li>
-</ol>
-</li>
-<li><p>配置<a href="http://octopress.org">Octopress</a></p></li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd </span>blog               <span class="c"># 想要安装的Octopress的文件夹</span>
-</span><span class='line'>git clone https://github.com/imathis/octopress.git
-</span><span class='line'><span class="nb">cd </span>octopress
-</span><span class='line'>gem install bundler   <span class="c"># 安装依赖</span>
-</span><span class='line'>bundle install        
-</span><span class='line'>rake install          <span class="c"># 安装Octopress默认的主题</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>部署</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake setup_github_pages
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>执行完后会要求输入仓库地址，照着写就行了<em>git@github.com:your_username/your_username.github.com.git</em>，其中<strong>your_username</strong>是需要修改的地方。</p>
-
-<ul>
-<li>修改配置文件, <a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></li>
-</ul>
-
-
-<p><strong>可以执行以下命令生成页面和预览博客</strong></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake generate      <span class="c"># 生成文件(public文件夹下)</span>
-</span><span class='line'>rake preview      <span class="c"># 生成本地预览，地址 http://localhost:4000</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>上传到github</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake deploy        <span class="c"># 会先将public下的文件复制到_deploy下,然后将_deploy下的内容push到GitHub的master分支上</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如果出现<code>ERROR: Repository not found.</code>错误，可以使用下面的方法解决。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rm -rf _deploy     <span class="c"># 在octopress目录下</span>
-</span><span class='line'>git clone https://github.com/your_username/your_username.github.com.git <span class="s2">&quot;_deploy&quot;</span>       <span class="c"># 注意修改your_username</span>
-</span><span class='line'>rake generate   <span class="c"># 再次执行</span>
-</span><span class='line'>rake deploy       
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这样就可以看到上传的主题博客了。</p>
-
-<h2>4.备份资源文件</h2>
-
-<p>在octopress目录下</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add .
-</span><span class='line'>git commit -m <span class="s1">&#39;your message&#39;</span>
-</span><span class='line'>git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>更新 Octopress</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git remote add octopress git://github.com/imathis/octopress.git
-</span><span class='line'>git pull octopress master     <span class="c"># Get the latest Octopress</span>
-</span><span class='line'>bundle install                <span class="c"># Keep gems updated</span>
-</span><span class='line'>rake update_source            <span class="c"># update the template&#39;s source</span>
-</span><span class='line'>rake update_style             <span class="c"># update the template&#39;s style</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><br/></p>
-
-<h3>参考</h3>
-
-<p> <a href="http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/">http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/</a></p>
 ]]></content>
   </entry>
   

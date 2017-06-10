@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/</loc>
+<lastmod>2017-06-11T14:18:00+08:00</lastmod>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/</loc>
+<lastmod>2017-06-10T14:12:17+08:00</lastmod>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/2017/06/10/an-zhuang-intelij-idea/</loc>
+<lastmod>2017-06-10T14:05:50+08:00</lastmod>
+</url>
+<url>
 <loc>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/</loc>
 <lastmod>2017-04-15T15:49:26+08:00</lastmod>
 </url>
@@ -111,6 +123,24 @@
 </url>
 <url>
 <loc>https://tmyam.github.io/blog/categories/svn/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/idea/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/java/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/javaweb/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/web/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/maven/</loc>
+</url>
+<url>
+<loc>https://tmyam.github.io/blog/categories/springmvc/</loc>
 </url>
 <url>
 <loc>https://tmyam.github.io/mac/Icouse/help/index.html</loc>

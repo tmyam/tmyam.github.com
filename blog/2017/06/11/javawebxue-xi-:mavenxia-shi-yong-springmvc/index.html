@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Javaweb学习：Maven下使用springmvc - tmyam's blog</title>
+  <meta name="author" content="tmyam">
+
+  
+  <meta name="description" content="前言 对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。 创建Maven java web项目 这里可以参考以前的文章，这里就不多说了。 创建目录 在 src/main/ 下创建 java 和 resources 目录。创建好的目录， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="" rel="alternate" title="tmyam's blog" type="application/atom+xml">
+  <script src="/javascripts/libs/jquery.min.js"></script>
+<script src="/javascripts/jquery-tapir.js"></script>
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- 点击链接时打开新窗口代码 -->
+<script type="text/javascript">
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+
+
+<!-- 自动获取页面高度 -->
+<iframe id="iframeC" name="iframeC" src="" width="0" height="0" style="display:none;" ></iframe>
+<script type="text/javascript"> 
+function sethash(){
+    hashH = document.documentElement.scrollHeight; 
+    urlC = "http://zrshz.github.io/agent.html"; 
+    document.getElementById("iframeC").src=urlC+"#"+hashH; 
+}
+window.onload=sethash;
+</script>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">tmyam's blog</a></h1>
+  
+    <h2>time run off...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="/search/" method="get">
+  <fieldset role="search">
+    <input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech />
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">博客</a></li>
+  <li><a href="/blog/archives/">归档</a></li>
+  <li><a href="/about/">关于</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Javaweb学习：Maven下使用springmvc</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-11T14:18:00+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+          | <a href="#comments">评论</a>
+         
+-->
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>前言</h2>
+
+<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+
+<h2>创建Maven java web项目</h2>
+
+<p>这里可以参考以前的文章，这里就不多说了。</p>
+
+<!--more-->
+
+
+<h2>创建目录</h2>
+
+<ol>
+<li>在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</li>
+</ol>
+
+
+<p><img src="/images/2017/06/11/01.jpg" alt="" /></p>
+
+<blockquote><p><strong>Sources</strong> 一般用于标注类似 src 这种可编译目录。有时候我们不单单项目的 src 目录要可编译，还有其他一些特别的目录也许我们也要作为可编译的目录，就需要对该目录进行此标注。只有 Sources 这种可编译目录才可以新建 Java 类和包，这一点需要牢记。</p>
+
+<p><strong>Tests</strong> 一般用于标注可编译的单元测试目录。在规范的 maven 项目结构中，顶级目录是 src，maven 的 src 我们是不会设置为 Sources 的，而是在其子目录 main 目录下的 java 目录，我们会设置为 Sources。而单元测试的目录是 src - test - java，这里的 java 目录我们就会设置为 Tests，表示该目录是作为可编译的单元测试目录。一般这个和后面几个我们都是在 maven 项目下进行配置的，但是我这里还是会先说说。从这一点我们也可以看出 IntelliJ IDEA 对 maven 项目的支持是比较彻底的。</p>
+
+<p><strong>Resources</strong> 一般用于标注资源文件目录。在 maven 项目下，资源目录是单独划分出来的，其目录为：src - main -resources，这里的 resources 目录我们就会设置为 Resources，表示该目录是作为资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Test Resources</strong> 一般用于标注单元测试的资源文件目录。在 maven 项目下，单元测试的资源目录是单独划分出来的，其目录为：src - test -resources，这里的 resources 目录我们就会设置为 Test Resources，表示该目录是作为单元测试的资源目录。资源目录下的文件是会被编译到输出目录下的。</p>
+
+<p><strong>Excluded</strong> 一般用于标注排除目录。被排除的目录不会被 IntelliJ IDEA 创建索引，相当于被 IntelliJ IDEA 废弃，该目录下的代码文件是不具备代码检查和智能提示等常规代码功能。</p></blockquote>
+
+<p>可以在 <strong>hellotest.iml</strong> 中看到目录被引入，可以被识别了。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;content</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;sourceFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/src/main/java&quot;</span> <span class="na">isTestSource=</span><span class="s">&quot;false&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;sourceFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/src/main/resources&quot;</span> <span class="na">type=</span><span class="s">&quot;java-resource&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;excludeFolder</span> <span class="na">url=</span><span class="s">&quot;file://$MODULE_DIR$/target&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/content&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>添加依赖库
+可以开始在 Maven 提供的 pom 文件(pom.xml) 添加我们spring的依赖，设置 pom.xml 前，需要到项目设置中 Maven autoload 勾选，否则无法自动下载 maven 依赖库(这是Intellij的坑)。</li>
+</ol>
+
+
+<p><img src="/images/2017/06/11/02.jpg" alt="" /></p>
+
+<p>在 pom.xml 添加 dependencies, plugins，以下是 pom.xml 设置后的完整文件：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;groupId&gt;</span>com.zhl.hellotest<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;artifactId&gt;</span>hellotest<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;version&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;name&gt;</span>hellotest Maven Webapp<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;url&gt;</span>http://maven.apache.org<span class="nt">&lt;/url&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;properties&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- spring版本号 --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;spring.version&gt;</span>4.3.8.RELEASE<span class="nt">&lt;/spring.version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/properties&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>  <span class="c">&lt;!--单元测试依赖 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!-- 表示开发的时候引入，发布的时候不会加载此包 --&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-context<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-orm<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-context-support<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!--spring单元测试依赖 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-test<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- spring核心包 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!-- SpringMVC核心包 --&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-aop<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;artifactId&gt;</span>spring-beans<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;version&gt;</span>${spring.version}<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;finalName&gt;</span>hellotest<span class="nt">&lt;/finalName&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/build&gt;</span>
+</span><span class='line'><span class="nt">&lt;/project&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加完成后，系统会自动下载所列出的依赖包，如果没有自动下载，可以在pom.xml文件中右键，选择Maven->Reimport载入。如下图：
+<img src="/images/2017/06/11/03.jpg" alt="" /></p>
+
+<ol>
+<li>进行SpringMVC配置
+
+<ul>
+<li>首先在resource目录下新建一个spring的配置文件springmvc.xml，文件图片和内容如下：
+<img src="/images/2017/06/11/04.jpg" alt="" /></li>
+</ul>
+</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.springframework.org/schema/beans&quot;</span>
+</span><span class='line'>       <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+</span><span class='line'>       <span class="na">xmlns:context=</span><span class="s">&quot;http://www.springframework.org/schema/context&quot;</span>
+</span><span class='line'>       <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c">&lt;!-- 扫描指定包带@Controller注解的类--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&quot;com.zhl.hellotest.controller&quot;</span><span class="nt">&gt;&lt;/context:component-scan&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--视图解析器--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/beans&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意：如果没有加下面的内容，会导致错误：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+</span><span class='line'>http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在web.xml配置前端控制器，并加载springmvc.xml的配置文件，内容如下：</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;!DOCTYPE web-app PUBLIC</span>
+</span><span class='line'><span class="cp"> &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</span>
+</span><span class='line'><span class="cp"> &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot; &gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;web-app&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;display-name&gt;</span>Archetype Created Web Application<span class="nt">&lt;/display-name&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c">&lt;!--springMvc前端控制器--&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;servlet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="nt">&lt;/servlet-class&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--contextConfigLocation配置springmvc加载的配置文件（配置处理器映射器、适配器等）--&gt;</span>
+</span><span class='line'>    <span class="c">&lt;!--如果不配置，则默认加载/WEB-INFO/servlet名称-servlet.xml(springmvc-servlet.xml)--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;init-param&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param-name&gt;</span>contextConfigLocation<span class="nt">&lt;/param-name&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;param-value&gt;</span>classpath:springmvc.xml<span class="nt">&lt;/param-value&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/init-param&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/servlet&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;servlet-mapping&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;servlet-name&gt;</span>SpringMVC<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;url-pattern&gt;</span>/<span class="nt">&lt;/url-pattern&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/servlet-mapping&gt;</span>
+</span><span class='line'><span class="nt">&lt;/web-app&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>至此，文件配置完毕，下面我们用注解写一个方法测试一下，测试类放在springmvc.xml配置的扫描的包中，此处包名要与配置文件中扫描的包名一致。</li>
+</ul>
+
+
+<p>创建包<strong>com.zhl.hellotest.controller</strong>,java文件<strong>TestController</strong>。
+<img src="/images/2017/06/11/05.jpg" alt="" /></p>
+
+<p><strong>TestController</strong>内容如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">zhl</span><span class="o">.</span><span class="na">hellotest</span><span class="o">.</span><span class="na">controller</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/** 注意不加下面的import，会导致出现找不到符号 Controller等的错误 */</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ResponseBody</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * Created by zhl on 2017/6/5.</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="nd">@Controller</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestController</span> <span class="o">{</span>
+</span><span class='line'>    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/admin&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="nd">@ResponseBody</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">testSpring</span><span class="o">(){</span>
+</span><span class='line'>        <span class="k">return</span> <span class="s">&quot;My testSpring&quot;</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此代码需要说明一下：
+注解 @Controller 表示这是一个控制器，当请求来时将会扫描是否有匹配的RequestMapping。
+注解 @RequestMapping 表示映射的路由，这里表示的是 /admin。
+注解 @ResponseBody 表示返回的响应数据。</p>
+
+<h2>运行</h2>
+
+<ul>
+<li>编译，会出现如下错误：
+<img src="/images/2017/06/11/06.jpg" alt="" /></li>
+</ul>
+
+
+<p>这里重新设置项目的java版本。
+<img src="/images/2017/06/11/07.jpg" alt="" /></p>
+
+<p><img src="/images/2017/06/11/08.jpg" alt="" /></p>
+
+<p>点击运行，打开浏览器后输入<a href="http://localhost:8080/admin">http://localhost:8080/admin</a>，可以看到 <strong>My testSpring</strong>。
+<img src="/images/2017/06/11/09.jpg" alt="" /></p>
+
+<h3>参考</h3>
+
+<p><a href="http://www.tuicool.com/articles/aMzM7jR">http://www.tuicool.com/articles/aMzM7jR</a>
+<a href="http://blog.csdn.net/yege2006/article/details/51377674">http://blog.csdn.net/yege2006/article/details/51377674</a>
+<a href="http://blog.csdn.net/chunleixiahe/article/details/55001989">http://blog.csdn.net/chunleixiahe/article/details/55001989</a>
+<a href="http://blog.csdn.net/u011275152/article/details/45242201">http://blog.csdn.net/u011275152/article/details/45242201</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tmyam</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-11T14:18:00+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/idea/'>idea</a>, <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/javaweb/'>javaweb</a>, <a class='category' href='/blog/categories/maven/'>maven</a>, <a class='category' href='/blog/categories/springmvc/'>springmvc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/" title="Previous Post: Javaweb学习：创建Maven项目">&laquo; Javaweb学习：创建Maven项目</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+  <section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><div class="ds-thread" data-title="Javaweb学习：Maven下使用springmvc"></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tmyam"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>简介</h1>
+	<li class='contact'>
+     <font size=+2 ><strong>tmyam</strong></font><br/><br/>
+     <img src="/images/logo.png" alt="faild" width="180"/><br/><br/>
+	</li>
+	<li class='contact'>  <a href='http://zrshz.github.com'>Home Page</a> </li>
+       <li class='contact'>  <a href='/'>Blog</a> </li>
+       <li class='contact'> <a href='mailto:tmyam@mail.com'>email</a> </li>
+</section><section>
+  <h1>文章分类</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
+<li class='category'><a href='/blog/categories/idea/'>idea (3)</a></li>
+<li class='category'><a href='/blog/categories/ios-develop/'>ios-develop (2)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (3)</a></li>
+<li class='category'><a href='/blog/categories/javaweb/'>javaweb (2)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (5)</a></li>
+<li class='category'><a href='/blog/categories/mac-develop/'>mac-develop (8)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>maven (2)</a></li>
+<li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/springmvc/'>springmvc (1)</a></li>
+<li class='category'><a href='/blog/categories/svn/'>svn (3)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
+<li class='category'><a href='/blog/categories/树莓派/'>树莓派 (5)</a></li>
+
+  </ul>
+</section><section>
+  <h1>最近更新</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">Javaweb学习：Maven下使用springmvc</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">Javaweb学习：创建Maven项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/an-zhuang-intelij-idea/">安装InteliJ IDEA</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>二维码</h1>
+	<li class='link code'>
+       <img src="/images/link_code.png" alt="faild" width="180"/>
+	</li>
+</section>
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - tmyam -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">tmyam</a></span>   
+  <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261455210'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1261455210%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</p>
+</footer>
+</html>

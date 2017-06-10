@@ -9,8 +9,7 @@
   <meta name="author" content="tmyam">
 
   
-  <meta name="description" content="安装SVN软件 1
-sudo apt-get install subversion 创建目录 新建仓库目录 ">
+  <meta name="description" content="前言 对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。 创建Maven java web项目 这里可以参考以前的文章，这里就不多说了。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +98,157 @@ window.onload=sethash;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">Javaweb学习：Maven下使用springmvc</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-11T14:18:00+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+-->
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前言</h2>
+
+<p>对于java web应用来说，springmvc已经越来越流行。这里就对springmvc环境的搭建做一个记录。</p>
+
+<h2>创建Maven java web项目</h2>
+
+<p>这里可以参考以前的文章，这里就不多说了。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">Javaweb学习：创建Maven项目</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-10T14:12:17+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+-->
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前言</h2>
+
+<p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/06/10/an-zhuang-intelij-idea/">安装InteliJ IDEA</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-10T14:05:50+08:00" pubdate data-updated="true"></time>
+        <!--
+
+			
+-->
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>前言</h2>
+
+<p>InteliJ IDEA作为java开发工具，有其优越性存在。作为一位java初学者，选择IDE非常重要，考虑到Android Studio是在社区版的IDEA上开发的，为了减少以后的学习成本，IDEA是一个不错的选择。</p>
+
+<h2>安装</h2>
+
+<ol>
+<li>在官网下载软件安装包 <a href="http://www.jetbrains.com/idea/download">下载地址</a></li>
+</ol>
+
+
+<p> <strong>Ultimate</strong>（旗舰版），<strong>Community</strong>（社区版，开源版）</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/06/10/an-zhuang-intelij-idea/">阅读全文 &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -477,170 +627,6 @@ window.onload=sethash;
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">一个客户端设置多个github账号</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-07T21:48:00+08:00" pubdate data-updated="true"></time>
-        <!--
-
-			
--->
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>前言</h2>
-
-<p>最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。</p>
-
-<h2>1.前期工作</h2>
-
-<ul>
-<li>至少有两个<a href="https://github.com">github</a>账号 (假设有两个账号 一个为 <em>one</em> ，另一个为 <em>two</em>)</li>
-<li>取消git全局设置</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git config --global --unset user.name
-</span><span class='line'>git config --global --unset user.email
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/05/07/duo-githubzhang-hu-she-zhi/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/25/idpxu-fei/">iDP续费</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-25T10:24:00+08:00" pubdate data-updated="true"></time>
-        <!--
-
-			
--->
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。</p>
-
-<h2>基本流程</h2>
-
-<p>苹果的规则是到期前 <strong>60</strong> 天内才可以续费。</p>
-
-<h3>1. 登录</h3>
-
-<p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/25/idpxu-fei/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/09/idpshen-qing/">iDP申请[转载]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-09T20:06:00+08:00" pubdate data-updated="true"></time>
-        <!--
-
-			
--->
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>前言</h2>
-
-<p>当初我申请idp的一篇详细的文章，不过现在里面的图都挂了，我费了点劲才找回这些图，在这里进行一下还原，希望能帮到需要的人。</p>
-
-<h2>正文</h2>
-
-<p>我的iDP之路04——iDP申请,如何花出去$99,2011年6月份版 <br/>
-这帖子本来应该是六月份写的，怎奈那时期末将近，小弟我搞App刚刚起步，资金全靠奖学金维持，不得不投入到准备考试的深渊中。放假期间被我娘她老人家逼着学车，第一个App搞得很是不顺。这个帖子只能一拖再拖。废话稍候再罗嗦，下面是图和解说：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/03/09/idpshen-qing/">阅读全文 &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2/">&larr; Older</a>
@@ -664,12 +650,18 @@ window.onload=sethash;
   <h1>文章分类</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>github (2)</a></li>
+<li class='category'><a href='/blog/categories/idea/'>idea (3)</a></li>
 <li class='category'><a href='/blog/categories/ios-develop/'>ios-develop (2)</a></li>
+<li class='category'><a href='/blog/categories/java/'>java (3)</a></li>
+<li class='category'><a href='/blog/categories/javaweb/'>javaweb (2)</a></li>
 <li class='category'><a href='/blog/categories/linux/'>linux (5)</a></li>
 <li class='category'><a href='/blog/categories/mac-develop/'>mac-develop (8)</a></li>
+<li class='category'><a href='/blog/categories/maven/'>maven (2)</a></li>
 <li class='category'><a href='/blog/categories/objective-c/'>objective-c (2)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (3)</a></li>
+<li class='category'><a href='/blog/categories/springmvc/'>springmvc (1)</a></li>
 <li class='category'><a href='/blog/categories/svn/'>svn (3)</a></li>
+<li class='category'><a href='/blog/categories/web/'>web (1)</a></li>
 <li class='category'><a href='/blog/categories/树莓派/'>树莓派 (5)</a></li>
 
   </ul>
@@ -678,23 +670,23 @@ window.onload=sethash;
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/">Javaweb学习：Maven下使用springmvc</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/">Javaweb学习：创建Maven项目</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/10/an-zhuang-intelij-idea/">安装InteliJ IDEA</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/04/15/linuxan-zhuang-svnfu-wu/">Linux安装SVN服务</a>
       </li>
     
       <li class="post">
         <a href="/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/">SVN仓库备份和迁移</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/">Linux下搭建可以http访问的SVN服务</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/03/27/apt-getxiao-ji/">apt-get小记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2017/03/07/chu-shi-shu-mei-pai/">初识树莓派</a>
       </li>
     
   </ul>
