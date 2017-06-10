@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:53:21+08:00</updated>
+  <updated>2017-06-10T15:12:10+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -154,7 +154,7 @@ netstat -tln
 
 <p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
 <a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
@@ -301,7 +301,7 @@ sudo chown -R www-data:subversion /path/main_repository
 
 <p><br/></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
 <a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
@@ -451,7 +451,7 @@ svnserve -d -r /home/svn/
 <pre><code class="sh">svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 </code></pre>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 ]]></content>

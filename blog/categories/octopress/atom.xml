@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:53:21+08:00</updated>
+  <updated>2017-06-10T15:12:10+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -131,7 +131,7 @@
 
 <p><br/></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
 ]]></content>
@@ -273,7 +273,7 @@ git push origin source
 
 <p><br/></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/</a></p>
 ]]></content>
@@ -466,7 +466,7 @@ rake update_style             # update the template's style
 
 <p><br/></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p> <a href="http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/">http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/</a></p>
 ]]></content>

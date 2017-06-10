@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:53:21+08:00</updated>
+  <updated>2017-06-10T15:12:10+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Javaweb学习：Maven下使用springmvc]]></title>
+    <title type="html"><![CDATA[Javaweb学习：Maven下使用SpringMVC]]></title>
     <link href="https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/"/>
     <updated>2017-06-11T14:18:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
@@ -259,7 +259,7 @@ public class TestController {
 <p>点击运行，打开浏览器后输入<a href="http://localhost:8080/admin">http://localhost:8080/admin</a>，可以看到 <strong>My testSpring</strong>。
 <img src="/images/2017/06/11/09.jpg" alt="" /></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://www.tuicool.com/articles/aMzM7jR">http://www.tuicool.com/articles/aMzM7jR</a>
 <a href="http://blog.csdn.net/yege2006/article/details/51377674">http://blog.csdn.net/yege2006/article/details/51377674</a>
@@ -377,7 +377,7 @@ public class TestController {
 
 <p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
 <a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
@@ -470,7 +470,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 <p>启动IDEA，打开<strong>Build,Execution,Deployment</strong>，参考下图设置：
 <img src="/images/2017/06/10/idea_01.jpg" alt="temp" /></p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://blog.csdn.net/u013673242/article/details/72243066">http://blog.csdn.net/u013673242/article/details/72243066</a>
 <a href="http://blog.csdn.net/qq_15096707/article/details/51142509">http://blog.csdn.net/qq_15096707/article/details/51142509</a>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: web | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/web/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:53:21+08:00</updated>
+  <updated>2017-06-10T15:12:10+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -122,7 +122,7 @@
 
 <p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
 
-<h4>参考</h4>
+<h3>参考</h3>
 
 <p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
 <a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
