@@ -10,7 +10,7 @@ categories: Octopress github
 我的第一篇博文   
 `(mac 版本 10.8.5)`
 
-## 1.git配置
+### 1.git配置
 * 申请[github]账号
 * 配置git环境  
 
@@ -31,7 +31,7 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 **登录**[github]  
 拷贝~/.ssh/id_rsa.pub的内容，在github的`Account Settings`的`SSH Keys`里，点`Add SSH Keys`，将内容粘贴到”Key”中，并输入”Title”.
 	
-## 2.安装ruby
+### 2.安装ruby
 使用Octopress需要最低Ruby版本为1.9.3,所以必须安装ruby。  
 
 * 如果没有安装了XCode及Command Line Tools则需要先安装apple-gcc42。
@@ -72,7 +72,7 @@ rvm autolibs brew
 如果遇到以下错误
 >Error running 'requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl',
 please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log
-####Requirements installation failed with status: 1.
+######Requirements installation failed with status: 1.
 
 可以先安装homebrew
 
@@ -94,7 +94,7 @@ rvm use ruby-2.0.0-p247
 ```
 可以使用 `rvm list` 查看安装的ruby的状态。
 	
-## 3.部署blog
+### 3.部署blog
 * 创建git的blog
 	1. 点击github主页的 **Tab** `Repositories`,点击 `New` 按钮,创建一个public的仓库。
 	2. 仓库的名称必须为 *your_username.github.com* ,其中**your_username**是需要修改的地方,然后点击 `Create repository` 按钮。
@@ -145,7 +145,7 @@ rake deploy
 ```
 这样就可以看到上传的主题博客了。
 
-## 4.备份资源文件
+### 4.备份资源文件
 在octopress目录下
 
 ```
@@ -154,7 +154,7 @@ git commit -m 'your message'
 git push origin source
 ```
 	
-## 更新 Octopress
+### 更新 Octopress
 ``` sh 
 git remote add octopress git://github.com/imathis/octopress.git
 git pull octopress master     # Get the latest Octopress

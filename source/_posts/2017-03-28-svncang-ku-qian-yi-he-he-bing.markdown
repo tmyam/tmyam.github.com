@@ -7,10 +7,10 @@ disqus: false
 categories: SVN Linux 树莓派
 ---
 
-## 前言
+### 前言
 本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。
 
-## 仓库备份
+### 仓库备份
 * **svnadmin dump**
 
 1、备份方式多样   
@@ -54,10 +54,10 @@ gzip /path/projects-backup.2017-03-28
 
 
 
-## 仓库迁移
+### 仓库迁移
 * 使用FTP等工具，将备份的文件传输到目的服务器上，例如 `/home`目录下
 
-## 仓库合并
+### 仓库合并
 * 在目的服务器上创建一个主仓库 `/path/main_repository`
 * 在本地checkout目的服务器的主仓库
 
@@ -83,7 +83,7 @@ sudo svnadmin load /path/main_repository < /home/repository-backup.2017-03-28
 ```
 这样就可以将多个仓库合并成一个仓库了。
 
-## 仓库恢复
+### 仓库恢复
 * 如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。
 * 使用FTP等工具，将备份的文件传输到需要恢复的服务器上，例如 `/home`目录下
 * 登录需要恢复的服务器

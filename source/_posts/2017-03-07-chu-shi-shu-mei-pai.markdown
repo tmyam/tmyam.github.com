@@ -8,13 +8,13 @@ categories: 树莓派 Linux
 ---
 环境: `(Mac 版本 10.11 ) `  
 
-## 前言
+### 前言
 &emsp;&emsp;现在的计算机硬件已经很发达了，成本也在不断的降低。树莓派就是一个价格低廉的单板计算机，它拥有计算机的功能，还有许多扩展接口，无论是学习还是DIY都是不错的选择。到了树莓派3b，性能也有了很大的提升。   
 &emsp;&emsp;学习Linux有很多种方式，虚拟机无疑是一种简单的方式，使用树莓派是另外一种方式，而且可以任意折腾，还有许多虚拟机办不到的事（比如集群）。由于树莓派使用的是ARM架构的CPU，Windows系统是装不了（虽然有Win10 IOT，但是基本没啥用）。尽管可以安装Linux，但是和桌面版相比，系统的支持还是弱了点。   
 &emsp;&emsp;我选择树莓派，一是看中了它可以安装完整的Linux系统，无论是学习还是教别人都说不错的选择，二是看中了它的低功耗，据网友估算树莓派3b的功耗不连屏幕，U盘大概在2.5w左右，三是看中了它的DIY功能，谁小时候没有想要动手DIY的心情，只是那时候没有这个条件，现在年龄大了又玩不动了，如果有好的想法还是可以玩玩，毕竟设备就在手上。
 <!-- more -->
  ![temp](/images/2017/03/08/raspbianpi3b.jpg)
-## 制作系统
+### 制作系统
 * 下载系统包 [(下载地址)](https://www.raspberrypi.org/downloads/)  ,下载完成后解压缩，得到 `2017-03-02-raspbian-jessie-lite.img`系统镜像文件。   
 这里使用的镜像是 `2017-03-02-raspbian-jessie-lite`版本，lite是精简版，没有GUI图形界面，可以更省空间，也更省内存。   
 
@@ -28,7 +28,7 @@ categories: 树莓派 Linux
 这里的**rdisk2**是根据**disk2s1**来的，根据自己的数字修改。   
 5、写入的过程需要一点时间，大概4分钟左右。当dd完成了它的工作以后，将TF卡安全移除。可以输入`diskutil unmountdisk /dev/disk2`来移除。
 
-## 修改密码
+### 修改密码
 * 经过上面的步骤系统已经写进了卡里，但是还无法直接应ssh登录。因为树莓派2016-11-25更新版本时，ssh默认关闭了。
 要使用ssh，则需要在TF卡**/root**目录下新建一个ssh文件。
 电脑上插上TF卡
@@ -69,7 +69,7 @@ su root
 su pi
 ```
 
-## 配置网络
+### 配置网络
 * 这里打算让树莓派作为服务器使用，所以要配置静态IP，为了携带方便，还要满足这些条件。   
 1、没有WIFI时，插上网线可以连接，有线网卡地址为静态IP。   
 2、没插网线，有WIFI时，连接WIFI，WIFI网卡地址为静态IP。   
@@ -182,7 +182,7 @@ ifconfig 查看各网卡信息
 iwconfig 查看当前联网的信息
 **注意：**每次切换网络（有线变无线，无线变有线）均需要重新启动。
 
-## 安装vim
+### 安装vim
 
 ``` sh
 sudo apt-get update             # 更新软件源列表
@@ -191,14 +191,14 @@ sudo apt-get remove vim-common  # 删除vim
 sudo apt-get install vim        #安装vim 
 ```
 
-## 安装中文字体
+### 安装中文字体
 树莓派系统默认不支持中文，需要自己安装
 
 ``` sh
 sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 ```
 
-## 备份系统
+### 备份系统
 我想大部分人都不想折腾同样的东西吧，有备无患。    
 
 * Windows系统下官方推荐的工具 Win32DiskImager [下载地址](http://sqdownb.onlinedown.net/down/Win32DiskImager-0.9.5-binary.zip)
@@ -208,7 +208,7 @@ sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 * Device 选择你的TF卡盘符
 * 然后点Read
 
-## 恢复TF卡容量
+### 恢复TF卡容量
 写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。
 
 * 下载 bootsector.img[下载地址](http://www.alexpage.de/download/usbit/bootsector.img)
@@ -217,19 +217,19 @@ sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 * 在windows资源管理器下格式化TF卡（一般格式化成FAT32）
 
 这样TF卡就恢复了原始容量。
-## 关机命令
+### 关机命令
 
 ```sh
 sudo poweroff       #关机
 ```
 
-## 查看系统信息
+### 查看系统信息
 
 ``` sh
 hostnamectl
 ```
 
-## 测试TF卡速度
+### 测试TF卡速度
 
 * 安装测试磁盘速度的软件
 

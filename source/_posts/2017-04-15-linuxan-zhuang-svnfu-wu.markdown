@@ -7,13 +7,13 @@ disqus: false
 categories: Linux 树莓派 SVN
 ---
 
-## 安装SVN软件
+### 安装SVN软件
 
 ``` sh
 sudo apt-get install subversion
 ```
 
-## 创建目录
+### 创建目录
 
 * 新建仓库目录
 <!--more-->
@@ -28,7 +28,7 @@ sudo mkdir -p /home/svn/projects
 sudo svnadmin create /home/svn/projects
 ```
 
-## 配置
+### 配置
 * 修改仓库配置
 
 ``` sh
@@ -93,7 +93,7 @@ one = 1234
 two = 1234
 ```
 
-## 启动服务
+### 启动服务
 
 ``` sh
 killall svnserve
@@ -107,7 +107,7 @@ ps aux | grep svn
 # 查看端口使用情况，SVN默认端口：3690
 netstat -tln
 ```
-## 设置开机自启动
+### 设置开机自启动
 
 * 查看svnserve位置
 
@@ -125,7 +125,7 @@ sudo nano /etc/rc.local
 >
 /usr/bin/svnserve -d -r /home/svn
 
-## 连接
+### 连接
 你的电脑使用 `svn://你的域名/projects` 进行连接。
 
 

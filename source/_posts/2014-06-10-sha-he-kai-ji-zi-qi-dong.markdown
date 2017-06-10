@@ -6,10 +6,10 @@ comments: true
 disqus: false
 categories: Mac-develop
 ---
-## 前言
+### 前言
 在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。
 
-## 非沙盒下的开机自启动
+### 非沙盒下的开机自启动
 简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->"用户与群组"->"登录项"里面看到，并进行设置。
 <!-- more -->  
 
@@ -88,14 +88,14 @@ categories: Mac-develop
 }
 ```
 
-## 沙盒下的开机自启动
+### 沙盒下的开机自启动
 沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。
 
-### 1. 添加Helper程序
+#### 1. 添加Helper程序
 沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
 ![temp](/images/2014/06/10/01.jpg) 
 
-### 2. 设置Helper
+#### 2. 设置Helper
 test和testHelper都需要设置，这里先进行testHelper的设置.
 
 * 修改build Configuration 为 Release 。
@@ -112,7 +112,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
 ![temp](/images/2014/06/10/06.jpg) 
 
-### 3. 添加Helper的代码
+#### 3. 添加Helper的代码
 参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。
 
 ``` objc
@@ -155,7 +155,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 }
 ```
 
-### 4. 设置主程序
+#### 4. 设置主程序
 
 * test添加Copy Files 。
 ![temp](/images/2014/06/10/07.jpg) 
@@ -169,7 +169,7 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
 这里设置的发布证书，如果需要测试，可以设置开发者证书进行测试。
 ![temp](/images/2014/06/10/11.jpg) 
 
-### 5. 主程序添加代码
+#### 5. 主程序添加代码
 * test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，[StartAtLoginController下载](/files/StartAtLoginController.zip)
 
 * 添加 ServiceManagement.framework
@@ -197,13 +197,13 @@ test和testHelper都需要设置，这里先进行testHelper的设置.
     return result;
 }
 ```
-### 结尾
+#### 结尾
 至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
 还有要注意的地方，如果要测试沙盒下的开机自启动，*需要将编译出的app放入系统的应用程序目录下*，否则不会生效。   
 
 另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到*".../Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents"*目录下，删除embedded.provisionprofile文件，就可以正确上传了。
 
-## 示例
+### 示例
 [StartAtLoginController下载](/files/StartAtLoginController.zip)   
 [test示例下载](/files/test-startatlogin.zip)
 

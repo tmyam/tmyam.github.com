@@ -6,13 +6,13 @@ comments: true
 disqus: false
 categories: Mac-develop
 ---
-## 前因
+### 前因
 最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。
 先是以前创建的mac app工程使用到第三方framework的地方，无法编译通过了，其次就是编译出的程序在Lion(10.7)系统下无法运行了，要做兼容的话，真是让人头疼。
 <!-- more -->
 
-## 解决
-### 引用第三方framework
+### 解决
+#### 引用第三方framework
 原本mac app开发使用的第三方framework是不需要签名的，但是系统升级到Mavericks，Xcode升级到5.0后，再引用无签名的第三方framework时就无法编译通过了，这对于使用资源是很不利的。
 
 >/Users/.../xxx.app: code object is not signed at all 
@@ -28,7 +28,7 @@ Command /usr/bin/codesign failed with exit code 1
 * 方案3: 在工程的 `Other Code Signing Flags` 栏加入 `--deep` 给第三方framework签名。[参考链接](http://support.hockeyapp.net/discussions/problems/14709-code-sign-error-in-xcode-501-for-os-x-target)
 
 
-### Lion(10.7)的兼容
+#### Lion(10.7)的兼容
 Mavericks(10.9) + Xcode5.0创建的mac app程序无法在Lion(10.7)上面运行，就算选择了tag为10.7也不行。  
 究其原因发现，新创建的程序下面多了个 *Base.lproj* 文件夹，*MainMenu.xib* 文件就在里面，而在以前，*MainMenu.xib* 文件是在 *en.lproj* 文件夹下的。  
 

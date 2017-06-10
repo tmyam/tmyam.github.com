@@ -8,10 +8,10 @@ categories: Mac-develop
 ---
 发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。
 
-## 前提条件
+### 前提条件
 1, 一个mac developer帐号
 <!-- more -->
-## 创建APP ID
+### 创建APP ID
 * 登陆 [MemberCenter](https://developer.apple.com/membercenter)
 * 点击 **Certificates, Identifiers & Profiles** 进入管理界面，点击*Identifiers* -> *App IDs*.
 
@@ -28,7 +28,7 @@ categories: Mac-develop
  
  当然也可以通过 `iTunes Connect添加App` 时，点击 **You can register a new Bundle ID here.** 来快速创建。
  
-## 在iTunes Connect添加App
+### 在iTunes Connect添加App
 这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了...）   
 
 [参考链接](http://my.oschina.net/joanfen/blog/133642)   
@@ -69,7 +69,7 @@ categories: Mac-develop
 至此，开放前的准备工作就完成了。
 
 
-## 生成发布的描述文件
+### 生成发布的描述文件
 在编写程序的时候需要对沙箱环境进行测试，这里使用通用的Mac developer证书，以及通用的描述文件即可达到目的。但是发布的话还需要专用的描述文件。
 
 [参考链接](http://my.oschina.net/joanfen/blog/133624)    
@@ -85,10 +85,10 @@ categories: Mac-develop
 
 * 由于系统更新，现在描述文件的选择改变了地方，这里依然下载生成的描述文件，右键用Xcode打开，然后在工程中选择 **3rd Party Mac Developer Application:...** 的证书，描述的地方选择**Automatic**。
 
-## 编写程序...
+### 编写程序...
 这里不多赘述了...
 
-## 发布
+### 发布
 程序写好，测试完成就可以发布了。
 还记得在 **iTunes Connect** 添加的app吗，现在可以进行完善工作了。   
 目前状态 **Prepare for Upload**
@@ -117,7 +117,7 @@ categories: Mac-develop
   如果顺利，状态之后会变成 **Processing for App Store**，最后是 **Ready for Sale**，至此发布完成。
 
 
-###更新
+### 更新
 * 2016-03-09 第一次更新，环境: `(mac 版本 10.11.3 ) ( Xcode 7.2.1 )`
   
 

@@ -7,8 +7,8 @@ disqus: false
 categories: Objective-C
 ---
 Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。
-## 1. 枚举介绍
-### enum only
+### 1. 枚举介绍
+#### enum only
 
 ``` objc
 enum
@@ -21,7 +21,7 @@ enum
 * 这种枚举**不推荐**使用，因为不能用一种类型的方式表示枚举。
 <!-- more -->
 
-### enum 类型
+#### enum 类型
 ``` objc
 typedef enum
 {
@@ -44,7 +44,7 @@ typedef enum TMEnumTest TMEnumTest;
 但是这种写法也有局限性，在作为函数参数时，如果传入NSInteger类型的数据，则需要强制转换，否则会有类型不匹配的警告，所以这种方式也**不推荐**。如下图，
 ![temp](/images/2014/02/24/enum_warn.png) 
 
-### 老式enum写法
+#### 老式enum写法
 ``` objc
 enum
 {
@@ -57,7 +57,7 @@ typedef NSUInteger TMEnumTest;
 但是这种写法不会检查枚举的正确性，是好是坏需要自己判断，如下图。本人**推荐**这种写法。
 ![temp](/images/2014/02/24/enum_no_check.png) 
 
-### 新式enum写法
+#### 新式enum写法
 ``` objc
 typedef NS_ENUM(NSUInteger, TMEnumTest)
 {
@@ -79,7 +79,7 @@ typedef NS_OPTIONS(NSUInteger, TMEnumTest)
 * 但是不同的是，**新式enum写法** 在使用*switch*时，会进行值的检测，如果枚举中无此值，则会弹出警告，如下图。这种方式见仁见智了。本人**推荐**这种写法。
 ![temp](/images/2014/02/24/enum_switch.png)
 
-## 2. 枚举最大值
+### 2. 枚举最大值
 对于一般的枚举，要获取枚举的最大值是很难的，因为随着枚举的扩充，最大值在不断变化，这时推荐使用一个固定的枚举表示最大值，例如：
 ``` objc
 typedef NS_ENUM(NSUInteger, TMEnumTest)
@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, TMEnumTest)
 ```
 这样就可以使用*TMEnumTestMax*表示枚举*TMEnumTest*的最大值了。
 
-## 3. 位枚举
+### 3. 位枚举
 位枚举是一种特殊的枚举，在apple的类中使用的很多，例如`NSStringCompareOptions`等。
 ``` objc
 typedef NS_OPTIONS(NSUInteger, TMEnumTest)

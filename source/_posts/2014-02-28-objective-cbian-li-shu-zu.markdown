@@ -9,8 +9,8 @@ categories: Objective-C
 数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。
 
 
-## 常用写法简介
-### 1. 经典写法
+### 常用写法简介
+#### 1. 经典写法
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -25,7 +25,7 @@ categories: Objective-C
 之所以使用count来存储数组总数，而不是写成 **i < array.count** ,是因为循环每进行一次都会调用数组的计数方法，这将导致性能变得很差。
 <!-- more -->
 
-### 2. NSEnumerator
+#### 2. NSEnumerator
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -40,7 +40,7 @@ categories: Objective-C
 ```
 NSEnumerator的优势在于不需要知道数据总数，所以它适合应用在结构化数据上，比如链表，数据流等。
 
-### 3. 快速枚举
+#### 3. 快速枚举
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -54,7 +54,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 快速枚举是apple推荐的方式，在使用上比经典的写法性能上更快。   
 使用上如果需要反向枚举，只需要将**array**改成**array.reverseObjectEnumerator**就可以了。
 
-### 4. 枚举块
+#### 4. 枚举块
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -67,12 +67,12 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 ```
 枚举块的优势在于它会返回对象和索引, 而其他的枚举方法只会返回对象.
 
-## 并发执行
+### 并发执行
 现在是多核的时代，为了发挥多核的优势，在有些时候并发执行就非常具有优势。如果在枚举中有许多事要做，但并不关心枚举顺序的情况下，使用并发就很合适。   
 但是对于数组总量小一些的数组，并发执行不一定会带来性能提升，反而开销可能远多于其带来的好处。  
 所以具体的使用需要自己进行权衡。
 
-### 1. 基本的并发枚举块
+#### 1. 基本的并发枚举块
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -86,7 +86,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 ```
 这种方式会为每一个枚举创建一个线程，等到所有的枚举都执行完毕才会进行下一步。
 
-### 2. 异步GCD并发
+#### 2. 异步GCD并发
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -103,7 +103,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 ```
 这种方式会为每一个枚举创建一个线程，但是不会等待所有枚举执行完成，而是for循环完成后就会进行下一步了，是一种异步执行的方式。
 
-### 3. 等待GCD并发 
+#### 3. 等待GCD并发 
 ``` objc
 - (void) test:(NSArray*)array
 {
@@ -123,7 +123,7 @@ NSEnumerator的优势在于不需要知道数据总数，所以它适合应用�
 ```
 这种方式使用group将多个block组成一组以监测这些Block全部完成或者等待全部完成。这种方式的效果类似于`1.基本的并发枚举块`。
 
-### 4. dispatch_apply
+#### 4. dispatch_apply
 ``` objc
 - (void) test:(NSArray*)array
 {

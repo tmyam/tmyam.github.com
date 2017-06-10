@@ -6,18 +6,18 @@ comments: true
 disqus: false
 categories: Mac-develop
 ---
-## 前言
+### 前言
 cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:    
 正向操作(转换) ---> 代码控制的操作(转换)    
 反向操作(转换) ---> 用户界面操作控制(转换)
          
 
-## 简单的使用
+### 简单的使用
 比如，有这样一个需求，监控 **NSPopUpButton** 的选择下标的变化：    
 1. 可以用代码改变选择的下标    
 2. 当用户在界面上选择改变下标时，可以监测到这种改变
 <!-- more -->  
-####1. 一般的做法
+##### 1. 一般的做法
 ``` objc
 // 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
 @property (nonatomic ,strong,nonnull) IBOutlet NSPopUpButton*   popupButton;
@@ -32,7 +32,7 @@ self.popupButton.indexOfSelectedItem = 1;
 
 ```
 这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。
-####2. 使用bind      
+##### 2. 使用bind      
 
 ``` objc 
 写法 1 (定义属性)
@@ -77,8 +77,8 @@ self.index = 1;
 
 @"selectedIndex"可以用NSSelectedIndexBinding代替
 ```
-## 进阶
-####1. 绑定NSTextField
+### 进阶
+##### 1. 绑定NSTextField
 输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。
 
 例如，下面是一个输入框，限定输入0~99。
@@ -177,7 +177,7 @@ self.index = 1;
 然后在xib中创建一个Formatter，并关联**Outlets**中的formatter，如下图：    
 ![temp](/images/2016/04/08/bind_formatter.png)
 
-####2. Value Transformer类型变换
+##### 2. Value Transformer类型变换
 比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。
 ```objc
 @property (nonatomic ,strong) NSNumber*     inter;
@@ -222,8 +222,8 @@ self.index = 1;
 xib里面的绑定设置，如下图：    
 ![temp](/images/2016/04/08/bind_valuetransformer.png)
 
-## 注意
-####1. Read-Only 的绑定
+### 注意
+##### 1. Read-Only 的绑定
 有些bind类型，是Read-Only的，这时有些需求就无法满足了，需要注意。    
 比如**NSImageView**的**valuePath**是Read-Only的，只满足正向的操作，即可以通过代码修改路径，显示不同的图片，但是界面操作拖入一张图片的时候，绑定的属性不能获取到这张图片的路径。    
 所以对于Read-Only属性，只适合正向操作，即禁止用户进行修改的选项。    

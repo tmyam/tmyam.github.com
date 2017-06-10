@@ -6,9 +6,9 @@ comments: true
 disqus: false
 categories: github
 ---
-## 前言
+### 前言
 最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。
-## 1.前期工作
+### 1.前期工作
 * 至少有两个[github]账号 (假设有两个账号 一个为 *one* ，另一个为 *two*)    
 * 取消git全局设置
 ``` sh
@@ -16,7 +16,7 @@ git config --global --unset user.name
 git config --global --unset user.email  
 ```
 <!-- more -->
-## 2.SSH配置
+### 2.SSH配置
 * 生成 id_rsa 私钥 , id_rsa.pub 公钥      
 one可以直接回车，默认生成id_rsa和id_rsa.pub。 
 ```
@@ -44,7 +44,7 @@ ssh-add -D
 ``` sh
 ssh-add -l
 ```
-## 修改ssh config文件
+### 修改ssh config文件
 ```
 cd ~/.ssh/
 touch config
@@ -79,7 +79,7 @@ ssh -T git@two.github.com    # 测试two ssh连接
 ```
 但是这样还没有完，下面还有关联的设置。
 
-## 新建git项目或者clone已有的项目
+### 新建git项目或者clone已有的项目
 * 可以用 git init 或者 git clone 创建本地项目
 * 分别在*one*和*two*的git项目目录下，使用下面的命令设置账号关联
 ```
@@ -97,7 +97,7 @@ git config --list
 git remote rm origin 
 git remote add origin git@two.github.com:two/two.github.com.git
 ```
-## 上传更改
+### 上传更改
 * 上面所有的设置无误后，可以修改代码，然后上传了。
 ```
 git add -A

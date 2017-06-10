@@ -7,7 +7,7 @@ disqus: false
 categories: Octopress
 ---
 
-##1.编写
+###1.编写
 
 * 下载markdown的编辑工具,[Mou]
 
@@ -44,7 +44,7 @@ rake new_post['article name']
 如果想将Read on 修改为中文，可以修改_config.yml文件  
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles 中的`Read on` 改为 `阅读全文`。
 
-##2.代码高亮
+###2.代码高亮
 octopress原生支持代码高亮，[参考链接](http://octopress.org/docs/blogging/code/)   
 使用`Backtick`来实现语法高亮，[参考链接](http://m.blog.csdn.net/blog/trochiluses/12906265)   
 
@@ -78,7 +78,7 @@ sh: shell脚本
 objc: Objective-C   
 
 
-##3.生成
+###3.生成
 * 生成静态文件
 
 ``` text
@@ -96,7 +96,7 @@ rake preview
 ```
 rake deploy
 ```
-##4.备份
+###4.备份
 将文件更新备份到github上。
 
 ``` sh
@@ -114,7 +114,7 @@ git config --global push.default simple
 ```
 
 <br/>
-###参考
+### 参考
 <http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/>
 
 

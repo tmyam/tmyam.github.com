@@ -6,10 +6,10 @@ comments: true
 disqus: false
 categories: Linux SVN 树莓派
 ---
-## 前言
+### 前言
 最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。
 
-## 相关软件安装
+### 相关软件安装
 * 使用SSH远程登录服务器
 
 ``` sh
@@ -25,21 +25,21 @@ sudo apt-get install libapache2-svn
 ```
 其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问
 
-## 配置
+### 配置
 
-### 相关用户、组的设定
+#### 相关用户、组的设定
 
 ``` sh
 sudo addgroup subversion
 sudo usermod -G subversion -a www-data
 ```
-### 创建项目的目录
+#### 创建项目的目录
 
 ``` sh
 sudo mkdir /home/svn
 ```
 
-### 配置 Subversion
+#### 配置 Subversion
 
 * 配置dav_svn.conf文件
 
@@ -69,7 +69,7 @@ sudo nano /etc/apache2/mods-available/dav_svn.conf
 sudo /etc/init.d/apache2 restart
 ```
 
-### 创建SVN文件仓库
+#### 创建SVN文件仓库
 1、创建指定的项目存放路径
 
 ``` sh
@@ -94,7 +94,7 @@ sudo svnadmin create /home/svn/projects
 ``` sh
 sudo chmod -R g+rws projects
 ```
-### 用户和权限配置
+#### 用户和权限配置
 1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码
 
 ``` sh
@@ -123,7 +123,7 @@ administrator=admin001,admin002
 @administrator=rw
 ```
 
-### 重启SVN服务器
+#### 重启SVN服务器
 
 ``` sh
 killall svnserve
