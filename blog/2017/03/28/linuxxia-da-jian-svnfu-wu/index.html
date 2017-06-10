@@ -134,11 +134,11 @@ window.onload=sethash;
   </header>
 
 
-<div class="entry-content"><h2>前言</h2>
+<div class="entry-content"><h3>前言</h3>
 
 <p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
 
-<h2>相关软件安装</h2>
+<h3>相关软件安装</h3>
 
 <ul>
 <li>使用SSH远程登录服务器</li>
@@ -169,9 +169,9 @@ window.onload=sethash;
 
 <p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
-<h3>相关用户、组的设定</h3>
+<h4>相关用户、组的设定</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -180,14 +180,14 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>创建项目的目录</h3>
+<h4>创建项目的目录</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir /home/svn
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>配置 Subversion</h3>
+<h4>配置 Subversion</h4>
 
 <ul>
 <li>配置dav_svn.conf文件</li>
@@ -226,7 +226,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>创建SVN文件仓库</h3>
+<h4>创建SVN文件仓库</h4>
 
 <p>1、创建指定的项目存放路径</p>
 
@@ -258,7 +258,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>用户和权限配置</h3>
+<h4>用户和权限配置</h4>
 
 <p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
 
@@ -296,7 +296,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>重启SVN服务器</h3>
+<h4>重启SVN服务器</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -312,7 +312,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 </div>

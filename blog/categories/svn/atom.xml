@@ -4,7 +4,7 @@
   <title><![CDATA[Category: svn | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/svn/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,12 +18,12 @@
     <link href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/"/>
     <updated>2017-04-15T15:49:26+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>安装SVN软件</h2>
+    <content type="html"><![CDATA[<h3>安装SVN软件</h3>
 
 <pre><code class="sh">sudo apt-get install subversion
 </code></pre>
 
-<h2>创建目录</h2>
+<h3>创建目录</h3>
 
 <ul>
 <li>新建仓库目录</li>
@@ -46,7 +46,7 @@
 <pre><code class="sh">sudo svnadmin create /home/svn/projects
 </code></pre>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
 <ul>
 <li>修改仓库配置</li>
@@ -117,7 +117,7 @@ one = 1234
 two = 1234
 </code></pre>
 
-<h2>启动服务</h2>
+<h3>启动服务</h3>
 
 <pre><code class="sh">killall svnserve
 svnserve -d -r /home/svn
@@ -130,7 +130,7 @@ ps aux | grep svn
 netstat -tln
 </code></pre>
 
-<h2>设置开机自启动</h2>
+<h3>设置开机自启动</h3>
 
 <ul>
 <li>查看svnserve位置</li>
@@ -150,11 +150,11 @@ netstat -tln
 
 <blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
 
-<h2>连接</h2>
+<h3>连接</h3>
 
 <p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
 <a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
@@ -167,11 +167,11 @@ netstat -tln
     <link href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/"/>
     <updated>2017-03-28T15:09:11+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
 
-<h2>仓库备份</h2>
+<h3>仓库备份</h3>
 
 <ul>
 <li><strong>svnadmin dump</strong></li>
@@ -224,14 +224,14 @@ sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 <p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
 为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
 
-<h2>仓库迁移</h2>
+<h3>仓库迁移</h3>
 
 <ul>
 <li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
 </ul>
 
 
-<h2>仓库合并</h2>
+<h3>仓库合并</h3>
 
 <ul>
 <li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
@@ -263,7 +263,7 @@ sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
 
 <p>这样就可以将多个仓库合并成一个仓库了。</p>
 
-<h2>仓库恢复</h2>
+<h3>仓库恢复</h3>
 
 <ul>
 <li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
@@ -301,7 +301,7 @@ sudo chown -R www-data:subversion /path/main_repository
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
 <a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
@@ -314,11 +314,11 @@ sudo chown -R www-data:subversion /path/main_repository
     <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
     <updated>2017-03-28T11:40:39+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
 
-<h2>相关软件安装</h2>
+<h3>相关软件安装</h3>
 
 <ul>
 <li>使用SSH远程登录服务器</li>
@@ -343,20 +343,20 @@ sudo apt-get install libapache2-svn
 
 <p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
-<h3>相关用户、组的设定</h3>
+<h4>相关用户、组的设定</h4>
 
 <pre><code class="sh">sudo addgroup subversion
 sudo usermod -G subversion -a www-data
 </code></pre>
 
-<h3>创建项目的目录</h3>
+<h4>创建项目的目录</h4>
 
 <pre><code class="sh">sudo mkdir /home/svn
 </code></pre>
 
-<h3>配置 Subversion</h3>
+<h4>配置 Subversion</h4>
 
 <ul>
 <li>配置dav_svn.conf文件</li>
@@ -391,7 +391,7 @@ sudo usermod -G subversion -a www-data
 <pre><code class="sh">sudo /etc/init.d/apache2 restart
 </code></pre>
 
-<h3>创建SVN文件仓库</h3>
+<h4>创建SVN文件仓库</h4>
 
 <p>1、创建指定的项目存放路径</p>
 
@@ -414,7 +414,7 @@ mkdir projects
 <pre><code class="sh">sudo chmod -R g+rws projects
 </code></pre>
 
-<h3>用户和权限配置</h3>
+<h4>用户和权限配置</h4>
 
 <p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
 
@@ -440,7 +440,7 @@ administrator=admin001,admin002
 @administrator=rw
 </code></pre>
 
-<h3>重启SVN服务器</h3>
+<h4>重启SVN服务器</h4>
 
 <pre><code class="sh">killall svnserve
 svnserve -d -r /home/svn/
@@ -451,7 +451,7 @@ svnserve -d -r /home/svn/
 <pre><code class="sh">svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 </code></pre>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 ]]></content>

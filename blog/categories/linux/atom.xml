@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,12 +18,12 @@
     <link href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/"/>
     <updated>2017-04-15T15:49:26+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>安装SVN软件</h2>
+    <content type="html"><![CDATA[<h3>安装SVN软件</h3>
 
 <pre><code class="sh">sudo apt-get install subversion
 </code></pre>
 
-<h2>创建目录</h2>
+<h3>创建目录</h3>
 
 <ul>
 <li>新建仓库目录</li>
@@ -46,7 +46,7 @@
 <pre><code class="sh">sudo svnadmin create /home/svn/projects
 </code></pre>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
 <ul>
 <li>修改仓库配置</li>
@@ -117,7 +117,7 @@ one = 1234
 two = 1234
 </code></pre>
 
-<h2>启动服务</h2>
+<h3>启动服务</h3>
 
 <pre><code class="sh">killall svnserve
 svnserve -d -r /home/svn
@@ -130,7 +130,7 @@ ps aux | grep svn
 netstat -tln
 </code></pre>
 
-<h2>设置开机自启动</h2>
+<h3>设置开机自启动</h3>
 
 <ul>
 <li>查看svnserve位置</li>
@@ -150,11 +150,11 @@ netstat -tln
 
 <blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
 
-<h2>连接</h2>
+<h3>连接</h3>
 
 <p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
 <a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
@@ -167,11 +167,11 @@ netstat -tln
     <link href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/"/>
     <updated>2017-03-28T15:09:11+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
 
-<h2>仓库备份</h2>
+<h3>仓库备份</h3>
 
 <ul>
 <li><strong>svnadmin dump</strong></li>
@@ -224,14 +224,14 @@ sudo svnadmin dump /path/repository &gt; /path/repository-backup.2017-03-28
 <p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
 为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
 
-<h2>仓库迁移</h2>
+<h3>仓库迁移</h3>
 
 <ul>
 <li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
 </ul>
 
 
-<h2>仓库合并</h2>
+<h3>仓库合并</h3>
 
 <ul>
 <li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
@@ -263,7 +263,7 @@ sudo svnadmin load /path/main_repository &lt; /home/repository-backup.2017-03-28
 
 <p>这样就可以将多个仓库合并成一个仓库了。</p>
 
-<h2>仓库恢复</h2>
+<h3>仓库恢复</h3>
 
 <ul>
 <li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
@@ -301,7 +301,7 @@ sudo chown -R www-data:subversion /path/main_repository
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
 <a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
@@ -314,11 +314,11 @@ sudo chown -R www-data:subversion /path/main_repository
     <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
     <updated>2017-03-28T11:40:39+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
 
-<h2>相关软件安装</h2>
+<h3>相关软件安装</h3>
 
 <ul>
 <li>使用SSH远程登录服务器</li>
@@ -343,20 +343,20 @@ sudo apt-get install libapache2-svn
 
 <p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
-<h3>相关用户、组的设定</h3>
+<h4>相关用户、组的设定</h4>
 
 <pre><code class="sh">sudo addgroup subversion
 sudo usermod -G subversion -a www-data
 </code></pre>
 
-<h3>创建项目的目录</h3>
+<h4>创建项目的目录</h4>
 
 <pre><code class="sh">sudo mkdir /home/svn
 </code></pre>
 
-<h3>配置 Subversion</h3>
+<h4>配置 Subversion</h4>
 
 <ul>
 <li>配置dav_svn.conf文件</li>
@@ -391,7 +391,7 @@ sudo usermod -G subversion -a www-data
 <pre><code class="sh">sudo /etc/init.d/apache2 restart
 </code></pre>
 
-<h3>创建SVN文件仓库</h3>
+<h4>创建SVN文件仓库</h4>
 
 <p>1、创建指定的项目存放路径</p>
 
@@ -414,7 +414,7 @@ mkdir projects
 <pre><code class="sh">sudo chmod -R g+rws projects
 </code></pre>
 
-<h3>用户和权限配置</h3>
+<h4>用户和权限配置</h4>
 
 <p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
 
@@ -440,7 +440,7 @@ administrator=admin001,admin002
 @administrator=rw
 </code></pre>
 
-<h3>重启SVN服务器</h3>
+<h4>重启SVN服务器</h4>
 
 <pre><code class="sh">killall svnserve
 svnserve -d -r /home/svn/
@@ -451,7 +451,7 @@ svnserve -d -r /home/svn/
 <pre><code class="sh">svn checkout http://hostname/svn/projects projects --username 用户名 --password 密码
 </code></pre>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 ]]></content>
@@ -462,7 +462,7 @@ svnserve -d -r /home/svn/
     <link href="https://tmyam.github.io/blog/2017/03/27/apt-getxiao-ji/"/>
     <updated>2017-03-27T15:20:08+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/27/apt-getxiao-ji</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。</p>
 
@@ -473,7 +473,7 @@ svnserve -d -r /home/svn/
 <!-- more -->
 
 
-<h2>更新软件源</h2>
+<h3>更新软件源</h3>
 
 <pre><code class="sh">sudo apt-get update
 </code></pre>
@@ -482,21 +482,21 @@ svnserve -d -r /home/svn/
 
 <p>使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。</p>
 
-<h2>更新软件(upgrade)</h2>
+<h3>更新软件(upgrade)</h3>
 
 <pre><code class="sh">sudo apt-get upgrade
 </code></pre>
 
 <p>这个命令，会把本地已安装的软件，与刚下载的软件源里对应软件的版本进行对比，如果发现已安装的软件版本太低，就会提示你更新。</p>
 
-<h2>更新软件(dist-upgrade)</h2>
+<h3>更新软件(dist-upgrade)</h3>
 
 <pre><code class="sh">sudo apt-get dist-upgrade
 </code></pre>
 
 <p>如果这个包没有发布更新，就不管它；如果发布了更新，就把包下载到电脑上，并安装。</p>
 
-<h2>upgrade与dist-upgrade的关系</h2>
+<h3>upgrade与dist-upgrade的关系</h3>
 
 <p>由于包与包之间存在各种依赖关系。upgrade只是简单的更新包，不管这些依赖，它不添加包，或是删除包。而dist-upgrade可以根据依赖关系的变化，添加包，删除包。</p>
 
@@ -508,7 +508,7 @@ svnserve -d -r /home/svn/
 
 <p>例如软件包 a 原先依赖 b c d，但是在源里面可能已经升级了，现在是 a 依赖 b c e。这种情况下，dist-upgrade 会删除 d 安装 e，并把 a 软件包升级，而 upgrade 会认为依赖关系改变而拒绝升级 a 软件包。</p>
 
-<h2>常用命令</h2>
+<h3>常用命令</h3>
 
 <ul>
 <li>安装软件</li>
@@ -606,11 +606,11 @@ svnserve -d -r /home/svn/
 <pre><code class="sh">sudo apt-get check
 </code></pre>
 
-<h2>更换软件源</h2>
+<h3>更换软件源</h3>
 
 <p>如果使用 apt-get 遇到速度慢或者源不存在等错误，可能需要更换源，<a href="http://shumeipai.nxez.com/2013/08/31/raspbian-chinese-software-source.html">参考</a>。</p>
 
-<h2>树莓派命令</h2>
+<h3>树莓派命令</h3>
 
 <ul>
 <li><p>树莓派固件 <br/>
@@ -631,7 +631,7 @@ svnserve -d -r /home/svn/
 <pre><code class="sh">sudo rpi-update
 </code></pre>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.baiyuxiong.com/?p=529">http://www.baiyuxiong.com/?p=529</a> <br/>
 <a href="http://blog.csdn.net/tiankongtiankong01/article/details/53869975">http://blog.csdn.net/tiankongtiankong01/article/details/53869975</a> <br/>
@@ -647,7 +647,7 @@ svnserve -d -r /home/svn/
     <id>https://tmyam.github.io/blog/2017/03/07/chu-shi-shu-mei-pai</id>
     <content type="html"><![CDATA[<p>环境: <code>(Mac 版本 10.11 )</code></p>
 
-<h2>前言</h2>
+<h3>前言</h3>
 
 <p>&emsp;&emsp;现在的计算机硬件已经很发达了，成本也在不断的降低。树莓派就是一个价格低廉的单板计算机，它拥有计算机的功能，还有许多扩展接口，无论是学习还是DIY都是不错的选择。到了树莓派3b，性能也有了很大的提升。 <br/>
 &emsp;&emsp;学习Linux有很多种方式，虚拟机无疑是一种简单的方式，使用树莓派是另外一种方式，而且可以任意折腾，还有许多虚拟机办不到的事（比如集群）。由于树莓派使用的是ARM架构的CPU，Windows系统是装不了（虽然有Win10 IOT，但是基本没啥用）。尽管可以安装Linux，但是和桌面版相比，系统的支持还是弱了点。 <br/>
@@ -658,7 +658,7 @@ svnserve -d -r /home/svn/
 
 <p> <img src="/images/2017/03/08/raspbianpi3b.jpg" alt="temp" /></p>
 
-<h2>制作系统</h2>
+<h3>制作系统</h3>
 
 <ul>
 <li><p>下载系统包 <a href="https://www.raspberrypi.org/downloads/">(下载地址)</a>  ,下载完成后解压缩，得到 <code>2017-03-02-raspbian-jessie-lite.img</code>系统镜像文件。 <br/>
@@ -675,7 +675,7 @@ svnserve -d -r /home/svn/
 </ul>
 
 
-<h2>修改密码</h2>
+<h3>修改密码</h3>
 
 <ul>
 <li>经过上面的步骤系统已经写进了卡里，但是还无法直接应ssh登录。因为树莓派2016-11-25更新版本时，ssh默认关闭了。
@@ -727,7 +727,7 @@ sudo touch ssh
 su pi
 </code></pre>
 
-<h2>配置网络</h2>
+<h3>配置网络</h3>
 
 <ul>
 <li>这里打算让树莓派作为服务器使用，所以要配置静态IP，为了携带方便，还要满足这些条件。 <br/>
@@ -848,7 +848,7 @@ network={
 iwconfig 查看当前联网的信息
 <strong>注意：</strong>每次切换网络（有线变无线，无线变有线）均需要重新启动。</p>
 
-<h2>安装vim</h2>
+<h3>安装vim</h3>
 
 <pre><code class="sh">sudo apt-get update             # 更新软件源列表
 sudo apt-get upgrade            # 更新系统 
@@ -856,14 +856,14 @@ sudo apt-get remove vim-common  # 删除vim
 sudo apt-get install vim        #安装vim 
 </code></pre>
 
-<h2>安装中文字体</h2>
+<h3>安装中文字体</h3>
 
 <p>树莓派系统默认不支持中文，需要自己安装</p>
 
 <pre><code class="sh">sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
 </code></pre>
 
-<h2>备份系统</h2>
+<h3>备份系统</h3>
 
 <p>我想大部分人都不想折腾同样的东西吧，有备无患。</p>
 
@@ -877,7 +877,7 @@ sudo apt-get install vim        #安装vim
 </ul>
 
 
-<h2>恢复TF卡容量</h2>
+<h3>恢复TF卡容量</h3>
 
 <p>写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。</p>
 
@@ -890,17 +890,17 @@ sudo apt-get install vim        #安装vim
 
 <p>这样TF卡就恢复了原始容量。</p>
 
-<h2>关机命令</h2>
+<h3>关机命令</h3>
 
 <pre><code class="sh">sudo poweroff       #关机
 </code></pre>
 
-<h2>查看系统信息</h2>
+<h3>查看系统信息</h3>
 
 <pre><code class="sh">hostnamectl
 </code></pre>
 
-<h2>测试TF卡速度</h2>
+<h3>测试TF卡速度</h3>
 
 <ul>
 <li>安装测试磁盘速度的软件</li>
@@ -941,7 +941,7 @@ rm ~/test.img
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.jianshu.com/p/c0b589b380a1">http://www.jianshu.com/p/c0b589b380a1</a>
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>

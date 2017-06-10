@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac-develop | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/mac-develop/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,13 +18,13 @@
     <link href="https://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
     <updated>2016-04-08T10:17:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
 正向操作(转换) &mdash;> 代码控制的操作(转换)  <br/>
 反向操作(转换) &mdash;> 用户界面操作控制(转换)</p>
 
-<h2>简单的使用</h2>
+<h3>简单的使用</h3>
 
 <p>比如，有这样一个需求，监控 <strong>NSPopUpButton</strong> 的选择下标的变化：  <br/>
 1. 可以用代码改变选择的下标  <br/>
@@ -33,7 +33,7 @@
 <!-- more -->  
 
 
-<h4>1. 一般的做法</h4>
+<h6>1. 一般的做法</h6>
 
 <pre><code class="objc">// 在xib中使用 IBOutlet 绑定控件，这样可以满足需求1
 @property (nonatomic ,strong,nonnull) IBOutlet NSPopUpButton*   popupButton;
@@ -49,7 +49,7 @@ self.popupButton.indexOfSelectedItem = 1;
 
 <p>这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
 
-<h4>2. 使用bind</h4>
+<h6>2. 使用bind</h6>
 
 <pre><code class="objc ">写法 1 (定义属性)
 // 定义选择下标属性
@@ -108,9 +108,9 @@ self.index = 1;
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">selectedIndex</span><span class="s">&quot;可以用NSSelectedIndexBinding代替</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
-<h2>进阶</h2>
+<h3>进阶</h3>
 
-<h4>1. 绑定NSTextField</h4>
+<h6>1. 绑定NSTextField</h6>
 
 <p>输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。</p>
 
@@ -288,7 +288,7 @@ self.index = 1;
 然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
 <img src="/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
 
-<h4>2. Value Transformer类型变换</h4>
+<h6>2. Value Transformer类型变换</h6>
 
 <p>比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。
 <code>objc
@@ -362,9 +362,9 @@ self.index = 1;
 xib里面的绑定设置，如下图：  <br/>
 <img src="/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
 
-<h2>注意</h2>
+<h3>注意</h3>
 
-<h4>1. Read-Only 的绑定</h4>
+<h6>1. Read-Only 的绑定</h6>
 
 <p>有些bind类型，是Read-Only的，这时有些需求就无法满足了，需要注意。  <br/>
 比如<strong>NSImageView</strong>的<strong>valuePath</strong>是Read-Only的，只满足正向的操作，即可以通过代码修改路径，显示不同的图片，但是界面操作拖入一张图片的时候，绑定的属性不能获取到这张图片的路径。  <br/>
@@ -373,7 +373,7 @@ xib里面的绑定设置，如下图：  <br/>
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html</a>
 <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html</a></p>
@@ -385,11 +385,11 @@ xib里面的绑定设置，如下图：  <br/>
     <link href="https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
     <updated>2014-06-10T14:15:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
 
-<h2>非沙盒下的开机自启动</h2>
+<h3>非沙盒下的开机自启动</h3>
 
 <p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
@@ -470,16 +470,16 @@ xib里面的绑定设置，如下图：  <br/>
 }
 </code></pre>
 
-<h2>沙盒下的开机自启动</h2>
+<h3>沙盒下的开机自启动</h3>
 
 <p>沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。</p>
 
-<h3>1. 添加Helper程序</h3>
+<h4>1. 添加Helper程序</h4>
 
 <p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
 <img src="/images/2014/06/10/01.jpg" alt="temp" /></p>
 
-<h3>2. 设置Helper</h3>
+<h4>2. 设置Helper</h4>
 
 <p>test和testHelper都需要设置，这里先进行testHelper的设置.</p>
 
@@ -500,7 +500,7 @@ xib里面的绑定设置，如下图：  <br/>
 </ul>
 
 
-<h3>3. 添加Helper的代码</h3>
+<h4>3. 添加Helper的代码</h4>
 
 <p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
 
@@ -543,7 +543,7 @@ xib里面的绑定设置，如下图：  <br/>
 }
 </code></pre>
 
-<h3>4. 设置主程序</h3>
+<h4>4. 设置主程序</h4>
 
 <ul>
 <li>test添加Copy Files 。
@@ -560,7 +560,7 @@ xib里面的绑定设置，如下图：  <br/>
 </ul>
 
 
-<h3>5. 主程序添加代码</h3>
+<h4>5. 主程序添加代码</h4>
 
 <ul>
 <li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
@@ -590,19 +590,19 @@ xib里面的绑定设置，如下图：  <br/>
 }
 </code></pre>
 
-<h3>结尾</h3>
+<h4>结尾</h4>
 
 <p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
 还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p>
 
 <p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
 <a href="/files/test-startatlogin.zip">test示例下载</a></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
 <a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>
@@ -616,11 +616,11 @@ xib里面的绑定设置，如下图：  <br/>
     <id>https://tmyam.github.io/blog/2014/03/25/idpxu-fei</id>
     <content type="html"><![CDATA[<p>近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。</p>
 
-<h2>基本流程</h2>
+<h3>基本流程</h3>
 
 <p>苹果的规则是到期前 <strong>60</strong> 天内才可以续费。</p>
 
-<h3>1. 登录</h3>
+<h4>1. 登录</h4>
 
 <p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
 
@@ -630,23 +630,23 @@ xib里面的绑定设置，如下图：  <br/>
 <p><img src="/images/2014/03/25/01.png" alt="temp" /> <br/>
 如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
 
-<h3>2</h3>
+<h4>2</h4>
 
 <p><img src="/images/2014/03/25/02.png" alt="temp" /></p>
 
-<h3>3</h3>
+<h4>3</h4>
 
 <p><img src="/images/2014/03/25/03.png" alt="temp" /></p>
 
-<h3>4</h3>
+<h4>4</h4>
 
 <p><img src="/images/2014/03/25/04.png" alt="temp" /></p>
 
-<h3>5</h3>
+<h4>5</h4>
 
 <p><img src="/images/2014/03/25/05.png" alt="temp" /></p>
 
-<h3>6. 申请结束</h3>
+<h4>6. 申请结束</h4>
 
 <p>提交后，如果成功，会有一个成功的页面。如果失败，会有一个失败的页面。 <br/>
 但是无论成功失败，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图 <br/>
@@ -657,7 +657,7 @@ xib里面的绑定设置，如下图：  <br/>
 <img src="/images/2014/03/25/07.png" alt="temp" /><br/>
 所以可以以邮件判断申请是否成功，如果没收到邮件就不要傻等了，再次申请吧。</p>
 
-<h3>7. 等待</h3>
+<h4>7. 等待</h4>
 
 <p>如果一切正常的话，2个工作日就能扣费成功，并且AppID的那个邮箱会收到一封邮件告知扣费成功，一封告知可以激活。可能有人会认为这就完了，其实没有，还需要一步。那就是查看邮件，找到绿色Activation Code，点击打开激活链接,输入邮箱中看到的激活码，然后状态就会立马更新，不会提示你快过期。</p>
 
@@ -673,19 +673,19 @@ xib里面的绑定设置，如下图：  <br/>
 <p>激活码  <br/>
 <img src="/images/2014/03/25/10.png" alt="temp" /></p>
 
-<h3>8. 激活</h3>
+<h4>8. 激活</h4>
 
 <p>点击邮件中的激活码，会跳转到一个链接，然后在里面输入激活码完成激活。 <br/>
 <img src="/images/2014/03/25/11.png" alt="temp" /> <br/>
 激活成功后，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图
 <img src="/images/2014/03/25/12.png" alt="temp" /></p>
 
-<h2>遇到的问题</h2>
+<h3>遇到的问题</h3>
 
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#x63;&#104;&#105;&#110;&#97;&#100;&#101;&#x76;&#64;&#x61;&#115;&#x69;&#97;&#x2e;&#97;&#112;&#x70;&#x6c;&#x65;&#46;&#99;&#x6f;&#109;">&#99;&#104;&#105;&#110;&#97;&#x64;&#101;&#118;&#64;&#x61;&#115;&#x69;&#x61;&#46;&#x61;&#112;&#112;&#108;&#101;&#46;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x63;&#104;&#x69;&#110;&#x61;&#100;&#101;&#118;&#64;&#x61;&#x73;&#105;&#97;&#46;&#97;&#112;&#x70;&#108;&#101;&#46;&#x63;&#111;&#109;">&#x63;&#104;&#105;&#x6e;&#97;&#100;&#101;&#118;&#x40;&#97;&#x73;&#x69;&#x61;&#x2e;&#97;&#x70;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -694,7 +694,7 @@ xib里面的绑定设置，如下图：  <br/>
 </ul>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.sina.com.cn/s/blog_68661bd80101nme6.html">http://blog.sina.com.cn/s/blog_68661bd80101nme6.html</a></p>
 ]]></content>
@@ -705,11 +705,11 @@ xib里面的绑定设置，如下图：  <br/>
     <link href="https://tmyam.github.io/blog/2014/03/09/idpshen-qing/"/>
     <updated>2014-03-09T20:06:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/03/09/idpshen-qing</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>当初我申请idp的一篇详细的文章，不过现在里面的图都挂了，我费了点劲才找回这些图，在这里进行一下还原，希望能帮到需要的人。</p>
 
-<h2>正文</h2>
+<h3>正文</h3>
 
 <p>我的iDP之路04——iDP申请,如何花出去$99,2011年6月份版 <br/>
 这帖子本来应该是六月份写的，怎奈那时期末将近，小弟我搞App刚刚起步，资金全靠奖学金维持，不得不投入到准备考试的深渊中。放假期间被我娘她老人家逼着学车，第一个App搞得很是不顺。这个帖子只能一拖再拖。废话稍候再罗嗦，下面是图和解说：</p>
@@ -717,40 +717,40 @@ xib里面的绑定设置，如下图：  <br/>
 <!-- more -->
 
 
-<h5>1</h5>
+<h6># 1</h6>
 
 <p><img src="/images/2014/03/09/01.png" alt="temp" />
 我是从申请过developer开始的。Apple id和developer太简单了，就不说了，不过填信息也不能乱填，下面说。这张图是登入developer的画面。</p>
 
-<h5>2</h5>
+<h6># 2</h6>
 
 <p><img src="/images/2014/03/09/02.png" alt="temp" /></p>
 
-<h5>3</h5>
+<h6># 3</h6>
 
 <p><img src="/images/2014/03/09/03.png" alt="temp" /></p>
 
-<h5>4</h5>
+<h6># 4</h6>
 
 <p><img src="/images/2014/03/09/04.png" alt="temp" />
 因为已经注册过Apple id和developer了，所以我选的是红圈那项。</p>
 
-<h5>5</h5>
+<h6># 5</h6>
 
 <p><img src="/images/2014/03/09/05.png" alt="temp" />
 左边是个人，右边是团队。我光杆司令一个，所以选了左边。</p>
 
-<h5>6</h5>
+<h6># 6</h6>
 
 <p><img src="/images/2014/03/09/06.png" alt="temp" />
 不知是不是cookie过期了，到了这里要重新登录一次。</p>
 
-<h5>7</h5>
+<h6># 7</h6>
 
 <p><img src="/images/2014/03/09/07.png" alt="temp" />
 这里的信息是信用卡(借记卡可不行)的信息：我(假如叫<strong>王五</strong>)所有名字顺序，除了在银行流留的是中英文<strong>王五</strong>，apple的各种页面上都是英文<strong>Wu Wang</strong>。</p>
 
-<h5>8</h5>
+<h6># 8</h6>
 
 <p><img src="/images/2014/03/09/08.png" alt="temp" />
 这里奉上英文的地址写法一例： <br/>
@@ -763,106 +763,106 @@ Street Address: Mailbox 166,Nankai University  <br/>
 Postal Code: 300072  <br/>
 Phone: 86 - 411 - 手机号</p>
 
-<h5>9</h5>
+<h6># 9</h6>
 
 <p><img src="/images/2014/03/09/09.png" alt="temp" /></p>
 
-<h5>10</h5>
+<h6># 10</h6>
 
 <p><img src="/images/2014/03/09/10.png" alt="temp" />
 上面提到过developer申请时信息不能乱写。这图上面的信息就是从那里映射过来的，你可以看到地址有些出入，不过还好影响不大。各位填写时应尽量保持一致。</p>
 
-<h5>11</h5>
+<h6># 11</h6>
 
 <p><img src="/images/2014/03/09/11.png" alt="temp" />
 这张表下下来，用PS填写各种信息，大部分是银行信息。</p>
 
-<h5>12</h5>
+<h6># 12</h6>
 
 <p><img src="/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#99;&#x68;&#x69;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#97;&#x73;&#x69;&#x61;&#46;&#x61;&#112;&#112;&#108;&#101;&#46;&#99;&#111;&#x6d;">&#99;&#x68;&#x69;&#x6e;&#x61;&#x64;&#x65;&#118;&#64;&#97;&#x73;&#105;&#97;&#46;&#97;&#112;&#112;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#99;&#x68;&#x69;&#110;&#97;&#x64;&#x65;&#x76;&#64;&#97;&#x73;&#x69;&#97;&#x2e;&#x61;&#112;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;">&#99;&#104;&#105;&#110;&#x61;&#x64;&#101;&#118;&#x40;&#x61;&#x73;&#105;&#97;&#46;&#x61;&#x70;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
-<h5>13</h5>
+<h6># 13</h6>
 
 <p><img src="/images/2014/03/09/13.png" alt="temp" />
 收到上图邮件后就能进ituesconnect.apple.com了，进contract，tax，and banking，就能看到上图。上面的是可以申请的合同，下面是已经生效的。因为免费app合同不用申请进进来就在下面了。</p>
 
-<h5>14</h5>
+<h6># 14</h6>
 
 <p><img src="/images/2014/03/09/14.png" alt="temp" /></p>
 
-<h5>15</h5>
+<h6># 15</h6>
 
 <p><img src="/images/2014/03/09/15.png" alt="temp" /></p>
 
-<h5>16</h5>
+<h6># 16</h6>
 
 <p><img src="/images/2014/03/09/16.png" alt="temp" />
 红圈子里是需要逐个填写的。</p>
 
-<h5>17</h5>
+<h6># 17</h6>
 
 <p><img src="/images/2014/03/09/17.png" alt="temp" />
 <strong>contract info</strong>  <br/>
 这里第一次进去会需要创建一个新人。然后高管，财务，技术，科技等等职位，都是我一个人担任。</p>
 
-<h5>18</h5>
+<h6># 18</h6>
 
 <p><img src="/images/2014/03/09/18.png" alt="temp" />
 <strong>Bank info</strong></p>
 
-<h5>19</h5>
+<h6># 19</h6>
 
 <p><img src="/images/2014/03/09/19.png" alt="temp" />
 <strong>CNAPS</strong>，应该是叫“联行号”不要跟银行的人说英文，他们不懂。办信用卡的时候问好，95588这种电话问不到。 <br/>
 补充：这里填写的银行号为储蓄卡，千万不能填信用卡的，不然收款都到信用卡里了。 <br/>
 查询CNAPS：<a href="https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp">https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp</a></p>
 
-<h5>20</h5>
+<h6># 20</h6>
 
 <p><img src="/images/2014/03/09/20.png" alt="temp" />
 这里的信息要写的简洁，要不查不到。</p>
 
-<h5>21</h5>
+<h6># 21</h6>
 
 <p><img src="/images/2014/03/09/21.png" alt="temp" />
 添加一个账户信息。</p>
 
-<h5>22</h5>
+<h6># 22</h6>
 
 <p><img src="/images/2014/03/09/22.png" alt="temp" /></p>
 
-<h5>23</h5>
+<h6># 23</h6>
 
 <p><img src="/images/2014/03/09/23.png" alt="temp" />
 储蓄卡卡号，名字当然是储蓄卡开户名，比如<strong>Wu Wang</strong>。  <br/>
 另外这里收款要选择<strong>USD</strong>，如果选择<strong>RMB</strong>的话，apple打款时是以美元结算的，会多一次汇率转换，白白浪费钱。</p>
 
-<h5>24</h5>
+<h6># 24</h6>
 
 <p><img src="/images/2014/03/09/24.png" alt="temp" /></p>
 
-<h5>25</h5>
+<h6># 25</h6>
 
 <p><img src="/images/2014/03/09/25.png" alt="temp" />
 <strong>Tax info</strong>  <br/>
 会有几个问题，照实回答，难度不大。  <br/>
 给自己随便封个号，我的是chairman。</p>
 
-<h5>26</h5>
+<h6># 26</h6>
 
 <p><img src="/images/2014/03/09/26.png" alt="temp" />
 完事会审核，这个很快，吃顿饭就好了。</p>
 
-<h5>27</h5>
+<h6># 27</h6>
 
 <p><img src="/images/2014/03/09/27.png" alt="temp" />
 这个事我现在的状态。iAd Network的合同是不小心申请的，其实不用。
 时间有点长了，有些细节我慢慢想，慢慢往上写。写的潦草，大家见谅。</p>
 
-<h2>原始链接</h2>
+<h3>原始链接</h3>
 
 <p><a href="http://watchxxx.blog.163.com/blog/static/1974232272011115112728500/">http://watchxxx.blog.163.com/blog/static/1974232272011115112728500/</a></p>
 ]]></content>
@@ -873,25 +873,25 @@ Phone: 86 - 411 - 手机号</p>
     <link href="https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
     <updated>2014-02-20T14:24:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
-    <content type="html"><![CDATA[<h2>简介</h2>
+    <content type="html"><![CDATA[<h3>简介</h3>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
 <!-- more -->   
 
 
-<h2>创建</h2>
+<h3>创建</h3>
 
 <p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
 <img src="/images/2014/02/20/create.png" alt="temp" /></p>
 
 <p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
 
-<h2>自建文档文件图标</h2>
+<h3>自建文档文件图标</h3>
 
 <p>这里省略，格式为icns&hellip;</p>
 
-<h2>关联文件类型</h2>
+<h3>关联文件类型</h3>
 
 <ul>
 <li>导入文档图标（上步创建的图标）</li>
@@ -904,11 +904,11 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h2>运行</h2>
+<h3>运行</h3>
 
 <p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
 
-<h2>编码</h2>
+<h3>编码</h3>
 
 <p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
 
@@ -941,7 +941,7 @@ Phone: 86 - 411 - 手机号</p>
 }
 </code></pre>
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p>
 ]]></content>

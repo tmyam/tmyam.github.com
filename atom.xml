@@ -4,7 +4,7 @@
   <title><![CDATA[tmyam's blog]]></title>
   <link href="https://tmyam.github.io/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,18 +18,18 @@
     <link href="https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc/"/>
     <updated>2017-06-11T14:18:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/06/11/javawebxue-xi-:mavenxia-shi-yong-springmvc</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>对于Java web应用来说，SpringMVC已经越来越流行。这里就对SpringMVC环境的搭建做一个记录。</p>
 
-<h2>创建Maven Java web项目</h2>
+<h3>创建Maven Java web项目</h3>
 
 <p>这里可以参考以前的文章，这里就不多说了。</p>
 
 <!--more-->
 
 
-<h2>创建目录</h2>
+<h3>创建目录</h3>
 
 <p>1、 在 <strong>src/main/</strong> 下创建 java 和 resources 目录。创建好的目录，程序是不识别的，我们需要进行一下配置：</p>
 
@@ -397,7 +397,7 @@
 注解 @RequestMapping 表示映射的路由，这里表示的是 /admin。
 注解 @ResponseBody 表示返回的响应数据。</p>
 
-<h2>运行</h2>
+<h3>运行</h3>
 
 <ul>
 <li>编译，会出现如下错误：
@@ -413,7 +413,7 @@
 <p>点击运行，打开浏览器后输入<a href="http://localhost:8080/admin">http://localhost:8080/admin</a>，可以看到 <strong>My testSpring</strong>。
 <img src="https://tmyam.github.io/images/2017/06/11/09.jpg" alt="" /></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.tuicool.com/articles/aMzM7jR">http://www.tuicool.com/articles/aMzM7jR</a>
 <a href="http://blog.csdn.net/yege2006/article/details/51377674">http://blog.csdn.net/yege2006/article/details/51377674</a>
@@ -427,14 +427,14 @@
     <link href="https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/"/>
     <updated>2017-06-10T14:12:17+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
 
 <!--more-->
 
 
-<h2>Maven的作用</h2>
+<h3>Maven的作用</h3>
 
 <ol>
 <li>在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"，我们想到的是，难道还差jar包？</li>
@@ -449,7 +449,7 @@
 </ol>
 
 
-<h2>搭建项目</h2>
+<h3>搭建项目</h3>
 
 <p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
 
@@ -489,7 +489,7 @@
 <p>创建成功的项目目录如下：
 <img src="https://tmyam.github.io/images/2017/06/10/04.jpg" alt="" /></p>
 
-<h2>Java web 启动配置</h2>
+<h3>Java web 启动配置</h3>
 
 <p>1、 配置 Facets</p>
 
@@ -511,12 +511,12 @@
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/11.jpg" alt="" /></p>
 
-<h2>运行项目</h2>
+<h3>运行项目</h3>
 
 <p><img src="https://tmyam.github.io/images/2017/06/10/12.jpg" alt="" />
 之后会自动打开浏览器的 <a href="http://localhost:8080">http://localhost:8080</a> 看到 <strong>Hello World!</strong>。</p>
 
-<h2>创建java war发布包</h2>
+<h3>创建java war发布包</h3>
 
 <p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
 
@@ -531,7 +531,7 @@
 
 <p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
 <a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>
@@ -649,14 +649,14 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
     <link href="https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu/"/>
     <updated>2017-04-15T15:49:26+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/04/15/linuxan-zhuang-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>安装SVN软件</h2>
+    <content type="html"><![CDATA[<h3>安装SVN软件</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get install subversion
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>创建目录</h2>
+<h3>创建目录</h3>
 
 <ul>
 <li>新建仓库目录</li>
@@ -683,7 +683,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>配置</h2>
+<h3>配置</h3>
 
 <ul>
 <li>修改仓库配置</li>
@@ -800,7 +800,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>启动服务</h2>
+<h3>启动服务</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -824,7 +824,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>设置开机自启动</h2>
+<h3>设置开机自启动</h3>
 
 <ul>
 <li>查看svnserve位置</li>
@@ -848,11 +848,11 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <blockquote><p>/usr/bin/svnserve -d -r /home/svn</p></blockquote>
 
-<h2>连接</h2>
+<h3>连接</h3>
 
 <p>你的电脑使用 <code>svn://你的域名/projects</code> 进行连接。</p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html">http://shumeipai.nxez.com/2013/08/27/building-svn-come-in-raspberry.html</a> <br/>
 <a href="http://www.cnblogs.com/LusYoHo/p/6056377.html">http://www.cnblogs.com/LusYoHo/p/6056377.html</a> <br/>
@@ -865,11 +865,11 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
     <link href="https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing/"/>
     <updated>2017-03-28T15:09:11+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/svncang-ku-qian-yi-he-he-bing</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>本文主要是讲如何将多个不同地址的SVN仓库进行备份，和根据需要进行合并。</p>
 
-<h2>仓库备份</h2>
+<h3>仓库备份</h3>
 
 <ul>
 <li><strong>svnadmin dump</strong></li>
@@ -934,14 +934,14 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 <p><strong>注意</strong>: <code>projects</code>目录必须是没有<strong>rename</strong>的目录，如果是<strong>rename</strong>后的目录，则导出的文件都是空记录，使用<strong>rename</strong>前的目录名导出的备份还是<strong>rename</strong>前的。 <br/>
 为了正确导出<strong>rename</strong>后的文件，假如<strong>rename</strong>前的目录名为<code>apple</code>，步骤2改为<code>include /projects /apple</code>，这样就可以导出<strong>rename</strong>后的文件了。</p>
 
-<h2>仓库迁移</h2>
+<h3>仓库迁移</h3>
 
 <ul>
 <li>使用FTP等工具，将备份的文件传输到目的服务器上，例如 <code>/home</code>目录下</li>
 </ul>
 
 
-<h2>仓库合并</h2>
+<h3>仓库合并</h3>
 
 <ul>
 <li>在目的服务器上创建一个主仓库 <code>/path/main_repository</code></li>
@@ -985,7 +985,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>这样就可以将多个仓库合并成一个仓库了。</p>
 
-<h2>仓库恢复</h2>
+<h3>仓库恢复</h3>
 
 <ul>
 <li>如果仓库遇到不可修复的问题或者内容够乱，需要恢复到以前备份的仓库。</li>
@@ -1047,7 +1047,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.jianshu.com/p/295b423d50ad">http://www.jianshu.com/p/295b423d50ad</a> <br/>
 <a href="http://blog.chinaunix.net/uid-10449864-id-3048714.html">http://blog.chinaunix.net/uid-10449864-id-3048714.html</a> <br/>
@@ -1060,11 +1060,11 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
     <link href="https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu/"/>
     <updated>2017-03-28T11:40:39+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/28/linuxxia-da-jian-svnfu-wu</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>最近打算迁移自己项目的SVN代码，这里对搭建SVN服务进行一下回顾。</p>
 
-<h2>相关软件安装</h2>
+<h3>相关软件安装</h3>
 
 <ul>
 <li>使用SSH远程登录服务器</li>
@@ -1095,9 +1095,9 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>其中subversion是SVN必须的，apache2和libapache2-svn是为了配置SVN服务器支持通过HTTP访问</p>
 
-<h2>配置</h2>
+<h3>配置</h3>
 
-<h3>相关用户、组的设定</h3>
+<h4>相关用户、组的设定</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1106,14 +1106,14 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>创建项目的目录</h3>
+<h4>创建项目的目录</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo mkdir /home/svn
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>配置 Subversion</h3>
+<h4>配置 Subversion</h4>
 
 <ul>
 <li>配置dav_svn.conf文件</li>
@@ -1152,7 +1152,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>创建SVN文件仓库</h3>
+<h4>创建SVN文件仓库</h4>
 
 <p>1、创建指定的项目存放路径</p>
 
@@ -1184,7 +1184,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>用户和权限配置</h3>
+<h4>用户和权限配置</h4>
 
 <p>1、创建dav_svn.passwd文件并添加用户admin001，执行命令后会提示要输入密码</p>
 
@@ -1222,7 +1222,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>重启SVN服务器</h3>
+<h4>重启SVN服务器</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1238,7 +1238,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html">http://blog.devzeng.com/blog/aliyun-ubuntu-svn-server.html</a></p>
 ]]></content>
@@ -1249,7 +1249,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
     <link href="https://tmyam.github.io/blog/2017/03/27/apt-getxiao-ji/"/>
     <updated>2017-03-27T15:20:08+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/03/27/apt-getxiao-ji</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>&emsp;&emsp;入门Linux的同志，刚开始最迫切想知道的，大概一个是中文输入法，另一个就是怎么安装软件。</p>
 
@@ -1260,7 +1260,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 <!-- more -->
 
 
-<h2>更新软件源</h2>
+<h3>更新软件源</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get update
@@ -1271,7 +1271,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>使用者使用apt-get install 或apt-get dist-upgrade 指令的时候，就会将这个资料夹内的资料和使用者端电脑内的RPM资料库比对，如此一来就可以知道那些RPM已安装、未安装、或是可以升级的。</p>
 
-<h2>更新软件(upgrade)</h2>
+<h3>更新软件(upgrade)</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get upgrade
@@ -1280,7 +1280,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>这个命令，会把本地已安装的软件，与刚下载的软件源里对应软件的版本进行对比，如果发现已安装的软件版本太低，就会提示你更新。</p>
 
-<h2>更新软件(dist-upgrade)</h2>
+<h3>更新软件(dist-upgrade)</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo apt-get dist-upgrade
@@ -1289,7 +1289,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>如果这个包没有发布更新，就不管它；如果发布了更新，就把包下载到电脑上，并安装。</p>
 
-<h2>upgrade与dist-upgrade的关系</h2>
+<h3>upgrade与dist-upgrade的关系</h3>
 
 <p>由于包与包之间存在各种依赖关系。upgrade只是简单的更新包，不管这些依赖，它不添加包，或是删除包。而dist-upgrade可以根据依赖关系的变化，添加包，删除包。</p>
 
@@ -1301,7 +1301,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p>例如软件包 a 原先依赖 b c d，但是在源里面可能已经升级了，现在是 a 依赖 b c e。这种情况下，dist-upgrade 会删除 d 安装 e，并把 a 软件包升级，而 upgrade 会认为依赖关系改变而拒绝升级 a 软件包。</p>
 
-<h2>常用命令</h2>
+<h3>常用命令</h3>
 
 <ul>
 <li>安装软件</li>
@@ -1423,11 +1423,11 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>更换软件源</h2>
+<h3>更换软件源</h3>
 
 <p>如果使用 apt-get 遇到速度慢或者源不存在等错误，可能需要更换源，<a href="http://shumeipai.nxez.com/2013/08/31/raspbian-chinese-software-source.html">参考</a>。</p>
 
-<h2>树莓派命令</h2>
+<h3>树莓派命令</h3>
 
 <ul>
 <li><p>树莓派固件 <br/>
@@ -1453,7 +1453,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.baiyuxiong.com/?p=529">http://www.baiyuxiong.com/?p=529</a> <br/>
 <a href="http://blog.csdn.net/tiankongtiankong01/article/details/53869975">http://blog.csdn.net/tiankongtiankong01/article/details/53869975</a> <br/>
@@ -1469,7 +1469,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
     <id>https://tmyam.github.io/blog/2017/03/07/chu-shi-shu-mei-pai</id>
     <content type="html"><![CDATA[<p>环境: <code>(Mac 版本 10.11 )</code></p>
 
-<h2>前言</h2>
+<h3>前言</h3>
 
 <p>&emsp;&emsp;现在的计算机硬件已经很发达了，成本也在不断的降低。树莓派就是一个价格低廉的单板计算机，它拥有计算机的功能，还有许多扩展接口，无论是学习还是DIY都是不错的选择。到了树莓派3b，性能也有了很大的提升。 <br/>
 &emsp;&emsp;学习Linux有很多种方式，虚拟机无疑是一种简单的方式，使用树莓派是另外一种方式，而且可以任意折腾，还有许多虚拟机办不到的事（比如集群）。由于树莓派使用的是ARM架构的CPU，Windows系统是装不了（虽然有Win10 IOT，但是基本没啥用）。尽管可以安装Linux，但是和桌面版相比，系统的支持还是弱了点。 <br/>
@@ -1480,7 +1480,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 
 <p> <img src="https://tmyam.github.io/images/2017/03/08/raspbianpi3b.jpg" alt="temp" /></p>
 
-<h2>制作系统</h2>
+<h3>制作系统</h3>
 
 <ul>
 <li><p>下载系统包 <a href="https://www.raspberrypi.org/downloads/">(下载地址)</a>  ,下载完成后解压缩，得到 <code>2017-03-02-raspbian-jessie-lite.img</code>系统镜像文件。 <br/>
@@ -1497,7 +1497,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </ul>
 
 
-<h2>修改密码</h2>
+<h3>修改密码</h3>
 
 <ul>
 <li>经过上面的步骤系统已经写进了卡里，但是还无法直接应ssh登录。因为树莓派2016-11-25更新版本时，ssh默认关闭了。
@@ -1563,7 +1563,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>配置网络</h2>
+<h3>配置网络</h3>
 
 <ul>
 <li>这里打算让树莓派作为服务器使用，所以要配置静态IP，为了携带方便，还要满足这些条件。 <br/>
@@ -1753,7 +1753,7 @@ Java HotSpot&trade; 64-Bit Server VM (build 25.131-b11, mixed mode)</p></blockqu
 iwconfig 查看当前联网的信息
 <strong>注意：</strong>每次切换网络（有线变无线，无线变有线）均需要重新启动。</p>
 
-<h2>安装vim</h2>
+<h3>安装vim</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1766,7 +1766,7 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>安装中文字体</h2>
+<h3>安装中文字体</h3>
 
 <p>树莓派系统默认不支持中文，需要自己安装</p>
 
@@ -1775,7 +1775,7 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>备份系统</h2>
+<h3>备份系统</h3>
 
 <p>我想大部分人都不想折腾同样的东西吧，有备无患。</p>
 
@@ -1789,7 +1789,7 @@ iwconfig 查看当前联网的信息
 </ul>
 
 
-<h2>恢复TF卡容量</h2>
+<h3>恢复TF卡容量</h3>
 
 <p>写入系统后，TF卡只能显示40M的容量，如果要恢复TF卡，仅靠格式化是不行的。</p>
 
@@ -1802,21 +1802,21 @@ iwconfig 查看当前联网的信息
 
 <p>这样TF卡就恢复了原始容量。</p>
 
-<h2>关机命令</h2>
+<h3>关机命令</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>sudo poweroff       <span class="c">#关机</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>查看系统信息</h2>
+<h3>查看系统信息</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>hostnamectl
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>测试TF卡速度</h2>
+<h3>测试TF卡速度</h3>
 
 <ul>
 <li>安装测试磁盘速度的软件</li>
@@ -1864,7 +1864,7 @@ iwconfig 查看当前联网的信息
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.jianshu.com/p/c0b589b380a1">http://www.jianshu.com/p/c0b589b380a1</a>
 <a href="http://blog.csdn.net/u014271612/article/details/53767669">http://blog.csdn.net/u014271612/article/details/53767669</a>
@@ -1880,13 +1880,13 @@ iwconfig 查看当前联网的信息
     <link href="https://tmyam.github.io/blog/2016/04/08/cocoa-binding/"/>
     <updated>2016-04-08T10:17:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2016/04/08/cocoa-binding</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>cocoa binding一项可以让开发变得更加便捷的技能，网上的资料非常有限，所以在这里进行一下记录。概念约定:  <br/>
 正向操作(转换) &mdash;> 代码控制的操作(转换)  <br/>
 反向操作(转换) &mdash;> 用户界面操作控制(转换)</p>
 
-<h2>简单的使用</h2>
+<h3>简单的使用</h3>
 
 <p>比如，有这样一个需求，监控 <strong>NSPopUpButton</strong> 的选择下标的变化：  <br/>
 1. 可以用代码改变选择的下标  <br/>
@@ -1895,7 +1895,7 @@ iwconfig 查看当前联网的信息
 <!-- more -->  
 
 
-<h4>1. 一般的做法</h4>
+<h6>1. 一般的做法</h6>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1922,7 +1922,7 @@ iwconfig 查看当前联网的信息
 
 <p>这样虽然满足了需求，但是需要使用两个绑定，IBOutlet，IBAction，代码量较多。</p>
 
-<h4>2. 使用bind</h4>
+<h6>2. 使用bind</h6>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2005,9 +2005,9 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>进阶</h2>
+<h3>进阶</h3>
 
-<h4>1. 绑定NSTextField</h4>
+<h6>1. 绑定NSTextField</h6>
 
 <p>输入变化是经常遇到的监测对象，绑定的方式可以实现限制输入内容的功能。</p>
 
@@ -2196,7 +2196,7 @@ iwconfig 查看当前联网的信息
 <p>然后在xib中创建一个Formatter，并关联<strong>Outlets</strong>中的formatter，如下图：  <br/>
 <img src="https://tmyam.github.io/images/2016/04/08/bind_formatter.png" alt="temp" /></p>
 
-<h4>2. Value Transformer类型变换</h4>
+<h6>2. Value Transformer类型变换</h6>
 
 <p>比如上边的例子，我想要的是一个数字类型，但是bind的默认类型却是NSString类型，这时就可以使用类型转换了。</p>
 
@@ -2281,9 +2281,9 @@ iwconfig 查看当前联网的信息
 <p>xib里面的绑定设置，如下图：  <br/>
 <img src="https://tmyam.github.io/images/2016/04/08/bind_valuetransformer.png" alt="temp" /></p>
 
-<h2>注意</h2>
+<h3>注意</h3>
 
-<h4>1. Read-Only 的绑定</h4>
+<h6>1. Read-Only 的绑定</h6>
 
 <p>有些bind类型，是Read-Only的，这时有些需求就无法满足了，需要注意。  <br/>
 比如<strong>NSImageView</strong>的<strong>valuePath</strong>是Read-Only的，只满足正向的操作，即可以通过代码修改路径，显示不同的图片，但是界面操作拖入一张图片的时候，绑定的属性不能获取到这张图片的路径。  <br/>
@@ -2292,7 +2292,7 @@ iwconfig 查看当前联网的信息
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html</a>
 <a href="https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html">https://developer.apple.com/library/mac/documentation/Cocoa/Reference/CocoaBindingsRef/Concepts/BindingTypes.html</a></p>
@@ -2304,11 +2304,11 @@ iwconfig 查看当前联网的信息
     <link href="https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong/"/>
     <updated>2014-06-10T14:15:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/06/10/sha-he-kai-ji-zi-qi-dong</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
 
-<h2>非沙盒下的开机自启动</h2>
+<h3>非沙盒下的开机自启动</h3>
 
 <p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
@@ -2464,16 +2464,16 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>沙盒下的开机自启动</h2>
+<h3>沙盒下的开机自启动</h3>
 
 <p>沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。</p>
 
-<h3>1. 添加Helper程序</h3>
+<h4>1. 添加Helper程序</h4>
 
 <p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
 <img src="https://tmyam.github.io/images/2014/06/10/01.jpg" alt="temp" /></p>
 
-<h3>2. 设置Helper</h3>
+<h4>2. 设置Helper</h4>
 
 <p>test和testHelper都需要设置，这里先进行testHelper的设置.</p>
 
@@ -2494,7 +2494,7 @@ iwconfig 查看当前联网的信息
 </ul>
 
 
-<h3>3. 添加Helper的代码</h3>
+<h4>3. 添加Helper的代码</h4>
 
 <p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
 
@@ -2575,7 +2575,7 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>4. 设置主程序</h3>
+<h4>4. 设置主程序</h4>
 
 <ul>
 <li>test添加Copy Files 。
@@ -2592,7 +2592,7 @@ iwconfig 查看当前联网的信息
 </ul>
 
 
-<h3>5. 主程序添加代码</h3>
+<h4>5. 主程序添加代码</h4>
 
 <ul>
 <li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="https://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
@@ -2639,19 +2639,19 @@ iwconfig 查看当前联网的信息
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>结尾</h3>
+<h4>结尾</h4>
 
 <p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
 还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p>
 
 <p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="https://tmyam.github.io/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
 <a href="https://tmyam.github.io/files/test-startatlogin.zip">test示例下载</a></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
 <a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>
@@ -2663,11 +2663,11 @@ iwconfig 查看当前联网的信息
     <link href="https://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi/"/>
     <updated>2014-05-07T21:48:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/05/07/duo-githubzhang-hu-she-zhi</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>最近遇到了这样的需求，需要在一台电脑上同时使用两个github账号，负责不同的用途，所以搜索了一些文章，进行了一下实践。</p>
 
-<h2>1.前期工作</h2>
+<h3>1.前期工作</h3>
 
 <ul>
 <li>至少有两个<a href="https://github.com">github</a>账号 (假设有两个账号 一个为 <em>one</em> ，另一个为 <em>two</em>)</li>
@@ -2685,7 +2685,7 @@ iwconfig 查看当前联网的信息
 <!-- more -->
 
 
-<h2>2.SSH配置</h2>
+<h3>2.SSH配置</h3>
 
 <ul>
 <li>生成 id_rsa 私钥 , id_rsa.pub 公钥    <br/>
@@ -2735,7 +2735,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>修改ssh config文件</h2>
+<h3>修改ssh config文件</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2794,7 +2794,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 
 <p>但是这样还没有完，下面还有关联的设置。</p>
 
-<h2>新建git项目或者clone已有的项目</h2>
+<h3>新建git项目或者clone已有的项目</h3>
 
 <ul>
 <li>可以用 git init 或者 git clone 创建本地项目</li>
@@ -2827,7 +2827,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>上传更改</h2>
+<h3>上传更改</h3>
 
 <ul>
 <li>上面所有的设置无误后，可以修改代码，然后上传了。</li>
@@ -2854,7 +2854,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.csdn.net/wzy_1988/article/details/19967465">http://blog.csdn.net/wzy_1988/article/details/19967465</a> <br/>
 <a href="http://testerhome.com/topics/752">http://testerhome.com/topics/752</a> <br/>
@@ -2869,11 +2869,11 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
     <id>https://tmyam.github.io/blog/2014/03/25/idpxu-fei</id>
     <content type="html"><![CDATA[<p>近期续费遇到些问题，找了篇不错的文章做个记录，顺便描述下问题，及解决方案。</p>
 
-<h2>基本流程</h2>
+<h3>基本流程</h3>
 
 <p>苹果的规则是到期前 <strong>60</strong> 天内才可以续费。</p>
 
-<h3>1. 登录</h3>
+<h4>1. 登录</h4>
 
 <p>登录 <a href="https://developer.apple.com/membercenter/index.action">Member Center</a></p>
 
@@ -2883,23 +2883,23 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p><img src="https://tmyam.github.io/images/2014/03/25/01.png" alt="temp" /> <br/>
 如果将要过期，会有黄色的内容提醒续费。点击 <code>renew your membership(s).</code></p>
 
-<h3>2</h3>
+<h4>2</h4>
 
 <p><img src="https://tmyam.github.io/images/2014/03/25/02.png" alt="temp" /></p>
 
-<h3>3</h3>
+<h4>3</h4>
 
 <p><img src="https://tmyam.github.io/images/2014/03/25/03.png" alt="temp" /></p>
 
-<h3>4</h3>
+<h4>4</h4>
 
 <p><img src="https://tmyam.github.io/images/2014/03/25/04.png" alt="temp" /></p>
 
-<h3>5</h3>
+<h4>5</h4>
 
 <p><img src="https://tmyam.github.io/images/2014/03/25/05.png" alt="temp" /></p>
 
-<h3>6. 申请结束</h3>
+<h4>6. 申请结束</h4>
 
 <p>提交后，如果成功，会有一个成功的页面。如果失败，会有一个失败的页面。 <br/>
 但是无论成功失败，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图 <br/>
@@ -2910,7 +2910,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <img src="https://tmyam.github.io/images/2014/03/25/07.png" alt="temp" /><br/>
 所以可以以邮件判断申请是否成功，如果没收到邮件就不要傻等了，再次申请吧。</p>
 
-<h3>7. 等待</h3>
+<h4>7. 等待</h4>
 
 <p>如果一切正常的话，2个工作日就能扣费成功，并且AppID的那个邮箱会收到一封邮件告知扣费成功，一封告知可以激活。可能有人会认为这就完了，其实没有，还需要一步。那就是查看邮件，找到绿色Activation Code，点击打开激活链接,输入邮箱中看到的激活码，然后状态就会立马更新，不会提示你快过期。</p>
 
@@ -2926,19 +2926,19 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <p>激活码  <br/>
 <img src="https://tmyam.github.io/images/2014/03/25/10.png" alt="temp" /></p>
 
-<h3>8. 激活</h3>
+<h4>8. 激活</h4>
 
 <p>点击邮件中的激活码，会跳转到一个链接，然后在里面输入激活码完成激活。 <br/>
 <img src="https://tmyam.github.io/images/2014/03/25/11.png" alt="temp" /> <br/>
 激活成功后，<a href="https://developer.apple.com/membercenter/index.action#progSummary">Programs &amp; Add-ons</a> 这个页面都会变成下图
 <img src="https://tmyam.github.io/images/2014/03/25/12.png" alt="temp" /></p>
 
-<h2>遇到的问题</h2>
+<h3>遇到的问题</h3>
 
 <p>续费中遇到问题，可以联系苹果客服。</p>
 
 <p>可以拨打 苹果中国 4006 701 855（Mon-Fri, 09:00-17:00 SGT） <br/>
-或者发送邮件到 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x63;&#104;&#105;&#x6e;&#x61;&#100;&#101;&#x76;&#x40;&#97;&#115;&#105;&#97;&#46;&#97;&#x70;&#112;&#x6c;&#101;&#46;&#99;&#x6f;&#109;">&#x63;&#x68;&#x69;&#110;&#97;&#100;&#101;&#118;&#x40;&#x61;&#115;&#105;&#97;&#46;&#97;&#x70;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;</a> (没有试过&hellip;)</p>
+或者发送邮件到 <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x63;&#x68;&#x69;&#x6e;&#97;&#100;&#x65;&#x76;&#64;&#97;&#x73;&#x69;&#x61;&#46;&#97;&#112;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#x6d;">&#x63;&#x68;&#x69;&#x6e;&#97;&#100;&#x65;&#x76;&#x40;&#97;&#115;&#105;&#97;&#x2e;&#x61;&#x70;&#x70;&#x6c;&#x65;&#46;&#x63;&#x6f;&#109;</a> (没有试过&hellip;)</p>
 
 <ul>
 <li><strong>问题：</strong> <br/>
@@ -2947,7 +2947,7 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 </ul>
 
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.sina.com.cn/s/blog_68661bd80101nme6.html">http://blog.sina.com.cn/s/blog_68661bd80101nme6.html</a></p>
 ]]></content>
@@ -2958,11 +2958,11 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
     <link href="https://tmyam.github.io/blog/2014/03/09/idpshen-qing/"/>
     <updated>2014-03-09T20:06:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/03/09/idpshen-qing</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>当初我申请idp的一篇详细的文章，不过现在里面的图都挂了，我费了点劲才找回这些图，在这里进行一下还原，希望能帮到需要的人。</p>
 
-<h2>正文</h2>
+<h3>正文</h3>
 
 <p>我的iDP之路04——iDP申请,如何花出去$99,2011年6月份版 <br/>
 这帖子本来应该是六月份写的，怎奈那时期末将近，小弟我搞App刚刚起步，资金全靠奖学金维持，不得不投入到准备考试的深渊中。放假期间被我娘她老人家逼着学车，第一个App搞得很是不顺。这个帖子只能一拖再拖。废话稍候再罗嗦，下面是图和解说：</p>
@@ -2970,40 +2970,40 @@ one可以直接回车，默认生成id_rsa和id_rsa.pub。</li>
 <!-- more -->
 
 
-<h5>1</h5>
+<h6># 1</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/01.png" alt="temp" />
 我是从申请过developer开始的。Apple id和developer太简单了，就不说了，不过填信息也不能乱填，下面说。这张图是登入developer的画面。</p>
 
-<h5>2</h5>
+<h6># 2</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/02.png" alt="temp" /></p>
 
-<h5>3</h5>
+<h6># 3</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/03.png" alt="temp" /></p>
 
-<h5>4</h5>
+<h6># 4</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/04.png" alt="temp" />
 因为已经注册过Apple id和developer了，所以我选的是红圈那项。</p>
 
-<h5>5</h5>
+<h6># 5</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/05.png" alt="temp" />
 左边是个人，右边是团队。我光杆司令一个，所以选了左边。</p>
 
-<h5>6</h5>
+<h6># 6</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/06.png" alt="temp" />
 不知是不是cookie过期了，到了这里要重新登录一次。</p>
 
-<h5>7</h5>
+<h6># 7</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/07.png" alt="temp" />
 这里的信息是信用卡(借记卡可不行)的信息：我(假如叫<strong>王五</strong>)所有名字顺序，除了在银行流留的是中英文<strong>王五</strong>，apple的各种页面上都是英文<strong>Wu Wang</strong>。</p>
 
-<h5>8</h5>
+<h6># 8</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/08.png" alt="temp" />
 这里奉上英文的地址写法一例： <br/>
@@ -3016,106 +3016,106 @@ Street Address: Mailbox 166,Nankai University  <br/>
 Postal Code: 300072  <br/>
 Phone: 86 - 411 - 手机号</p>
 
-<h5>9</h5>
+<h6># 9</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/09.png" alt="temp" /></p>
 
-<h5>10</h5>
+<h6># 10</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/10.png" alt="temp" />
 上面提到过developer申请时信息不能乱写。这图上面的信息就是从那里映射过来的，你可以看到地址有些出入，不过还好影响不大。各位填写时应尽量保持一致。</p>
 
-<h5>11</h5>
+<h6># 11</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/11.png" alt="temp" />
 这张表下下来，用PS填写各种信息，大部分是银行信息。</p>
 
-<h5>12</h5>
+<h6># 12</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/12.png" alt="temp" />
 这份邮件曾经让我望眼欲穿，等了5天吧，给亚洲苹果去了3个电话，发了3封邮件。亚洲苹果普通话服务真不是普通话&hellip;总之，把上图的<strong>Purchase Form</strong> PS完，我存成jpg发给了
-<font color=red><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#x68;&#105;&#110;&#x61;&#100;&#x65;&#118;&#64;&#97;&#115;&#105;&#97;&#x2e;&#97;&#x70;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;">&#99;&#104;&#105;&#x6e;&#x61;&#x64;&#x65;&#x76;&#64;&#x61;&#x73;&#105;&#97;&#46;&#x61;&#112;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;</a></font>。
+<font color=red><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x63;&#104;&#x69;&#110;&#x61;&#100;&#x65;&#x76;&#64;&#x61;&#115;&#105;&#x61;&#46;&#97;&#112;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#109;">&#x63;&#x68;&#105;&#x6e;&#x61;&#x64;&#x65;&#x76;&#x40;&#97;&#x73;&#x69;&#x61;&#x2e;&#x61;&#112;&#112;&#108;&#x65;&#46;&#99;&#x6f;&#109;</a></font>。
 就可以等了，不过论坛里各位前辈的经验是打电话啊发邮件啊地催。我发邮件是因为地址因为笔误写错了。</p>
 
-<h5>13</h5>
+<h6># 13</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/13.png" alt="temp" />
 收到上图邮件后就能进ituesconnect.apple.com了，进contract，tax，and banking，就能看到上图。上面的是可以申请的合同，下面是已经生效的。因为免费app合同不用申请进进来就在下面了。</p>
 
-<h5>14</h5>
+<h6># 14</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/14.png" alt="temp" /></p>
 
-<h5>15</h5>
+<h6># 15</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/15.png" alt="temp" /></p>
 
-<h5>16</h5>
+<h6># 16</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/16.png" alt="temp" />
 红圈子里是需要逐个填写的。</p>
 
-<h5>17</h5>
+<h6># 17</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/17.png" alt="temp" />
 <strong>contract info</strong>  <br/>
 这里第一次进去会需要创建一个新人。然后高管，财务，技术，科技等等职位，都是我一个人担任。</p>
 
-<h5>18</h5>
+<h6># 18</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/18.png" alt="temp" />
 <strong>Bank info</strong></p>
 
-<h5>19</h5>
+<h6># 19</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/19.png" alt="temp" />
 <strong>CNAPS</strong>，应该是叫“联行号”不要跟银行的人说英文，他们不懂。办信用卡的时候问好，95588这种电话问不到。 <br/>
 补充：这里填写的银行号为储蓄卡，千万不能填信用卡的，不然收款都到信用卡里了。 <br/>
 查询CNAPS：<a href="https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp">https://e.czbank.com/CORPORBANK/query_unionBank_index.jsp</a></p>
 
-<h5>20</h5>
+<h6># 20</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/20.png" alt="temp" />
 这里的信息要写的简洁，要不查不到。</p>
 
-<h5>21</h5>
+<h6># 21</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/21.png" alt="temp" />
 添加一个账户信息。</p>
 
-<h5>22</h5>
+<h6># 22</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/22.png" alt="temp" /></p>
 
-<h5>23</h5>
+<h6># 23</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/23.png" alt="temp" />
 储蓄卡卡号，名字当然是储蓄卡开户名，比如<strong>Wu Wang</strong>。  <br/>
 另外这里收款要选择<strong>USD</strong>，如果选择<strong>RMB</strong>的话，apple打款时是以美元结算的，会多一次汇率转换，白白浪费钱。</p>
 
-<h5>24</h5>
+<h6># 24</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/24.png" alt="temp" /></p>
 
-<h5>25</h5>
+<h6># 25</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/25.png" alt="temp" />
 <strong>Tax info</strong>  <br/>
 会有几个问题，照实回答，难度不大。  <br/>
 给自己随便封个号，我的是chairman。</p>
 
-<h5>26</h5>
+<h6># 26</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/26.png" alt="temp" />
 完事会审核，这个很快，吃顿饭就好了。</p>
 
-<h5>27</h5>
+<h6># 27</h6>
 
 <p><img src="https://tmyam.github.io/images/2014/03/09/27.png" alt="temp" />
 这个事我现在的状态。iAd Network的合同是不小心申请的，其实不用。
 时间有点长了，有些细节我慢慢想，慢慢往上写。写的潦草，大家见谅。</p>
 
-<h2>原始链接</h2>
+<h3>原始链接</h3>
 
 <p><a href="http://watchxxx.blog.163.com/blog/static/1974232272011115112728500/">http://watchxxx.blog.163.com/blog/static/1974232272011115112728500/</a></p>
 ]]></content>
@@ -3128,9 +3128,9 @@ Phone: 86 - 411 - 手机号</p>
     <id>https://tmyam.github.io/blog/2014/02/28/objective-cbian-li-shu-zu</id>
     <content type="html"><![CDATA[<p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
 
-<h2>常用写法简介</h2>
+<h3>常用写法简介</h3>
 
-<h3>1. 经典写法</h3>
+<h4>1. 经典写法</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3158,7 +3158,7 @@ Phone: 86 - 411 - 手机号</p>
 <!-- more -->
 
 
-<h3>2. NSEnumerator</h3>
+<h4>2. NSEnumerator</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3185,7 +3185,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>NSEnumerator的优势在于不需要知道数据总数，所以它适合应用在结构化数据上，比如链表，数据流等。</p>
 
-<h3>3. 快速枚举</h3>
+<h4>3. 快速枚举</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3209,7 +3209,7 @@ Phone: 86 - 411 - 手机号</p>
 <p>快速枚举是apple推荐的方式，在使用上比经典的写法性能上更快。 <br/>
 使用上如果需要反向枚举，只需要将<strong>array</strong>改成<strong>array.reverseObjectEnumerator</strong>就可以了。</p>
 
-<h3>4. 枚举块</h3>
+<h4>4. 枚举块</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3232,13 +3232,13 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>枚举块的优势在于它会返回对象和索引, 而其他的枚举方法只会返回对象.</p>
 
-<h2>并发执行</h2>
+<h3>并发执行</h3>
 
 <p>现在是多核的时代，为了发挥多核的优势，在有些时候并发执行就非常具有优势。如果在枚举中有许多事要做，但并不关心枚举顺序的情况下，使用并发就很合适。 <br/>
 但是对于数组总量小一些的数组，并发执行不一定会带来性能提升，反而开销可能远多于其带来的好处。<br/>
 所以具体的使用需要自己进行权衡。</p>
 
-<h3>1. 基本的并发枚举块</h3>
+<h4>1. 基本的并发枚举块</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3263,7 +3263,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>这种方式会为每一个枚举创建一个线程，等到所有的枚举都执行完毕才会进行下一步。</p>
 
-<h3>2. 异步GCD并发</h3>
+<h4>2. 异步GCD并发</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3294,7 +3294,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>这种方式会为每一个枚举创建一个线程，但是不会等待所有枚举执行完成，而是for循环完成后就会进行下一步了，是一种异步执行的方式。</p>
 
-<h3>3. 等待GCD并发</h3>
+<h4>3. 等待GCD并发</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3331,7 +3331,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>这种方式使用group将多个block组成一组以监测这些Block全部完成或者等待全部完成。这种方式的效果类似于<code>1.基本的并发枚举块</code>。</p>
 
-<h3>4. dispatch_apply</h3>
+<h4>4. dispatch_apply</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3360,7 +3360,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p>本文只是粗略的介绍，如果想了解更详细的使用，建议阅读下面的链接。
 <a href="http://www.oschina.net/translate/high-performance-collection-looping-objective-c">http://www.oschina.net/translate/high-performance-collection-looping-objective-c</a></p>
@@ -3376,9 +3376,9 @@ Phone: 86 - 411 - 手机号</p>
     <id>https://tmyam.github.io/blog/2014/02/24/mei-ju-jie-shao</id>
     <content type="html"><![CDATA[<p>Objective-C枚举的使用，常见的方式总结，以便自己使用时方便查阅。</p>
 
-<h2>1. 枚举介绍</h2>
+<h3>1. 枚举介绍</h3>
 
-<h3>enum only</h3>
+<h4>enum only</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3401,7 +3401,7 @@ Phone: 86 - 411 - 手机号</p>
 <!-- more -->
 
 
-<h3>enum 类型</h3>
+<h4>enum 类型</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3440,7 +3440,7 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h3>老式enum写法</h3>
+<h4>老式enum写法</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3464,7 +3464,7 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h3>新式enum写法</h3>
+<h4>新式enum写法</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -3502,7 +3502,7 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h2>2. 枚举最大值</h2>
+<h3>2. 枚举最大值</h3>
 
 <p>对于一般的枚举，要获取枚举的最大值是很难的，因为随着枚举的扩充，最大值在不断变化，这时推荐使用一个固定的枚举表示最大值，例如：</p>
 
@@ -3525,7 +3525,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>这样就可以使用<em>TMEnumTestMax</em>表示枚举<em>TMEnumTest</em>的最大值了。</p>
 
-<h2>3. 位枚举</h2>
+<h3>3. 位枚举</h3>
 
 <p>位枚举是一种特殊的枚举，在apple的类中使用的很多，例如<code>NSStringCompareOptions</code>等。</p>
 
@@ -3639,25 +3639,25 @@ Phone: 86 - 411 - 手机号</p>
     <link href="https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong/"/>
     <updated>2014-02-20T14:24:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2014/02/20/chuang-jian-wen-dang-xing-ying-yong</id>
-    <content type="html"><![CDATA[<h2>简介</h2>
+    <content type="html"><![CDATA[<h3>简介</h3>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
 <!-- more -->   
 
 
-<h2>创建</h2>
+<h3>创建</h3>
 
 <p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
 <img src="https://tmyam.github.io/images/2014/02/20/create.png" alt="temp" /></p>
 
 <p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
 
-<h2>自建文档文件图标</h2>
+<h3>自建文档文件图标</h3>
 
 <p>这里省略，格式为icns&hellip;</p>
 
-<h2>关联文件类型</h2>
+<h3>关联文件类型</h3>
 
 <ul>
 <li>导入文档图标（上步创建的图标）</li>
@@ -3670,11 +3670,11 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h2>运行</h2>
+<h3>运行</h3>
 
 <p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
 
-<h2>编码</h2>
+<h3>编码</h3>
 
 <p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
 
@@ -3735,7 +3735,7 @@ Phone: 86 - 411 - 手机号</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="https://tmyam.github.io/files/TestDocument.zip">TestDocument示例下载</a></p>
 ]]></content>
@@ -3748,14 +3748,14 @@ Phone: 86 - 411 - 手机号</p>
     <id>https://tmyam.github.io/blog/2013/11/17/mac-app-release</id>
     <content type="html"><![CDATA[<p>发布mac app网上已经很多教程了，这里只是进行一个记录，有的时候容易忘记细节。</p>
 
-<h2>前提条件</h2>
+<h3>前提条件</h3>
 
 <p>1, 一个mac developer帐号</p>
 
 <!-- more -->
 
 
-<h2>创建APP ID</h2>
+<h3>创建APP ID</h3>
 
 <ul>
 <li>登陆 <a href="https://developer.apple.com/membercenter">MemberCenter</a></li>
@@ -3779,7 +3779,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p> 当然也可以通过 <code>iTunes Connect添加App</code> 时，点击 <strong>You can register a new Bundle ID here.</strong> 来快速创建。</p>
 
-<h2>在iTunes Connect添加App</h2>
+<h3>在iTunes Connect添加App</h3>
 
 <p>这一步需要在开始开发之前做，因为App Name可能已经被别的人占用了，一旦做完应用才创建，不得不面临改名的困境，所以在开发前先将应用名占着。（但是这也有一定风险，如果半年内没有提交该应用，那么你就永远用不了这个名字了&hellip;）</p>
 
@@ -3824,7 +3824,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>至此，开放前的准备工作就完成了。</p>
 
-<h2>生成发布的描述文件</h2>
+<h3>生成发布的描述文件</h3>
 
 <p>在编写程序的时候需要对沙箱环境进行测试，这里使用通用的Mac developer证书，以及通用的描述文件即可达到目的。但是发布的话还需要专用的描述文件。</p>
 
@@ -3840,11 +3840,11 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h2>编写程序&hellip;</h2>
+<h3>编写程序&hellip;</h3>
 
 <p>这里不多赘述了&hellip;</p>
 
-<h2>发布</h2>
+<h3>发布</h3>
 
 <p>程序写好，测试完成就可以发布了。
 还记得在 <strong>iTunes Connect</strong> 添加的app吗，现在可以进行完善工作了。 <br/>
@@ -3867,7 +3867,7 @@ Phone: 86 - 411 - 手机号</p>
 </ul>
 
 
-<h3>更新</h3>
+<h4>更新</h4>
 
 <ul>
 <li>2016-03-09 第一次更新，环境: <code>(mac 版本 10.11.3 ) ( Xcode 7.2.1 )</code></li>
@@ -3887,7 +3887,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p><br/></p>
 
-<h4>步骤很简单，但是总是忘记，所以在这里做个记录。</h4>
+<h3>步骤很简单，但是总是忘记，所以在这里做个记录。</h3>
 
 <ul>
 <li>在工程目录中建个文件夹，存放将要添加的第三方framework</li>
@@ -3909,7 +3909,7 @@ Phone: 86 - 411 - 手机号</p>
 
 <p>右侧的文件管理里，刚添加的framework会位于顶端，可以稍作整理，移动到Frameworks组里，这时添加就完成了可以随意使用了。</p>
 
-<h4>修改关联路径</h4>
+<h3>修改关联路径</h3>
 
 <p>一般情况下，如果将framework文件放到了工程文件夹的里面，那么在移动工程文件夹后，编译工程会出现无法找到framework头文件的错误，这是因为工程默认添加的路径使用了绝对路径的关系。</p>
 
@@ -3923,7 +3923,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 </ul>
 
 
-<h4>清除冗余文件</h4>
+<h3>清除冗余文件</h3>
 
 <p>对于已经添加的第三方framework，在生成的app中可以查看到framework的头文件，出于两个目的的考虑。<br/>
 1. 由于程序中已经引入了这些头文件，所以重复添加浪费了空间。<br/>
@@ -3961,7 +3961,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 如下图 <br/>
 <img src="https://tmyam.github.io/images/2013/11/05/clean_framework.png" alt="temp" /></p>
 
-<h4>编译问题</h4>
+<h3>编译问题</h3>
 
 <p>对于编译出现签名错误的问题，可以查看<a href="http://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/">链接</a>。</p>
 
@@ -3979,7 +3979,7 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
     <link href="https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion/"/>
     <updated>2013-11-05T10:05:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2013/11/05/xcode5-mac-app-running-on-lion</id>
-    <content type="html"><![CDATA[<h2>前因</h2>
+    <content type="html"><![CDATA[<h3>前因</h3>
 
 <p>最近mac操作系统升级到了Mavericks(10.9)，编程工具Xcode也升级到了5.0，但是升级之后问题多多。
 先是以前创建的mac app工程使用到第三方framework的地方，无法编译通过了，其次就是编译出的程序在Lion(10.7)系统下无法运行了，要做兼容的话，真是让人头疼。</p>
@@ -3987,9 +3987,9 @@ $(SRCROOT)/<code>当前工程名</code>/<code>第三方framework所在的文件�
 <!-- more -->
 
 
-<h2>解决</h2>
+<h3>解决</h3>
 
-<h3>引用第三方framework</h3>
+<h4>引用第三方framework</h4>
 
 <p>原本mac app开发使用的第三方framework是不需要签名的，但是系统升级到Mavericks，Xcode升级到5.0后，再引用无签名的第三方framework时就无法编译通过了，这对于使用资源是很不利的。</p>
 
@@ -4006,7 +4006,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </ul>
 
 
-<h3>Lion(10.7)的兼容</h3>
+<h4>Lion(10.7)的兼容</h4>
 
 <p>Mavericks(10.9) + Xcode5.0创建的mac app程序无法在Lion(10.7)上面运行，就算选择了tag为10.7也不行。<br/>
 究其原因发现，新创建的程序下面多了个 <em>Base.lproj</em> 文件夹，<em>MainMenu.xib</em> 文件就在里面，而在以前，<em>MainMenu.xib</em> 文件是在 <em>en.lproj</em> 文件夹下的。</p>
@@ -4033,7 +4033,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
     <link href="https://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
     <updated>2013-10-09T15:03:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
-    <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
+    <content type="html"><![CDATA[<h3>1.右侧边栏分类</h3>
 
 <ul>
 <li><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">参考链接</a><br/>
@@ -4045,7 +4045,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 <!-- more -->
 
 
-<h2>2.添加关于页面</h2>
+<h3>2.添加关于页面</h3>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></p>
 
@@ -4086,7 +4086,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2><del>3.添加disqus评论</del></h2>
+<h3><del>3.添加disqus评论</del></h3>
 
 <ul>
 <li><p>使用第三方的评论系统，在<a href="http://www.disqus.com">disqus</a>注册一个账号，并登录。</p></li>
@@ -4118,7 +4118,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>4.添加多说评论</h2>
+<h3>4.添加多说评论</h3>
 
 <p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
 
@@ -4132,7 +4132,7 @@ Command /usr/bin/codesign failed with exit code 1</p></blockquote>
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
 ]]></content>

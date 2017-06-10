@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,7 +18,7 @@
     <link href="https://tmyam.github.io/blog/2013/10/09/category-and-comment/"/>
     <updated>2013-10-09T15:03:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2013/10/09/category-and-comment</id>
-    <content type="html"><![CDATA[<h2>1.右侧边栏分类</h2>
+    <content type="html"><![CDATA[<h3>1.右侧边栏分类</h3>
 
 <ul>
 <li><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">参考链接</a><br/>
@@ -30,7 +30,7 @@
 <!-- more -->
 
 
-<h2>2.添加关于页面</h2>
+<h3>2.添加关于页面</h3>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">参考链接</a></p>
 
@@ -96,7 +96,7 @@
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>&lt;pre&gt;&lt;code&gt;
-</span><span class='line'>##~~3.添加disqus评论~~
+</span><span class='line'>###~~3.添加disqus评论~~
 </span><span class='line'>* 使用第三方的评论系统，在[disqus](http://www.disqus.com)注册一个账号，并登录。
 </span><span class='line'>
 </span><span class='line'>* 参考下图，点击`Dashboard`  
@@ -117,7 +117,7 @@
 </span><span class='line'>&lt;p&gt;disqus_short_name: tmyam   # tmyam为添加站点信息时的Site Shortname (注意前面必须有空格)
 </span><span class='line'>disqus_show_comment_count: true</span></code></pre></td></tr></table></div></figure></p>
 
-<h2>4.添加多说评论</h2>
+<h3>4.添加多说评论</h3>
 
 <p>disqus作为国外的评论系统，可用的登录基本都被墙了，所以选择国内的系统还是很有必要的。</p>
 
@@ -131,7 +131,7 @@
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html">http://www.cnblogs.com/oec2003/archive/2013/05/31/3109577.html</a></p>
 ]]></content>
@@ -142,7 +142,7 @@
     <link href="https://tmyam.github.io/blog/2013/10/09/write-blog/"/>
     <updated>2013-10-09T10:52:00+08:00</updated>
     <id>https://tmyam.github.io/blog/2013/10/09/write-blog</id>
-    <content type="html"><![CDATA[<h2>1.编写</h2>
+    <content type="html"><![CDATA[<h3>1.编写</h3>
 
 <ul>
 <li><p>下载markdown的编辑工具,<a href="http://mouapp.com">Mou</a></p></li>
@@ -184,7 +184,7 @@
 <p>如果想将Read on 修改为中文，可以修改_config.yml文件<br/>
 excerpt_link: &ldquo;Read on &rarr;&rdquo;  # &ldquo;Continue reading&rdquo; link text at the bottom of excerpted articles 中的<code>Read on</code> 改为 <code>阅读全文</code>。</p>
 
-<h2>2.代码高亮</h2>
+<h3>2.代码高亮</h3>
 
 <p>octopress原生支持代码高亮，<a href="http://octopress.org/docs/blogging/code/">参考链接</a> <br/>
 使用<code>Backtick</code>来实现语法高亮，<a href="http://m.blog.csdn.net/blog/trochiluses/12906265">参考链接</a></p>
@@ -226,7 +226,7 @@ objc: Objective-C</li>
 </ul>
 
 
-<h2>3.生成</h2>
+<h3>3.生成</h3>
 
 <ul>
 <li>生成静态文件</li>
@@ -253,7 +253,7 @@ objc: Objective-C</li>
 <pre><code>rake deploy
 </code></pre>
 
-<h2>4.备份</h2>
+<h3>4.备份</h3>
 
 <p>将文件更新备份到github上。</p>
 
@@ -273,7 +273,7 @@ git push origin source
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/">http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/</a></p>
 ]]></content>
@@ -287,7 +287,7 @@ git push origin source
     <content type="html"><![CDATA[<p>我的第一篇博文 <br/>
 <code>(mac 版本 10.8.5)</code></p>
 
-<h2>1.git配置</h2>
+<h3>1.git配置</h3>
 
 <ul>
 <li>申请<a href="https://github.com">github</a>账号</li>
@@ -314,7 +314,7 @@ git config --global user.name "xxx"
 <p><strong>登录</strong><a href="https://github.com">github</a><br/>
 拷贝~/.ssh/id_rsa.pub的内容，在github的<code>Account Settings</code>的<code>SSH Keys</code>里，点<code>Add SSH Keys</code>，将内容粘贴到”Key”中，并输入”Title”.</p>
 
-<h2>2.安装ruby</h2>
+<h3>2.安装ruby</h3>
 
 <p>使用Octopress需要最低Ruby版本为1.9.3,所以必须安装ruby。</p>
 
@@ -359,7 +359,7 @@ pkgconfig_apple-gcc42_libiconv_libyaml_libffi_readline_libxml2_libxslt_libksba_o
 <blockquote><p>Error running &lsquo;requirements_osx_brew_libs_install autoconf automake libtool pkg-config libyaml readline libksba openssl&rsquo;,
 please read /Users/zrshz/.rvm/log/1381463190_ruby-2.0.0-p247/package_install_autoconf_automake_libtool_pkg-config_libyaml_readline_libksba_openssl.log</p>
 
-<h4>Requirements installation failed with status: 1.</h4></blockquote>
+<h6>Requirements installation failed with status: 1.</h6></blockquote>
 
 <p>可以先安装homebrew</p>
 
@@ -381,7 +381,7 @@ curl -L http://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C /us
 
 <p>可以使用 <code>rvm list</code> 查看安装的ruby的状态。</p>
 
-<h2>3.部署blog</h2>
+<h3>3.部署blog</h3>
 
 <ul>
 <li><p>创建git的blog</p>
@@ -446,7 +446,7 @@ rake deploy
 
 <p>这样就可以看到上传的主题博客了。</p>
 
-<h2>4.备份资源文件</h2>
+<h3>4.备份资源文件</h3>
 
 <p>在octopress目录下</p>
 
@@ -455,7 +455,7 @@ git commit -m 'your message'
 git push origin source
 </code></pre>
 
-<h2>更新 Octopress</h2>
+<h3>更新 Octopress</h3>
 
 <pre><code class="sh ">git remote add octopress git://github.com/imathis/octopress.git
 git pull octopress master     # Get the latest Octopress
@@ -466,7 +466,7 @@ rake update_style             # update the template's style
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p> <a href="http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/">http://firestudio.cn/blog/2013/01/05/ru-he-tong-guo-github-yu-octopress-lai-da-jian-zi-ji-de-bo-ke/</a></p>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: web | tmyam's blog]]></title>
   <link href="https://tmyam.github.io/blog/categories/web/atom.xml" rel="self"/>
   <link href="https://tmyam.github.io/"/>
-  <updated>2017-06-10T14:40:06+08:00</updated>
+  <updated>2017-06-10T14:53:21+08:00</updated>
   <id>https://tmyam.github.io/</id>
   <author>
     <name><![CDATA[tmyam]]></name>
@@ -18,14 +18,14 @@
     <link href="https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu/"/>
     <updated>2017-06-10T14:12:17+08:00</updated>
     <id>https://tmyam.github.io/blog/2017/06/10/javawebxue-xi-:chuang-jian-mavenxiang-mu</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
+    <content type="html"><![CDATA[<h3>前言</h3>
 
 <p>做项目开发，前期最重要的就是规范和整体架构，<strong>Maven</strong>正好可以规范这些方面，它是一个项目管理工具，是做java开发的不二之选。</p>
 
 <!--more-->
 
 
-<h2>Maven的作用</h2>
+<h3>Maven的作用</h3>
 
 <ol>
 <li>在开发中，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，运行的时候，却发现"ClassNotFoundException"，我们想到的是，难道还差jar包？</li>
@@ -40,7 +40,7 @@
 </ol>
 
 
-<h2>搭建项目</h2>
+<h3>搭建项目</h3>
 
 <p>Maven的具体目录结构，不是本文的重点，这里就不做介绍了。可以 <a href="http://www.cnblogs.com/hongwz/p/5456578.html">参考链接</a></p>
 
@@ -80,7 +80,7 @@
 <p>创建成功的项目目录如下：
 <img src="/images/2017/06/10/04.jpg" alt="" /></p>
 
-<h2>Java web 启动配置</h2>
+<h3>Java web 启动配置</h3>
 
 <p>1、 配置 Facets</p>
 
@@ -102,12 +102,12 @@
 
 <p><img src="/images/2017/06/10/11.jpg" alt="" /></p>
 
-<h2>运行项目</h2>
+<h3>运行项目</h3>
 
 <p><img src="/images/2017/06/10/12.jpg" alt="" />
 之后会自动打开浏览器的 <a href="http://localhost:8080">http://localhost:8080</a> 看到 <strong>Hello World!</strong>。</p>
 
-<h2>创建java war发布包</h2>
+<h3>创建java war发布包</h3>
 
 <p>war包放入Tomcat后会自动解压部署，非常适合于线上环境的部署。</p>
 
@@ -122,7 +122,7 @@
 
 <p>这样在运行Tomcat之后，会在 <strong>out</strong> 目录内生成 <strong>hellotest_war.war</strong> 的发布包。</p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://www.cnblogs.com/hongwz/p/5456578.html">http://www.cnblogs.com/hongwz/p/5456578.html</a>
 <a href="http://blog.csdn.net/myarrow/article/details/50824793">http://blog.csdn.net/myarrow/article/details/50824793</a></p>

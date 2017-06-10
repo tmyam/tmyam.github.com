@@ -141,9 +141,9 @@ window.onload=sethash;
 
 <div class="entry-content"><p>数组的遍历有多种方式，这里介绍一下常见的方式，使用以及注意事项。</p>
 
-<h2>常用写法简介</h2>
+<h3>常用写法简介</h3>
 
-<h3>1. 经典写法</h3>
+<h4>1. 经典写法</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -171,7 +171,7 @@ window.onload=sethash;
 <!-- more -->
 
 
-<h3>2. NSEnumerator</h3>
+<h4>2. NSEnumerator</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -198,7 +198,7 @@ window.onload=sethash;
 
 <p>NSEnumerator的优势在于不需要知道数据总数，所以它适合应用在结构化数据上，比如链表，数据流等。</p>
 
-<h3>3. 快速枚举</h3>
+<h4>3. 快速枚举</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -222,7 +222,7 @@ window.onload=sethash;
 <p>快速枚举是apple推荐的方式，在使用上比经典的写法性能上更快。 <br/>
 使用上如果需要反向枚举，只需要将<strong>array</strong>改成<strong>array.reverseObjectEnumerator</strong>就可以了。</p>
 
-<h3>4. 枚举块</h3>
+<h4>4. 枚举块</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -245,13 +245,13 @@ window.onload=sethash;
 
 <p>枚举块的优势在于它会返回对象和索引, 而其他的枚举方法只会返回对象.</p>
 
-<h2>并发执行</h2>
+<h3>并发执行</h3>
 
 <p>现在是多核的时代，为了发挥多核的优势，在有些时候并发执行就非常具有优势。如果在枚举中有许多事要做，但并不关心枚举顺序的情况下，使用并发就很合适。 <br/>
 但是对于数组总量小一些的数组，并发执行不一定会带来性能提升，反而开销可能远多于其带来的好处。<br/>
 所以具体的使用需要自己进行权衡。</p>
 
-<h3>1. 基本的并发枚举块</h3>
+<h4>1. 基本的并发枚举块</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -276,7 +276,7 @@ window.onload=sethash;
 
 <p>这种方式会为每一个枚举创建一个线程，等到所有的枚举都执行完毕才会进行下一步。</p>
 
-<h3>2. 异步GCD并发</h3>
+<h4>2. 异步GCD并发</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -307,7 +307,7 @@ window.onload=sethash;
 
 <p>这种方式会为每一个枚举创建一个线程，但是不会等待所有枚举执行完成，而是for循环完成后就会进行下一步了，是一种异步执行的方式。</p>
 
-<h3>3. 等待GCD并发</h3>
+<h4>3. 等待GCD并发</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -344,7 +344,7 @@ window.onload=sethash;
 
 <p>这种方式使用group将多个block组成一组以监测这些Block全部完成或者等待全部完成。这种方式的效果类似于<code>1.基本的并发枚举块</code>。</p>
 
-<h3>4. dispatch_apply</h3>
+<h4>4. dispatch_apply</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -373,7 +373,7 @@ window.onload=sethash;
 
 <p><br/></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p>本文只是粗略的介绍，如果想了解更详细的使用，建议阅读下面的链接。
 <a href="http://www.oschina.net/translate/high-performance-collection-looping-objective-c">http://www.oschina.net/translate/high-performance-collection-looping-objective-c</a></p>

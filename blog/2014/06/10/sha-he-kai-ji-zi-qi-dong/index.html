@@ -129,11 +129,11 @@ window.onload=sethash;
   </header>
 
 
-<div class="entry-content"><h2>前言</h2>
+<div class="entry-content"><h3>前言</h3>
 
 <p>在出现沙盒以前，mac下设置开机自启动是很容易的，使用 LSSharedFileListRef 很容易做到开机自启动。但自从沙盒出现之后，就变得麻烦了点，这里进行一下详细的使用描述。</p>
 
-<h2>非沙盒下的开机自启动</h2>
+<h3>非沙盒下的开机自启动</h3>
 
 <p>简单的说只需要两个函数就可以了。而且这种开机自启动和app所在的文件夹无关，并且可以在"系统偏好设置"->&ldquo;用户与群组&rdquo;->&ldquo;登录项"里面看到，并进行设置。</p>
 
@@ -289,16 +289,16 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>沙盒下的开机自启动</h2>
+<h3>沙盒下的开机自启动</h3>
 
 <p>沙盒下的自启动会比较麻烦，步骤比较多。这里以程序 test 为例，进行详细阐述。</p>
 
-<h3>1. 添加Helper程序</h3>
+<h4>1. 添加Helper程序</h4>
 
 <p>沙盒下，app是无法自己做到开机自启动的，需要另外一个app协助才行。这里就创建这样一个app，为了便于区分起名testHelper。
 <img src="/images/2014/06/10/01.jpg" alt="temp" /></p>
 
-<h3>2. 设置Helper</h3>
+<h4>2. 设置Helper</h4>
 
 <p>test和testHelper都需要设置，这里先进行testHelper的设置.</p>
 
@@ -319,7 +319,7 @@ window.onload=sethash;
 </ul>
 
 
-<h3>3. 添加Helper的代码</h3>
+<h4>3. 添加Helper的代码</h4>
 
 <p>参照下面的函数，复制到testHelper的AppDelegate中，注意修改identifier和appName为自己主app的信息。这段代码的意义是启动主app。</p>
 
@@ -400,7 +400,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>4. 设置主程序</h3>
+<h4>4. 设置主程序</h4>
 
 <ul>
 <li>test添加Copy Files 。
@@ -417,7 +417,7 @@ window.onload=sethash;
 </ul>
 
 
-<h3>5. 主程序添加代码</h3>
+<h4>5. 主程序添加代码</h4>
 
 <ul>
 <li><p>test首先导入两个文件，StartAtLoginController.h和StartAtLoginController.m，<a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a></p></li>
@@ -464,19 +464,19 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>结尾</h3>
+<h4>结尾</h4>
 
 <p>至此，所有的设置已经完成，可以通过主程序的 TMStartAtLogin 管理自启动的状态。
 还有要注意的地方，如果要测试沙盒下的开机自启动，<em>需要将编译出的app放入系统的应用程序目录下</em>，否则不会生效。</p>
 
 <p>另外，在发布app时，会遇到因为使用了testHelper证书而导致上传到app store时的错误，这时需要深入到<em>&ldquo;&hellip;/Products/Applications/test.app/Contents/Library/LoginItems/testHelper.app/Contents&rdquo;</em>目录下，删除embedded.provisionprofile文件，就可以正确上传了。</p>
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="/files/StartAtLoginController.zip">StartAtLoginController下载</a> <br/>
 <a href="/files/test-startatlogin.zip">test示例下载</a></p>
 
-<h3>参考</h3>
+<h4>参考</h4>
 
 <p><a href="http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/">http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/</a>
 <a href="http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle">http://stackoverflow.com/questions/11230168/submit-an-osx-app-with-helper-app-in-its-bundle</a></p>

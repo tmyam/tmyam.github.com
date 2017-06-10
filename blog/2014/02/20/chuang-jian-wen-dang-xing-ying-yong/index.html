@@ -129,25 +129,25 @@ window.onload=sethash;
   </header>
 
 
-<div class="entry-content"><h2>简介</h2>
+<div class="entry-content"><h3>简介</h3>
 
 <p>基于文档的app在mac下又是比较常见的形式，但是介绍的文章比较少。为了避免少走弯路，在此进行一些简单的介绍。</p>
 
 <!-- more -->   
 
 
-<h2>创建</h2>
+<h3>创建</h3>
 
 <p>创建一个mac app，在下图这个界面，勾选<strong>Create Document-Based Application</strong> <br/>
 <img src="/images/2014/02/20/create.png" alt="temp" /></p>
 
 <p>其中继承自<strong>NSDocument</strong>的<strong>Document</strong>就是文档类，区别于<strong>AppDelegate</strong>，<strong>Document</strong>不是单例，而是对应一个个文档实例。</p>
 
-<h2>自建文档文件图标</h2>
+<h3>自建文档文件图标</h3>
 
 <p>这里省略，格式为icns&hellip;</p>
 
-<h2>关联文件类型</h2>
+<h3>关联文件类型</h3>
 
 <ul>
 <li>导入文档图标（上步创建的图标）</li>
@@ -160,11 +160,11 @@ window.onload=sethash;
 </ul>
 
 
-<h2>运行</h2>
+<h3>运行</h3>
 
 <p>这时，运行工程，文件关联就已经完成了。可以创建一个指定的扩展名文件，看看是不是已经变成了指定的图标样式。如果没有改变，可以重启电脑之后看看。</p>
 
-<h2>编码</h2>
+<h3>编码</h3>
 
 <p>在<strong>Document.m</strong>文件里已经有两个函数。</p>
 
@@ -225,7 +225,7 @@ window.onload=sethash;
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>示例</h2>
+<h3>示例</h3>
 
 <p><a href="/files/TestDocument.zip">TestDocument示例下载</a></p>
 </div>
